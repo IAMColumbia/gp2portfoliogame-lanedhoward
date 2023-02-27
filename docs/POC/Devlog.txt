@@ -21,3 +21,10 @@ system.
 the host puts IButtons (an array/list of the buttons pressed at that time) into the hostpackage
 the inputreader holds these IButtons along with the hostpackage, and after it reads the gestures,
 it simply puts the IButtons into the ReadPackage as well. without ever touching them
+
+ReadablePackage:
+i dont know how i will want to keep track of Time so i made it a float for now
+i also think i will need to know if the character was facing right while this input was pressed
+but maybe i won't need that actually
+
+

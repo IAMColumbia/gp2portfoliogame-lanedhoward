@@ -4,7 +4,7 @@
     <Position X="0.5" Y="0.55" Height="0.75" Width="1.7" />
   </Comment>
   <Comment CommentText="host package:&#xD;&#xA;usable input data">
-    <Position X="2.75" Y="1" Height="0.75" Width="1.7" />
+    <Position X="2.658" Y="0.675" Height="0.508" Width="1.7" />
   </Comment>
   <Comment CommentText="Input reader:&#xD;&#xA;takes in host packages&#xD;&#xA;and outputs gesture packages">
     <Position X="4.933" Y="0.5" Height="1.058" Width="1.7" />
@@ -21,6 +21,9 @@
   <Comment CommentText="then there is stuff like &#xD;&#xA;Monogame Keyboard Input Host&#xD;&#xA;and other specific concrete implementations">
     <Position X="0.5" Y="4.608" Height="1.183" Width="1.542" />
   </Comment>
+  <Comment CommentText="readable package is a host package with additional properties for record keeping, such as time it came in">
+    <Position X="2.725" Y="4.092" Height="1" Width="1.7" />
+  </Comment>
   <Class Name="CommandInputReader.InputHost" Collapsed="true">
     <Position X="0.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
@@ -30,9 +33,9 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CommandInputReader.HostPackage" Collapsed="true">
-    <Position X="2.75" Y="3.75" Width="1.5" />
+    <Position X="2.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAEAAAAAA=</HashCode>
       <FileName>HostPackage.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -60,6 +63,13 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="CommandInputReaderLibrary.ReadablePackage">
+    <Position X="2.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ReadablePackage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="CommandInputReader.IInputHost">
     <Position X="0.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
@@ -68,7 +78,7 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="CommandInputReader.IHostPackage">
-    <Position X="2.75" Y="2" Width="1.5" />
+    <Position X="2.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAEAAAAAA=</HashCode>
       <FileName>IHostPackage.cs</FileName>

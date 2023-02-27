@@ -18,7 +18,10 @@
   <Comment CommentText="Read package: &#xD;&#xA;processed input data.&#xD;&#xA;features the buttons/directions currently pressed, &#xD;&#xA;and all applicable gestures">
     <Position X="7.608" Y="1.35" Height="1.4" Width="1.7" />
   </Comment>
-  <Class Name="MonogameCommandInputs.InputHost" Collapsed="true">
+  <Comment CommentText="then there is stuff like &#xD;&#xA;Monogame Keyboard Input Host&#xD;&#xA;and other specific concrete implementations">
+    <Position X="0.5" Y="4.608" Height="1.183" Width="1.542" />
+  </Comment>
+  <Class Name="CommandInputReader.InputHost" Collapsed="true">
     <Position X="0.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
@@ -26,14 +29,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="MonogameCommandInputs.MonogameInputHost" Collapsed="true">
-    <Position X="0.5" Y="4.5" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
-      <FileName>MonogameInputHost.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="MonogameCommandInputs.HostPackage" Collapsed="true">
+  <Class Name="CommandInputReader.HostPackage" Collapsed="true">
     <Position X="2.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
@@ -41,14 +37,14 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="MonogameCommandInputs.InputReader">
+  <Class Name="CommandInputReader.InputReader">
     <Position X="4.75" Y="1.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>InputReader.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MonogameCommandInputs.Gesture" Collapsed="true">
+  <Class Name="CommandInputReader.Gesture" Collapsed="true">
     <Position X="5" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
@@ -56,7 +52,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="MonogameCommandInputs.ReadPackage" Collapsed="true">
+  <Class Name="CommandInputReader.ReadPackage" Collapsed="true">
     <Position X="7.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
@@ -64,49 +60,42 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="MonogameCommandInputs.MonogameKeyboardInputHost" Collapsed="true">
-    <Position X="0.5" Y="5.5" Width="2.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>MonogameKeyboardInputHost.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Interface Name="MonogameCommandInputs.IInputHost">
+  <Interface Name="CommandInputReader.IInputHost">
     <Position X="0.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IInputHost.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="MonogameCommandInputs.IHostPackage">
+  <Interface Name="CommandInputReader.IHostPackage">
     <Position X="2.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAEAAAAAA=</HashCode>
       <FileName>IHostPackage.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="MonogameCommandInputs.IGesture" Collapsed="true">
+  <Interface Name="CommandInputReader.IGesture" Collapsed="true">
     <Position X="5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IGesture.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="MonogameCommandInputs.IInputReceiver">
+  <Interface Name="CommandInputReader.IInputReceiver">
     <Position X="10" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IInputReceiver.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="MonogameCommandInputs.IReadPackage" Collapsed="true">
+  <Interface Name="CommandInputReader.IReadPackage" Collapsed="true">
     <Position X="7.75" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IReadPackage.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="MonogameCommandInputs.IReadableGesture" Collapsed="true">
+  <Interface Name="CommandInputReader.IReadableGesture" Collapsed="true">
     <Position X="5" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>

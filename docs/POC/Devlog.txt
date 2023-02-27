@@ -1,0 +1,23 @@
+LH 2/27/23 
+starting on the POC, i decided to lay out my plans for the
+input reader system with a basic UML diagram.
+i have written many notes and thought a lot about the architecture
+over the last few weeks, so i organized those notes into a real uml diagram
+(OriginalUML.png)
+
+there are still problems i don't know how im going to solve. but i feel confident
+in my plans for the bulk of this
+
+i want the system to be button-agnostic. that is, i dont want to care how many
+buttons there are in the game. 
+whether it is { Light Punch, Light Kick, ... Heavy Kick}
+or simply { A, B, C }
+it would be nice to be able to read buttons into gestures. 
+so you can have gestures that include directions and buttons. (ex: LP, MP, forward, LK, MK)
+but i am willing to sacrifice button gestures for button agnosticism.
+
+so im thinking maybe there can be an IButtons type that just gets passed along through the whole
+system. 
+the host puts IButtons (an array/list of the buttons pressed at that time) into the hostpackage
+the inputreader holds these IButtons along with the hostpackage, and after it reads the gestures,
+it simply puts the IButtons into the ReadPackage as well. without ever touching them

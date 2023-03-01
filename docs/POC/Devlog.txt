@@ -28,3 +28,8 @@ i also think i will need to know if the character was facing right while this in
 but maybe i won't need that actually
 
 
+LH 2/28/23
+
+wrote the gestures and reading system!
+jeff you'll be so proud of me, i wrote some unit tests to test it, since i didn't have anything
+running inside monogame yet.

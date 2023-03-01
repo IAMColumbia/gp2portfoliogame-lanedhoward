@@ -63,9 +63,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CommandInputReaderLibrary.ReadableGesture">
-    <Position X="5" Y="4.75" Width="2" />
+    <Position X="4.75" Y="4.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAAAAAEAAABAAAgAAAAAAAABAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAIAAAAAAAAAAEAAABAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ReadableGesture.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />

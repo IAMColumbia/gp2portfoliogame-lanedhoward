@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommandInputReader
+namespace CommandInputReaderLibrary
 {
     public static class Directions
     {
@@ -46,6 +46,57 @@ namespace CommandInputReader
                     break;
                 default:
                     r = d;
+                    break;
+            }
+            return r;
+        }
+
+        public static Direction GetDirectionFacingRight(int upDown, int leftRight)
+        {
+            Direction r = Direction.Neutral;
+            switch (upDown)
+            {
+                case 1:
+                    switch (leftRight)
+                    {
+                        case 1:
+                            r = Direction.UpForward;
+                            break;
+                        case 0:
+                            r = Direction.Up;
+                            break;
+                        case -1:
+                            r = Direction.UpBack;
+                            break;
+                    }
+                    break;
+                case 0:
+                    switch (leftRight)
+                    {
+                        case 1:
+                            r = Direction.Forward;
+                            break;
+                        case 0:
+                            r = Direction.Neutral;
+                            break;
+                        case -1:
+                            r = Direction.Back;
+                            break;
+                    }
+                    break;
+                case -1:
+                    switch (leftRight)
+                    {
+                        case 1:
+                            r = Direction.DownForward;
+                            break;
+                        case 0:
+                            r = Direction.Down;
+                            break;
+                        case -1:
+                            r = Direction.DownBack;
+                            break;
+                    }
                     break;
             }
             return r;

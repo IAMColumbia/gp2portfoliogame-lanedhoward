@@ -10,7 +10,7 @@
     <Position X="4.933" Y="0.5" Height="1.058" Width="1.7" />
   </Comment>
   <Comment CommentText="gesture: &#xD;&#xA;a named series of directional inputs&#xD;&#xA;(e.g. Quarter-Circle Forward)">
-    <Position X="4.675" Y="3.175" Height="0.85" Width="2.158" />
+    <Position X="4.646" Y="2.705" Height="0.85" Width="2.158" />
   </Comment>
   <Comment CommentText="input receiver:&#xD;&#xA;playercontroller or whatever is actually getting the inputs/gestures and acting on them">
     <Position X="9.875" Y="0.9" Height="1.258" Width="1.7" />
@@ -24,7 +24,7 @@
   <Comment CommentText="readable package is a host package with additional properties for record keeping, such as time it came in">
     <Position X="2.725" Y="4.092" Height="1" Width="1.7" />
   </Comment>
-  <Class Name="CommandInputReader.InputHost" Collapsed="true">
+  <Class Name="CommandInputReaderLibrary.InputHost" Collapsed="true">
     <Position X="0.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
@@ -32,7 +32,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="CommandInputReader.HostPackage" Collapsed="true">
+  <Class Name="CommandInputReaderLibrary.HostPackage" Collapsed="true">
     <Position X="2.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAEAAAAAA=</HashCode>
@@ -40,22 +40,14 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="CommandInputReader.InputReader">
+  <Class Name="CommandInputReaderLibrary.InputReader" Collapsed="true">
     <Position X="4.75" Y="1.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAABAAhAAAAAAABAAAABCAAABAAAAACAAAAIQA=</HashCode>
       <FileName>InputReader.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CommandInputReader.Gesture" Collapsed="true">
-    <Position X="5" Y="6.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Gesture.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="CommandInputReader.ReadPackage" Collapsed="true">
+  <Class Name="CommandInputReaderLibrary.ReadPackage" Collapsed="true">
     <Position X="7.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
@@ -64,52 +56,53 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CommandInputReaderLibrary.ReadablePackage">
-    <Position X="2.75" Y="5.25" Width="1.5" />
+    <Position X="2.5" Y="5.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAABAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ReadablePackage.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="CommandInputReader.IInputHost">
+  <Class Name="CommandInputReaderLibrary.ReadableGesture">
+    <Position X="5" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAEAAABAAAgAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>ReadableGesture.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="CommandInputReaderLibrary.IInputHost">
     <Position X="0.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IInputHost.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="CommandInputReader.IHostPackage">
+  <Interface Name="CommandInputReaderLibrary.IHostPackage">
     <Position X="2.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAEAAAAAA=</HashCode>
       <FileName>IHostPackage.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="CommandInputReader.IGesture" Collapsed="true">
-    <Position X="5" Y="4.25" Width="1.5" />
+  <Interface Name="CommandInputReaderLibrary.IGesture" Collapsed="true">
+    <Position X="5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IGesture.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="CommandInputReader.IInputReceiver">
+  <Interface Name="CommandInputReaderLibrary.IInputReceiver">
     <Position X="10" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IInputReceiver.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="CommandInputReader.IReadPackage" Collapsed="true">
+  <Interface Name="CommandInputReaderLibrary.IReadPackage" Collapsed="true">
     <Position X="7.75" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IReadPackage.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
-  <Interface Name="CommandInputReader.IReadableGesture" Collapsed="true">
-    <Position X="5" Y="5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>IReadableGesture.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

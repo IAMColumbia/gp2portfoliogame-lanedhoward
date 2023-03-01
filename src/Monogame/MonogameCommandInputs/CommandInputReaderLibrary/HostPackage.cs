@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CommandInputReader
+namespace CommandInputReaderLibrary
 {
     public class HostPackage : IHostPackage
     {

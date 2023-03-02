@@ -33,3 +33,14 @@ LH 2/28/23
 wrote the gestures and reading system!
 jeff you'll be so proud of me, i wrote some unit tests to test it, since i didn't have anything
 running inside monogame yet.
+
+theres still some features i want to add to gestures, like having disallowed directions.
+
+like for example. a DP input (Forward, Down, Down-forward) cannot inclue a back input in between
+
+without this disallowed direction, it would be impossible to perform a quarter-circle-forward
+(Down, Down-forward, Forward) immediately after walking, 
+because it would trigger DP input since it has better priority
+but you can do Walk forward -> press back -> quarter circle forward 
+and that would read as a quarter circle forward, since the back input would disqualify it
+from being a dp

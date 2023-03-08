@@ -44,3 +44,29 @@ because it would trigger DP input since it has better priority
 but you can do Walk forward -> press back -> quarter circle forward 
 and that would read as a quarter circle forward, since the back input would disqualify it
 from being a dp
+
+LH 3/7/23
+thought about refactoring the ReadableGesture.
+currently: Gestures read their damn selves. they loop through the inputs list in their own function
+and the input reader would simply loop through the gestures and tell them to loop through the inputs
+
+but i thought about making it so that the input reader loops through the inputs and sends them to each
+gesture one at a time. i thought that might make it more efficient.
+
+but im pretty sure itll have to do the same amount of loops either way.
+each gesture needs to see as many inputs as itll need, regardless of who's doing the looping
+
+4 inputs * 3 gestures == 3 gestures * 4 inputs
+yknow?
+
+maybe im wrong but i can go and refactor later if it actually is an issue
+
+
+turned bool isFacingRight into a simple FacingDirection enum with only LEFT or RIGHT as options.
+to make code more readable
+
+
+InputReader.Tick() is using the null object pattern so that it returns null if there wasn't
+any new inputs that tick
+
+maybe time should be a float or double after all, to allow variable tick rates etc

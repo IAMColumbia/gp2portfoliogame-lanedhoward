@@ -10,7 +10,7 @@ namespace CommandInputTests
         public void PerfectQcf()
         {
             //arrange
-            ReadableGesture qcf = new QuarterCircleForward();
+            IReadableGesture qcf = new QuarterCircleForward();
 
             List<ReadablePackage> inputs = new List<ReadablePackage>();
 
@@ -20,7 +20,7 @@ namespace CommandInputTests
             inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = 1, UpDown = 0 }, 3));
 
             //act
-            bool foundQcf = qcf.Read(inputs, 4);
+            bool foundQcf = qcf.Read(inputs, 4, Directions.FacingDirection.RIGHT);
 
             //assert
             Assert.IsTrue(foundQcf);
@@ -30,7 +30,7 @@ namespace CommandInputTests
         public void ExtraInputQcf()
         {
             //arrange
-            ReadableGesture qcf = new QuarterCircleForward();
+            IReadableGesture qcf = new QuarterCircleForward();
 
             List<ReadablePackage> inputs = new List<ReadablePackage>();
 
@@ -41,7 +41,7 @@ namespace CommandInputTests
             inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = 1, UpDown = 0 }, 4));
 
             //act
-            bool foundQcf = qcf.Read(inputs, 5);
+            bool foundQcf = qcf.Read(inputs, 5, Directions.FacingDirection.RIGHT);
 
             //assert
             Assert.IsTrue(foundQcf);
@@ -51,7 +51,7 @@ namespace CommandInputTests
         public void SlowQcf()
         {
             //arrange
-            ReadableGesture qcf = new QuarterCircleForward();
+            IReadableGesture qcf = new QuarterCircleForward();
 
             List<ReadablePackage> inputs = new List<ReadablePackage>();
 
@@ -61,10 +61,94 @@ namespace CommandInputTests
             inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = 1, UpDown = 0 }, 15));
 
             //act
-            bool foundQcf = qcf.Read(inputs, 16);
+            bool foundQcf = qcf.Read(inputs, 16, Directions.FacingDirection.RIGHT);
 
             //assert
             Assert.IsFalse(foundQcf);
+        }
+
+        [TestMethod]
+        public void LeftQcf()
+        {
+            //arrange
+            IReadableGesture qcf = new QuarterCircleForward();
+
+            List<ReadablePackage> inputs = new List<ReadablePackage>();
+
+            inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = 0, UpDown = 0 }, 0));
+            inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = 0, UpDown = -1 }, 1));
+            inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = -1, UpDown = -1 }, 2));
+            inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = -1, UpDown = 0 }, 3));
+
+            //act
+            bool foundQcf = qcf.Read(inputs, 4, Directions.FacingDirection.LEFT);
+
+            //assert
+            Assert.IsTrue(foundQcf);
+        }
+
+        [TestMethod]
+        public void PerfecHcf()
+        {
+            //arrange
+            IReadableGesture hcf = new HalfCircleForward();
+
+            List<ReadablePackage> inputs = new List<ReadablePackage>();
+
+            inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = 0, UpDown = 0 }, 0));
+            inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = -1, UpDown = 0 }, 1));
+            inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = -1, UpDown = -1 }, 2));
+            inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = 0, UpDown = -1 }, 3));
+            inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = 1, UpDown = -1 }, 4));
+            inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = 1, UpDown = 0 }, 5));
+
+            //act
+            bool foundQcf = hcf.Read(inputs, 6, Directions.FacingDirection.RIGHT);
+
+            //assert
+            Assert.IsTrue(foundQcf);
+        }
+
+        [TestMethod]
+        public void Shortcut1Hcf()
+        {
+            //arrange
+            IReadableGesture hcf = new HalfCircleForward();
+
+            List<ReadablePackage> inputs = new List<ReadablePackage>();
+
+            inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = 0, UpDown = 0 }, 0));
+            inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = -1, UpDown = 0 }, 1));
+            inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = 0, UpDown = -1 }, 3));
+            inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = 1, UpDown = -1 }, 4));
+            inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = 1, UpDown = 0 }, 5));
+
+            //act
+            bool foundQcf = hcf.Read(inputs, 6, Directions.FacingDirection.RIGHT);
+
+            //assert
+            Assert.IsTrue(foundQcf);
+        }
+
+        [TestMethod]
+        public void Shortcut2Hcf()
+        {
+            //arrange
+            IReadableGesture hcf = new HalfCircleForward();
+
+            List<ReadablePackage> inputs = new List<ReadablePackage>();
+
+            inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = 0, UpDown = 0 }, 0));
+            inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = -1, UpDown = 0 }, 1));
+            inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = -1, UpDown = -1 }, 2));
+            inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = 0, UpDown = -1 }, 3));
+            inputs.Add(new ReadablePackage(new HostPackage() { LeftRight = 1, UpDown = 0 }, 5));
+
+            //act
+            bool foundQcf = hcf.Read(inputs, 6, Directions.FacingDirection.RIGHT);
+
+            //assert
+            Assert.IsTrue(foundQcf);
         }
     }
 }

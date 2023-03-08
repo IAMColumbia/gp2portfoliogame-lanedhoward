@@ -11,10 +11,9 @@ namespace CommandInputReaderLibrary
     {
         /// <summary>
         /// Checks if the inputs meet the requirements of the gesture.
-        /// Make sure your inputs are facing right!
         /// </summary>
-        /// <param name="inputsFacingRight"></param>
+        /// <param name="inputs"></param>
         /// <returns></returns>
-        public bool Read(List<ReadablePackage> inputsFacingRight, float currentTime);
+        public bool Read(List<ReadablePackage> inputs, float currentTime, Directions.FacingDirection facingDirection);
     }
 }

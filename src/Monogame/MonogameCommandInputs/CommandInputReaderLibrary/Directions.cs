@@ -8,7 +8,7 @@ namespace CommandInputReaderLibrary
 {
     public static class Directions
     {
-        public enum Direction
+        public enum Direction : byte
         {
             Up,
             UpForward,
@@ -19,6 +19,12 @@ namespace CommandInputReaderLibrary
             Back,
             UpBack,
             Neutral
+        }
+
+        public enum FacingDirection : byte
+        {
+            RIGHT,
+            LEFT
         }
 
         public static Direction FlipDirection(Direction d)
@@ -51,7 +57,7 @@ namespace CommandInputReaderLibrary
             return r;
         }
 
-        public static Direction GetDirectionFacingRight(int upDown, int leftRight)
+        public static Direction GetDirectionFacingForward(int upDown, int leftRight, FacingDirection facingDirection)
         {
             Direction r = Direction.Neutral;
             switch (upDown)
@@ -99,7 +105,13 @@ namespace CommandInputReaderLibrary
                     }
                     break;
             }
+
+            if (facingDirection == Directions.FacingDirection.LEFT)
+            {
+                r = Directions.FlipDirection(r);
+            }
             return r;
         }
+        
     }
 }

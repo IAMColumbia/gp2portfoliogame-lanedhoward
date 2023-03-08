@@ -17,7 +17,7 @@ namespace CommandInputReaderLibrary
             requiredInputs = new Stack<GestureComponent>();
         }
 
-        public virtual bool Read(List<ReadablePackage> inputsFacingRight, float currentTime)
+        public virtual bool Read(List<ReadablePackage> inputsFacingRight, float currentTime, Directions.FacingDirection facingDirection)
         {
             ResetRequiredInputs();
 
@@ -40,7 +40,7 @@ namespace CommandInputReaderLibrary
                     return false;
                 }
 
-                if (package.GetDirectionFacingRight() == gestureComponent.Direction)
+                if (package.GetDirectionFacingForward(facingDirection) == gestureComponent.Direction)
                 {
                     // this is the right input, and its within the time frame
                     currentTime = package.TimeReceived; // new current time from the last successful input

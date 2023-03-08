@@ -8,7 +8,6 @@ namespace CommandInputReaderLibrary
     public class ReadablePackage : HostPackage
     {
         public int TimeReceived;
-        //public bool FacingRight; // not sure if this will be necessary
 
         public ReadablePackage(IHostPackage hostPackage, int timeReceived) //, bool facingRight)
         {
@@ -19,9 +18,9 @@ namespace CommandInputReaderLibrary
             //this.FacingRight = facingRight;
         }
 
-        public Directions.Direction GetDirectionFacingRight()
+        public Directions.Direction GetDirectionFacingForward(Directions.FacingDirection facingDirection)
         {
-            return Directions.GetDirectionFacingRight(UpDown, LeftRight);
+            return Directions.GetDirectionFacingForward(UpDown, LeftRight, facingDirection);
         }
     }
 }

@@ -7,5 +7,8 @@ namespace CommandInputReaderLibrary
 {
     public interface IReadPackage
     {
+        IHostPackage mostRecentInputs { get; set; }
+
+        PriorityQueue<IReadableGesture, int> gestures { get; set; }
     }
 }

@@ -76,8 +76,193 @@ namespace CommandInputReaderLibrary.Gestures
 
         public HalfCircleForward() : base()
         {
+            Priority = 70;
+
             possibleGestures.Add(new Shortcut1());
             possibleGestures.Add(new Shortcut2());
+        }
+    }
+
+    public class HalfCircleBack : ReadableGestureWithShortcuts
+    {
+        private class Shortcut1 : ReadableGesture
+        {
+            protected override void ResetRequiredInputs()
+            {
+                base.ResetRequiredInputs();
+
+                requiredInputs.Push(new GestureComponent(Direction.Forward, InputReader.TimeBetweenSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.DownBack, InputReader.TimeBetweenSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Back, InputReader.TimeBetweenSequentialInputs));
+
+            }
+        }
+
+        private class Shortcut2 : ReadableGesture
+        {
+            protected override void ResetRequiredInputs()
+            {
+                base.ResetRequiredInputs();
+
+                requiredInputs.Push(new GestureComponent(Direction.Forward, InputReader.TimeBetweenSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.DownForward, InputReader.TimeBetweenSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Back, InputReader.TimeBetweenNonSequentialInputs));
+
+            }
+        }
+
+        public HalfCircleBack() : base()
+        {
+            Priority = 60;
+
+            possibleGestures.Add(new Shortcut1());
+            possibleGestures.Add(new Shortcut2());
+        }
+    }
+
+    public class ThreeSixty : ReadableGestureWithShortcuts
+    {
+        private class Shortcut1 : ReadableGesture
+        {
+            protected override void ResetRequiredInputs()
+            {
+                base.ResetRequiredInputs();
+
+                requiredInputs.Push(new GestureComponent(Direction.Back, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Forward, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Up, InputReader.TimeBetweenNonSequentialInputs));
+
+            }
+        }
+
+        private class Shortcut2 : ReadableGesture
+        {
+            protected override void ResetRequiredInputs()
+            {
+                base.ResetRequiredInputs();
+
+                requiredInputs.Push(new GestureComponent(Direction.Back, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Up, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Forward, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenNonSequentialInputs));
+
+            }
+        }
+
+        private class Shortcut3 : ReadableGesture
+        {
+            protected override void ResetRequiredInputs()
+            {
+                base.ResetRequiredInputs();
+
+                requiredInputs.Push(new GestureComponent(Direction.Up, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Forward, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Back, InputReader.TimeBetweenNonSequentialInputs)); ;
+
+            }
+        }
+        private class Shortcut4 : ReadableGesture
+        {
+            protected override void ResetRequiredInputs()
+            {
+                base.ResetRequiredInputs();
+
+                requiredInputs.Push(new GestureComponent(Direction.Up, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Back, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Forward, InputReader.TimeBetweenNonSequentialInputs)); ;
+
+            }
+        }
+
+        private class Shortcut5 : ReadableGesture
+        {
+            protected override void ResetRequiredInputs()
+            {
+                base.ResetRequiredInputs();
+
+                requiredInputs.Push(new GestureComponent(Direction.Forward, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Back, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Up, InputReader.TimeBetweenNonSequentialInputs)); ;
+
+            }
+        }
+
+        private class Shortcut6 : ReadableGesture
+        {
+            protected override void ResetRequiredInputs()
+            {
+                base.ResetRequiredInputs();
+
+                requiredInputs.Push(new GestureComponent(Direction.Forward, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Up, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Back, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenNonSequentialInputs)); ;
+
+            }
+        }
+        private class Shortcut7 : ReadableGesture
+        {
+            protected override void ResetRequiredInputs()
+            {
+                base.ResetRequiredInputs();
+
+                requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Forward, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Up, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Back, InputReader.TimeBetweenNonSequentialInputs)); ;
+
+            }
+        }
+        private class Shortcut8 : ReadableGesture
+        {
+            protected override void ResetRequiredInputs()
+            {
+                base.ResetRequiredInputs();
+
+                requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Back, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Up, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Forward, InputReader.TimeBetweenNonSequentialInputs)); ;
+
+            }
+        }
+
+        public ThreeSixty() : base()
+        {
+            Priority = 10;
+
+            possibleGestures.Add(new Shortcut1());
+            possibleGestures.Add(new Shortcut2());
+            possibleGestures.Add(new Shortcut3());
+            possibleGestures.Add(new Shortcut4());
+            possibleGestures.Add(new Shortcut5());
+            possibleGestures.Add(new Shortcut6());
+            possibleGestures.Add(new Shortcut7());
+            possibleGestures.Add(new Shortcut8());
+        }
+    }
+
+    public class DragonPunch : ReadableGesture
+    {
+        public DragonPunch()
+        {
+            Priority = 50; // arbitrary
+        }
+
+        protected override void ResetRequiredInputs()
+        {
+            base.ResetRequiredInputs();
+
+            requiredInputs.Push(new GestureComponent(Direction.Forward, InputReader.TimeBetweenSequentialInputs));
+            requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenNonSequentialInputs));
+            requiredInputs.Push(new GestureComponent(Direction.DownForward, InputReader.TimeBetweenSequentialInputs));
+
         }
     }
 }

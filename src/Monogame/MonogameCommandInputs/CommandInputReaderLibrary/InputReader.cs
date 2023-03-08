@@ -98,5 +98,19 @@ namespace CommandInputReaderLibrary
         {
             readableGestures = gestures;
         }
+
+        public void ChangeFacingDirection()
+        {
+            if (facingDirection == Directions.FacingDirection.LEFT)
+            {
+                ChangeFacingDirection(Directions.FacingDirection.RIGHT);
+                return;
+            }
+            ChangeFacingDirection(Directions.FacingDirection.LEFT);
+        }
+        public void ChangeFacingDirection(Directions.FacingDirection newDirection)
+        {
+            facingDirection = newDirection;
+        }
     }
 }

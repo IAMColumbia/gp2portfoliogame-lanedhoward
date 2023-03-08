@@ -35,6 +35,9 @@ namespace MonogameCommandInputs
             tickRate = 1d / 60d;
             tickTimer = 0;
             totalTicks = 0;
+
+            console.DebugTextOutput.Add("LeftRight", "0");
+            console.DebugTextOutput.Add("UpDown", "0");
         }
 
         public override void Initialize()
@@ -75,6 +78,8 @@ namespace MonogameCommandInputs
                     console.GameConsoleWrite("no gesture" + " / " + totalTicks);
                 }
 
+                console.DebugTextOutput["LeftRight"] = package.mostRecentInputs.LeftRight.ToString();
+                console.DebugTextOutput["UpDown"] = package.mostRecentInputs.UpDown.ToString();
             }
 
         }

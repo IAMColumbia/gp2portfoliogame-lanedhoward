@@ -46,7 +46,7 @@ namespace CommandInputReaderLibrary
 
             if (inputs.Count > 0)
             {
-                if (comparer.Equals(hostPackage, inputs.Last())) //(hostPackage == inputs.Last())
+                if (comparer.Equals(hostPackage, inputs.Last())) 
                 {
                     // inputs haven't changed since last time
                     return false;
@@ -54,9 +54,7 @@ namespace CommandInputReaderLibrary
             }
             ReadablePackage readablePackage = new ReadablePackage(hostPackage, Time);
 
-            // TODO: shouldn't add new hostpackage if it was the same as the previous.
-            // like if youre holding the buttons down, we dont need a new hostpackage every frame
-            // until you release one
+            
             inputs.Add(readablePackage);
 
             return true;

@@ -70,3 +70,14 @@ InputReader.Tick() is using the null object pattern so that it returns null if t
 any new inputs that tick
 
 maybe time should be a float or double after all, to allow variable tick rates etc
+
+!!!! !!!! it works !!!! !!!!
+
+finally wrote the actual test code to make it run in real time in the monogame console
+and it works! had to tune some of the values but thats okay.
+
+
+whats left to do:
+-why does it trigger gestures on button release no matter what
+-charge inputs
+-gestures with disallowed directions

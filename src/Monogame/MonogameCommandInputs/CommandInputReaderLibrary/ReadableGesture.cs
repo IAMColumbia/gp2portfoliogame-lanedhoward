@@ -30,20 +30,22 @@ namespace CommandInputReaderLibrary
                 // later this should probably just return true? so there could be an empty gesture? 
             }
 
-            for (int i = inputsFacingRight.Count-1; i > 0; i--) // start at most recent input and go backwards
+            for (int i = inputsFacingRight.Count - 1; i > 0; i--) // start at most recent input and go backwards
             {
                 ReadablePackage package = inputsFacingRight[i];
 
-                if (currentTime - package.TimeReceived > gestureComponent.MaxTimeSinceLastInput)
-                {
-                    // its been too long since the last input
-                    return false;
-                }
+                // we do timing like this so that:
+                // 1. we can still read gestures that started with holding their first button (ex. holding back -> half circle forward)
+                // 2. we don't read gestures more than once if you hold the last button for a long time and then release
+                bool thisIsTheLastInputWeShouldCheck = (currentTime - package.TimeReceived > gestureComponent.MaxTimeSinceLastInput);
 
                 if (package.GetDirectionFacingForward(facingDirection) == gestureComponent.Direction)
                 {
-                    // this is the right input, and its within the time frame
-                    currentTime = package.TimeReceived; // new current time from the last successful input
+
+                    if (!thisIsTheLastInputWeShouldCheck)
+                    {
+                        currentTime = package.TimeReceived; // new current time from the last successful input
+                    }
 
                     if (!requiredInputs.TryPop(out gestureComponent))
                     {
@@ -51,6 +53,12 @@ namespace CommandInputReaderLibrary
                         return true;
                     }
 
+                }
+
+                if (thisIsTheLastInputWeShouldCheck)
+                {
+                    // its been too long since the last input
+                    return false;
                 }
             }
 

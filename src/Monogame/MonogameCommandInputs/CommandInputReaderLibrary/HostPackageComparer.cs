@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace CommandInputReaderLibrary
 {
-    public class HostPackageComparer : IEqualityComparer<IHostPackage>
+    public class HostPackageComparer : EqualityComparer<IHostPackage>
     {
-        bool IEqualityComparer<IHostPackage>.Equals(IHostPackage? x, IHostPackage? y)
+        public override bool Equals(IHostPackage? x, IHostPackage? y)
         {
+            if (x == null && y == null) return true;
+            if (x == null ^ y == null) return false; // XOR
             return ((x.LeftRight == y.LeftRight) && (x.UpDown == y.UpDown));
         }
 
-        int IEqualityComparer<IHostPackage>.GetHashCode(IHostPackage obj)
+        public override int GetHashCode(IHostPackage obj)
         {
             return obj.GetHashCode();
         }

@@ -9,20 +9,20 @@ namespace CommandInputReaderLibrary
     
     public class InputReader
     {
-        // PUBLIC MEMBERS
-        public IInputHost inputHost;
-        public List<ReadablePackage> inputs;
-
-        public List<IReadableGesture> readableGestures; // all possible gestures
-
-        public Directions.FacingDirection facingDirection;
-        public int Time; // time is an int, measured in ticks / frames
-
         // PRIVATE MEMBERS
+        private IInputHost inputHost;
+        private List<ReadablePackage> inputs;
+
+        private List<IReadableGesture> readableGestures; // all possible gestures
+
+        private Directions.FacingDirection facingDirection;
+        private int Time; // time is an int, measured in ticks / frames
+
+        HostPackageComparer comparer;
 
         // STATIC MEMBERS
-        public static int TimeBetweenSequentialInputs = 4;
-        public static int TimeBetweenNonSequentialInputs = 8;
+        public static int TimeBetweenSequentialInputs = 8;
+        public static int TimeBetweenNonSequentialInputs = 16;
 
 
 
@@ -32,6 +32,8 @@ namespace CommandInputReaderLibrary
             inputs = new List<ReadablePackage>();
             readableGestures = new List<IReadableGesture>();
             facingDirection = Directions.FacingDirection.RIGHT;
+            Time = 0;
+            comparer = new HostPackageComparer();
         }
 
         /// <summary>
@@ -42,12 +44,14 @@ namespace CommandInputReaderLibrary
         {
             IHostPackage hostPackage = inputHost.GetCurrentInputs();
 
-            if (hostPackage == inputs.Last()) 
+            if (inputs.Count > 0)
             {
-                // inputs haven't changed since last time
-                return false;
+                if (comparer.Equals(hostPackage, inputs.Last())) //(hostPackage == inputs.Last())
+                {
+                    // inputs haven't changed since last time
+                    return false;
+                }
             }
-
             ReadablePackage readablePackage = new ReadablePackage(hostPackage, Time);
 
             // TODO: shouldn't add new hostpackage if it was the same as the previous.
@@ -76,6 +80,7 @@ namespace CommandInputReaderLibrary
         public IReadPackage? Tick()
         {
             // TECHNICIAL DEBT: null object pattern
+            Time++;
 
             IReadPackage? resultReadPackage = null;
 
@@ -89,6 +94,11 @@ namespace CommandInputReaderLibrary
             }
 
             return resultReadPackage;
+        }
+
+        public void SetPossibleGestures(List<IReadableGesture> gestures)
+        {
+            readableGestures = gestures;
         }
     }
 }

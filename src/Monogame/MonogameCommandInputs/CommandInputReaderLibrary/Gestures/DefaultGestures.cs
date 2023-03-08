@@ -9,6 +9,23 @@ using static CommandInputReaderLibrary.Directions;
 
 namespace CommandInputReaderLibrary.Gestures
 {
+    public static class DefaultGestures
+    {
+        public static List<IReadableGesture> GetDefaultGestures()
+        {
+            List<IReadableGesture> gestures = new List<IReadableGesture>()
+            {
+                new QuarterCircleBack(),
+                new QuarterCircleForward(),
+                new DragonPunch(),
+                new HalfCircleBack(),
+                new HalfCircleForward(),
+                new ThreeSixty()
+            };
+            return gestures;
+        }
+    }
+
     public class QuarterCircleForward : ReadableGesture
     {
         public QuarterCircleForward()

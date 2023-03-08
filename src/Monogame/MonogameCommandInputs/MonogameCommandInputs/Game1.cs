@@ -9,16 +9,22 @@ namespace MonogameCommandInputs
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        ConsoleInputsPOC poc;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
+            poc = new ConsoleInputsPOC(this);
         }
 
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+
+            Components.Add(poc);
 
             base.Initialize();
         }

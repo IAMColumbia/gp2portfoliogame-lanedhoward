@@ -12,9 +12,12 @@ namespace CommandInputReaderLibrary
         public int Priority { get; set; }
         protected Stack<GestureComponent> requiredInputs { get; set; }
 
+        protected List<GestureComponent> disallowedInputs { get; set; }
+
         public ReadableGesture()
         {
             requiredInputs = new Stack<GestureComponent>();
+            disallowedInputs = new List<GestureComponent>();
         }
 
         public virtual bool Read(List<ReadablePackage> inputsFacingRight, float currentTime, Directions.FacingDirection facingDirection)
@@ -39,7 +42,9 @@ namespace CommandInputReaderLibrary
                 // 2. we don't read gestures more than once if you hold the last button for a long time and then release
                 bool thisIsTheLastInputWeShouldCheck = (currentTime - package.TimeReceived > gestureComponent.MaxTimeSinceLastInput);
 
-                if (package.GetDirectionFacingForward(facingDirection) == gestureComponent.Direction)
+                Directions.Direction packageDirection = package.GetDirectionFacingForward(facingDirection);
+
+                if (packageDirection == gestureComponent.Direction)
                 {
 
                     if (!thisIsTheLastInputWeShouldCheck)
@@ -60,6 +65,12 @@ namespace CommandInputReaderLibrary
                     // its been too long since the last input
                     return false;
                 }
+
+                if (!disallowedInputs.All(g => g.Direction != packageDirection))
+                {
+                    // has a disallowed input
+                    return false;
+                }
             }
 
             // if we made it through the whole loop without returning, assume we didnt complete the gesture
@@ -69,6 +80,7 @@ namespace CommandInputReaderLibrary
         protected virtual void ResetRequiredInputs()
         {
             requiredInputs = new Stack<GestureComponent>();
+            disallowedInputs = new List<GestureComponent>();
         }
     }
 }

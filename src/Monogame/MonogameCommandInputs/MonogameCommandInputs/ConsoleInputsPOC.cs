@@ -71,11 +71,11 @@ namespace MonogameCommandInputs
                 if (package.gestures.Count > 0)
                 {
                     IReadableGesture gesture = package.gestures.Dequeue();
-                    console.GameConsoleWrite(gesture.GetType().Name + " / " + totalTicks);
+                    console.GameConsoleWrite(totalTicks + ":   " + gesture.GetType().Name);
                 }
                 else
                 {
-                    console.GameConsoleWrite("no gesture" + " / " + totalTicks);
+                    console.GameConsoleWrite(totalTicks + ":   " + "no gesture");
                 }
 
                 console.DebugTextOutput["LeftRight"] = package.mostRecentInputs.LeftRight.ToString();

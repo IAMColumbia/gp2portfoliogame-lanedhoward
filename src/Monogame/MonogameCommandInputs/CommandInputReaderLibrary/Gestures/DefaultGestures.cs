@@ -20,7 +20,9 @@ namespace CommandInputReaderLibrary.Gestures
                 new DragonPunch(),
                 new HalfCircleBack(),
                 new HalfCircleForward(),
-                new ThreeSixty()
+                new ThreeSixty(),
+                new DoubleQuarterCircleBack(),
+                new DoubleQuarterCircleForward()
             };
             return gestures;
         }
@@ -43,6 +45,7 @@ namespace CommandInputReaderLibrary.Gestures
 
         }
     }
+
     public class QuarterCircleBack : ReadableGesture
     {
         public QuarterCircleBack()
@@ -280,6 +283,92 @@ namespace CommandInputReaderLibrary.Gestures
             requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenNonSequentialInputs));
             requiredInputs.Push(new GestureComponent(Direction.DownForward, InputReader.TimeBetweenSequentialInputs));
 
+            disallowedInputs.Add(new GestureComponent(Direction.Back, 0));
+            disallowedInputs.Add(new GestureComponent(Direction.UpBack, 0));
+            disallowedInputs.Add(new GestureComponent(Direction.DownBack, 0));
+
+        }
+    }
+
+    public class DoubleQuarterCircleForward : ReadableGestureWithShortcuts
+    {
+        private class Shortcut1 : ReadableGesture
+        {
+            protected override void ResetRequiredInputs()
+            {
+                base.ResetRequiredInputs();
+
+                requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.DownForward, InputReader.TimeBetweenSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Forward, InputReader.TimeBetweenSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Forward, InputReader.TimeBetweenNonSequentialInputs));
+
+            }
+        }
+
+        private class Shortcut2 : ReadableGesture
+        {
+            protected override void ResetRequiredInputs()
+            {
+                base.ResetRequiredInputs();
+
+                requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Forward, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.DownForward, InputReader.TimeBetweenSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Forward, InputReader.TimeBetweenSequentialInputs));
+
+            }
+        }
+
+        public DoubleQuarterCircleForward() : base()
+        {
+            Priority = 40;
+
+            possibleGestures.Add(new Shortcut1());
+            possibleGestures.Add(new Shortcut2());
+        }
+    }
+
+    public class DoubleQuarterCircleBack : ReadableGestureWithShortcuts
+    {
+        private class Shortcut1 : ReadableGesture
+        {
+            protected override void ResetRequiredInputs()
+            {
+                base.ResetRequiredInputs();
+
+                requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.DownBack, InputReader.TimeBetweenSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Back, InputReader.TimeBetweenSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Back, InputReader.TimeBetweenNonSequentialInputs));
+
+            }
+        }
+
+        private class Shortcut2 : ReadableGesture
+        {
+            protected override void ResetRequiredInputs()
+            {
+                base.ResetRequiredInputs();
+
+                requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Back, InputReader.TimeBetweenNonSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.DownBack, InputReader.TimeBetweenSequentialInputs));
+                requiredInputs.Push(new GestureComponent(Direction.Back, InputReader.TimeBetweenSequentialInputs));
+
+            }
+        }
+
+        public DoubleQuarterCircleBack() : base()
+        {
+            Priority = 40;
+
+            possibleGestures.Add(new Shortcut1());
+            possibleGestures.Add(new Shortcut2());
         }
     }
 }

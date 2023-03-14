@@ -9,5 +9,12 @@ namespace CommandInputReaderLibrary
     {
         public int LeftRight { get; set; }
         public int UpDown { get; set; }
+
+        public List<IButton> Buttons { get; set; }
+
+        public HostPackage()
+        {
+            Buttons = new List<IButton>();
+        }
     }
 }

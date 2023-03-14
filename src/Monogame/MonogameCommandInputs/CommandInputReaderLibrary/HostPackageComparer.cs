@@ -12,7 +12,20 @@ namespace CommandInputReaderLibrary
         {
             if (x == null && y == null) return true;
             if (x == null ^ y == null) return false; // XOR
-            return ((x.LeftRight == y.LeftRight) && (x.UpDown == y.UpDown));
+
+            if ((x.LeftRight == y.LeftRight) && (x.UpDown == y.UpDown))
+            {
+                if (x.Buttons.Count == y.Buttons.Count)
+                {
+                    if ((x.Buttons.All(b => y.Buttons.Any(c => (c.GetType() == b.GetType()/* && c.State == b.State*/)))) 
+                        && (y.Buttons.All(b => x.Buttons.Any(c => (c.GetType() == b.GetType()/* && c.State == b.State*/)))))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
         public override int GetHashCode(IHostPackage obj)

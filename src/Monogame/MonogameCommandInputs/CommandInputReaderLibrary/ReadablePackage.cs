@@ -14,6 +14,8 @@ namespace CommandInputReaderLibrary
             this.UpDown = hostPackage.UpDown;
             this.LeftRight = hostPackage.LeftRight;
 
+            this.Buttons = hostPackage.Buttons;
+
             this.TimeReceived = timeReceived;
             //this.FacingRight = facingRight;
         }

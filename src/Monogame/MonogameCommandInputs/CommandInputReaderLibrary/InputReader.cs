@@ -88,7 +88,19 @@ namespace CommandInputReaderLibrary
             {
                 PriorityQueue<IReadableGesture, int> foundGestures = ReadAllGestures();
 
-                resultReadPackage = new ReadPackage(inputs.Last(), foundGestures);
+                IHostPackage lastInput = inputs.Last();
+
+                PriorityQueue<IButton, int> buttons = new PriorityQueue<IButton, int>();
+
+                if (lastInput.Buttons.Count > 0)
+                {
+                    foreach (var b in lastInput.Buttons)
+                    {
+                        buttons.Enqueue(b, b.Priority);
+                    }
+                }
+
+                resultReadPackage = new ReadPackage(lastInput, foundGestures, buttons);
             }
 
             return resultReadPackage;
@@ -111,6 +123,21 @@ namespace CommandInputReaderLibrary
         public void ChangeFacingDirection(Directions.FacingDirection newDirection)
         {
             facingDirection = newDirection;
+        }
+
+        public Directions.FacingDirection GetFacingDirection()
+        {
+            return facingDirection;
+        }
+
+        public void SetInputHost(IInputHost host)
+        {
+            inputHost = host;
+        }
+
+        public IInputHost GetInputHost()
+        {
+            return inputHost;
         }
     }
 }

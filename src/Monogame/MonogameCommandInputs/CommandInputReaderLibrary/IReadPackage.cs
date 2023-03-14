@@ -10,5 +10,7 @@ namespace CommandInputReaderLibrary
         IHostPackage mostRecentInputs { get; set; }
 
         PriorityQueue<IReadableGesture, int> gestures { get; set; }
+
+        PriorityQueue<IButton, int> buttons { get; set; }
     }
 }

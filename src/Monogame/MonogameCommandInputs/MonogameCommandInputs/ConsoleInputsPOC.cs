@@ -12,9 +12,12 @@ namespace MonogameCommandInputs
     public class ConsoleInputsPOC : GameComponent
     {
         GameConsole console;
+        InputHandler input;
 
-        MonogameKeyboardInputHost inputHost;
+        MonogameKeyboardInputHost kbInputHost;
+        MonogameControllerInputHost gpInputHost;
         InputReader inputReader;
+
 
         double tickRate;
         double tickTimer;
@@ -29,8 +32,17 @@ namespace MonogameCommandInputs
                 game.Components.Add(console);
             }
 
-            inputHost = new MonogameKeyboardInputHost(game);
-            inputReader = new InputReader(inputHost);
+            input = (InputHandler)game.Services.GetService<IInputHandler>();
+            if (input == null)
+            {
+                input = new InputHandler(game);
+                game.Components.Add(input);
+            }
+
+            kbInputHost = new MonogameKeyboardInputHost(game);
+            gpInputHost = new MonogameControllerInputHost(game);
+            
+            inputReader = new InputReader(gpInputHost);
 
             tickRate = 1d / 60d;
             tickTimer = 0;
@@ -45,11 +57,31 @@ namespace MonogameCommandInputs
             base.Initialize();
 
             inputReader.SetPossibleGestures(CommandInputReaderLibrary.Gestures.DefaultGestures.GetDefaultGestures());
+            console.DebugTextOutput["FacingDirection"] = inputReader.GetFacingDirection().ToString();
+            console.DebugTextOutput["ControlType"] = inputReader.GetInputHost().GetType().Name;
 
         }
 
         public override void Update(GameTime gameTime)
         {
+            if (input.WasPressed(0, InputHandler.ButtonType.B, Microsoft.Xna.Framework.Input.Keys.F))
+            {
+                inputReader.ChangeFacingDirection();
+                console.DebugTextOutput["FacingDirection"] = inputReader.GetFacingDirection().ToString();
+            }
+            if (input.WasPressed(0, InputHandler.ButtonType.RightShoulder, Microsoft.Xna.Framework.Input.Keys.G))
+            {
+                if (inputReader.GetInputHost() == kbInputHost)
+                {
+                    inputReader.SetInputHost(gpInputHost);
+                }
+                else
+                {
+                    inputReader.SetInputHost(kbInputHost);
+                }
+                console.DebugTextOutput["ControlType"] = inputReader.GetInputHost().GetType().Name;
+            }
+
             tickTimer += gameTime.ElapsedGameTime.TotalSeconds;
             if (tickTimer >= tickRate)
             {
@@ -67,19 +99,35 @@ namespace MonogameCommandInputs
 
             if (package != null)
             {
-                
+                string output = totalTicks + ":    ";
                 if (package.gestures.Count > 0)
                 {
                     IReadableGesture gesture = package.gestures.Dequeue();
-                    console.GameConsoleWrite(totalTicks + ":   " + gesture.GetType().Name);
+                    output += gesture.GetType().Name;
                 }
                 else
                 {
-                    console.GameConsoleWrite(totalTicks + ":   " + "no gesture");
+                    output += "No Gesture";
                 }
 
+                output += "  /  ";
+                
+                if (package.buttons.Count > 0)
+                {
+                    var b = package.buttons.Dequeue();
+
+                    output += b.GetType().Name;
+
+                }
+                else
+                {
+                    output += "No Button";
+                }
+
+                console.GameConsoleWrite(output);
                 console.DebugTextOutput["LeftRight"] = package.mostRecentInputs.LeftRight.ToString();
                 console.DebugTextOutput["UpDown"] = package.mostRecentInputs.UpDown.ToString();
+                
             }
 
         }

@@ -34,6 +34,23 @@ namespace MonogameCommandInputs
             package.UpDown = updown;
             package.LeftRight = leftright;
 
+            if (kb.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.J))
+            {
+                Punch p = new Punch();
+                p.State = IButton.ButtonState.Pressed;
+                if (kb.IsHoldingKey(Microsoft.Xna.Framework.Input.Keys.J))
+                {
+                    p.State = IButton.ButtonState.Held;
+                }
+                package.Buttons.Add(p);
+            }
+            if (kb.HasReleasedKey(Microsoft.Xna.Framework.Input.Keys.J))
+            {
+                Punch p = new Punch();
+                p.State = IButton.ButtonState.Released;
+                package.Buttons.Add(p);
+            }
+
             return package;
         }
     }

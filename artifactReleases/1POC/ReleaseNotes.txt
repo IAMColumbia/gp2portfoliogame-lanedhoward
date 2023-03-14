@@ -1,1 +1,17 @@
 Release Notes version 1 POC
+
+it works!!
+
+controls:
+
+keyboard:
+WSAD / Space: directions. W and Space are both up
+J: "punch"
+F: flip directions
+G: change to controller
+
+controller
+dpad or left stick: directions
+X: "punch"
+B: flip directions
+RB: change to controller

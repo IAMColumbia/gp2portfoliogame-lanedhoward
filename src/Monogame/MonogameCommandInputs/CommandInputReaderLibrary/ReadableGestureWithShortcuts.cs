@@ -17,7 +17,7 @@ namespace CommandInputReaderLibrary
             possibleGestures = new List<IReadableGesture>();
         }
 
-        public bool Read(List<ReadablePackage> inputs, float currentTime, Directions.FacingDirection facingDirection)
+        public bool Read(List<ReadablePackage> inputs, int currentTime, Directions.FacingDirection facingDirection)
         {
             bool result = false;
             foreach (IReadableGesture gesture in possibleGestures)

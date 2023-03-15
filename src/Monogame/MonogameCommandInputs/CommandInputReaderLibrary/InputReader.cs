@@ -24,6 +24,10 @@ namespace CommandInputReaderLibrary
         public static int TimeBetweenSequentialInputs = 8;
         public static int TimeBetweenNonSequentialInputs = 16;
 
+        public static int MinChargeTime = 35;
+        public static int MaxTimeBetweenChargePartitions = 16;
+        public static int MaxTimeBetweenChargeAndRelease = 16;
+        public static int MaxTimeAfterRelease = 8;
 
 
         public InputReader(IInputHost host)

@@ -20,7 +20,7 @@ namespace CommandInputReaderLibrary
             disallowedInputs = new List<GestureComponent>();
         }
 
-        public virtual bool Read(List<ReadablePackage> inputsFacingRight, float currentTime, Directions.FacingDirection facingDirection)
+        public virtual bool Read(List<ReadablePackage> inputs, int currentTime, Directions.FacingDirection facingDirection)
         {
             ResetRequiredInputs();
 
@@ -33,9 +33,9 @@ namespace CommandInputReaderLibrary
                 // later this should probably just return true? so there could be an empty gesture? 
             }
 
-            for (int i = inputsFacingRight.Count - 1; i > 0; i--) // start at most recent input and go backwards
+            for (int i = inputs.Count - 1; i > 0; i--) // start at most recent input and go backwards
             {
-                ReadablePackage package = inputsFacingRight[i];
+                ReadablePackage package = inputs[i];
 
                 // we do timing like this so that:
                 // 1. we can still read gestures that started with holding their first button (ex. holding back -> half circle forward)
@@ -66,7 +66,7 @@ namespace CommandInputReaderLibrary
                     return false;
                 }
 
-                if (!disallowedInputs.All(g => g.Direction != packageDirection))
+                if (disallowedInputs.Any(g => g.Direction == packageDirection))
                 {
                     // has a disallowed input
                     return false;

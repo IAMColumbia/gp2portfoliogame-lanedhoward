@@ -22,7 +22,9 @@ namespace CommandInputReaderLibrary.Gestures
                 new HalfCircleForward(),
                 new ThreeSixty(),
                 new DoubleQuarterCircleBack(),
-                new DoubleQuarterCircleForward()
+                new DoubleQuarterCircleForward(),
+                new BackForwardCharge(),
+                new DownUpCharge()
             };
             return gestures;
         }
@@ -369,6 +371,43 @@ namespace CommandInputReaderLibrary.Gestures
 
             possibleGestures.Add(new Shortcut1());
             possibleGestures.Add(new Shortcut2());
+        }
+    }
+
+    public class BackForwardCharge : ReadableChargeGesture
+    {
+        public BackForwardCharge() : base()
+        {
+            minChargeTime = InputReader.MinChargeTime;
+            maxTimeBetweenChargePartitions = InputReader.MaxTimeBetweenChargePartitions;
+            maxTimeBetweenChargeAndRelease = InputReader.MaxTimeBetweenChargeAndRelease;
+            maxTimeAfterRelease = InputReader.MaxTimeAfterRelease;
+
+            chargeDirections.Add(Direction.Back);
+            chargeDirections.Add(Direction.UpBack);
+            chargeDirections.Add(Direction.DownBack);
+
+            releaseDirections.Add(Direction.Forward);
+            releaseDirections.Add(Direction.DownForward);
+        }
+    }
+
+    public class DownUpCharge : ReadableChargeGesture
+    {
+        public DownUpCharge() : base()
+        {
+            minChargeTime = InputReader.MinChargeTime;
+            maxTimeBetweenChargePartitions = InputReader.MaxTimeBetweenChargePartitions;
+            maxTimeBetweenChargeAndRelease = InputReader.MaxTimeBetweenChargeAndRelease;
+            maxTimeAfterRelease = InputReader.MaxTimeAfterRelease;
+
+            chargeDirections.Add(Direction.Down);
+            chargeDirections.Add(Direction.DownForward);
+            chargeDirections.Add(Direction.DownBack);
+
+            releaseDirections.Add(Direction.Up);
+            releaseDirections.Add(Direction.UpForward);
+            releaseDirections.Add(Direction.UpBack);
         }
     }
 }

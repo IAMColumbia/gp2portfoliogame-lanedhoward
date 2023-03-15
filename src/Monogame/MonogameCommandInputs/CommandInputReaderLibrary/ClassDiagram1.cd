@@ -35,7 +35,7 @@
   <Class Name="CommandInputReaderLibrary.HostPackage" Collapsed="true">
     <Position X="2.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAEAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAgAAAAAAAAAAAEAAAAAA=</HashCode>
       <FileName>HostPackage.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -43,14 +43,14 @@
   <Class Name="CommandInputReaderLibrary.InputReader" Collapsed="true">
     <Position X="4.75" Y="1.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAABAABAAAAAAABAAAAAAAAABAAAAACAAAgYQA=</HashCode>
+      <HashCode>AAAAABAABAABQAAAAIABAAAAAAAAABAABAADAAAg4QA=</HashCode>
       <FileName>InputReader.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CommandInputReaderLibrary.ReadPackage" Collapsed="true">
     <Position X="7.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAIAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAIAIAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ReadPackage.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -65,7 +65,7 @@
   <Class Name="CommandInputReaderLibrary.ReadableGesture">
     <Position X="4.75" Y="4.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAAAAAEAAABAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAIAAAAAAAAAAEAAABAAAgAAAAAAAAAgAAAAAAAAA=</HashCode>
       <FileName>ReadableGesture.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -80,7 +80,7 @@
   <Interface Name="CommandInputReaderLibrary.IHostPackage">
     <Position X="2.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAEAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAgAAAAAAAAAAAEAAAAAA=</HashCode>
       <FileName>IHostPackage.cs</FileName>
     </TypeIdentifier>
   </Interface>
@@ -92,7 +92,7 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="CommandInputReaderLibrary.IInputReceiver">
-    <Position X="9.25" Y="2.5" Width="1.5" />
+    <Position X="9.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IInputReceiver.cs</FileName>
@@ -101,7 +101,7 @@
   <Interface Name="CommandInputReaderLibrary.IReadPackage">
     <Position X="7.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAIAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAIAIAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IReadPackage.cs</FileName>
     </TypeIdentifier>
   </Interface>

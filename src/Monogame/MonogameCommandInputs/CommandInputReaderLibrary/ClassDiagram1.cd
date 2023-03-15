@@ -43,7 +43,7 @@
   <Class Name="CommandInputReaderLibrary.InputReader" Collapsed="true">
     <Position X="4.75" Y="1.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAABAABEQBQAAAAIABAAAAAAAAABAABAADBAAg4QA=</HashCode>
+      <HashCode>AAAAABAABAABQAAAAIABAAAAAAAAABAABAADAAAg4QA=</HashCode>
       <FileName>InputReader.cs</FileName>
     </TypeIdentifier>
   </Class>

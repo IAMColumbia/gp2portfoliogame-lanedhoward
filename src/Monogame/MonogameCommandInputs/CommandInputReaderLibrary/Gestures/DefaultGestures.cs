@@ -378,6 +378,8 @@ namespace CommandInputReaderLibrary.Gestures
     {
         public BackForwardCharge() : base()
         {
+            Priority = 130;
+
             minChargeTime = InputReader.MinChargeTime;
             maxTimeBetweenChargePartitions = InputReader.MaxTimeBetweenChargePartitions;
             maxTimeBetweenChargeAndRelease = InputReader.MaxTimeBetweenChargeAndRelease;
@@ -396,6 +398,8 @@ namespace CommandInputReaderLibrary.Gestures
     {
         public DownUpCharge() : base()
         {
+            Priority = 120;
+
             minChargeTime = InputReader.MinChargeTime;
             maxTimeBetweenChargePartitions = InputReader.MaxTimeBetweenChargePartitions;
             maxTimeBetweenChargeAndRelease = InputReader.MaxTimeBetweenChargeAndRelease;

@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="input hosts:&#xD;&#xA;gather raw input from controllers">
+    <Position X="0.5" Y="0.55" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="host package:&#xD;&#xA;usable input data">
+    <Position X="2.658" Y="0.675" Height="0.508" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Input reader:&#xD;&#xA;takes in host packages&#xD;&#xA;and outputs gesture packages">
+    <Position X="4.933" Y="0.5" Height="1.058" Width="1.7" />
+  </Comment>
+  <Comment CommentText="gesture: &#xD;&#xA;a named series of directional inputs&#xD;&#xA;(e.g. Quarter-Circle Forward)">
+    <Position X="4.646" Y="2.705" Height="0.85" Width="2.158" />
+  </Comment>
+  <Comment CommentText="input receiver:&#xD;&#xA;playercontroller or whatever is actually getting the inputs/gestures and acting on them">
+    <Position X="9.467" Y="0.942" Height="1.258" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Read package: &#xD;&#xA;processed input data.&#xD;&#xA;features the buttons/directions currently pressed, &#xD;&#xA;and all applicable gestures">
+    <Position X="7.283" Y="1.092" Height="1.4" Width="1.7" />
+  </Comment>
+  <Comment CommentText="then there is stuff like &#xD;&#xA;Monogame Keyboard Input Host&#xD;&#xA;and other specific concrete implementations">
+    <Position X="0.5" Y="4.608" Height="1.183" Width="1.542" />
+  </Comment>
+  <Comment CommentText="readable package is a host package with additional properties for record keeping, such as time it came in">
+    <Position X="2.725" Y="4.092" Height="1" Width="1.7" />
+  </Comment>
+  <Class Name="CommandInputReaderLibrary.InputHost" Collapsed="true">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>InputHost.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CommandInputReaderLibrary.HostPackage" Collapsed="true">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAgAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>HostPackage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CommandInputReaderLibrary.InputReader" Collapsed="true">
+    <Position X="4.75" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAABEQBQAAAAIABAAAAAAAAABAABAADBAAg4QA=</HashCode>
+      <FileName>InputReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommandInputReaderLibrary.ReadPackage" Collapsed="true">
+    <Position X="7.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAIAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ReadPackage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CommandInputReaderLibrary.ReadablePackage">
+    <Position X="2.5" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>ReadablePackage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommandInputReaderLibrary.ReadableGesture">
+    <Position X="4.75" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAEAAABAAAgAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>ReadableGesture.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="CommandInputReaderLibrary.IInputHost">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IInputHost.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CommandInputReaderLibrary.IHostPackage">
+    <Position X="2.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAgAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>IHostPackage.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CommandInputReaderLibrary.IGesture" Collapsed="true">
+    <Position X="5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IGesture.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CommandInputReaderLibrary.IInputReceiver">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IInputReceiver.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CommandInputReaderLibrary.IReadPackage">
+    <Position X="7.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAIAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IReadPackage.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

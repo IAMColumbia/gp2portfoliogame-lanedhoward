@@ -1,0 +1,83 @@
+LH 2/27/23 
+starting on the POC, i decided to lay out my plans for the
+input reader system with a basic UML diagram.
+i have written many notes and thought a lot about the architecture
+over the last few weeks, so i organized those notes into a real uml diagram
+(OriginalUML.png)
+
+there are still problems i don't know how im going to solve. but i feel confident
+in my plans for the bulk of this
+
+i want the system to be button-agnostic. that is, i dont want to care how many
+buttons there are in the game. 
+whether it is { Light Punch, Light Kick, ... Heavy Kick}
+or simply { A, B, C }
+it would be nice to be able to read buttons into gestures. 
+so you can have gestures that include directions and buttons. (ex: LP, MP, forward, LK, MK)
+but i am willing to sacrifice button gestures for button agnosticism.
+
+so im thinking maybe there can be an IButtons type that just gets passed along through the whole
+system. 
+the host puts IButtons (an array/list of the buttons pressed at that time) into the hostpackage
+the inputreader holds these IButtons along with the hostpackage, and after it reads the gestures,
+it simply puts the IButtons into the ReadPackage as well. without ever touching them
+
+ReadablePackage:
+i dont know how i will want to keep track of Time so i made it a float for now
+i also think i will need to know if the character was facing right while this input was pressed
+but maybe i won't need that actually
+
+
+LH 2/28/23
+
+wrote the gestures and reading system!
+jeff you'll be so proud of me, i wrote some unit tests to test it, since i didn't have anything
+running inside monogame yet.
+
+theres still some features i want to add to gestures, like having disallowed directions.
+
+like for example. a DP input (Forward, Down, Down-forward) cannot inclue a back input in between
+
+without this disallowed direction, it would be impossible to perform a quarter-circle-forward
+(Down, Down-forward, Forward) immediately after walking, 
+because it would trigger DP input since it has better priority
+but you can do Walk forward -> press back -> quarter circle forward 
+and that would read as a quarter circle forward, since the back input would disqualify it
+from being a dp
+
+LH 3/7/23
+thought about refactoring the ReadableGesture.
+currently: Gestures read their damn selves. they loop through the inputs list in their own function
+and the input reader would simply loop through the gestures and tell them to loop through the inputs
+
+but i thought about making it so that the input reader loops through the inputs and sends them to each
+gesture one at a time. i thought that might make it more efficient.
+
+but im pretty sure itll have to do the same amount of loops either way.
+each gesture needs to see as many inputs as itll need, regardless of who's doing the looping
+
+4 inputs * 3 gestures == 3 gestures * 4 inputs
+yknow?
+
+maybe im wrong but i can go and refactor later if it actually is an issue
+
+
+turned bool isFacingRight into a simple FacingDirection enum with only LEFT or RIGHT as options.
+to make code more readable
+
+
+InputReader.Tick() is using the null object pattern so that it returns null if there wasn't
+any new inputs that tick
+
+maybe time should be a float or double after all, to allow variable tick rates etc
+
+!!!! !!!! it works !!!! !!!!
+
+finally wrote the actual test code to make it run in real time in the monogame console
+and it works! had to tune some of the values but thats okay.
+
+
+whats left to do:
+-why does it trigger gestures on button release no matter what
+-charge inputs
+-gestures with disallowed directions

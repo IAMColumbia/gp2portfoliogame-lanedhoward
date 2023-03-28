@@ -199,7 +199,7 @@ MonoBehaviour:
     m_ActionId: 606bad0d-b83d-4c89-9ee0-ca9345c72dbc
     m_ActionName: Fighter/Move[/Keyboard/space,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard
+  m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Fighter
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

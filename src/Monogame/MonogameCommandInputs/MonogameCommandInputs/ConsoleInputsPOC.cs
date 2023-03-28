@@ -82,6 +82,7 @@ namespace MonogameCommandInputs
                 console.DebugTextOutput["ControlType"] = inputReader.GetInputHost().GetType().Name;
             }
 
+            /*
             tickTimer += gameTime.ElapsedGameTime.TotalSeconds;
             if (tickTimer >= tickRate)
             {
@@ -89,13 +90,16 @@ namespace MonogameCommandInputs
                 totalTicks++;
                 Tick();
             }
+            */
+
+            Tick(gameTime);
 
             base.Update(gameTime);
         }
 
-        private void Tick()
+        private void Tick(GameTime gameTime)
         {
-            IReadPackage package = inputReader.Tick();
+            IReadPackage package = inputReader.Tick(gameTime.ElapsedGameTime);
 
             if (package != null)
             {

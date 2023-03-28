@@ -9,9 +9,9 @@ namespace CommandInputReaderLibrary.Gestures
     public class GestureComponent
     {
         public Directions.Direction Direction;
-        public int MaxTimeSinceLastInput;
+        public float MaxTimeSinceLastInput;
 
-        public GestureComponent(Directions.Direction direction, int maxTimeSinceLastInput)
+        public GestureComponent(Directions.Direction direction, float maxTimeSinceLastInput)
         {
             Direction = direction;
             MaxTimeSinceLastInput = maxTimeSinceLastInput;

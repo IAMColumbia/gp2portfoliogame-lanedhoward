@@ -132,8 +132,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 252192766}
-  - component: {fileID: 252192767}
   - component: {fileID: 252192768}
+  - component: {fileID: 252192769}
+  - component: {fileID: 252192767}
   m_Layer: 0
   m_Name: Fighter
   m_TagString: Untagged
@@ -182,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: da601ac19a5f4c048a2b1babdc50d84f, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 3
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -193,12 +194,28 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 606bad0d-b83d-4c89-9ee0-ca9345c72dbc
+    m_ActionName: Fighter/Move[/Keyboard/space,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard&Mouse
+  m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Fighter
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &252192769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252192765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe58627e51781c4dbe3aa16dab312f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &431068390
 GameObject:
   m_ObjectHideFlags: 0

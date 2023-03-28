@@ -79,6 +79,9 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\PriorityQueue.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\HostPackageComparer.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
+    <Compile Include="Assets\Scripts\FighterInputHost.cs" />
+    <Compile Include="Assets\Inputs\Fighters.cs" />
+    <Compile Include="Assets\Scripts\FighterButtons.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

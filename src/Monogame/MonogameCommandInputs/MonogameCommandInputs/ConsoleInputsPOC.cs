@@ -103,7 +103,7 @@ namespace MonogameCommandInputs
 
             if (package != null)
             {
-                string output = totalTicks + ":    ";
+                string output = ((ReadablePackage)package.mostRecentInputs).TimeReceived + ":    ";
                 if (package.gestures.Count > 0)
                 {
                     IReadableGesture gesture = package.gestures.Dequeue();

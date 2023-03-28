@@ -1,11 +1,13 @@
 using CommandInputReaderLibrary;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class FighterInputHost : MonoBehaviour, IInputHost
+public class FighterInputHost : IInputHost
 {
+    private PlayerInput playerInput;
     private InputActionAsset inputAsset;
     private InputActionMap player;
     private InputAction move;
@@ -14,15 +16,16 @@ public class FighterInputHost : MonoBehaviour, IInputHost
     private InputAction attackC;
     private InputAction dashMacro;
 
-
-    void Awake()
+    public FighterInputHost(PlayerInput _playerInput)
     {
-        inputAsset = this.GetComponent<PlayerInput>().actions;
-        player = inputAsset.FindActionMap("Fighter");
+        playerInput = _playerInput;
+        Initialize();
     }
 
-    private void OnEnable()
+    protected void Initialize()
     {
+        inputAsset = playerInput.actions;
+        player = inputAsset.FindActionMap("Fighter");
         player.Enable();
         move = player.FindAction("Move");
         attackA = player.FindAction("AttackA");
@@ -40,7 +43,20 @@ public class FighterInputHost : MonoBehaviour, IInputHost
         p.UpDown = (int)v.y;
         p.LeftRight = (int)v.x;
 
+        AddButtonToHostPackage<AttackA>(p, attackA);
+        AddButtonToHostPackage<AttackB>(p, attackB);
+        AddButtonToHostPackage<AttackC>(p, attackC);
+        AddButtonToHostPackage<DashMacro>(p, dashMacro);
+
         return p;
+    }
+
+    private void AddButtonToHostPackage<ButtonType>(HostPackage p, InputAction inputAction) where ButtonType: IButton, new()
+    {
+        if (inputAction.triggered)
+        {
+            p.Buttons.Add(new ButtonType() { State = IButton.ButtonState.Pressed });
+        }
     }
 
 }

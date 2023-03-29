@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 public class FighterMain : MonoBehaviour
 {
     public FighterInputReceiver inputReceiver;
+    public FighterAnimator fighterAnimator;
 
     public Rigidbody2D fighterRigidbody;
 
@@ -20,7 +21,7 @@ public class FighterMain : MonoBehaviour
     public float walkAccel;
     public float walkMaxSpeed;
     public float groundFriction;
-
+    public float velocityToStopMoveAnimation;
 
 
     void Start()
@@ -31,6 +32,9 @@ public class FighterMain : MonoBehaviour
         inputReceiver = new FighterInputReceiver(inputHost, inputReader);
 
         fighterRigidbody = GetComponent<Rigidbody2D>();
+
+        fighterAnimator = new FighterAnimator(this);
+        fighterAnimator.velocityToStopMovingAnim = velocityToStopMoveAnimation;
 
         neutral = new Neutral(this);
 

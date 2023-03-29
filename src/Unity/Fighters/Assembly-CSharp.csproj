@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\FighterInputReceiver.cs" />
     <Compile Include="Assets\Scripts\FighterStates\FighterState.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Neutral.cs" />
+    <Compile Include="Assets\Scripts\FighterAnimator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

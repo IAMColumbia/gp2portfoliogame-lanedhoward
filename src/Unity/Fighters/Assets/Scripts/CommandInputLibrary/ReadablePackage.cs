@@ -7,9 +7,9 @@ namespace CommandInputReaderLibrary
 {
     public class ReadablePackage : HostPackage
     {
-        public int TimeReceived;
+        public float TimeReceived;
 
-        public ReadablePackage(IHostPackage hostPackage, int timeReceived) //, bool facingRight)
+        public ReadablePackage(IHostPackage hostPackage, float timeReceived) //, bool facingRight)
         {
             this.UpDown = hostPackage.UpDown;
             this.LeftRight = hostPackage.LeftRight;

@@ -14,6 +14,6 @@ namespace CommandInputReaderLibrary
         /// </summary>
         /// <param name="inputs"></param>
         /// <returns></returns>
-        public bool Read(List<ReadablePackage> inputs, int currentTime, Directions.FacingDirection facingDirection);
+        public bool Read(List<ReadablePackage> inputs, float currentTime, Directions.FacingDirection facingDirection);
     }
 }

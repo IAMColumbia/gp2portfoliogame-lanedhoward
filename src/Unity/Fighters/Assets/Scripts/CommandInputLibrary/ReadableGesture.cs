@@ -20,7 +20,7 @@ namespace CommandInputReaderLibrary
             disallowedInputs = new List<GestureComponent>();
         }
 
-        public virtual bool Read(List<ReadablePackage> inputs, int currentTime, Directions.FacingDirection facingDirection)
+        public virtual bool Read(List<ReadablePackage> inputs, float currentTime, Directions.FacingDirection facingDirection)
         {
             ResetRequiredInputs();
 

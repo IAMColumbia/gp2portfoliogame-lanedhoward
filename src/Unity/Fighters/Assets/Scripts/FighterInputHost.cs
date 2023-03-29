@@ -29,9 +29,8 @@ public class FighterInputHost : IInputHost
         player.Enable();
         move = player.FindAction("Move");
         attackA = player.FindAction("AttackA");
-        attackA = player.FindAction("AttackA");
-        attackA = player.FindAction("AttackB");
-        attackA = player.FindAction("AttackC");
+        attackB = player.FindAction("AttackB");
+        attackC = player.FindAction("AttackC");
         dashMacro = player.FindAction("DashMacro");
     }
 

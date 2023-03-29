@@ -1,0 +1,113 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public abstract class FighterState
+{
+    /// <summary>
+    /// Uses the Subclass Sandbox pattern from Game Programming Patterns
+    /// </summary>
+    protected FighterMain fighter;
+
+    public bool jumpsEnabled;
+    
+
+    public FighterState(FighterMain fighterMain)
+    {
+        fighter = fighterMain;
+    }
+
+    public virtual void EnterState()
+    {
+
+    }
+
+    public virtual void DoState()
+    {
+
+    }
+
+    public virtual void ExitState()
+    {
+
+    }
+
+    #region MOVEMENT
+
+    public void AllowHorizontalMovement()
+    {
+        MoveHorizontal(fighter.walkMaxSpeed, fighter.groundFriction);
+    }
+
+    public void MoveHorizontal(float _maxSpeed, float fricAmount)
+    {
+        float _inputMovement = fighter.inputReceiver.LeftRight;
+
+        float hsp = fighter.fighterRigidbody.velocity.x;
+
+        //if we only move the left stick a little bit, inari should only accelerate to a walking pace
+        float maxSpeed = _maxSpeed * Mathf.Abs(_inputMovement);
+
+
+
+        if (_inputMovement != 0)
+        {
+            // we move!
+
+            float actingHorizontalAccel = fighter.walkAccel;
+
+            /*
+            if (hsp != 0 && System.Math.Sign(hsp) != System.Math.Sign(_inputMovement))
+            {
+                //if we are trying to change directions, give extra traction.
+                actingHorizontalAccel += fricAmount;
+            }
+            */
+
+            if (
+                (System.Math.Abs(hsp) <= (maxSpeed - (actingHorizontalAccel * System.Math.Abs(_inputMovement) * Time.deltaTime))) || //if you can accelerate
+                (System.Math.Sign(_inputMovement) != System.Math.Sign(hsp)) // or if you are trying to change directions
+                )
+            {
+                hsp += actingHorizontalAccel * Mathf.Sign(_inputMovement) * Time.deltaTime;
+            }
+            else
+            {
+                // cap speed
+                // TODO: maybe soft cap speed? like if ur going over your max speed, just slow down over time until you get back to max speed
+                //hsp = maxSpeed * System.Math.Sign(hsp);
+                hsp = ApplyHorizontalFriction(fricAmount, hsp, maxSpeed * System.Math.Sign(hsp));
+            }
+        }
+        else
+        {
+            // we are not moving.
+            hsp = ApplyHorizontalFriction(fricAmount, hsp);
+        }
+
+        fighter.fighterRigidbody.velocity = new Vector2(hsp, fighter.fighterRigidbody.velocity.y);
+    }
+
+    private float ApplyHorizontalFriction(float fricAmount, float hsp)
+    {
+
+
+        return ApplyHorizontalFriction(fricAmount, hsp, 0f);
+
+    }
+    private float ApplyHorizontalFriction(float fricAmount, float hsp, float goalhsp)
+    {
+        if (System.Math.Abs(hsp) >= System.Math.Abs(goalhsp) + (fricAmount * Time.deltaTime))
+        {
+            hsp -= System.Math.Sign(hsp) * fricAmount * Time.deltaTime;
+        }
+        else
+        {
+            hsp = goalhsp;
+        }
+
+        return hsp;
+    }
+
+    #endregion
+}

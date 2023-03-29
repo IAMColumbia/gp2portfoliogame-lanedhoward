@@ -14,10 +14,10 @@ namespace CommandInputReaderLibrary
         protected List<Directions.Direction> chargeDirections;
         protected List<Directions.Direction> releaseDirections;
 
-        protected int minChargeTime;
-        protected int maxTimeBetweenChargePartitions;
-        protected int maxTimeBetweenChargeAndRelease;
-        protected int maxTimeAfterRelease;
+        protected float minChargeTime;
+        protected float maxTimeBetweenChargePartitions;
+        protected float maxTimeBetweenChargeAndRelease;
+        protected float maxTimeAfterRelease;
 
         public ReadableChargeGesture()
         {
@@ -25,13 +25,13 @@ namespace CommandInputReaderLibrary
             releaseDirections = new List<Directions.Direction>();
         }
         
-        public virtual bool Read(List<ReadablePackage> inputsFacingRight, int currentTime, Directions.FacingDirection facingDirection)
+        public virtual bool Read(List<ReadablePackage> inputsFacingRight, float currentTime, Directions.FacingDirection facingDirection)
         {
-            int currentChargeTimeProgress = 0;
+            float currentChargeTimeProgress = 0;
 
-            int releaseTime = currentTime;
-            int partitionEndTime = currentTime;
-            int lastInputTime = currentTime;
+            float releaseTime = currentTime;
+            float partitionEndTime = currentTime;
+            float lastInputTime = currentTime;
 
             bool hasReleased = false;
             bool hasStartedCharging = false;

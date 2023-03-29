@@ -16,18 +16,20 @@ namespace CommandInputReaderLibrary
         private List<IReadableGesture> readableGestures; // all possible gestures
 
         private Directions.FacingDirection facingDirection;
-        private int Time; // time is an int, measured in ticks / frames
+        private float Time; // time is an float, measured in ticks / frames
+
+        private float AssumedTicksPerSecond = 60; 
 
         HostPackageComparer comparer;
 
         // STATIC MEMBERS
-        public static int TimeBetweenSequentialInputs = 8;
-        public static int TimeBetweenNonSequentialInputs = 16;
+        public static float TimeBetweenSequentialInputs = 8;
+        public static float TimeBetweenNonSequentialInputs = 16;
 
-        public static int MinChargeTime = 35;
-        public static int MaxTimeBetweenChargePartitions = 16;
-        public static int MaxTimeBetweenChargeAndRelease = 16;
-        public static int MaxTimeAfterRelease = 8;
+        public static float MinChargeTime = 35;
+        public static float MaxTimeBetweenChargePartitions = 16;
+        public static float MaxTimeBetweenChargeAndRelease = 16;
+        public static float MaxTimeAfterRelease = 8;
 
 
         public InputReader(IInputHost host)
@@ -79,10 +81,10 @@ namespace CommandInputReaderLibrary
             return foundGestures;
         }
 
-        public IReadPackage? Tick()
+        public IReadPackage? Tick(TimeSpan elapsedTime)
         {
             // TECHNICIAL DEBT: null object pattern
-            Time++;
+            Time += (float)elapsedTime.TotalSeconds * AssumedTicksPerSecond;
 
             IReadPackage? resultReadPackage = null;
 

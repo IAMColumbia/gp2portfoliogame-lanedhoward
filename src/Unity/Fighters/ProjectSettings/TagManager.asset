@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - Fighter
+  - Hitbox
+  - Hurtbox
   layers:
   - Default
   - TransparentFX
@@ -15,7 +19,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Ground
   - 
   - 
   - 
@@ -40,4 +44,25 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1475139445
+    locked: 0
+  - name: Midground
+    uniqueID: 555604923
+    locked: 0
+  - name: Ground
+    uniqueID: 2134144101
+    locked: 0
+  - name: Entities_Back
+    uniqueID: 2449276809
+    locked: 0
+  - name: Entities
+    uniqueID: 4002123203
+    locked: 0
+  - name: Entities_Front
+    uniqueID: 2923338277
+    locked: 0
+  - name: Foreground
+    uniqueID: 3964471101
     locked: 0

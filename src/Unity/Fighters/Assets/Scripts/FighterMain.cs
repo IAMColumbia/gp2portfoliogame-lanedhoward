@@ -16,6 +16,7 @@ public class FighterMain : MonoBehaviour
     public FighterState currentState;
 
     public Neutral neutral;
+    public Crouch crouch;
 
     [Header("Movement Values")]
     public float walkAccel;
@@ -23,6 +24,8 @@ public class FighterMain : MonoBehaviour
     public float groundFriction;
     public float velocityToStopMoveAnimation;
 
+    [Header("Internal Values")]
+    public bool hasCrouchInput;
 
     void Start()
     {
@@ -37,6 +40,7 @@ public class FighterMain : MonoBehaviour
         fighterAnimator.velocityToStopMovingAnim = velocityToStopMoveAnimation;
 
         neutral = new Neutral(this);
+        crouch = new Crouch(this);
 
         //currentState = neutral;
         SwitchState(neutral);
@@ -47,7 +51,7 @@ public class FighterMain : MonoBehaviour
     {
         CheckForInputs();
 
-        //HandleInputs();
+        HandleInputs();
 
         //UpdateTimers();
 
@@ -59,6 +63,18 @@ public class FighterMain : MonoBehaviour
     private void CheckForInputs()
     {
         inputReceiver.CheckForInputs();
+    }
+
+    private void HandleInputs()
+    {
+        if (inputReceiver.UpDown == -1)
+        {
+            hasCrouchInput = true;
+        }
+        else
+        {
+            hasCrouchInput = false;
+        }
     }
 
     public void SwitchState(FighterState newState)

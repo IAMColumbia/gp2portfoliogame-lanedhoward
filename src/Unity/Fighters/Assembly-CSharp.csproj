@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\InputHost.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Directions.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IReadableGesture.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\Crouch.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Gesture.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\HostPackage.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IButton.cs" />

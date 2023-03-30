@@ -6,6 +6,7 @@ public class Neutral : FighterState
 {
     public Neutral(FighterMain fighterMain) : base(fighterMain)
     {
+        jumpsEnabled = true;
     }
 
     public override void EnterState()
@@ -16,10 +17,10 @@ public class Neutral : FighterState
     public override void DoState()
     {
         AllowHorizontalMovement();
-        /*
-        playerMovement.UpdateGravity();
-        AllowFalling();
-        AllowGroundToResetJumps();
-        */
+        
+        if (fighter.hasCrouchInput)
+        {
+            fighter.SwitchState(fighter.crouch);
+        }
     }
 }

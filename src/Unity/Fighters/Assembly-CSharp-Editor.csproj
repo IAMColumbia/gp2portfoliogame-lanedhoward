@@ -73,6 +73,7 @@
     <Compile Include="Assets\AsepriteAnimationWorkflow\Editor\BlendFunc.cs" />
     <Compile Include="Assets\AsepriteAnimationWorkflow\Editor\Aseprite.cs" />
     <Compile Include="Assets\AsepriteAnimationWorkflow\Editor\AsepriteImporterSettings.cs" />
+    <Compile Include="Assets\Editor\FighterInspector.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

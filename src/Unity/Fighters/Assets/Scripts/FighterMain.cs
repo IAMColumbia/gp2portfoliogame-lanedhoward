@@ -18,6 +18,7 @@ public class FighterMain : MonoBehaviour
     public float groundCheckXDistance;
     public float groundCheckYDistance;
 
+
     public FighterState currentState;
 
     public Neutral neutral;

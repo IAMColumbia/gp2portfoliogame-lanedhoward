@@ -2,6 +2,7 @@ using CommandInputReaderLibrary;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -33,8 +34,12 @@ public class FighterMain : MonoBehaviour
     public float walkMaxSpeed;
     public float groundFriction;
     public float velocityToStopMoveAnimation;
+
+    [Header("Jump Values")]
     public float jumpVelocityHorizontal;
     public float jumpVelocityVertical;
+    [Tooltip("Multiplier applied to current x velocity before the jump.")]
+    public float jumpMomentumMultiplier;
 
     [Header("Internal Values")]
     public bool hasCrouchInput;

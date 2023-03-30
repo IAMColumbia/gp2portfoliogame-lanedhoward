@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\IReadPackage.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableGesture.cs" />
     <Compile Include="Assets\Scripts\FighterStates\FighterState.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\Air.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Button.cs" />
     <Compile Include="Assets\Scripts\FighterInputReceiver.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IInputReceiver.cs" />
@@ -81,14 +82,16 @@
     <Compile Include="Assets\Scripts\FighterMain.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IGesture.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableGestureWithShortcuts.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\Prejump.cs" />
     <Compile Include="Assets\Scripts\FighterAnimator.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Gestures\DefaultGestures.cs" />
     <Compile Include="Assets\Scripts\PriorityQueue.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\HostPackageComparer.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\FighterStates\Prejump.cs" />
-    <Compile Include="Assets\Scripts\FighterStates\Air.cs" />
+    <Compile Include="Assets\Scripts\GameCommandInputs\FighterGestures.cs" />
+    <Compile Include="Assets\Scripts\GameCommandInputs\GameMoveInputs.cs" />
+    <Compile Include="Assets\Scripts\GameCommandInputs\GameAttack.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

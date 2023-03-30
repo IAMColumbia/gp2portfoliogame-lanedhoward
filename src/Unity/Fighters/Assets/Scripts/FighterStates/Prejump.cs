@@ -32,7 +32,7 @@ public class Prejump : FighterState
         {
             // jump;
 
-            fighter.fighterRigidbody.velocity = new Vector2(fighter.fighterRigidbody.velocity.x + (fighter.jumpVelocityHorizontal * jumpLeftRight), fighter.jumpVelocityVertical);
+            fighter.fighterRigidbody.velocity = new Vector2((fighter.fighterRigidbody.velocity.x * fighter.jumpMomentumMultiplier) + (fighter.jumpVelocityHorizontal * jumpLeftRight), fighter.jumpVelocityVertical);
         }
     }
 }

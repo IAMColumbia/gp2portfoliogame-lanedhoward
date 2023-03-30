@@ -198,8 +198,9 @@ MonoBehaviour:
   walkMaxSpeed: 5
   groundFriction: 40
   velocityToStopMoveAnimation: 1
-  jumpVelocityHorizontal: 4
+  jumpVelocityHorizontal: 3
   jumpVelocityVertical: 10
+  momentumMultiplier: 0.5
   hasCrouchInput: 0
   hasJumpInput: 0
   isGrounded: 0

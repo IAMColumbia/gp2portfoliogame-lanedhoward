@@ -9,6 +9,7 @@ public class FighterAnimator
 
     [Header("Animator Values")]
     private int animatorMoveBool;
+    private int animatorMoveSpeedFloat;
     private int animatorGroundedBool;
 
     public float velocityToStopMovingAnim;
@@ -18,10 +19,11 @@ public class FighterAnimator
         fighter = main;
         animator = fighter.GetComponentInChildren<Animator>();
         animatorMoveBool = Animator.StringToHash("IsMoving");
+        animatorMoveSpeedFloat = Animator.StringToHash("WalkSpeed");
         animatorGroundedBool = Animator.StringToHash("IsGrounded");
     }
 
-    public void AnimationUpdateMoveBool(float moveVelocity)
+    public void AnimationUpdateMoveBool(float moveVelocity, float maxVelocity)
     {
         bool isMoving = true;
         float moveSpeed = Mathf.Abs(moveVelocity);
@@ -31,7 +33,10 @@ public class FighterAnimator
             isMoving = false;
         }
 
+        float animSpeed = moveVelocity / maxVelocity;
+
         animator.SetBool(animatorMoveBool, isMoving);
+        animator.SetFloat(animatorMoveSpeedFloat, animSpeed);
     }
 
     public void AnimationUpdateGroundedBool(bool isGrounded)

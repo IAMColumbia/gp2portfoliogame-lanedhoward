@@ -56,6 +56,7 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\FighterStates\Neutral.cs" />
     <Compile Include="Assets\Scripts\FighterButtons.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\InputReader.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Gestures\GestureComponent.cs" />
@@ -71,21 +72,20 @@
     <Compile Include="Assets\Inputs\Fighters.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IReadPackage.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableGesture.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\FighterState.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Button.cs" />
+    <Compile Include="Assets\Scripts\FighterInputReceiver.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IInputReceiver.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IHostPackage.cs" />
     <Compile Include="Assets\Scripts\FighterMain.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IGesture.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableGestureWithShortcuts.cs" />
+    <Compile Include="Assets\Scripts\FighterAnimator.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Gestures\DefaultGestures.cs" />
     <Compile Include="Assets\Scripts\PriorityQueue.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\HostPackageComparer.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\FighterInputReceiver.cs" />
-    <Compile Include="Assets\Scripts\FighterStates\FighterState.cs" />
-    <Compile Include="Assets\Scripts\FighterStates\Neutral.cs" />
-    <Compile Include="Assets\Scripts\FighterAnimator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

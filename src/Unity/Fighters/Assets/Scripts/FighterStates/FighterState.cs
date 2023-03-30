@@ -37,7 +37,7 @@ public abstract class FighterState
     public void AllowHorizontalMovement()
     {
         MoveHorizontal(fighter.walkMaxSpeed, fighter.groundFriction);
-        fighter.fighterAnimator.AnimationUpdateMoveBool(fighter.fighterRigidbody.velocity.x);
+        fighter.fighterAnimator.AnimationUpdateMoveBool(fighter.fighterRigidbody.velocity.x, fighter.walkMaxSpeed);
     }
 
     public void MoveHorizontal(float _maxSpeed, float fricAmount)

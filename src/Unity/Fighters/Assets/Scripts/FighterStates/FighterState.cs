@@ -10,21 +10,23 @@ public abstract class FighterState
     protected FighterMain fighter;
 
     public bool jumpsEnabled;
-    
+
+    public float stateTimer;
 
     public FighterState(FighterMain fighterMain)
     {
         fighter = fighterMain;
+        stateTimer = 0f;
     }
 
     public virtual void EnterState()
     {
-
+        stateTimer = 0f;
     }
 
     public virtual void DoState()
     {
-
+        stateTimer += Time.deltaTime;
     }
 
     public virtual void ExitState()
@@ -108,6 +110,41 @@ public abstract class FighterState
         }
 
         return hsp;
+    }
+
+    public void DoFriction(float frictionAmount)
+    {
+        float hsp = ApplyHorizontalFriction(frictionAmount, fighter.fighterRigidbody.velocity.x);
+        fighter.fighterRigidbody.velocity = new Vector2(hsp, fighter.fighterRigidbody.velocity.y);
+    }
+
+    public void AllowJumping()
+    {
+        if (fighter.hasJumpInput)
+        {
+            fighter.SwitchState(fighter.prejump);
+        }
+    }
+    #endregion
+
+    #region STATE TRANSITIONS
+
+    protected bool AnimationEndTransitionToNextState(FighterState nextState)
+    {
+        if (fighter.fighterAnimator.CheckIfAnimationEnded() && stateTimer != 0)
+        {
+            fighter.SwitchState(nextState);
+            return true;
+        }
+        return false;
+    }
+
+    protected void AllowLanding()
+    {
+        if (fighter.isGrounded)
+        {
+            fighter.SwitchState(fighter.neutral);
+        }
     }
 
     #endregion

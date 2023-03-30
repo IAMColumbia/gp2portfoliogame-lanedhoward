@@ -1,0 +1,38 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Prejump : FighterState
+{
+    private int jumpLeftRight;
+
+    public Prejump(FighterMain fighterMain) : base(fighterMain)
+    {
+        jumpsEnabled = false;
+        jumpLeftRight = 0;
+    }
+
+    public override void EnterState()
+    {
+        base.EnterState();
+
+        jumpLeftRight = fighter.inputReceiver.LeftRight;
+
+        fighter.fighterAnimator.StartAnimation("jumping_default");
+    }
+
+    public override void DoState()
+    {
+        base.DoState();
+
+
+        DoFriction(fighter.groundFriction);
+        
+        if (AnimationEndTransitionToNextState(fighter.air))
+        {
+            // jump;
+
+            fighter.fighterRigidbody.velocity = new Vector2(fighter.fighterRigidbody.velocity.x + (fighter.jumpVelocityHorizontal * jumpLeftRight), fighter.jumpVelocityVertical);
+        }
+    }
+}

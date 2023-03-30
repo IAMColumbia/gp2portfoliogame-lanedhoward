@@ -87,6 +87,8 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\HostPackageComparer.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\Prejump.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\Air.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

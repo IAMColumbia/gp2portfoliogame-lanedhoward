@@ -1,0 +1,30 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Air : FighterState
+{
+    public Air(FighterMain fighterMain) : base(fighterMain)
+    {
+        jumpsEnabled = false;
+    }
+
+    public override void EnterState()
+    {
+        base.EnterState();
+
+
+        fighter.fighterAnimator.StartAnimation("air_default");
+    }
+
+    public override void DoState()
+    {
+        base.DoState();
+
+        if (stateTimer > 0.1f)
+        {
+            AllowLanding();
+        }
+
+    }
+}

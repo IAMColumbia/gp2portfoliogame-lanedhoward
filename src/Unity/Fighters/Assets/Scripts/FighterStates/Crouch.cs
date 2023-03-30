@@ -11,14 +11,23 @@ public class Crouch : FighterState
 
     public override void EnterState()
     {
-        fighter.fighterAnimator.StartAnimation("crouch_default");
+        base.EnterState();
+
+
+        fighter.fighterAnimator.StartAnimation("crouchidle_default");
     }
 
     public override void DoState()
     {
+        base.DoState();
+
+
+        DoFriction(fighter.groundFriction);
         if (!fighter.hasCrouchInput)
         {
             fighter.SwitchState(fighter.neutral);
         }
+
+        AllowJumping();
     }
 }

@@ -12,20 +12,33 @@ public class FighterMain : MonoBehaviour
     public FighterAnimator fighterAnimator;
 
     public Rigidbody2D fighterRigidbody;
+    public BoxCollider2D fighterCollider;
+
+    public LayerMask groundMask;
+    public float groundCheckXDistance;
+    public float groundCheckYDistance;
 
     public FighterState currentState;
 
     public Neutral neutral;
     public Crouch crouch;
+    public Prejump prejump;
+    public Air air;
+    
+
 
     [Header("Movement Values")]
     public float walkAccel;
     public float walkMaxSpeed;
     public float groundFriction;
     public float velocityToStopMoveAnimation;
+    public float jumpVelocityHorizontal;
+    public float jumpVelocityVertical;
 
     [Header("Internal Values")]
     public bool hasCrouchInput;
+    public bool hasJumpInput;
+    public bool isGrounded;
 
     void Start()
     {
@@ -35,12 +48,17 @@ public class FighterMain : MonoBehaviour
         inputReceiver = new FighterInputReceiver(inputHost, inputReader);
 
         fighterRigidbody = GetComponent<Rigidbody2D>();
+        fighterCollider = GetComponent<BoxCollider2D>();
+
+        groundMask = LayerMask.GetMask("Ground");
 
         fighterAnimator = new FighterAnimator(this);
         fighterAnimator.velocityToStopMovingAnim = velocityToStopMoveAnimation;
 
         neutral = new Neutral(this);
         crouch = new Crouch(this);
+        prejump = new Prejump(this);
+        air = new Air(this);
 
         //currentState = neutral;
         SwitchState(neutral);
@@ -49,13 +67,13 @@ public class FighterMain : MonoBehaviour
 
     void FixedUpdate()
     {
+        CheckForGroundedness();
+        
         CheckForInputs();
 
         HandleInputs();
 
         //UpdateTimers();
-
-        //CheckForGroundedness();
 
         DoCurrentState();
     }
@@ -67,14 +85,29 @@ public class FighterMain : MonoBehaviour
 
     private void HandleInputs()
     {
-        if (inputReceiver.UpDown == -1)
+        switch (inputReceiver.UpDown)
         {
-            hasCrouchInput = true;
+            case -1:
+                hasCrouchInput = true;
+                hasJumpInput = false;
+                break;
+            case 1:
+                hasCrouchInput = false;
+                hasJumpInput = true;
+                break;
+            default:
+            case 0:
+                hasCrouchInput = false;
+                hasJumpInput = false;
+                break;
         }
-        else
-        {
-            hasCrouchInput = false;
-        }
+
+    }
+
+    public void CheckForGroundedness()
+    {
+        isGrounded = Physics2D.OverlapArea(new Vector2(fighterCollider.bounds.min.x + groundCheckXDistance, fighterCollider.bounds.min.y), new Vector2(fighterCollider.bounds.max.x - groundCheckXDistance, fighterCollider.bounds.min.y - groundCheckYDistance), groundMask);
+        
     }
 
     public void SwitchState(FighterState newState)

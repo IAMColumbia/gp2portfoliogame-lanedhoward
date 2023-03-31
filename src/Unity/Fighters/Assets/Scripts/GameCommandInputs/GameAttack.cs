@@ -20,7 +20,7 @@ public class GameAttack
     // what cancels can you do from this move? and when?
 
     // also,
-    
+
     // is this a strike or a throw?
 
     // damage, knockback, hitstun, blockstun
@@ -29,10 +29,43 @@ public class GameAttack
 
     // counterhit state (and maybe more things that come with that ?)
 
-    public virtual bool CanExecute()
+    protected FighterMain fighter;
+
+    public List<GameAttackCondition> conditions;
+
+    public GameAttackProperties properties;
+
+    public GameAttack(FighterMain _fighter)
     {
-        return false;
+        fighter = _fighter;
+        conditions = new List<GameAttackCondition>();
+        properties = new GameAttackProperties();
     }
 
+    public virtual bool CanExecute(GameMoveInput moveInput)
+    {
+        if (conditions.Count == 0) return true;
+        // if all conditions pass, this move can go
+        return conditions.All(c => c.CanExecute(moveInput));
+    }
 
+}
+
+public class GameAttackProperties
+{
+    public enum AttackType
+    {
+        Light,
+        Medium,
+        Heavy,
+        Special,
+        Super
+    }
+
+    public string AnimationName;
+
+    public GameAttackProperties()
+    {
+        AnimationName = string.Empty;
+    }
 }

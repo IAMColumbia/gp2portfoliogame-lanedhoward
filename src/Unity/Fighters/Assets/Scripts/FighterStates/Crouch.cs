@@ -13,6 +13,7 @@ public class Crouch : FighterState
     {
         base.EnterState();
 
+        fighter.currentStance = FighterStance.Crouching;
 
         fighter.fighterAnimator.StartAnimation("crouchidle_default");
     }

@@ -6,6 +6,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[Flags]
+public enum FighterStance
+{
+    Standing = 1,
+    Crouching = 2,
+    Air = 4
+}
+
 [RequireComponent(typeof(PlayerInput))]
 public class FighterMain : MonoBehaviour
 {
@@ -45,6 +53,7 @@ public class FighterMain : MonoBehaviour
     public bool hasCrouchInput;
     public bool hasJumpInput;
     public bool isGrounded;
+    public FighterStance currentStance;
 
     void Start()
     {

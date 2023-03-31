@@ -16,6 +16,8 @@ public class Prejump : FighterState
     {
         base.EnterState();
 
+        fighter.currentStance = FighterStance.Standing;
+
         jumpLeftRight = fighter.inputReceiver.LeftRight;
 
         fighter.fighterAnimator.StartAnimation("jumping_default");

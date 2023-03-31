@@ -13,6 +13,7 @@ public class Neutral : FighterState
     {
         base.EnterState();
 
+        fighter.currentStance = FighterStance.Standing;
 
         fighter.fighterAnimator.StartAnimation("idle_default");
     }

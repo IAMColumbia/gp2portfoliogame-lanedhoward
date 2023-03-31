@@ -13,6 +13,7 @@ public class Air : FighterState
     {
         base.EnterState();
 
+        fighter.currentStance = FighterStance.Air;
 
         fighter.fighterAnimator.StartAnimation("air_default");
     }

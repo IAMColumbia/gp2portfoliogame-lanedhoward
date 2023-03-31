@@ -15,7 +15,8 @@ public static class FighterGestures
                 new QuarterCircleForward(),
                 new DragonPunch(),
                 new Dash(),
-                new ForwardHalfCircleForward()
+                new ForwardHalfCircleForward(),
+                new NoGesture()
             };
         return gestures;
     }
@@ -77,5 +78,18 @@ public class ForwardHalfCircleForward : ReadableGestureWithShortcuts
 
         possibleGestures.Add(new Shortcut1());
         possibleGestures.Add(new Shortcut2());
+    }
+}
+
+public class NoGesture : ReadableGesture
+{
+    public NoGesture() : base()
+    {
+        Priority = 1000;
+    }
+
+    public override bool Read(List<ReadablePackage> inputs, float currentTime, FacingDirection facingDirection)
+    {
+        return true;
     }
 }

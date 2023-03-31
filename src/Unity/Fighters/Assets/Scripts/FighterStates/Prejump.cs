@@ -20,7 +20,7 @@ public class Prejump : FighterState
 
         jumpLeftRight = fighter.inputReceiver.LeftRight;
 
-        fighter.fighterAnimator.StartAnimation("jumping_default");
+        fighter.fighterAnimator.StartAnimation("Prejump");
     }
 
     public override void DoState()

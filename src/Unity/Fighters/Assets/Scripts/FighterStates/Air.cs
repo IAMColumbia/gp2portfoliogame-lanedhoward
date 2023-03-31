@@ -15,7 +15,7 @@ public class Air : FighterState
 
         fighter.currentStance = FighterStance.Air;
 
-        fighter.fighterAnimator.StartAnimation("air_default");
+        fighter.fighterAnimator.StartAnimation("Air");
     }
 
     public override void DoState()

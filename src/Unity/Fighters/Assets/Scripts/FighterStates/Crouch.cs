@@ -15,7 +15,7 @@ public class Crouch : FighterState
 
         fighter.currentStance = FighterStance.Crouching;
 
-        fighter.fighterAnimator.StartAnimation("crouchidle_default");
+        fighter.fighterAnimator.StartAnimation("Crouchidle");
     }
 
     public override void DoState()

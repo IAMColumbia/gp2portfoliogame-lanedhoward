@@ -15,7 +15,7 @@ public class Neutral : FighterState
 
         fighter.currentStance = FighterStance.Standing;
 
-        fighter.fighterAnimator.StartAnimation("idle_default");
+        fighter.fighterAnimator.StartAnimation("Idle");
     }
 
     public override void DoState()

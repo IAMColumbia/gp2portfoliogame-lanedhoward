@@ -94,6 +94,8 @@
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttackCondition.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\FighterAttacks.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\GroundAttack.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\AirAttack.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

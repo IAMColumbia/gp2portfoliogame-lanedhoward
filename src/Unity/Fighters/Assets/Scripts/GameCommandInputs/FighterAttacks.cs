@@ -29,6 +29,8 @@ public class FiveA : GameAttack
         conditions.Add(new GestureCondition(this, fighter, new NoGesture()));
         conditions.Add(new ButtonCondition(this, fighter, new AttackA()));
         conditions.Add(new StanceCondition(this, fighter, FighterStance.Standing));
+
+        properties.AnimationName = "Jab";
     }
 }
 
@@ -39,6 +41,8 @@ public class TwoA : GameAttack
         conditions.Add(new GestureCondition(this, fighter, new NoGesture()));
         conditions.Add(new ButtonCondition(this, fighter, new AttackA()));
         conditions.Add(new StanceCondition(this, fighter, FighterStance.Crouching));
+
+        properties.AnimationName = "Crouchjab";
     }
 }
 
@@ -49,6 +53,8 @@ public class JumpA : GameAttack
         conditions.Add(new GestureCondition(this, fighter, new NoGesture()));
         conditions.Add(new ButtonCondition(this, fighter, new AttackA()));
         conditions.Add(new StanceCondition(this, fighter, FighterStance.Air));
+
+        properties.AnimationName = "Jumpknee";
     }
 }
 
@@ -59,5 +65,7 @@ public class SixTwoThreeA : GameAttack
         conditions.Add(new GestureCondition(this, fighter, new DragonPunch()));
         conditions.Add(new ButtonCondition(this, fighter, new AttackA()));
         conditions.Add(new StanceCondition(this, fighter, FighterStance.Standing | FighterStance.Crouching | FighterStance.Air));
+
+        properties.AnimationName = "Dragonpunch";
     }
 }

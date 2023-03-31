@@ -54,6 +54,7 @@ public class FighterMain : MonoBehaviour
     public bool hasJumpInput;
     public bool isGrounded;
     public FighterStance currentStance;
+    public GameAttack currentAttack;
 
     void Start()
     {
@@ -74,6 +75,8 @@ public class FighterMain : MonoBehaviour
         crouch = new Crouch(this);
         prejump = new Prejump(this);
         air = new Air(this);
+
+        currentAttack = new FiveA(this); // arbitrary
 
         //currentState = neutral;
         SwitchState(neutral);

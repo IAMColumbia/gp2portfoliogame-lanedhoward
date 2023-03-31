@@ -15,6 +15,8 @@ public class Neutral : FighterState
 
         fighter.currentStance = FighterStance.Standing;
 
+        fighter.canAct = true;
+
         fighter.fighterAnimator.StartAnimation("Idle");
     }
 

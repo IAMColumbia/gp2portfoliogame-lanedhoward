@@ -17,6 +17,8 @@ public class AirAttack : FighterState
 
         GameAttack attack = fighter.currentAttack;
 
+        fighter.canAct = false;
+
         fighter.fighterAnimator.StartAnimation(attack.properties.AnimationName);
     }
 

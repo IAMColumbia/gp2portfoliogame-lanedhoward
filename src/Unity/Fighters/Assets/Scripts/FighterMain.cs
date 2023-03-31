@@ -27,6 +27,7 @@ public class FighterMain : MonoBehaviour
     public float groundCheckXDistance;
     public float groundCheckYDistance;
 
+    public List<GameAttack> fighterAttacks;
 
     public FighterState currentState;
 
@@ -34,7 +35,8 @@ public class FighterMain : MonoBehaviour
     public Crouch crouch;
     public Prejump prejump;
     public Air air;
-    
+    public AirAttack airAttack;
+    public GroundAttack groundAttack;
 
 
     [Header("Movement Values")]
@@ -53,6 +55,7 @@ public class FighterMain : MonoBehaviour
     public bool hasCrouchInput;
     public bool hasJumpInput;
     public bool isGrounded;
+    public bool canAct;
     public FighterStance currentStance;
     public GameAttack currentAttack;
 
@@ -60,8 +63,8 @@ public class FighterMain : MonoBehaviour
     {
         var inputHost = new FighterInputHost(GetComponent<PlayerInput>());
         var inputReader = new InputReader(inputHost);
-        inputReader.SetPossibleGestures(CommandInputReaderLibrary.Gestures.DefaultGestures.GetDefaultGestures());
-        inputReceiver = new FighterInputReceiver(inputHost, inputReader);
+        inputReader.SetPossibleGestures(FighterGestures.GetDefaultGestures());
+        inputReceiver = new FighterInputReceiver(this, inputHost, inputReader);
 
         fighterRigidbody = GetComponent<Rigidbody2D>();
         fighterCollider = GetComponent<BoxCollider2D>();
@@ -75,8 +78,11 @@ public class FighterMain : MonoBehaviour
         crouch = new Crouch(this);
         prejump = new Prejump(this);
         air = new Air(this);
+        airAttack = new AirAttack(this);
+        groundAttack = new GroundAttack(this);
 
-        currentAttack = new FiveA(this); // arbitrary
+        currentAttack = new FiveA(); // arbitrary
+        fighterAttacks = FighterAttacks.GetFighterAttacks();
 
         //currentState = neutral;
         SwitchState(neutral);
@@ -120,6 +126,20 @@ public class FighterMain : MonoBehaviour
                 break;
         }
 
+        if (canAct && inputReceiver.bufferedAttack != null)
+        {
+            currentAttack = inputReceiver.bufferedAttack;
+            inputReceiver.bufferedAttack = null;
+
+            if (isGrounded)
+            {
+                SwitchState(groundAttack);
+            }
+            else
+            {
+                SwitchState(airAttack);
+            }
+        }
     }
 
     public void CheckForGroundedness()

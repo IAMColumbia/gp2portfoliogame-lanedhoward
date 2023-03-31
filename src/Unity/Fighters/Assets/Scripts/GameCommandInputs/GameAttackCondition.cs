@@ -8,15 +8,13 @@ using System.Threading.Tasks;
 public class GameAttackCondition
 {
     protected GameAttack parent;
-    protected FighterMain fighter;
 
-    public GameAttackCondition(GameAttack _parent, FighterMain _fighter)
+    public GameAttackCondition(GameAttack _parent)
     {
         parent = _parent;
-        fighter = _fighter;
     }
 
-    public virtual bool CanExecute(GameMoveInput moveInput)
+    public virtual bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
     {
         return false;
     }
@@ -27,12 +25,12 @@ public class StanceCondition : GameAttackCondition
 {
     private FighterStance requiredStance;
 
-    public StanceCondition(GameAttack _parent, FighterMain _fighter, FighterStance _requiredStance) : base(_parent, _fighter)
+    public StanceCondition(GameAttack _parent, FighterStance _requiredStance) : base(_parent)
     {
         requiredStance = _requiredStance;
     }
 
-    public override bool CanExecute(GameMoveInput moveInput)
+    public override bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
     {
         if (requiredStance.HasFlag(fighter.currentStance))
         {
@@ -47,12 +45,12 @@ public class ButtonCondition : GameAttackCondition
 {
     private IButton requiredButton;
 
-    public ButtonCondition(GameAttack _parent, FighterMain _fighter, IButton _requiredButton) : base(_parent, _fighter)
+    public ButtonCondition(GameAttack _parent, IButton _requiredButton) : base(_parent)
     {
         requiredButton = _requiredButton;
     }
 
-    public override bool CanExecute(GameMoveInput moveInput)
+    public override bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
     {
         if (requiredButton.GetType() == moveInput.button.GetType())
         {
@@ -66,14 +64,14 @@ public class GestureCondition : GameAttackCondition
 {
     private IGesture requiredGesture;
 
-    public GestureCondition(GameAttack _parent, FighterMain _fighter, IGesture _requiredGesture) : base(_parent, _fighter)
+    public GestureCondition(GameAttack _parent, IGesture _requiredGesture) : base(_parent)
     {
         requiredGesture = _requiredGesture;
     }
 
-    public override bool CanExecute(GameMoveInput moveInput)
+    public override bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
     {
-        if (requiredGesture.GetType() == moveInput.button.GetType())
+        if (requiredGesture.GetType() == moveInput.gesture.GetType())
         {
             return true;
         }

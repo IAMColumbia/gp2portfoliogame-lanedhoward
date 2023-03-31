@@ -7,6 +7,7 @@ using System.Linq;
 
 public class FighterInputReceiver : IInputReceiver
 {
+    protected FighterMain fighter;
     protected FighterInputHost inputHost;
     protected InputReader inputReader;
 
@@ -17,8 +18,13 @@ public class FighterInputReceiver : IInputReceiver
     public int UpDown;
     public int LeftRight;
 
-    public FighterInputReceiver(FighterInputHost _inputHost, InputReader _inputReader)
+    public GameAttack bufferedAttack;
+    public float bufferedAttackTime;
+    public float bufferedAttackTimeMax;
+
+    public FighterInputReceiver(FighterMain _fighter, FighterInputHost _inputHost, InputReader _inputReader)
     {
+        fighter = _fighter;
         inputHost = _inputHost;
         inputReader = _inputReader;
 
@@ -28,10 +34,15 @@ public class FighterInputReceiver : IInputReceiver
         lastButton = null;
         lastButtonTime = 0;
         buttonBufferTimeMax = InputReader.TimeBetweenSequentialInputs; // might need its own value later
+
+        bufferedAttackTime = 0f;
+        bufferedAttackTimeMax = 0.2f; // TODO: Convert this into "frames" like the input reader uses
     }
 
     public bool CheckForInputs()
     {
+        ManageBuffer();
+
         IReadPackage package = inputReader.Tick(TimeSpan.FromSeconds(Time.deltaTime));
 
         if (package == null)
@@ -55,6 +66,65 @@ public class FighterInputReceiver : IInputReceiver
             lastButton = null;
         }
 
+        if (lastButton != null)
+        {
+            NoGesture noGesture = new NoGesture();
+
+            IGesture currentGesture = noGesture;
+
+            GameMoveInput currentMoveInput = new GameMoveInput(currentGesture, lastButton);
+
+            bool foundAttack = false;
+
+            for (int i = 0; i < package.gestures.Count+1; i++)
+            {
+                //for each gesture ( and once more for no gesture )
+
+                if (package.gestures.Count > 0)
+                {
+                    currentGesture = package.gestures.Dequeue();
+                }
+                else
+                {
+                    currentGesture = new NoGesture();
+                }
+
+                currentMoveInput.gesture = currentGesture;
+
+                foreach (GameAttack attack in fighter.fighterAttacks)
+                {
+                    if (attack.CanExecute(currentMoveInput, fighter))
+                    {
+                        // found our attack!
+                        foundAttack = true;
+                        // save it to the buffer;
+                        bufferedAttack = attack;
+                        bufferedAttackTime = 0;
+                        break;
+                    }
+                }
+
+                if (foundAttack)
+                {
+                    break;
+                }
+
+            }
+        }
+
         return true;
+    }
+
+    protected void ManageBuffer()
+    {
+        if (bufferedAttack != null)
+        {
+            bufferedAttackTime += Time.deltaTime;
+
+            if (bufferedAttackTime >= bufferedAttackTimeMax)
+            {
+                bufferedAttack = null;
+            }
+        }
     }
 }

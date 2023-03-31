@@ -35,18 +35,17 @@ public class GameAttack
 
     public GameAttackProperties properties;
 
-    public GameAttack(FighterMain _fighter)
+    public GameAttack()
     {
-        fighter = _fighter;
         conditions = new List<GameAttackCondition>();
         properties = new GameAttackProperties();
     }
 
-    public virtual bool CanExecute(GameMoveInput moveInput)
+    public virtual bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
     {
         if (conditions.Count == 0) return true;
         // if all conditions pass, this move can go
-        return conditions.All(c => c.CanExecute(moveInput));
+        return conditions.All(c => c.CanExecute(moveInput, fighter));
     }
 
 }

@@ -15,6 +15,8 @@ public class GroundAttack : FighterState
 
         GameAttack attack = fighter.currentAttack;
 
+        fighter.canAct = false;
+
         //fighter.currentStance = FighterStance.Crouching;
 
         fighter.fighterAnimator.StartAnimation(attack.properties.AnimationName);

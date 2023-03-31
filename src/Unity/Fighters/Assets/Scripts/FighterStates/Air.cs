@@ -15,6 +15,8 @@ public class Air : FighterState
 
         fighter.currentStance = FighterStance.Air;
 
+        fighter.canAct = true;
+
         fighter.fighterAnimator.StartAnimation("Air");
     }
 

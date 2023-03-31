@@ -15,6 +15,8 @@ public class Crouch : FighterState
 
         fighter.currentStance = FighterStance.Crouching;
 
+        fighter.canAct = true;
+
         fighter.fighterAnimator.StartAnimation("Crouchidle");
     }
 

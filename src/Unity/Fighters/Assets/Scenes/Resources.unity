@@ -590,14 +590,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fighter1
       objectReference: {fileID: 0}
-    - target: {fileID: 9020838737738353917, guid: b35326e5997f61944bee8ac2774395a9, type: 3}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9020838737738353917, guid: b35326e5997f61944bee8ac2774395a9, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 9020838737738353919, guid: b35326e5997f61944bee8ac2774395a9, type: 3}
       propertyPath: m_NeverAutoSwitchControlSchemes
       value: 1

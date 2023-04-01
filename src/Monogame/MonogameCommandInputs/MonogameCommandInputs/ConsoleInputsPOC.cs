@@ -106,7 +106,7 @@ namespace MonogameCommandInputs
                 string output = ((ReadablePackage)package.mostRecentInputs).TimeReceived + ":    ";
                 if (package.gestures.Count > 0)
                 {
-                    IReadableGesture gesture = package.gestures.Dequeue();
+                    IReadableGesture gesture = package.gestures.First();
                     output += gesture.GetType().Name;
                 }
                 else
@@ -118,7 +118,7 @@ namespace MonogameCommandInputs
                 
                 if (package.buttons.Count > 0)
                 {
-                    var b = package.buttons.Dequeue();
+                    var b = package.buttons.First();
 
                     output += b.GetType().Name;
 

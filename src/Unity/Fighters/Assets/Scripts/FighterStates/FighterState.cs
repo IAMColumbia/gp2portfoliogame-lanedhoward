@@ -125,6 +125,11 @@ public abstract class FighterState
             fighter.SwitchState(fighter.prejump);
         }
     }
+
+    public void UpdateFallingAnimationBool()
+    {
+        fighter.fighterAnimator.AnimationUpdateFallingBool(fighter.fighterRigidbody.velocity.y < 0);
+    }
     #endregion
 
     #region STATE TRANSITIONS

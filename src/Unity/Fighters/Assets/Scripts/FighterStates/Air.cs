@@ -17,12 +17,16 @@ public class Air : FighterState
 
         fighter.canAct = true;
 
-        fighter.fighterAnimator.StartAnimation("Air");
+        UpdateFallingAnimationBool();
+
+        fighter.fighterAnimator.StartAnimation("Air_Rising");
     }
 
     public override void DoState()
     {
         base.DoState();
+
+        UpdateFallingAnimationBool();
 
         if (stateTimer > 0.1f)
         {

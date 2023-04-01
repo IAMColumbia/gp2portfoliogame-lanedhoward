@@ -17,19 +17,38 @@ public class Neutral : FighterState
 
         fighter.canAct = true;
 
-        fighter.fighterAnimator.StartAnimation("Idle");
+        UpdateStance();
+
+
+        if (fighter.currentStance == FighterStance.Standing)
+        {
+            fighter.fighterAnimator.StartAnimation("Idle");
+        }
+        else
+        {
+            fighter.fighterAnimator.StartAnimation("Crouchidle");
+        }
+        
     }
 
     public override void DoState()
     {
         base.DoState();
 
+        UpdateStance();
 
-        AllowHorizontalMovement();
-        
-        if (fighter.hasCrouchInput)
+
+
+
+        if (fighter.currentStance == FighterStance.Standing)
         {
-            fighter.SwitchState(fighter.crouch);
+            AllowHorizontalMovement();
+            fighter.fighterAnimator.AnimationUpdateCrouchingBool(false);
+        }
+        else
+        {
+            DoFriction(fighter.groundFriction);
+            fighter.fighterAnimator.AnimationUpdateCrouchingBool(true);
         }
 
         AllowJumping();

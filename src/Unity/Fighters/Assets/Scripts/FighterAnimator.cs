@@ -12,6 +12,7 @@ public class FighterAnimator
     private int animatorMoveSpeedFloat;
     private int animatorGroundedBool;
     private int animatorFallingBool;
+    private int animatorCrouchingBool;
 
     public float velocityToStopMovingAnim;
 
@@ -23,6 +24,7 @@ public class FighterAnimator
         animatorMoveSpeedFloat = Animator.StringToHash("WalkSpeed");
         animatorGroundedBool = Animator.StringToHash("IsGrounded");
         animatorFallingBool = Animator.StringToHash("IsFalling");
+        animatorCrouchingBool = Animator.StringToHash("IsCrouching");
     }
 
     public void AnimationUpdateMoveBool(float moveVelocity, float maxVelocity)
@@ -49,6 +51,11 @@ public class FighterAnimator
     public void AnimationUpdateFallingBool(bool isFalling)
     {
         animator.SetBool(animatorFallingBool, isFalling);
+    }
+
+    public void AnimationUpdateCrouchingBool(bool isCrouching)
+    {
+        animator.SetBool(animatorCrouchingBool, isCrouching);
     }
 
     /// <summary>

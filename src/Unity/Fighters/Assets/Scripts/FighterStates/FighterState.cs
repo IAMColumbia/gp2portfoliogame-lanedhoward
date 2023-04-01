@@ -130,6 +130,15 @@ public abstract class FighterState
     {
         fighter.fighterAnimator.AnimationUpdateFallingBool(fighter.fighterRigidbody.velocity.y < 0);
     }
+
+    public void UpdateStance()
+    {
+        if (!fighter.isGrounded) fighter.currentStance = FighterStance.Air;
+
+        fighter.currentStance = fighter.hasCrouchInput ? FighterStance.Crouching : FighterStance.Standing;
+
+    }
+
     #endregion
 
     #region STATE TRANSITIONS

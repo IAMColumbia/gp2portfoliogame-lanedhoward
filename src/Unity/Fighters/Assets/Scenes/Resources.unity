@@ -491,7 +491,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973852852}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -589,6 +589,14 @@ PrefabInstance:
     - target: {fileID: 9020838737738351362, guid: b35326e5997f61944bee8ac2774395a9, type: 3}
       propertyPath: m_Name
       value: Fighter1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020838737738353917, guid: b35326e5997f61944bee8ac2774395a9, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020838737738353917, guid: b35326e5997f61944bee8ac2774395a9, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 9020838737738353919, guid: b35326e5997f61944bee8ac2774395a9, type: 3}
       propertyPath: m_NeverAutoSwitchControlSchemes

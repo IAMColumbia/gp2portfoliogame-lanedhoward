@@ -32,7 +32,6 @@ public class FighterMain : MonoBehaviour
     public FighterState currentState;
 
     public Neutral neutral;
-    public Crouch crouch;
     public Prejump prejump;
     public Air air;
     public AirAttack airAttack;
@@ -75,7 +74,6 @@ public class FighterMain : MonoBehaviour
         fighterAnimator.velocityToStopMovingAnim = velocityToStopMoveAnimation;
 
         neutral = new Neutral(this);
-        crouch = new Crouch(this);
         prejump = new Prejump(this);
         air = new Air(this);
         airAttack = new AirAttack(this);
@@ -126,19 +124,23 @@ public class FighterMain : MonoBehaviour
                 break;
         }
 
-        if (canAct && inputReceiver.bufferedAttack != null)
+        if (canAct && inputReceiver.bufferedInput != null)
         {
-            currentAttack = inputReceiver.bufferedAttack;
-            inputReceiver.bufferedAttack = null;
+            currentAttack = inputReceiver.ParseAttack(inputReceiver.bufferedInput);
+            inputReceiver.bufferedInput = null;
 
-            if (isGrounded)
+            if (currentAttack != null)
             {
-                SwitchState(groundAttack);
+                if (isGrounded)
+                {
+                    SwitchState(groundAttack);
+                }
+                else
+                {
+                    SwitchState(airAttack);
+                }
             }
-            else
-            {
-                SwitchState(airAttack);
-            }
+            
         }
     }
 

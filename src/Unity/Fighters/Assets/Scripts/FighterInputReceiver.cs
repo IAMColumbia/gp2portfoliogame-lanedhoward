@@ -18,7 +18,7 @@ public class FighterInputReceiver : IInputReceiver
     public int UpDown;
     public int LeftRight;
 
-    public GameAttack bufferedAttack;
+    public IReadPackage bufferedInput;
     public float bufferedAttackTime;
     public float bufferedAttackTimeMax;
 
@@ -68,48 +68,8 @@ public class FighterInputReceiver : IInputReceiver
 
         if (lastButton != null)
         {
-            NoGesture noGesture = new NoGesture();
-
-            IGesture currentGesture = noGesture;
-
-            GameMoveInput currentMoveInput = new GameMoveInput(currentGesture, lastButton);
-
-            bool foundAttack = false;
-
-            for (int i = 0; i < package.gestures.Count+1; i++)
-            {
-                //for each gesture ( and once more for no gesture )
-
-                if (package.gestures.Count > 0)
-                {
-                    currentGesture = package.gestures.Dequeue();
-                }
-                else
-                {
-                    currentGesture = new NoGesture();
-                }
-
-                currentMoveInput.gesture = currentGesture;
-
-                foreach (GameAttack attack in fighter.fighterAttacks)
-                {
-                    if (attack.CanExecute(currentMoveInput, fighter))
-                    {
-                        // found our attack!
-                        foundAttack = true;
-                        // save it to the buffer;
-                        bufferedAttack = attack;
-                        bufferedAttackTime = 0;
-                        break;
-                    }
-                }
-
-                if (foundAttack)
-                {
-                    break;
-                }
-
-            }
+            bufferedInput = package;
+            bufferedAttackTime = 0;
         }
 
         return true;
@@ -117,14 +77,49 @@ public class FighterInputReceiver : IInputReceiver
 
     protected void ManageBuffer()
     {
-        if (bufferedAttack != null)
+        if (bufferedInput != null)
         {
             bufferedAttackTime += Time.deltaTime;
 
             if (bufferedAttackTime >= bufferedAttackTimeMax)
             {
-                bufferedAttack = null;
+                bufferedInput = null;
             }
         }
+    }
+
+    public GameAttack ParseAttack(IReadPackage package)
+    {
+        NoGesture noGesture = new NoGesture();
+
+        IGesture currentGesture = noGesture;
+
+        GameMoveInput currentMoveInput = new GameMoveInput(currentGesture, lastButton);
+
+        for (int i = 0; i < package.gestures.Count + 1; i++)
+        {
+            //for each gesture ( and once more for no gesture )
+
+            if (package.gestures.Count > 0)
+            {
+                currentGesture = package.gestures.Dequeue();
+            }
+            else
+            {
+                currentGesture = noGesture;
+            }
+
+            currentMoveInput.gesture = currentGesture;
+
+            foreach (GameAttack attack in fighter.fighterAttacks)
+            {
+                if (attack.CanExecute(currentMoveInput, fighter))
+                {
+                    // found our attack!
+                    return attack;
+                }
+            }
+        }
+        return null;
     }
 }

@@ -33,7 +33,7 @@ public class FighterInputReceiver : IInputReceiver
 
         lastButton = null;
         lastButtonTime = 0;
-        buttonBufferTimeMax = InputReader.TimeBetweenSequentialInputs; // might need its own value later
+        buttonBufferTimeMax = InputReader.TimeBetweenNonSequentialInputs;
 
         bufferedAttackTime = 0f;
         bufferedAttackTimeMax = 0.2f; // TODO: Convert this into "frames" like the input reader uses
@@ -55,18 +55,25 @@ public class FighterInputReceiver : IInputReceiver
         
         // then we'll handle gestures and buttons and such
 
-        if (package.buttons.Count > 0)
+        if (package.buttons.Count == 0)
         {
-            lastButton = package.buttons[0];
-            // probably gotta do something with this buffer later
-            //lastButtonTime = ((ReadablePackage)package.mostRecentInputs).TimeReceived;
-        }
-        else
-        {
-            lastButton = null;
+            // no buttons currently pressed, so we check if there were any buttons pressed in the buffered input
+            // we do this so that you can press your button a little bit before completing a gesture
+            // and have it register still
+
+            // might still need to rework this to have proper kara canceling
+            // and also if i decide to have 2 button attacks
+            if (bufferedInput != null)
+            {
+                if (package.TimeReceived - bufferedInput.TimeReceived <= buttonBufferTimeMax)
+                {
+                    package.buttons.AddRange(bufferedInput.buttons);
+                }
+            }
         }
 
-        if (lastButton != null)
+
+        if (package.buttons.Count > 0)
         {
             bufferedInput = package;
             bufferedAttackTime = 0;
@@ -95,6 +102,7 @@ public class FighterInputReceiver : IInputReceiver
         IGesture currentGesture = noGesture;
 
         GameMoveInput currentMoveInput = new GameMoveInput(currentGesture, package.buttons[0]);
+
 
         for (int i = 0; i < package.gestures.Count; i++)
         {

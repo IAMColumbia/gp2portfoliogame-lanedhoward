@@ -108,7 +108,7 @@ namespace CommandInputReaderLibrary
 
                 buttons = buttons.OrderBy(b => b.Priority).ToList();
 
-                resultReadPackage = new ReadPackage(lastInput, foundGestures, buttons);
+                resultReadPackage = new ReadPackage(lastInput, foundGestures, buttons, Time);
             }
 
             return resultReadPackage;

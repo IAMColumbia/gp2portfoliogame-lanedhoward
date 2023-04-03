@@ -31,7 +31,8 @@ public class Hitbox : MonoBehaviour
 
     public void CheckHitbox()
     {
-        Collider[] colliders = Physics.OverlapBox(transform.position + offset, halfExtents, transform.rotation, mask);
+        Vector3 actingOffset = new Vector3(offset.x * transform.lossyScale.x, offset.y * transform.lossyScale.y, offset.z * transform.lossyScale.z);
+        Collider[] colliders = Physics.OverlapBox(transform.position + actingOffset, halfExtents, transform.rotation, mask);
 
         if (colliders.Length > 0)
         {
@@ -55,9 +56,9 @@ public class Hitbox : MonoBehaviour
         {
             Gizmos.color = Color.red;
 
-            Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.localScale);
+            Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.lossyScale);
 
-            Gizmos.DrawCube(Vector3.zero + offset, new Vector3(halfExtents.x * 2, halfExtents.y * 2, halfExtents.z * 2)); // Because size is halfExtents
+            Gizmos.DrawWireCube(Vector3.zero + offset, new Vector3(halfExtents.x * 2, halfExtents.y * 2, halfExtents.z * 2)); // Because size is halfExtents
 
 
         }

@@ -98,6 +98,7 @@
     <Compile Include="Assets\Scripts\Hitboxes\Hurtbox.cs" />
     <Compile Include="Assets\Scripts\Hitboxes\Hitbox.cs" />
     <Compile Include="Assets\Scripts\Hitboxes\IHitboxResponder.cs" />
+    <Compile Include="Assets\Scripts\FighterAnimationEvents.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

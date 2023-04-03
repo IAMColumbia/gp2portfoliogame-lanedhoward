@@ -95,6 +95,9 @@
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttack.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
+    <Compile Include="Assets\Scripts\Hitboxes\Hurtbox.cs" />
+    <Compile Include="Assets\Scripts\Hitboxes\Hitbox.cs" />
+    <Compile Include="Assets\Scripts\Hitboxes\IHitboxResponder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

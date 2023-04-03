@@ -82,8 +82,10 @@ public class FighterMain : MonoBehaviour
         airAttack = new AirAttack(this);
         groundAttack = new GroundAttack(this);
 
-        currentAttack = new FiveA(); // arbitrary
+        currentAttack = null;
         fighterAttacks = FighterAttacks.GetFighterAttacks();
+
+        InitializeFacingDirection();
 
         //currentState = neutral;
         SwitchState(neutral);
@@ -165,6 +167,16 @@ public class FighterMain : MonoBehaviour
     public void DoCurrentState()
     {
         currentState.DoState();
+    }
+
+    protected void InitializeFacingDirection()
+    {
+        if (this.transform.localScale.x < 0)
+        {
+            facingDirection = Directions.FacingDirection.LEFT;
+            return;
+        }
+        facingDirection = Directions.FacingDirection.RIGHT;
     }
 
     protected void TurnAroundVisually()

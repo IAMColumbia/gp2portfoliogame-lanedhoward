@@ -7,6 +7,7 @@ namespace CommandInputReaderLibrary
 {
     public interface IReadPackage
     {
+        public float TimeReceived { get; set; }
         IHostPackage mostRecentInputs { get; set; }
 
         List<IReadableGesture> gestures { get; set; }

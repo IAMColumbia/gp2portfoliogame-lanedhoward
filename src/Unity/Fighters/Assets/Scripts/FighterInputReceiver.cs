@@ -124,4 +124,9 @@ public class FighterInputReceiver : IInputReceiver
         }
         return null;
     }
+
+    public void UpdateFacingDirection()
+    {
+        inputReader.ChangeFacingDirection(fighter.facingDirection);
+    }
 }

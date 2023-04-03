@@ -23,6 +23,8 @@ public class FighterMain : MonoBehaviour
     public Rigidbody2D fighterRigidbody;
     public BoxCollider2D fighterCollider;
 
+    public GameObject otherFighter;
+
     public LayerMask groundMask;
     public float groundCheckXDistance;
     public float groundCheckYDistance;
@@ -57,6 +59,7 @@ public class FighterMain : MonoBehaviour
     public bool canAct;
     public FighterStance currentStance;
     public GameAttack currentAttack;
+    public Directions.FacingDirection facingDirection;
 
     void Start()
     {
@@ -162,5 +165,23 @@ public class FighterMain : MonoBehaviour
     public void DoCurrentState()
     {
         currentState.DoState();
+    }
+
+    protected void TurnAroundVisually()
+    {
+        //this.transform.localScale.Set(-this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z);
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1f;
+        transform.localScale = localScale;
+    }
+
+    public void FaceDirection(Directions.FacingDirection newDirection)
+    {
+        if (newDirection == facingDirection) return;
+
+        facingDirection = newDirection;
+        inputReceiver.UpdateFacingDirection();
+
+        TurnAroundVisually();
     }
 }

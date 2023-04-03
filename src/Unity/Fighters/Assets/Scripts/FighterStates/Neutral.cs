@@ -37,7 +37,7 @@ public class Neutral : FighterState
 
         UpdateStance();
 
-
+        AllowAutoTurnaround();
 
 
         if (fighter.currentStance == FighterStance.Standing)

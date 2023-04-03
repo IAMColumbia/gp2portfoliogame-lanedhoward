@@ -5,7 +5,6 @@ using UnityEngine;
 public class Prejump : FighterState
 {
     private int jumpLeftRight;
-    private bool LeftByNaturalMeans;
 
     public Prejump(FighterMain fighterMain) : base(fighterMain)
     {
@@ -16,8 +15,6 @@ public class Prejump : FighterState
     public override void EnterState()
     {
         base.EnterState();
-
-        LeftByNaturalMeans = false;
 
         fighter.currentStance = FighterStance.Standing;
 

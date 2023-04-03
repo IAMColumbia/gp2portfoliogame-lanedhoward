@@ -20,9 +20,9 @@ public class Hitbox : MonoBehaviour
     public Vector3 halfExtents;
     public LayerMask mask;
 
-    public Color inactiveColor;
-    public Color collisionOpenColor;
-    public Color collidingColor;
+    private Color inactiveColor = Color.yellow;
+    private Color collisionOpenColor = Color.red;
+    private Color collidingColor = Color.magenta;
 
     private ColliderState _state = ColliderState.Closed;
     public bool OpenForCollision;
@@ -51,12 +51,16 @@ public class Hitbox : MonoBehaviour
     private void OnDrawGizmos()
     {
         //Gizmos.color = CheckGizmoColor();
-        Gizmos.color = collidingColor;
+        if (OpenForCollision)
+        {
+            Gizmos.color = Color.red;
 
-        Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.localScale);
+            Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.localScale);
 
-        Gizmos.DrawCube(Vector3.zero + offset, new Vector3(halfExtents.x * 2, halfExtents.y * 2, halfExtents.z * 2)); // Because size is halfExtents
+            Gizmos.DrawCube(Vector3.zero + offset, new Vector3(halfExtents.x * 2, halfExtents.y * 2, halfExtents.z * 2)); // Because size is halfExtents
 
+
+        }
     }
 
     private void FixedUpdate()

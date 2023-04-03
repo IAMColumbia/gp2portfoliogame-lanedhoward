@@ -5,6 +5,7 @@ using UnityEngine;
 public class Prejump : FighterState
 {
     private int jumpLeftRight;
+    private bool LeftByNaturalMeans;
 
     public Prejump(FighterMain fighterMain) : base(fighterMain)
     {
@@ -15,6 +16,8 @@ public class Prejump : FighterState
     public override void EnterState()
     {
         base.EnterState();
+
+        LeftByNaturalMeans = false;
 
         fighter.currentStance = FighterStance.Standing;
 
@@ -35,8 +38,13 @@ public class Prejump : FighterState
         if (AnimationEndTransitionToNextState(fighter.air))
         {
             // jump;
-
             fighter.fighterRigidbody.velocity = new Vector2((fighter.fighterRigidbody.velocity.x * fighter.jumpMomentumMultiplier) + (fighter.jumpVelocityHorizontal * jumpLeftRight), fighter.jumpVelocityVertical);
         }
+    }
+
+    public override void ExitState()
+    {
+        base.ExitState();
+
     }
 }

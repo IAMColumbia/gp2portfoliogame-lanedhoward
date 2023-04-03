@@ -57,7 +57,7 @@ public class FighterInputReceiver : IInputReceiver
 
         if (package.buttons.Count > 0)
         {
-            lastButton = package.buttons.Dequeue();
+            lastButton = package.buttons[0];
             // probably gotta do something with this buffer later
             //lastButtonTime = ((ReadablePackage)package.mostRecentInputs).TimeReceived;
         }
@@ -94,19 +94,13 @@ public class FighterInputReceiver : IInputReceiver
 
         IGesture currentGesture = noGesture;
 
-        GameMoveInput currentMoveInput = new GameMoveInput(currentGesture, lastButton);
+        GameMoveInput currentMoveInput = new GameMoveInput(currentGesture, package.buttons[0]);
 
-        for (int i = 0; i < package.gestures.Count + 1; i++)
+        for (int i = 0; i < package.gestures.Count; i++)
         {
-            //for each gesture ( and once more for no gesture )
-
             if (package.gestures.Count > 0)
             {
-                currentGesture = package.gestures.Dequeue();
-            }
-            else
-            {
-                currentGesture = noGesture;
+                currentGesture = package.gestures[i];
             }
 
             currentMoveInput.gesture = currentGesture;

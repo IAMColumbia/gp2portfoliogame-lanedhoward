@@ -66,19 +66,19 @@ namespace CommandInputReaderLibrary
             return true;
         }
 
-        private PriorityQueue<IReadableGesture, int> ReadAllGestures()
+        private List<IReadableGesture> ReadAllGestures()
         {
-            PriorityQueue<IReadableGesture, int> foundGestures = new PriorityQueue<IReadableGesture, int>();
+            List<IReadableGesture> foundGestures = new List<IReadableGesture>();
 
             foreach (IReadableGesture gesture in readableGestures)
             {
                 if (gesture.Read(inputs, Time, facingDirection))
                 {
-                    foundGestures.Enqueue(gesture, gesture.Priority);
+                    foundGestures.Add(gesture);
                 }
             }
 
-            return foundGestures;
+            return foundGestures.OrderBy(g => g.Priority).ToList();
         }
 
         public IReadPackage? Tick(TimeSpan elapsedTime)
@@ -92,19 +92,21 @@ namespace CommandInputReaderLibrary
 
             if (foundNewInput)
             {
-                PriorityQueue<IReadableGesture, int> foundGestures = ReadAllGestures();
+                List<IReadableGesture> foundGestures = ReadAllGestures();
 
                 IHostPackage lastInput = inputs.Last();
 
-                PriorityQueue<IButton, int> buttons = new PriorityQueue<IButton, int>();
+                List<IButton> buttons = new List<IButton>();
 
                 if (lastInput.Buttons.Count > 0)
                 {
                     foreach (var b in lastInput.Buttons)
                     {
-                        buttons.Enqueue(b, b.Priority);
+                        buttons.Add(b);
                     }
                 }
+
+                buttons = buttons.OrderBy(b => b.Priority).ToList();
 
                 resultReadPackage = new ReadPackage(lastInput, foundGestures, buttons);
             }

@@ -131,7 +131,7 @@ public class FighterMain : MonoBehaviour
 
             if (currentAttack != null)
             {
-                if (isGrounded)
+                if (currentStance != FighterStance.Air)
                 {
                     SwitchState(groundAttack);
                 }

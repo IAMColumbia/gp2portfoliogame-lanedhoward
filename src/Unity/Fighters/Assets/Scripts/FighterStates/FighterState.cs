@@ -145,7 +145,7 @@ public abstract class FighterState
 
     protected bool AnimationEndTransitionToNextState(FighterState nextState)
     {
-        if (fighter.fighterAnimator.CheckIfAnimationEnded() && stateTimer >= 0.1f)
+        if (fighter.fighterAnimator.CheckIfAnimationEnded() && stateTimer >= 0.05f)
         {
             fighter.SwitchState(nextState);
             return true;

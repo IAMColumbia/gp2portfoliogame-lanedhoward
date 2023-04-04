@@ -17,9 +17,17 @@ public class Air : FighterState
 
         fighter.canAct = true;
 
-        UpdateFallingAnimationBool();
+        bool isFalling = UpdateFallingAnimationBool();
 
-        fighter.fighterAnimator.StartAnimation("Air_Rising");
+        if (isFalling)
+        {
+            fighter.fighterAnimator.StartAnimation("Air_Falling");
+        }
+        else
+        {
+            fighter.fighterAnimator.StartAnimation("Air_Rising");
+        }
+
     }
 
     public override void DoState()

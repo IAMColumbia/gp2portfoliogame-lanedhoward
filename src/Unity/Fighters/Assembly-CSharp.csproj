@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{83744CF1-096A-89E8-FA16-4ADD312234CF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -59,7 +60,7 @@
     <Compile Include="Assets\Scripts\FighterStates\Neutral.cs" />
     <Compile Include="Assets\Scripts\Hitboxes\IHitboxResponder.cs" />
     <Compile Include="Assets\Scripts\FighterButtons.cs" />
-    <Compile Include="Assets\Scripts\FighterStates\GroundAttack.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\AttackState.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\InputReader.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Gestures\GestureComponent.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadPackage.cs" />
@@ -79,7 +80,6 @@
     <Compile Include="Assets\Scripts\FighterStates\FighterState.cs" />
     <Compile Include="Assets\Scripts\Hitboxes\Hurtbox.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\FighterGestures.cs" />
-    <Compile Include="Assets\Scripts\FighterStates\AirAttack.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\FighterAttacks.cs" />
     <Compile Include="Assets\Scripts\FighterAnimationEvents.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Air.cs" />

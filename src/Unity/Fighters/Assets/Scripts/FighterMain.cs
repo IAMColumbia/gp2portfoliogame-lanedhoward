@@ -19,6 +19,7 @@ public class FighterMain : MonoBehaviour
 {
     public FighterInputReceiver inputReceiver;
     public FighterAnimator fighterAnimator;
+    protected FighterAnimationEvents fighterAnimationEvents;
 
     public Rigidbody2D fighterRigidbody;
     public BoxCollider2D fighterCollider;
@@ -36,8 +37,7 @@ public class FighterMain : MonoBehaviour
     public Neutral neutral;
     public Prejump prejump;
     public Air air;
-    public AirAttack airAttack;
-    public GroundAttack groundAttack;
+    public AttackState attacking;
 
 
     [Header("Movement Values")]
@@ -71,6 +71,12 @@ public class FighterMain : MonoBehaviour
         fighterRigidbody = GetComponent<Rigidbody2D>();
         fighterCollider = GetComponent<BoxCollider2D>();
 
+        fighterAnimationEvents = GetComponentInChildren<FighterAnimationEvents>();
+        fighterAnimationEvents.FighterAnimationHaltVerticalVelocity += OnHaltVerticalVelocity;
+        fighterAnimationEvents.FighterAnimationVelocityImpulse += OnVelocityImpulse;
+        fighterAnimationEvents.FighterAttackActiveStarted += OnAttackActive;
+        fighterAnimationEvents.FighterAttackRecoveryStarted += OnAttackRecovery;
+
         groundMask = LayerMask.GetMask("Ground");
 
         fighterAnimator = new FighterAnimator(this);
@@ -79,15 +85,13 @@ public class FighterMain : MonoBehaviour
         neutral = new Neutral(this);
         prejump = new Prejump(this);
         air = new Air(this);
-        airAttack = new AirAttack(this);
-        groundAttack = new GroundAttack(this);
+        attacking = new AttackState(this);
 
         currentAttack = null;
         fighterAttacks = FighterAttacks.GetFighterAttacks();
 
         InitializeFacingDirection();
 
-        //currentState = neutral;
         SwitchState(neutral);
     }
 
@@ -99,8 +103,6 @@ public class FighterMain : MonoBehaviour
         CheckForInputs();
 
         HandleInputs();
-
-        //UpdateTimers();
 
         DoCurrentState();
     }
@@ -136,14 +138,7 @@ public class FighterMain : MonoBehaviour
 
             if (currentAttack != null)
             {
-                if (currentStance != FighterStance.Air)
-                {
-                    SwitchState(groundAttack);
-                }
-                else
-                {
-                    SwitchState(airAttack);
-                }
+                SwitchState(attacking);
             }
             
         }
@@ -181,7 +176,6 @@ public class FighterMain : MonoBehaviour
 
     protected void TurnAroundVisually()
     {
-        //this.transform.localScale.Set(-this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z);
         Vector3 localScale = transform.localScale;
         localScale.x *= -1f;
         transform.localScale = localScale;
@@ -195,5 +189,30 @@ public class FighterMain : MonoBehaviour
         inputReceiver.UpdateFacingDirection();
 
         TurnAroundVisually();
+    }
+
+
+    protected void OnAttackActive()
+    {
+
+    }
+
+    protected void OnAttackRecovery()
+    {
+
+    }
+
+    protected void OnVelocityImpulse(Vector2 v)
+    {
+        if (facingDirection == Directions.FacingDirection.LEFT)
+        {
+            v.x = -v.x;
+        }
+        fighterRigidbody.velocity = new Vector2(fighterRigidbody.velocity.x + v.x, fighterRigidbody.velocity.y + v.y);
+    }
+
+    protected void OnHaltVerticalVelocity()
+    {
+        fighterRigidbody.velocity = new Vector2(fighterRigidbody.velocity.x, 0);
     }
 }

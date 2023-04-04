@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundAttack : FighterState
+public class AttackState : FighterState
 {
-    public GroundAttack(FighterMain fighterMain) : base(fighterMain)
+    public AttackState(FighterMain fighterMain) : base(fighterMain)
     {
         jumpsEnabled = false;
     }
@@ -27,9 +27,20 @@ public class GroundAttack : FighterState
         base.DoState();
 
 
-        DoFriction(fighter.groundFriction);
+        if (fighter.currentStance == FighterStance.Air)
+        {
+            if (stateTimer > 0.1f)
+            {
+                AllowLanding();
+            }
+        }
+        else
+        {
+            DoFriction(fighter.groundFriction);
+        }
 
+        UpdateStance();
 
-        AnimationEndTransitionToNextState(fighter.neutral);
+        AnimationEndTransitionToNextState((fighter.currentStance == FighterStance.Air) ? fighter.air : fighter.neutral);
     }
 }

@@ -127,15 +127,25 @@ public abstract class FighterState
         }
     }
 
-    public void UpdateFallingAnimationBool()
+    public bool UpdateFallingAnimationBool()
     {
-        fighter.fighterAnimator.AnimationUpdateFallingBool(fighter.fighterRigidbody.velocity.y < 0);
+        bool b = CheckIfFalling();
+        fighter.fighterAnimator.AnimationUpdateFallingBool(b);
+        return b;
+    }
+
+    public bool CheckIfFalling()
+    {
+        return fighter.fighterRigidbody.velocity.y < 0;
     }
 
     public void UpdateStance()
     {
-        if (!fighter.isGrounded) fighter.currentStance = FighterStance.Air;
-
+        if (!fighter.isGrounded)
+        {
+            fighter.currentStance = FighterStance.Air;
+            return;
+        }
         fighter.currentStance = fighter.hasCrouchInput ? FighterStance.Crouching : FighterStance.Standing;
 
     }
@@ -187,6 +197,7 @@ public abstract class FighterState
             fighter.SwitchState(fighter.neutral);
         }
     }
+
 
     #endregion
 }

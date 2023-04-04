@@ -19,6 +19,12 @@ public class Neutral : FighterState
 
         UpdateStance();
 
+        if (!fighter.isGrounded)
+        {
+            fighter.SwitchState(fighter.air);
+            return;
+        }
+
 
         if (fighter.currentStance == FighterStance.Standing)
         {

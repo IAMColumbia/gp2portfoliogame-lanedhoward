@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class FighterAnimationEvents : MonoBehaviour
 {
-    public static Action FighterAttackActiveStarted;
-    public static Action FighterAttackRecoveryStarted;
-    public static Action<Vector2> FighterAnimationVelocityImpulse;
-    public static Action FighterAnimationHaltVerticalVelocity;
+    public Action FighterAttackActiveStarted;
+    public Action FighterAttackRecoveryStarted;
+    public Action<Vector2> FighterAnimationVelocityImpulse;
+    public Action FighterAnimationHaltVerticalVelocity;
 
 
     public void CallAttackActiveEvent()

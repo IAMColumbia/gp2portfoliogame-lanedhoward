@@ -156,15 +156,7 @@ public abstract class FighterState
 
     public void AllowAutoTurnaround()
     {
-        if (fighter.otherFighter == null) return;
-
-        Directions.FacingDirection shouldFaceDirection = fighter.ShouldFaceDirection();
-        
-
-        if (fighter.facingDirection != shouldFaceDirection)
-        {
-            fighter.FaceDirection(shouldFaceDirection);
-        }
+        fighter.AutoTurnaround();
 
     }
 

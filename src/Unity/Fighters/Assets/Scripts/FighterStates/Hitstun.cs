@@ -44,6 +44,18 @@ public class Hitstun : FighterState
     {
         base.DoState();
 
+        if (fighter.currentStance == FighterStance.Air)
+        {
+            if (stateTimer > 0.1f)
+            {
+                AllowLanding();
+            }
+        }
+        else
+        {
+            DoFriction(fighter.groundFriction);
+        }
+
         UpdateStance();
 
         TimeTransitionToNextState(hitstun, NeutralOrAir());

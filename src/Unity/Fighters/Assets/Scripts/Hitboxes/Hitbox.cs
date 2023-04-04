@@ -50,14 +50,15 @@ public class Hitbox : MonoBehaviour
 
         if (colliders.Count > 0)
         {
-
-            _state = ColliderState.Colliding;
-
             foreach (Collider2D c in colliders)
             {
-                responder?.CollidedWith(c);
+                if (responder == null) break;
+                if (responder.CollidedWith(c))
+                {
+                    _state = ColliderState.Colliding;
+                    break;
+                }
             }
-
         }
         else
         {

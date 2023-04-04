@@ -219,7 +219,7 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
         fighterRigidbody.velocity = new Vector2(fighterRigidbody.velocity.x, 0);
     }
 
-    void IHitboxResponder.CollidedWith(Collider2D collider)
+    bool IHitboxResponder.CollidedWith(Collider2D collider)
     {
         if (currentAttack == null) throw new Exception("Hitbox hit without a current attack");
 
@@ -228,17 +228,48 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
 
         if (hurtbox != null)
         {
-            if (hurtbox.fighterParent == this) return;
+            if (hurtbox.fighterParent == this) return false;
 
-            hurtbox.fighterParent.HitWith(currentAttack.properties);
-            return;
+            hurtbox.fighterParent.GetHitWith(currentAttack.properties);
+            return true;
         }
+        return false;
     }
 
-    public void HitWith(GameAttackProperties properties)
+    public void GetHitWith(GameAttackProperties properties)
     {
         if (isInvincible) return;
 
+        //knockback
+        Vector2 kb = properties.knockback;
+
+        AutoTurnaround();
+
+        OnVelocityImpulse(kb);
+
         SwitchState(hitstun);
+    }
+
+    public Directions.FacingDirection ShouldFaceDirection()
+    {
+        if (this.transform.position.x > otherFighter.transform.position.x)
+        {
+            // should face left
+            return Directions.FacingDirection.LEFT;
+        }
+        return Directions.FacingDirection.RIGHT;
+    }
+
+    public void AutoTurnaround()
+    {
+        if (otherFighter == null) return;
+
+        Directions.FacingDirection shouldFaceDirection = ShouldFaceDirection();
+
+
+        if (facingDirection != shouldFaceDirection)
+        {
+            FaceDirection(shouldFaceDirection);
+        }
     }
 }

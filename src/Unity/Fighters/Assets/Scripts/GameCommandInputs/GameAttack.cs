@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 public class GameAttack
 {
@@ -63,8 +64,11 @@ public class GameAttackProperties
 
     public string AnimationName;
 
+    public Vector2 knockback;
+
     public GameAttackProperties()
     {
         AnimationName = string.Empty;
+        knockback = new Vector2(-2,0);
     }
 }

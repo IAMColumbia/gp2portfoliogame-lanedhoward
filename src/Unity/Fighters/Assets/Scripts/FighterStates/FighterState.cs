@@ -158,16 +158,8 @@ public abstract class FighterState
     {
         if (fighter.otherFighter == null) return;
 
-        Directions.FacingDirection shouldFaceDirection = Directions.FacingDirection.RIGHT;
-        if (fighter.transform.position.x > fighter.otherFighter.transform.position.x)
-        {
-            // should face left
-            shouldFaceDirection = Directions.FacingDirection.LEFT;
-        }
-        else
-        {
-            shouldFaceDirection = Directions.FacingDirection.RIGHT;
-        }
+        Directions.FacingDirection shouldFaceDirection = fighter.ShouldFaceDirection();
+        
 
         if (fighter.facingDirection != shouldFaceDirection)
         {

@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\FighterStates\Neutral.cs" />
+    <Compile Include="Assets\Scripts\Hitboxes\IHitboxResponder.cs" />
     <Compile Include="Assets\Scripts\FighterButtons.cs" />
     <Compile Include="Assets\Scripts\FighterStates\GroundAttack.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\InputReader.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\InputHost.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Directions.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IReadableGesture.cs" />
+    <Compile Include="Assets\Scripts\Hitboxes\Hitbox.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Gesture.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\HostPackage.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IButton.cs" />
@@ -75,9 +77,11 @@
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttackCondition.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableGesture.cs" />
     <Compile Include="Assets\Scripts\FighterStates\FighterState.cs" />
+    <Compile Include="Assets\Scripts\Hitboxes\Hurtbox.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\FighterGestures.cs" />
     <Compile Include="Assets\Scripts\FighterStates\AirAttack.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\FighterAttacks.cs" />
+    <Compile Include="Assets\Scripts\FighterAnimationEvents.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Air.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Button.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\GameMoveInputs.cs" />
@@ -95,10 +99,6 @@
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttack.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\Hitboxes\Hurtbox.cs" />
-    <Compile Include="Assets\Scripts\Hitboxes\Hitbox.cs" />
-    <Compile Include="Assets\Scripts\Hitboxes\IHitboxResponder.cs" />
-    <Compile Include="Assets\Scripts\FighterAnimationEvents.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

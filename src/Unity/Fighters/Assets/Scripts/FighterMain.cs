@@ -15,7 +15,7 @@ public enum FighterStance
 }
 
 [RequireComponent(typeof(PlayerInput))]
-public class FighterMain : MonoBehaviour
+public class FighterMain : MonoBehaviour, IHitboxResponder
 {
     public FighterInputReceiver inputReceiver;
     public FighterAnimator fighterAnimator;
@@ -38,6 +38,7 @@ public class FighterMain : MonoBehaviour
     public Prejump prejump;
     public Air air;
     public AttackState attacking;
+    public Hitstun hitstun;
 
 
     [Header("Movement Values")]
@@ -60,6 +61,7 @@ public class FighterMain : MonoBehaviour
     public FighterStance currentStance;
     public GameAttack currentAttack;
     public Directions.FacingDirection facingDirection;
+    public bool isInvincible = false;
 
     void Start()
     {
@@ -86,6 +88,7 @@ public class FighterMain : MonoBehaviour
         prejump = new Prejump(this);
         air = new Air(this);
         attacking = new AttackState(this);
+        hitstun = new Hitstun(this);
 
         currentAttack = null;
         fighterAttacks = FighterAttacks.GetFighterAttacks();
@@ -214,5 +217,28 @@ public class FighterMain : MonoBehaviour
     protected void OnHaltVerticalVelocity()
     {
         fighterRigidbody.velocity = new Vector2(fighterRigidbody.velocity.x, 0);
+    }
+
+    void IHitboxResponder.CollidedWith(Collider2D collider)
+    {
+        if (currentAttack == null) throw new Exception("Hitbox hit without a current attack");
+
+        
+        Hurtbox hurtbox = collider.GetComponent<Hurtbox>();
+
+        if (hurtbox != null)
+        {
+            if (hurtbox.fighterParent == this) return;
+
+            hurtbox.fighterParent.HitWith(currentAttack.properties);
+            return;
+        }
+    }
+
+    public void HitWith(GameAttackProperties properties)
+    {
+        if (isInvincible) return;
+
+        SwitchState(hitstun);
     }
 }

@@ -32,12 +32,12 @@ public class FighterAnimator
         bool isMoving = true;
         float moveSpeed = Mathf.Abs(moveVelocity);
 
-        if ((moveVelocity < velocityToStopMovingAnim && moveVelocity >= -velocityToStopMovingAnim))
+        if (moveSpeed < velocityToStopMovingAnim)
         {
             isMoving = false;
         }
 
-        float animSpeed = moveVelocity / maxVelocity;
+        float animSpeed = moveVelocity / maxVelocity * Mathf.Sign(fighter.transform.lossyScale.x);
 
         animator.SetBool(animatorMoveBool, isMoving);
         animator.SetFloat(animatorMoveSpeedFloat, animSpeed);

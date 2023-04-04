@@ -1,7 +1,9 @@
+using CommandInputReaderLibrary;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static CommandInputReaderLibrary.Directions;
 
 public enum ColliderState
 {
@@ -18,7 +20,7 @@ public class Hitbox : MonoBehaviour
 
     public Vector3 offset;
     public Vector3 halfExtents;
-    public LayerMask mask;
+    protected ContactFilter2D filter;
 
     private Color inactiveColor = Color.yellow;
     private Color collisionOpenColor = Color.red;
@@ -29,17 +31,32 @@ public class Hitbox : MonoBehaviour
 
     private IHitboxResponder responder;
 
+    private void Start()
+    {
+        SetResponder(fighterParent);
+        filter = new ContactFilter2D();
+        filter.NoFilter();
+    }
+
     public void CheckHitbox()
     {
         Vector3 actingOffset = new Vector3(offset.x * transform.lossyScale.x, offset.y * transform.lossyScale.y, offset.z * transform.lossyScale.z);
-        Collider[] colliders = Physics.OverlapBox(transform.position + actingOffset, halfExtents, transform.rotation, mask);
 
-        if (colliders.Length > 0)
+        
+        List<Collider2D> colliders = new List<Collider2D>();
+        
+        //Collider2D collider =
+        Physics2D.OverlapBox(transform.position + actingOffset, halfExtents*2, 0, filter, colliders);
+
+        if (colliders.Count > 0)
         {
 
             _state = ColliderState.Colliding;
 
-            responder?.CollidedWith(colliders);
+            foreach (Collider2D c in colliders)
+            {
+                responder?.CollidedWith(c);
+            }
 
         }
         else
@@ -99,4 +116,5 @@ public class Hitbox : MonoBehaviour
     {
         responder = _responder;
     }
+
 }

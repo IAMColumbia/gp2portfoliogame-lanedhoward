@@ -190,6 +190,23 @@ public abstract class FighterState
         return false;
     }
 
+    protected void TimeTransitionToNextState(float stateTimerMax, FighterState nextState)
+    {
+        if (CheckStateTimer(stateTimerMax))
+        {
+            fighter.SwitchState(nextState);
+        }
+    }
+
+    protected bool CheckStateTimer(float stateTimerMax)
+    {
+        if (stateTimer >= stateTimerMax)
+        {
+            return true;
+        }
+        return false;
+    }
+
     protected void AllowLanding()
     {
         if (fighter.isGrounded)
@@ -198,6 +215,10 @@ public abstract class FighterState
         }
     }
 
+    protected FighterState NeutralOrAir()
+    {
+        return (fighter.currentStance == FighterStance.Air) ? fighter.air : fighter.neutral;
+    }
 
     #endregion
 }

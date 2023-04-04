@@ -41,6 +41,6 @@ public class AttackState : FighterState
 
         UpdateStance();
 
-        AnimationEndTransitionToNextState((fighter.currentStance == FighterStance.Air) ? fighter.air : fighter.neutral);
+        AnimationEndTransitionToNextState(NeutralOrAir());
     }
 }

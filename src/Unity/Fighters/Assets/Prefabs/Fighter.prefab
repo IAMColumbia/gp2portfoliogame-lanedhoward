@@ -225,6 +225,7 @@ MonoBehaviour:
   canAct: 0
   currentStance: 0
   facingDirection: 0
+  isInvincible: 0
 --- !u!61 &9020838737738353917
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -444,14 +445,6 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 243476750008066632, guid: 45c615992dcf2a34e9b31d76e32d65b2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.8560001
-      objectReference: {fileID: 0}
-    - target: {fileID: 243476750008066632, guid: 45c615992dcf2a34e9b31d76e32d65b2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.26999998
-      objectReference: {fileID: 0}
-    - target: {fileID: 243476750008066632, guid: 45c615992dcf2a34e9b31d76e32d65b2, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
@@ -499,6 +492,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1985875442200198384, guid: 45c615992dcf2a34e9b31d76e32d65b2, type: 3}
+      propertyPath: fighterParent
+      value: 
+      objectReference: {fileID: 9020838737738351360}
     - target: {fileID: 1985875442200198384, guid: 45c615992dcf2a34e9b31d76e32d65b2, type: 3}
       propertyPath: halfExtents.x
       value: 0.5

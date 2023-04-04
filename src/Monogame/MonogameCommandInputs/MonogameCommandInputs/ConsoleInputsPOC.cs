@@ -82,6 +82,7 @@ namespace MonogameCommandInputs
                 console.DebugTextOutput["ControlType"] = inputReader.GetInputHost().GetType().Name;
             }
 
+            /*
             tickTimer += gameTime.ElapsedGameTime.TotalSeconds;
             if (tickTimer >= tickRate)
             {
@@ -89,20 +90,23 @@ namespace MonogameCommandInputs
                 totalTicks++;
                 Tick();
             }
+            */
+
+            Tick(gameTime);
 
             base.Update(gameTime);
         }
 
-        private void Tick()
+        private void Tick(GameTime gameTime)
         {
-            IReadPackage package = inputReader.Tick();
+            IReadPackage package = inputReader.Tick(gameTime.ElapsedGameTime);
 
             if (package != null)
             {
-                string output = totalTicks + ":    ";
+                string output = ((ReadablePackage)package.mostRecentInputs).TimeReceived + ":    ";
                 if (package.gestures.Count > 0)
                 {
-                    IReadableGesture gesture = package.gestures.Dequeue();
+                    IReadableGesture gesture = package.gestures.First();
                     output += gesture.GetType().Name;
                 }
                 else
@@ -114,7 +118,7 @@ namespace MonogameCommandInputs
                 
                 if (package.buttons.Count > 0)
                 {
-                    var b = package.buttons.Dequeue();
+                    var b = package.buttons.First();
 
                     output += b.GetType().Name;
 

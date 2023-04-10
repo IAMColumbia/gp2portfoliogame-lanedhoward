@@ -63,13 +63,19 @@ public class FighterInputReceiver : IInputReceiver
 
             // might still need to rework this to have proper kara canceling
             // and also if i decide to have 2 button attacks
+            /*
             if (bufferedInput != null)
             {
                 if (package.TimeReceived - bufferedInput.TimeReceived <= buttonBufferTimeMax)
                 {
+                    foreach (var button in package.buttons)
+                    {
+                        button.State = IButton.ButtonState.Held;
+                    }
                     package.buttons.AddRange(bufferedInput.buttons);
                 }
             }
+            */
         }
 
 

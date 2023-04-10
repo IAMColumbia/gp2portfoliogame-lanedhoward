@@ -11,9 +11,12 @@ public static class FighterAttacks
     {
         List<GameAttack> attacks = new List<GameAttack>()
             {
-                new FiveA(),
                 new TwoA(),
+                new FiveA(),
                 new JumpA(),
+                new TwoB(),
+                new FiveB(),
+                new JumpB(),
                 new SixTwoThreeA()
             };
         return attacks;
@@ -26,6 +29,7 @@ public class FiveA : GameAttack
     {
         conditions.Add(new GestureCondition(this, new NoGesture()));
         conditions.Add(new ButtonCondition(this, new AttackA()));
+        conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new StanceCondition(this, FighterStance.Standing));
 
         properties.AnimationName = "Jab";
@@ -38,10 +42,11 @@ public class TwoA : GameAttack
 {
     public TwoA() : base()
     {
-        conditions.Add(new GestureCondition(this, new NoGesture()));
+        //conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new GestureCondition(this, new CrouchGesture()));
         conditions.Add(new ButtonCondition(this, new AttackA()));
-        conditions.Add(new StanceCondition(this, FighterStance.Crouching));
-
+        conditions.Add(new GroundedCondition(this, true));
+        
         properties.AnimationName = "Crouchjab";
 
         properties.knockback.Set(-4, 0);
@@ -54,6 +59,7 @@ public class JumpA : GameAttack
     {
         conditions.Add(new GestureCondition(this, new NoGesture()));
         conditions.Add(new ButtonCondition(this, new AttackA()));
+        conditions.Add(new GroundedCondition(this, false));
         conditions.Add(new StanceCondition(this, FighterStance.Air));
 
         properties.AnimationName = "Jumpknee";
@@ -62,16 +68,60 @@ public class JumpA : GameAttack
     }
 }
 
+public class FiveB : GameAttack
+{
+    public FiveB() : base()
+    {
+        conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackB()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new StanceCondition(this, FighterStance.Standing));
+
+        properties.AnimationName = "Fullpunch";
+
+        properties.knockback.Set(-6f, 2);
+    }
+}
+
+public class TwoB : GameAttack
+{
+    public TwoB() : base()
+    {
+        //conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new GestureCondition(this, new CrouchGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackB()));
+        conditions.Add(new GroundedCondition(this, true));
+        
+        properties.AnimationName = "Crouchkick";
+
+        properties.knockback.Set(-5, 3);
+    }
+}
+
+public class JumpB : GameAttack
+{
+    public JumpB() : base()
+    {
+        conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackB()));
+        conditions.Add(new GroundedCondition(this, false));
+        conditions.Add(new StanceCondition(this, FighterStance.Air));
+
+        properties.AnimationName = "Jumpslice";
+
+        properties.knockback.Set(-5f, 0);
+    }
+}
+
 public class SixTwoThreeA : GameAttack
 {
     public SixTwoThreeA() : base()
     {
-        conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
+        conditions.Add(new GestureCondition(this, new DragonPunch()));
         conditions.Add(new ButtonCondition(this, new AttackA()));
-        conditions.Add(new StanceCondition(this, FighterStance.Standing | FighterStance.Crouching | FighterStance.Air));
 
         properties.AnimationName = "Dragonpunch";
 
-        properties.knockback.Set(-5, 13);
+        properties.knockback.Set(-5, 15);
     }
 }

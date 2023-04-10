@@ -136,6 +136,7 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
 
         if (canAct && inputReceiver.bufferedInput != null)
         {
+            UpdateStance();
             currentAttack = inputReceiver.ParseAttack(inputReceiver.bufferedInput);
             inputReceiver.bufferedInput = null;
 
@@ -194,6 +195,16 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
         TurnAroundVisually();
     }
 
+
+    public void UpdateStance()
+    {
+        if (!isGrounded)
+        {
+            currentStance = FighterStance.Air;
+            return;
+        }
+        currentStance = hasCrouchInput ? FighterStance.Crouching : FighterStance.Standing;
+    }
 
     protected void OnAttackActive()
     {

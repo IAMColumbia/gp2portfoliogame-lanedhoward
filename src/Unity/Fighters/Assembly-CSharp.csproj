@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\Gesture.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\HostPackage.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IButton.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\Hitstun.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IInputHost.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadablePackage.cs" />
     <Compile Include="Assets\Inputs\Fighters.cs" />
@@ -98,7 +99,6 @@
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttack.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\FighterStates\Hitstun.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

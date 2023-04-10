@@ -68,14 +68,14 @@ public class FighterInputReceiver : IInputReceiver
             {
                 if (package.TimeReceived - bufferedInput.TimeReceived <= buttonBufferTimeMax)
                 {
-                    foreach (var button in package.buttons)
-                    {
-                        button.State = IButton.ButtonState.Held;
-                    }
                     package.buttons.AddRange(bufferedInput.buttons);
+                    package.buttons.OrderBy(b => b.Priority);
+                    package.gestures.AddRange(bufferedInput.gestures);
+                    package.gestures.OrderBy(g => g.Priority);
                 }
             }
             */
+            
         }
 
 

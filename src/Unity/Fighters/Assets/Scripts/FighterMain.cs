@@ -39,6 +39,8 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
     public Air air;
     public AttackState attacking;
     public Hitstun hitstun;
+    public Knockdown knockdown;
+    public Getup getup;
 
 
     [Header("Movement Values")]
@@ -61,7 +63,8 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
     public FighterStance currentStance;
     public GameAttack currentAttack;
     public Directions.FacingDirection facingDirection;
-    public bool isInvincible = false;
+    public bool isStrikeInvulnerable = false;
+    public bool isThrowInvulnerable = false;
 
     void Start()
     {
@@ -89,6 +92,8 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
         air = new Air(this);
         attacking = new AttackState(this);
         hitstun = new Hitstun(this);
+        knockdown = new Knockdown(this);
+        getup = new Getup(this);
 
         currentAttack = null;
         fighterAttacks = FighterAttacks.GetFighterAttacks();
@@ -142,6 +147,10 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
 
             if (currentAttack != null)
             {
+                if (currentStance == FighterStance.Standing || currentStance == FighterStance.Crouching)
+                {
+                    AutoTurnaround();
+                }
                 SwitchState(attacking);
             }
             
@@ -249,7 +258,7 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
 
     public void GetHitWith(GameAttackProperties properties)
     {
-        if (isInvincible) return;
+        if (isStrikeInvulnerable) return;
 
         //knockback
         Vector2 kb = properties.knockback;

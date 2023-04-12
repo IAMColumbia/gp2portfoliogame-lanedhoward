@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AttackState : FighterState
 {
+    private bool wasEverAirborne;
     public AttackState(FighterMain fighterMain) : base(fighterMain)
     {
         jumpsEnabled = false;
@@ -17,6 +18,8 @@ public class AttackState : FighterState
 
         fighter.canAct = false;
 
+        wasEverAirborne = false;
+
         //fighter.currentStance = FighterStance.Crouching;
 
         fighter.fighterAnimator.StartAnimation(attack.properties.AnimationName);
@@ -29,6 +32,7 @@ public class AttackState : FighterState
 
         if (fighter.currentStance == FighterStance.Air)
         {
+            wasEverAirborne = true;
             if (stateTimer > 0.1f)
             {
                 AllowLanding();
@@ -36,6 +40,13 @@ public class AttackState : FighterState
         }
         else
         {
+            if (wasEverAirborne)
+            {
+                if (stateTimer > 0.1f)
+                {
+                    AllowLanding();
+                }
+            }
             DoFriction(fighter.groundFriction);
         }
 

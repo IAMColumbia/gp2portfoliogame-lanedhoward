@@ -250,15 +250,15 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
         {
             if (hurtbox.fighterParent == this) return false;
 
-            hurtbox.fighterParent.GetHitWith(currentAttack.properties);
-            return true;
+            bool successfulHit = hurtbox.fighterParent.GetHitWith(currentAttack.properties);
+            return successfulHit;
         }
         return false;
     }
 
-    public void GetHitWith(GameAttackProperties properties)
+    public bool GetHitWith(GameAttackProperties properties)
     {
-        if (isStrikeInvulnerable) return;
+        if (isStrikeInvulnerable) return false;
 
         //knockback
         Vector2 kb = properties.knockback;
@@ -268,6 +268,7 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
         OnVelocityImpulse(kb);
 
         SwitchState(hitstun);
+        return true;
     }
 
     public Directions.FacingDirection ShouldFaceDirection()

@@ -1,4 +1,5 @@
 using CommandInputReaderLibrary;
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,13 @@ public enum FighterStance
     Standing = 1,
     Crouching = 2,
     Air = 4
+}
+
+public enum HitReport
+{
+    Whiff,
+    Hit,
+    Block
 }
 
 [RequireComponent(typeof(PlayerInput))]
@@ -39,6 +47,7 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
     public Air air;
     public AttackState attacking;
     public Hitstun hitstun;
+    public Blockstun blockstun;
     public Knockdown knockdown;
     public Getup getup;
 
@@ -60,6 +69,7 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
     public bool hasJumpInput;
     public bool isGrounded;
     public bool canAct;
+    public bool canBlock;
     public FighterStance currentStance;
     public GameAttack currentAttack;
     public Directions.FacingDirection facingDirection;
@@ -92,6 +102,7 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
         air = new Air(this);
         attacking = new AttackState(this);
         hitstun = new Hitstun(this);
+        blockstun = new Blockstun(this);
         knockdown = new Knockdown(this);
         getup = new Getup(this);
 
@@ -106,6 +117,8 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
 
     void FixedUpdate()
     {
+        canBlock = canAct;
+
         CheckForGroundedness();
         
         CheckForInputs();
@@ -250,25 +263,99 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
         {
             if (hurtbox.fighterParent == this) return false;
 
-            bool successfulHit = hurtbox.fighterParent.GetHitWith(currentAttack.properties);
+            HitReport report = hurtbox.fighterParent.GetHitWith(currentAttack.properties);
+
+            //react to the hit report ???????
+
+            bool successfulHit = report != HitReport.Whiff;
             return successfulHit;
         }
         return false;
     }
 
-    public bool GetHitWith(GameAttackProperties properties)
+    public HitReport GetHitWith(GameAttackProperties properties)
     {
-        if (isStrikeInvulnerable) return false;
-
-        //knockback
-        Vector2 kb = properties.knockback;
+        if (isStrikeInvulnerable) return HitReport.Whiff;
 
         AutoTurnaround();
 
+        // decide if we blocked
+        bool blocked = DidWeBlock(properties);
+        
+
+        //knockback
+        // probably will need to separate this into hit kb and block kb, or apply modifiers or somthing
+        Vector2 kb = properties.knockback;
         OnVelocityImpulse(kb);
 
+        if (blocked)
+        {
+            SwitchState(blockstun);
+            return HitReport.Block;
+        }
+
         SwitchState(hitstun);
-        return true;
+        return HitReport.Hit;
+    }
+
+    protected bool DidWeBlock(GameAttackProperties properties)
+    {
+        if (canBlock)
+        {
+            Directions.Direction dir = inputReceiver.GetDirection();
+
+            if (currentStance == FighterStance.Air)
+            {
+                if (properties.blockType == GameAttackProperties.BlockType.Throw)
+                {
+                    // do throw stuff
+                }
+                else
+                {
+                    if (dir == Directions.Direction.Back || dir == Directions.Direction.DownBack || dir == Directions.Direction.UpBack)
+                    {
+                        // air block / chicken block
+                        return true;
+
+                    }
+                }
+                return false;
+            }
+
+            switch (properties.blockType)
+            {
+                // cannot upback to block on ground, to punish trying to jump out of pressure all the time
+
+                case GameAttackProperties.BlockType.Low:
+                    if (dir == Directions.Direction.DownBack)
+                    {
+                        // crouch block
+                        return true;
+
+                    }
+                    break;
+                case GameAttackProperties.BlockType.High:
+                    if (dir == Directions.Direction.Back)
+                    {
+                        // high block
+                        return true;
+
+                    }
+                    break;
+                case GameAttackProperties.BlockType.Mid:
+                    if (dir == Directions.Direction.Back || dir == Directions.Direction.DownBack)
+                    {
+                        // any block
+                        return true;
+
+                    }
+                    break;
+                case GameAttackProperties.BlockType.Throw:
+                    // do throw stuff
+                    break;
+            }
+        }
+        return false;
     }
 
     public Directions.FacingDirection ShouldFaceDirection()
@@ -293,4 +380,6 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
             FaceDirection(shouldFaceDirection);
         }
     }
+
+    
 }

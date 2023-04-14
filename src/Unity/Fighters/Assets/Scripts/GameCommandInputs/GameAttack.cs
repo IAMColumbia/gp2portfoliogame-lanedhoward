@@ -62,13 +62,24 @@ public class GameAttackProperties
         Super
     }
 
+    public enum BlockType
+    {
+        Low,
+        High,
+        Mid,
+        Throw
+    }
+
     public string AnimationName;
 
     public Vector2 knockback;
+
+    public BlockType blockType;
 
     public GameAttackProperties()
     {
         AnimationName = string.Empty;
         knockback = new Vector2(-2,0);
+        blockType = BlockType.Mid;
     }
 }

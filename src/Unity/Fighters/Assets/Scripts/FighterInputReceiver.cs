@@ -135,4 +135,9 @@ public class FighterInputReceiver : IInputReceiver
     {
         inputReader.ChangeFacingDirection(fighter.facingDirection);
     }
+
+    public Directions.Direction GetDirection()
+    {
+        return Directions.GetDirectionFacingForward(this.UpDown, this.LeftRight, fighter.facingDirection);
+    }
 }

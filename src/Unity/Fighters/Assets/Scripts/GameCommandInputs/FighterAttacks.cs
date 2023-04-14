@@ -35,6 +35,8 @@ public class FiveA : GameAttack
         properties.AnimationName = "Jab";
 
         properties.knockback.Set(-4.5f, 0);
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
     }
 }
 
@@ -50,6 +52,8 @@ public class TwoA : GameAttack
         properties.AnimationName = "Crouchjab";
 
         properties.knockback.Set(-4, 0);
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
     }
 }
 
@@ -65,6 +69,8 @@ public class JumpA : GameAttack
         properties.AnimationName = "Jumpknee";
 
         properties.knockback.Set(-3.5f, 0);
+
+        properties.blockType = GameAttackProperties.BlockType.High;
     }
 }
 
@@ -80,6 +86,8 @@ public class FiveB : GameAttack
         properties.AnimationName = "Fullpunch";
 
         properties.knockback.Set(-6f, 2);
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
     }
 }
 
@@ -95,6 +103,8 @@ public class TwoB : GameAttack
         properties.AnimationName = "Crouchkick";
 
         properties.knockback.Set(-5, 3);
+
+        properties.blockType = GameAttackProperties.BlockType.Low;
     }
 }
 
@@ -110,6 +120,8 @@ public class JumpB : GameAttack
         properties.AnimationName = "Jumpslice";
 
         properties.knockback.Set(-5f, 0);
+
+        properties.blockType = GameAttackProperties.BlockType.High;
     }
 }
 
@@ -123,5 +135,7 @@ public class SixTwoThreeA : GameAttack
         properties.AnimationName = "Dragonpunch";
 
         properties.knockback.Set(-5, 15);
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
     }
 }

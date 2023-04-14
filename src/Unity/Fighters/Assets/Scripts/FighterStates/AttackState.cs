@@ -21,6 +21,8 @@ public class AttackState : FighterState
 
         wasEverAirborne = false;
 
+        fighter.isCurrentlyAttacking = true;
+
         //fighter.currentStance = FighterStance.Crouching;
 
         fighter.fighterAnimator.StartAnimation(attack.properties.AnimationName);
@@ -54,5 +56,16 @@ public class AttackState : FighterState
         UpdateStance();
 
         AnimationEndTransitionToNextState(NeutralOrAir());
+    }
+
+    public override void ExitState()
+    {
+        base.ExitState();
+        fighter.isCurrentlyAttacking = false;
+    }
+
+    protected void ResetCurrentAttack()
+    {
+        fighter.currentAttack = null;
     }
 }

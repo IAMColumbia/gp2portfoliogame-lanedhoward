@@ -94,3 +94,40 @@ public class GroundedCondition : GameAttackCondition
     }
 
 }
+
+public class GatlingCondition : GameAttackCondition
+{
+
+    public GatlingCondition(GameAttack _parent) : base(_parent)
+    {
+    }
+
+    public override bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
+    {
+        if (!fighter.isCurrentlyAttacking) return true;
+
+        if (fighter.currentAttack == null)
+        {
+            // idk????
+        }
+
+        if (parent.properties.attackType > fighter.currentAttack.properties.attackType) //gatling into a higher attack level
+        {
+            return true;
+        }
+        if (parent.properties.attackType == GameAttackProperties.AttackType.Special || parent.properties.attackType == GameAttackProperties.AttackType.Super)
+        {
+            // dont allow crouch gatlings for special or super
+            return false;
+        }
+        if (parent.properties.attackType == fighter.currentAttack.properties.attackType) //gatling stand -> crouch of same level
+        {
+            if (fighter.currentAttack.properties.attackStance == FighterStance.Standing && parent.properties.attackStance == FighterStance.Crouching)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}

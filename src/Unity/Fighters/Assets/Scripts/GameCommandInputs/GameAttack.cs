@@ -75,11 +75,15 @@ public class GameAttackProperties
     public Vector2 knockback;
 
     public BlockType blockType;
+    public AttackType attackType;
+    public FighterStance attackStance;
 
     public GameAttackProperties()
     {
         AnimationName = string.Empty;
         knockback = new Vector2(-2,0);
         blockType = BlockType.Mid;
+        attackType = AttackType.Light;
+        attackStance = FighterStance.Standing;
     }
 }

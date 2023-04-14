@@ -21,7 +21,10 @@ public class Blockstun : FighterState
         fighter.canAct = false;
         fighter.canBlock = true;
 
-        UpdateStance();
+        if (!fighter.blockEverything)
+        {
+            UpdateStance();
+        }
 
         switch(fighter.currentStance)
         {

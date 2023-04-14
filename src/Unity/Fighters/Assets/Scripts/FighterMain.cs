@@ -70,6 +70,7 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
     public bool isGrounded;
     public bool canAct;
     public bool canBlock;
+    public bool isCurrentlyAttacking;
     public FighterStance currentStance;
     public GameAttack currentAttack;
     public Directions.FacingDirection facingDirection;
@@ -156,11 +157,12 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
         if (canAct && inputReceiver.bufferedInput != null)
         {
             UpdateStance();
-            currentAttack = inputReceiver.ParseAttack(inputReceiver.bufferedInput);
+            var foundAttack = inputReceiver.ParseAttack(inputReceiver.bufferedInput);
             inputReceiver.bufferedInput = null;
 
-            if (currentAttack != null)
+            if (foundAttack != null)
             {
+                currentAttack = foundAttack;
                 if (currentStance == FighterStance.Standing || currentStance == FighterStance.Crouching)
                 {
                     AutoTurnaround();
@@ -269,6 +271,13 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
             //react to the hit report ???????
 
             bool successfulHit = report != HitReport.Whiff;
+
+            if (successfulHit)
+            {
+                // allow for cancels on hit or block
+                canAct = true;
+            }
+
             return successfulHit;
         }
         return false;
@@ -303,8 +312,21 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
     {
         if (canBlock)
         {
-            if (blockEverything) return true;
-
+            if (blockEverything)
+            {
+                if (currentStance != FighterStance.Air)
+                {
+                    if (properties.blockType == GameAttackProperties.BlockType.Low)
+                    {
+                        currentStance = FighterStance.Crouching;
+                    }
+                    if (properties.blockType == GameAttackProperties.BlockType.High)
+                    {
+                        currentStance = FighterStance.Standing;
+                    }
+                }
+                return true;
+            }
             Directions.Direction dir = inputReceiver.GetDirection();
 
             if (currentStance == FighterStance.Air)

@@ -31,12 +31,16 @@ public class FiveA : GameAttack
         conditions.Add(new ButtonCondition(this, new AttackA()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new StanceCondition(this, FighterStance.Standing));
+        conditions.Add(new GatlingCondition(this));
 
         properties.AnimationName = "Jab";
 
         properties.knockback.Set(-4.5f, 0);
 
         properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Light;
+        properties.attackStance = FighterStance.Standing;
+
     }
 }
 
@@ -48,12 +52,15 @@ public class TwoA : GameAttack
         conditions.Add(new GestureCondition(this, new CrouchGesture()));
         conditions.Add(new ButtonCondition(this, new AttackA()));
         conditions.Add(new GroundedCondition(this, true));
-        
+        conditions.Add(new GatlingCondition(this));
+
         properties.AnimationName = "Crouchjab";
 
         properties.knockback.Set(-4, 0);
 
         properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Light;
+        properties.attackStance = FighterStance.Crouching;
     }
 }
 
@@ -65,12 +72,15 @@ public class JumpA : GameAttack
         conditions.Add(new ButtonCondition(this, new AttackA()));
         conditions.Add(new GroundedCondition(this, false));
         conditions.Add(new StanceCondition(this, FighterStance.Air));
+        conditions.Add(new GatlingCondition(this));
 
         properties.AnimationName = "Jumpknee";
 
         properties.knockback.Set(-3.5f, 0);
 
         properties.blockType = GameAttackProperties.BlockType.High;
+        properties.attackType = GameAttackProperties.AttackType.Light;
+        properties.attackStance = FighterStance.Air;
     }
 }
 
@@ -82,12 +92,15 @@ public class FiveB : GameAttack
         conditions.Add(new ButtonCondition(this, new AttackB()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new StanceCondition(this, FighterStance.Standing));
+        conditions.Add(new GatlingCondition(this));
 
         properties.AnimationName = "Fullpunch";
 
         properties.knockback.Set(-6f, 2);
 
         properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Medium;
+        properties.attackStance = FighterStance.Standing;
     }
 }
 
@@ -99,12 +112,15 @@ public class TwoB : GameAttack
         conditions.Add(new GestureCondition(this, new CrouchGesture()));
         conditions.Add(new ButtonCondition(this, new AttackB()));
         conditions.Add(new GroundedCondition(this, true));
-        
+        conditions.Add(new GatlingCondition(this));
+
         properties.AnimationName = "Crouchkick";
 
         properties.knockback.Set(-5, 3);
 
         properties.blockType = GameAttackProperties.BlockType.Low;
+        properties.attackType = GameAttackProperties.AttackType.Medium;
+        properties.attackStance = FighterStance.Crouching;
     }
 }
 
@@ -116,12 +132,15 @@ public class JumpB : GameAttack
         conditions.Add(new ButtonCondition(this, new AttackB()));
         conditions.Add(new GroundedCondition(this, false));
         conditions.Add(new StanceCondition(this, FighterStance.Air));
+        conditions.Add(new GatlingCondition(this));
 
         properties.AnimationName = "Jumpslice";
 
         properties.knockback.Set(-5f, 0);
 
         properties.blockType = GameAttackProperties.BlockType.High;
+        properties.attackType = GameAttackProperties.AttackType.Medium;
+        properties.attackStance = FighterStance.Air;
     }
 }
 
@@ -131,11 +150,14 @@ public class SixTwoThreeA : GameAttack
     {
         conditions.Add(new GestureCondition(this, new DragonPunch()));
         conditions.Add(new ButtonCondition(this, new AttackA()));
+        conditions.Add(new GatlingCondition(this));
 
         properties.AnimationName = "Dragonpunch";
 
         properties.knockback.Set(-5, 15);
 
         properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Standing;
     }
 }

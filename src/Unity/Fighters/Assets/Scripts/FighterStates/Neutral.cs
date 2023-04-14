@@ -16,6 +16,7 @@ public class Neutral : FighterState
         fighter.currentStance = FighterStance.Standing;
 
         fighter.canAct = true;
+        fighter.canBlock = true;
 
         UpdateStance();
 

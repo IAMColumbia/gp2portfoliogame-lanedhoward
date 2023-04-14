@@ -19,6 +19,7 @@ public class Blockstun : FighterState
         base.EnterState();
 
         fighter.canAct = false;
+        fighter.canBlock = true;
 
         UpdateStance();
 

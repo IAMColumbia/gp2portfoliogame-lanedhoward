@@ -76,6 +76,9 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
     public bool isStrikeInvulnerable = false;
     public bool isThrowInvulnerable = false;
 
+    [Header("Test/Training Values")]
+    public bool blockEverything;
+
     void Start()
     {
         var inputHost = new FighterInputHost(GetComponent<PlayerInput>());
@@ -117,8 +120,6 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
 
     void FixedUpdate()
     {
-        canBlock = canAct;
-
         CheckForGroundedness();
         
         CheckForInputs();
@@ -302,6 +303,8 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
     {
         if (canBlock)
         {
+            if (blockEverything) return true;
+
             Directions.Direction dir = inputReceiver.GetDirection();
 
             if (currentStance == FighterStance.Air)

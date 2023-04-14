@@ -19,6 +19,7 @@ public class Knockdown : FighterState
         base.EnterState();
 
         fighter.canAct = false;
+        fighter.canBlock = false;
 
         fighter.isStrikeInvulnerable = true;
         fighter.isThrowInvulnerable = true;

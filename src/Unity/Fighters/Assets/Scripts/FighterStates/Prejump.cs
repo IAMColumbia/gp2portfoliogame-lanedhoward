@@ -21,6 +21,7 @@ public class Prejump : FighterState
         jumpLeftRight = fighter.inputReceiver.LeftRight;
 
         fighter.canAct = false;
+        fighter.canBlock = false;
 
         fighter.fighterAnimator.StartAnimation("Prejump");
     }

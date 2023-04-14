@@ -17,6 +17,7 @@ public class AttackState : FighterState
         GameAttack attack = fighter.currentAttack;
 
         fighter.canAct = false;
+        fighter.canBlock = false;
 
         wasEverAirborne = false;
 

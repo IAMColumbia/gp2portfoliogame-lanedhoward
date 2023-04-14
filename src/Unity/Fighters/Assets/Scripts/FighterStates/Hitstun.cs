@@ -19,6 +19,7 @@ public class Hitstun : FighterState
         base.EnterState();
 
         fighter.canAct = false;
+        fighter.canBlock = false;
 
         UpdateStance();
 

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static CommandInputReaderLibrary.Directions;
+using System.Linq;
 
 public static class FighterGestures
 {
@@ -16,6 +17,7 @@ public static class FighterGestures
                 new DragonPunch(),
                 new Dash(),
                 new ForwardHalfCircleForward(),
+                new CrouchGesture(),
                 new NoGesture()
             };
         return gestures;
@@ -91,5 +93,26 @@ public class NoGesture : ReadableGesture
     public override bool Read(List<ReadablePackage> inputs, float currentTime, FacingDirection facingDirection)
     {
         return true;
+    }
+}
+
+public class CrouchGesture : ReadableGesture
+{
+    public CrouchGesture() : base()
+    {
+        Priority = 500;
+    }
+
+    public override bool Read(List<ReadablePackage> inputs, float currentTime, FacingDirection facingDirection)
+    {
+        if (inputs.Count > 0)
+        {
+            Direction dir = inputs.Last().GetDirectionFacingForward(facingDirection);
+            if (dir == Direction.DownForward || dir == Direction.Down || dir == Direction.DownBack)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

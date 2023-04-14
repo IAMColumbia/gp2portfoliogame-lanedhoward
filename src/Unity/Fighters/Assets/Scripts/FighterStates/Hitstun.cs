@@ -48,7 +48,10 @@ public class Hitstun : FighterState
         {
             if (stateTimer > 0.1f)
             {
-                AllowLanding();
+                if (fighter.isGrounded)
+                {
+                    fighter.SwitchState(fighter.knockdown);
+                }
             }
         }
         else

@@ -78,3 +78,19 @@ public class GestureCondition : GameAttackCondition
         return false;
     }
 }
+
+public class GroundedCondition : GameAttackCondition
+{
+    private bool requiredGroundedness;
+
+    public GroundedCondition(GameAttack _parent, bool _requiredGroundedness) : base(_parent)
+    {
+        requiredGroundedness = _requiredGroundedness;
+    }
+
+    public override bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
+    {
+        return fighter.isGrounded == requiredGroundedness;
+    }
+
+}

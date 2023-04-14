@@ -141,12 +141,7 @@ public abstract class FighterState
 
     public void UpdateStance()
     {
-        if (!fighter.isGrounded)
-        {
-            fighter.currentStance = FighterStance.Air;
-            return;
-        }
-        fighter.currentStance = fighter.hasCrouchInput ? FighterStance.Crouching : FighterStance.Standing;
+        fighter.UpdateStance();
 
     }
 

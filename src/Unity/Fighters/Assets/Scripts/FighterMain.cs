@@ -39,6 +39,8 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
     public Air air;
     public AttackState attacking;
     public Hitstun hitstun;
+    public Knockdown knockdown;
+    public Getup getup;
 
 
     [Header("Movement Values")]
@@ -61,7 +63,8 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
     public FighterStance currentStance;
     public GameAttack currentAttack;
     public Directions.FacingDirection facingDirection;
-    public bool isInvincible = false;
+    public bool isStrikeInvulnerable = false;
+    public bool isThrowInvulnerable = false;
 
     void Start()
     {
@@ -89,6 +92,8 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
         air = new Air(this);
         attacking = new AttackState(this);
         hitstun = new Hitstun(this);
+        knockdown = new Knockdown(this);
+        getup = new Getup(this);
 
         currentAttack = null;
         fighterAttacks = FighterAttacks.GetFighterAttacks();
@@ -136,11 +141,16 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
 
         if (canAct && inputReceiver.bufferedInput != null)
         {
+            UpdateStance();
             currentAttack = inputReceiver.ParseAttack(inputReceiver.bufferedInput);
             inputReceiver.bufferedInput = null;
 
             if (currentAttack != null)
             {
+                if (currentStance == FighterStance.Standing || currentStance == FighterStance.Crouching)
+                {
+                    AutoTurnaround();
+                }
                 SwitchState(attacking);
             }
             
@@ -195,6 +205,16 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
     }
 
 
+    public void UpdateStance()
+    {
+        if (!isGrounded)
+        {
+            currentStance = FighterStance.Air;
+            return;
+        }
+        currentStance = hasCrouchInput ? FighterStance.Crouching : FighterStance.Standing;
+    }
+
     protected void OnAttackActive()
     {
 
@@ -230,15 +250,15 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
         {
             if (hurtbox.fighterParent == this) return false;
 
-            hurtbox.fighterParent.GetHitWith(currentAttack.properties);
-            return true;
+            bool successfulHit = hurtbox.fighterParent.GetHitWith(currentAttack.properties);
+            return successfulHit;
         }
         return false;
     }
 
-    public void GetHitWith(GameAttackProperties properties)
+    public bool GetHitWith(GameAttackProperties properties)
     {
-        if (isInvincible) return;
+        if (isStrikeInvulnerable) return false;
 
         //knockback
         Vector2 kb = properties.knockback;
@@ -248,6 +268,7 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
         OnVelocityImpulse(kb);
 
         SwitchState(hitstun);
+        return true;
     }
 
     public Directions.FacingDirection ShouldFaceDirection()

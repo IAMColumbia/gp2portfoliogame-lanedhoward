@@ -78,6 +78,8 @@ public class GameAttackProperties
     public AttackType attackType;
     public FighterStance attackStance;
 
+    public float hitstopTime;
+
     public GameAttackProperties()
     {
         AnimationName = string.Empty;
@@ -85,5 +87,7 @@ public class GameAttackProperties
         blockType = BlockType.Mid;
         attackType = AttackType.Light;
         attackStance = FighterStance.Standing;
+
+        hitstopTime = 0.1f;
     }
 }

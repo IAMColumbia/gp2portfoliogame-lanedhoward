@@ -76,12 +76,15 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
     public Directions.FacingDirection facingDirection;
     public bool isStrikeInvulnerable = false;
     public bool isThrowInvulnerable = false;
+    public TimeManager timeManager;
 
     [Header("Test/Training Values")]
     public bool blockEverything;
 
     void Start()
     {
+        timeManager = FindObjectOfType<TimeManager>();
+
         var inputHost = new FighterInputHost(GetComponent<PlayerInput>());
         var inputReader = new InputReader(inputHost);
         inputReader.SetPossibleGestures(FighterGestures.GetDefaultGestures());
@@ -298,6 +301,7 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
         Vector2 kb = properties.knockback;
         OnVelocityImpulse(kb);
 
+        timeManager.DoHitStop(properties.hitstopTime);
         if (blocked)
         {
             SwitchState(blockstun);

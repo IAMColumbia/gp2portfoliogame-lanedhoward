@@ -116,7 +116,7 @@ public class TwoB : GameAttack
 
         properties.AnimationName = "Crouchkick";
 
-        properties.knockback.Set(-5, 3);
+        properties.knockback.Set(-5, 5);
 
         properties.blockType = GameAttackProperties.BlockType.Low;
         properties.attackType = GameAttackProperties.AttackType.Medium;

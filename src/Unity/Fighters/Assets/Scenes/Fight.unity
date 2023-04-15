@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitstopTimeScale: 0.1
-  baseHitstopDuration: 0.05
+  baseHitstopDuration: 0.08
   realTimeUntilTimeScaleReset: 0
   isInSlowmo: 0
 --- !u!4 &786745706

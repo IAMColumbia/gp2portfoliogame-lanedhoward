@@ -38,7 +38,7 @@ public class TimeManager : MonoBehaviour
         SetTimeScale(hitstopTimeScale);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (isInSlowmo)
         {

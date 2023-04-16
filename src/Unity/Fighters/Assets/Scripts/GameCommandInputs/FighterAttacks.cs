@@ -40,14 +40,14 @@ public static class FighterAttacks
     public static float attackLevel3_blockstun;
     static FighterAttacks()
     {
-        attackLevel1_hithitstop = 2f / 60f;
-        attackLevel1_blockhitstop = 1f / 60f;
-        attackLevel1_hitstun = 10f / 60f;
-        attackLevel1_blockstun = 7f / 60f;
+        attackLevel1_hithitstop = 3f / 60f;
+        attackLevel1_blockhitstop = 2f / 60f;
+        attackLevel1_hitstun = 13f / 60f;
+        attackLevel1_blockstun = 9f / 60f;
 
-        attackLevel2_hithitstop = 5f / 60f;
-        attackLevel2_blockhitstop = 3f / 60f;
-        attackLevel2_hitstun = 15f / 60f;
+        attackLevel2_hithitstop = 6f / 60f;
+        attackLevel2_blockhitstop = 4f / 60f;
+        attackLevel2_hitstun = 17f / 60f;
         attackLevel2_blockstun = 12f / 60f;
 
         attackLevel3_hithitstop = 8f / 60f;

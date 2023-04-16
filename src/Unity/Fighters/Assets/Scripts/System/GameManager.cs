@@ -80,14 +80,14 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator StartGame()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         Countdown.SetActive(true);
         CountdownText.text = "3...";
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.75f);
         CountdownText.text = "2...";
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.75f);
         CountdownText.text = "1...";
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.75f);
         CountdownText.text = "All aboard!!!";
         player1.enabled = true;
         player2.enabled = true;

@@ -287,6 +287,7 @@ public class TwoOneFourB : GameAttack
     {
         conditions.Add(new GestureCondition(this, new QuarterCircleBack()));
         conditions.Add(new ButtonCondition(this, new AttackB()));
+        conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new GatlingCondition(this));
 
         properties.AnimationName = "Overhead";

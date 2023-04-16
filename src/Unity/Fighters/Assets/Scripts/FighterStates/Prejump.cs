@@ -23,6 +23,8 @@ public class Prejump : FighterState
         fighter.canAct = false;
         fighter.canBlock = false;
 
+        fighter.isThrowInvulnerable = true;
+
         fighter.fighterAnimator.StartAnimation("Prejump");
     }
 
@@ -43,6 +45,6 @@ public class Prejump : FighterState
     public override void ExitState()
     {
         base.ExitState();
-
+        fighter.isThrowInvulnerable = false;
     }
 }

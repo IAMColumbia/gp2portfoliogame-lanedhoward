@@ -49,6 +49,35 @@ public class GameAttack
         return conditions.All(c => c.CanExecute(moveInput, fighter));
     }
 
+    public virtual void OnStartup(FighterMain fighter)
+    {
+
+    }
+
+    public virtual void OnActive(FighterMain fighter)
+    {
+
+    }
+
+    public virtual void OnRecovery(FighterMain fighter)
+    {
+
+    }
+
+    public virtual void OnHit(FighterMain fighter, FighterMain otherFighter)
+    {
+
+    }
+
+    public virtual void OnBlock(FighterMain fighter, FighterMain otherFighter)
+    {
+
+    }
+
+    public virtual void OnExit(FighterMain fighter)
+    {
+
+    }
 }
 
 public class GameAttackProperties
@@ -59,7 +88,8 @@ public class GameAttackProperties
         Medium,
         Heavy,
         Special,
-        Super
+        Super,
+        Throw
     }
 
     public enum BlockType
@@ -91,3 +121,4 @@ public class GameAttackProperties
         hitstopTime = 0.1f;
     }
 }
+

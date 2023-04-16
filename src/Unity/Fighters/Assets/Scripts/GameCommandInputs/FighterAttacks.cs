@@ -17,7 +17,8 @@ public static class FighterAttacks
                 new TwoB(),
                 new FiveB(),
                 new JumpB(),
-                new SixTwoThreeA()
+                new SixTwoThreeA(),
+                new GrabWhiff(new GrabSuccess())
             };
         return attacks;
     }
@@ -159,5 +160,29 @@ public class SixTwoThreeA : GameAttack
         properties.blockType = GameAttackProperties.BlockType.Mid;
         properties.attackType = GameAttackProperties.AttackType.Special;
         properties.attackStance = FighterStance.Standing;
+    }
+}
+
+public class GrabWhiff : ThrowAttack
+{
+    public GrabWhiff(ThrowAttackSuccess _success) : base(_success)
+    {
+        conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new StanceCondition(this, FighterStance.Standing));
+        conditions.Add(new NoGatlingCondition(this));
+
+        properties.AnimationName = "ThrowWhiff";
+    }
+}
+
+public class GrabSuccess : ThrowAttackSuccess
+{
+    public GrabSuccess() : base()
+    {
+        properties.AnimationName = "ThrowSuccess";
+
+        properties.knockback.Set(-4, 6);
     }
 }

@@ -111,6 +111,11 @@ public class GatlingCondition : GameAttackCondition
             // idk????
         }
 
+        if (fighter.currentAttack.properties.attackType == GameAttackProperties.AttackType.Throw)
+        {
+            return false;
+        }
+
         if (parent.properties.attackType > fighter.currentAttack.properties.attackType) //gatling into a higher attack level
         {
             return true;
@@ -128,6 +133,19 @@ public class GatlingCondition : GameAttackCondition
             }
         }
 
+        return false;
+    }
+}
+
+public class NoGatlingCondition : GameAttackCondition
+{
+    public NoGatlingCondition(GameAttack _parent) : base(_parent)
+    {
+    }
+
+    public override bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
+    {
+        if (!fighter.isCurrentlyAttacking) return true;
         return false;
     }
 }

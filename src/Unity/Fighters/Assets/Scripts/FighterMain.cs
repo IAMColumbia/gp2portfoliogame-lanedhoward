@@ -33,6 +33,8 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
     public BoxCollider2D fighterCollider;
 
     public GameObject otherFighter;
+    public FighterMain otherFighterMain;
+    public Transform throwPivot;
 
     public LayerMask groundMask;
     public float groundCheckXDistance;
@@ -50,6 +52,8 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
     public Blockstun blockstun;
     public Knockdown knockdown;
     public Getup getup;
+    public Grabbing grabbing;
+    public GetGrabbed getGrabbed;
 
 
     [Header("Movement Values")]
@@ -93,6 +97,11 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
         fighterRigidbody = GetComponent<Rigidbody2D>();
         fighterCollider = GetComponent<BoxCollider2D>();
 
+        if (otherFighter != null)
+        {
+            otherFighterMain = otherFighter.GetComponent<FighterMain>();
+        }
+
         fighterAnimationEvents = GetComponentInChildren<FighterAnimationEvents>();
         fighterAnimationEvents.FighterAnimationHaltVerticalVelocity += OnHaltVerticalVelocity;
         fighterAnimationEvents.FighterAnimationVelocityImpulse += OnVelocityImpulse;
@@ -112,11 +121,14 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
         blockstun = new Blockstun(this);
         knockdown = new Knockdown(this);
         getup = new Getup(this);
+        grabbing = new Grabbing(this);
+        getGrabbed = new GetGrabbed(this);
 
         currentAttack = null;
         fighterAttacks = FighterAttacks.GetFighterAttacks();
 
         InitializeFacingDirection();
+        inputReceiver.UpdateFacingDirection();
 
         SwitchState(neutral);
     }
@@ -165,15 +177,26 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
 
             if (foundAttack != null)
             {
-                currentAttack = foundAttack;
-                if (currentStance == FighterStance.Standing || currentStance == FighterStance.Crouching)
-                {
-                    AutoTurnaround();
-                }
-                SwitchState(attacking);
+                SetCurrentAttack(foundAttack);
             }
             
         }
+    }
+
+    public void SetCurrentAttack(GameAttack newAttack)
+    {
+        if (currentAttack != null)
+        {
+            currentAttack.OnExit(this);
+        }
+
+        currentAttack = newAttack;
+        if (currentStance == FighterStance.Standing || currentStance == FighterStance.Crouching)
+        {
+            AutoTurnaround();
+        }
+        SwitchState(attacking);
+        currentAttack.OnStartup(this);
     }
 
     public void CheckForGroundedness()
@@ -236,12 +259,18 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
 
     protected void OnAttackActive()
     {
-
+        if (currentAttack != null)
+        {
+            currentAttack.OnActive(this);
+        }
     }
 
     protected void OnAttackRecovery()
     {
-
+        if (currentAttack != null)
+        {
+            currentAttack.OnRecovery(this);
+        }
     }
 
     protected void OnVelocityImpulse(Vector2 v)
@@ -253,9 +282,19 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
         fighterRigidbody.velocity = new Vector2(fighterRigidbody.velocity.x + v.x, fighterRigidbody.velocity.y + v.y);
     }
 
-    protected void OnHaltVerticalVelocity()
+    public void OnHaltVerticalVelocity()
     {
         fighterRigidbody.velocity = new Vector2(fighterRigidbody.velocity.x, 0);
+    }
+
+    public void OnHaltHorizontalVelocity()
+    {
+        fighterRigidbody.velocity = new Vector2(0, fighterRigidbody.velocity.y);
+    }
+
+    public void OnHaltAllVelocity()
+    {
+        fighterRigidbody.velocity = Vector2.zero;
     }
 
     bool IHitboxResponder.CollidedWith(Collider2D collider)
@@ -279,6 +318,14 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
             {
                 // allow for cancels on hit or block
                 canAct = true;
+                if (report == HitReport.Hit)
+                {
+                    currentAttack.OnHit(this, hurtbox.fighterParent);
+                }
+                if (report == HitReport.Block)
+                {
+                    currentAttack.OnBlock(this, hurtbox.fighterParent);
+                }
             }
 
             return successfulHit;
@@ -288,6 +335,8 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
 
     public HitReport GetHitWith(GameAttackProperties properties)
     {
+        if (properties.blockType == GameAttackProperties.BlockType.Throw) return GetThrownWith(properties);
+        
         if (isStrikeInvulnerable) return HitReport.Whiff;
 
         AutoTurnaround();
@@ -309,6 +358,15 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
         }
 
         SwitchState(hitstun);
+        return HitReport.Hit;
+    }
+
+    private HitReport GetThrownWith(GameAttackProperties properties)
+    {
+        if (isThrowInvulnerable) return HitReport.Whiff;
+
+        if (properties.attackStance != currentStance) return HitReport.Whiff;
+
         return HitReport.Hit;
     }
 
@@ -335,18 +393,11 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
 
             if (currentStance == FighterStance.Air)
             {
-                if (properties.blockType == GameAttackProperties.BlockType.Throw)
+                if (dir == Directions.Direction.Back || dir == Directions.Direction.DownBack || dir == Directions.Direction.UpBack)
                 {
-                    // do throw stuff
-                }
-                else
-                {
-                    if (dir == Directions.Direction.Back || dir == Directions.Direction.DownBack || dir == Directions.Direction.UpBack)
-                    {
-                        // air block / chicken block
-                        return true;
+                    // air block / chicken block
+                    return true;
 
-                    }
                 }
                 return false;
             }
@@ -378,9 +429,6 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
                         return true;
 
                     }
-                    break;
-                case GameAttackProperties.BlockType.Throw:
-                    // do throw stuff
                     break;
             }
         }

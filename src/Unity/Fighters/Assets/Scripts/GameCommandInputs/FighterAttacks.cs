@@ -18,10 +18,44 @@ public static class FighterAttacks
                 new FiveB(),
                 new JumpB(),
                 new SixTwoThreeA(),
+                new TwoOneFourB(),
                 new GrabWhiff(new GrabSuccess())
             };
         return attacks;
     }
+
+    public static float attackLevel1_hithitstop;
+    public static float attackLevel1_blockhitstop;
+    public static float attackLevel1_hitstun;
+    public static float attackLevel1_blockstun;
+
+    public static float attackLevel2_hithitstop;
+    public static float attackLevel2_blockhitstop;
+    public static float attackLevel2_hitstun;
+    public static float attackLevel2_blockstun;
+
+    public static float attackLevel3_hithitstop;
+    public static float attackLevel3_blockhitstop;
+    public static float attackLevel3_hitstun;
+    public static float attackLevel3_blockstun;
+    static FighterAttacks()
+    {
+        attackLevel1_hithitstop = 2f / 60f;
+        attackLevel1_blockhitstop = 1f / 60f;
+        attackLevel1_hitstun = 10f / 60f;
+        attackLevel1_blockstun = 7f / 60f;
+
+        attackLevel2_hithitstop = 5f / 60f;
+        attackLevel2_blockhitstop = 3f / 60f;
+        attackLevel2_hitstun = 15f / 60f;
+        attackLevel2_blockstun = 12f / 60f;
+
+        attackLevel3_hithitstop = 8f / 60f;
+        attackLevel3_blockhitstop = 6f / 60f;
+        attackLevel3_hitstun = 25f / 60f;
+        attackLevel3_blockstun = 18f / 60f;
+    }
+
 }
 
 public class FiveA : GameAttack
@@ -36,12 +70,21 @@ public class FiveA : GameAttack
 
         properties.AnimationName = "Jab";
 
-        properties.knockback.Set(-4.5f, 0);
-
         properties.blockType = GameAttackProperties.BlockType.Mid;
         properties.attackType = GameAttackProperties.AttackType.Light;
         properties.attackStance = FighterStance.Standing;
 
+        properties.blockProperties.knockback.Set(-2.5f, 0);
+        properties.blockProperties.selfKnockback.Set(-5f, 0);
+        properties.blockProperties.damage = 0f;
+        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel1_blockhitstop;
+        properties.blockProperties.stunTime = FighterAttacks.attackLevel1_blockstun;
+
+        properties.hitProperties.knockback.Set(-3f, 0);
+        properties.hitProperties.selfKnockback.Set(-4f, 0);
+        properties.hitProperties.damage = 85f;
+        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel1_hithitstop;
+        properties.hitProperties.stunTime = FighterAttacks.attackLevel1_hitstun;
     }
 }
 
@@ -57,11 +100,22 @@ public class TwoA : GameAttack
 
         properties.AnimationName = "Crouchjab";
 
-        properties.knockback.Set(-4, 0);
-
         properties.blockType = GameAttackProperties.BlockType.Mid;
         properties.attackType = GameAttackProperties.AttackType.Light;
         properties.attackStance = FighterStance.Crouching;
+
+
+        properties.blockProperties.knockback.Set(-2.5f, 0);
+        properties.blockProperties.selfKnockback.Set(-5f, 0);
+        properties.blockProperties.damage = 0f;
+        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel1_blockhitstop;
+        properties.blockProperties.stunTime = FighterAttacks.attackLevel1_blockstun;
+
+        properties.hitProperties.knockback.Set(-3f, 0);
+        properties.hitProperties.selfKnockback.Set(-4f, 0);
+        properties.hitProperties.damage = 75f;
+        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel1_hithitstop;
+        properties.hitProperties.stunTime = FighterAttacks.attackLevel1_hitstun;
     }
 }
 
@@ -77,11 +131,21 @@ public class JumpA : GameAttack
 
         properties.AnimationName = "Jumpknee";
 
-        properties.knockback.Set(-3.5f, 0);
-
         properties.blockType = GameAttackProperties.BlockType.High;
         properties.attackType = GameAttackProperties.AttackType.Light;
         properties.attackStance = FighterStance.Air;
+
+        properties.blockProperties.knockback.Set(-2.5f, 0);
+        properties.blockProperties.selfKnockback.Set(-2f, 0);
+        properties.blockProperties.damage = 0f;
+        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel1_blockhitstop;
+        properties.blockProperties.stunTime = FighterAttacks.attackLevel1_blockstun;
+
+        properties.hitProperties.knockback.Set(-3f, 0);
+        properties.hitProperties.selfKnockback.Set(-2f, 0);
+        properties.hitProperties.damage = 100f;
+        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel1_hithitstop;
+        properties.hitProperties.stunTime = FighterAttacks.attackLevel1_hitstun;
     }
 }
 
@@ -97,11 +161,21 @@ public class FiveB : GameAttack
 
         properties.AnimationName = "Fullpunch";
 
-        properties.knockback.Set(-6f, 2);
-
         properties.blockType = GameAttackProperties.BlockType.Mid;
         properties.attackType = GameAttackProperties.AttackType.Medium;
         properties.attackStance = FighterStance.Standing;
+
+        properties.blockProperties.knockback.Set(-3f, 0);
+        properties.blockProperties.selfKnockback.Set(-6f, 0);
+        properties.blockProperties.damage = 0f;
+        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
+        properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
+
+        properties.hitProperties.knockback.Set(-5f, 0);
+        properties.hitProperties.selfKnockback.Set(-5f, 0);
+        properties.hitProperties.damage = 200f;
+        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
+        properties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
     }
 }
 
@@ -117,11 +191,22 @@ public class TwoB : GameAttack
 
         properties.AnimationName = "Crouchkick";
 
-        properties.knockback.Set(-5, 5);
-
         properties.blockType = GameAttackProperties.BlockType.Low;
         properties.attackType = GameAttackProperties.AttackType.Medium;
         properties.attackStance = FighterStance.Crouching;
+
+        properties.blockProperties.knockback.Set(-3f, 0);
+        properties.blockProperties.selfKnockback.Set(-6f, 0);
+        properties.blockProperties.damage = 0f;
+        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
+        properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
+
+        properties.hitProperties.knockback.Set(-5f, 6f);
+        properties.hitProperties.selfKnockback.Set(-4f, 0);
+        properties.hitProperties.damage = 250f;
+        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
+        properties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
+        properties.hitProperties.hardKD = true;
     }
 }
 
@@ -137,11 +222,21 @@ public class JumpB : GameAttack
 
         properties.AnimationName = "Jumpslice";
 
-        properties.knockback.Set(-5f, 0);
-
         properties.blockType = GameAttackProperties.BlockType.High;
         properties.attackType = GameAttackProperties.AttackType.Medium;
         properties.attackStance = FighterStance.Air;
+
+        properties.blockProperties.knockback.Set(-4f, 0);
+        properties.blockProperties.selfKnockback.Set(-6f, 0);
+        properties.blockProperties.damage = 0f;
+        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
+
+        properties.hitProperties.knockback.Set(-6f, 0);
+        properties.hitProperties.selfKnockback.Set(-5f, 0);
+        properties.hitProperties.damage = 300f;
+        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
     }
 }
 
@@ -155,11 +250,63 @@ public class SixTwoThreeA : GameAttack
 
         properties.AnimationName = "Dragonpunch";
 
-        properties.knockback.Set(-5, 15);
-
         properties.blockType = GameAttackProperties.BlockType.Mid;
         properties.attackType = GameAttackProperties.AttackType.Special;
         properties.attackStance = FighterStance.Standing;
+
+        properties.blockProperties.knockback.Set(-2f, 0);
+        properties.blockProperties.selfKnockback.Set(-4f, 0);
+        properties.blockProperties.damage = 50f;
+        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
+
+        properties.hitProperties.knockback.Set(-5f, 13f);
+        properties.hitProperties.selfKnockback.Set(-2f, 0);
+        properties.hitProperties.damage = 350f;
+        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
+        properties.hitProperties.hardKD = true;
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        fighter.isStrikeInvulnerable = true;
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+        fighter.isStrikeInvulnerable = false;
+    }
+}
+
+public class TwoOneFourB : GameAttack
+{
+    public TwoOneFourB() : base()
+    {
+        conditions.Add(new GestureCondition(this, new QuarterCircleBack()));
+        conditions.Add(new ButtonCondition(this, new AttackB()));
+        conditions.Add(new GatlingCondition(this));
+
+        properties.AnimationName = "Overhead";
+
+        properties.blockType = GameAttackProperties.BlockType.High;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Standing;
+
+        properties.blockProperties.knockback.Set(-3f, 0);
+        properties.blockProperties.selfKnockback.Set(-8f, 0);
+        properties.blockProperties.damage = 50f;
+        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
+
+        properties.hitProperties.knockback.Set(-3f, 8.5f);
+        properties.hitProperties.selfKnockback.Set(-5f, 0);
+        properties.hitProperties.damage = 300f;
+        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
+        properties.hitProperties.hardKD = false;
     }
 }
 
@@ -183,6 +330,11 @@ public class GrabSuccess : ThrowAttackSuccess
     {
         properties.AnimationName = "ThrowSuccess";
 
-        properties.knockback.Set(-4, 6);
+        properties.hitProperties.knockback.Set(-5f, 7f);
+        properties.hitProperties.selfKnockback.Set(0f, 0);
+        properties.hitProperties.damage = 250f;
+        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
+        properties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
+        properties.hitProperties.hardKD = true;
     }
 }

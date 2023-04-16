@@ -102,23 +102,43 @@ public class GameAttackProperties
 
     public string AnimationName;
 
-    public Vector2 knockback;
-
     public BlockType blockType;
     public AttackType attackType;
     public FighterStance attackStance;
 
-    public float hitstopTime;
+    public GameAttackPropertiesProperties blockProperties;
+    public GameAttackPropertiesProperties hitProperties;
 
     public GameAttackProperties()
     {
         AnimationName = string.Empty;
-        knockback = new Vector2(-2,0);
         blockType = BlockType.Mid;
         attackType = AttackType.Light;
         attackStance = FighterStance.Standing;
 
-        hitstopTime = 0.1f;
+        blockProperties = new GameAttackPropertiesProperties();
+        hitProperties = new GameAttackPropertiesProperties();
+    }
+}
+
+public class GameAttackPropertiesProperties
+{
+    public float hitstopTime;
+    public float stunTime;
+    public float damage;
+    public Vector2 knockback;
+    public Vector2 selfKnockback;
+
+    public bool hardKD;
+
+    public GameAttackPropertiesProperties()
+    {
+        hitstopTime = 0f;
+        stunTime = 0f;
+        damage = 0f;
+        knockback = Vector2.zero;
+        selfKnockback = Vector2.zero;
+        hardKD = false;
     }
 }
 

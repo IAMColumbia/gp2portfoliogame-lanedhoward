@@ -106,6 +106,9 @@
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
     <Compile Include="Assets\Scripts\FighterStates\GetGrabbed.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Grabbing.cs" />
+    <Compile Include="Assets\Scripts\System\Healthbar.cs" />
+    <Compile Include="Assets\Scripts\System\GameManager.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\IStunState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

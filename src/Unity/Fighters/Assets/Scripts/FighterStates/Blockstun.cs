@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Blockstun : FighterState
+public class Blockstun : FighterState, IStunState
 {
 
     float blockstun;
@@ -60,5 +60,10 @@ public class Blockstun : FighterState
         UpdateStance();
 
         TimeTransitionToNextState(blockstun, NeutralOrAir());
+    }
+
+    public void SetStun(float stun)
+    {
+        blockstun = stun;
     }
 }

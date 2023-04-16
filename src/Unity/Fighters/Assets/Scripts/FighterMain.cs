@@ -55,6 +55,13 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
     public Grabbing grabbing;
     public GetGrabbed getGrabbed;
 
+    [Header("Health Values")]
+    public float MaxHealth = 1000;
+    public float CurrentHealth = 0;
+
+    [Header("KD Values")]
+    public float softKnockdownTime = 0.25f;
+    public float hardKnockdownTime = 1.25f;
 
     [Header("Movement Values")]
     public float walkAccel;
@@ -127,18 +134,22 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
         currentAttack = null;
         fighterAttacks = FighterAttacks.GetFighterAttacks();
 
+        CurrentHealth = MaxHealth;
+
         InitializeFacingDirection();
         inputReceiver.UpdateFacingDirection();
 
         SwitchState(neutral);
     }
 
+    void Update()
+    {
+        CheckForInputs();
+    }
 
     void FixedUpdate()
     {
         CheckForGroundedness();
-        
-        CheckForInputs();
 
         HandleInputs();
 
@@ -275,7 +286,7 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
 
     protected void OnVelocityImpulse(Vector2 v)
     {
-        if (facingDirection == Directions.FacingDirection.LEFT)
+        if (ShouldFaceDirection() == Directions.FacingDirection.LEFT)
         {
             v.x = -v.x;
         }
@@ -316,16 +327,23 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
 
             if (successfulHit)
             {
+                GameAttackPropertiesProperties pp;
                 // allow for cancels on hit or block
                 canAct = true;
                 if (report == HitReport.Hit)
                 {
                     currentAttack.OnHit(this, hurtbox.fighterParent);
+                    pp = currentAttack.properties.hitProperties;
                 }
-                if (report == HitReport.Block)
+                else
                 {
+                    //blocked 
                     currentAttack.OnBlock(this, hurtbox.fighterParent);
+                    pp = currentAttack.properties.blockProperties;
                 }
+
+                Vector2 kb = pp.selfKnockback;
+                OnVelocityImpulse(kb);
             }
 
             return successfulHit;
@@ -343,29 +361,39 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
 
         // decide if we blocked
         bool blocked = DidWeBlock(properties);
-        
+
+        GameAttackPropertiesProperties pp = blocked ? properties.blockProperties : properties.hitProperties;
 
         //knockback
         // probably will need to separate this into hit kb and block kb, or apply modifiers or somthing
-        Vector2 kb = properties.knockback;
+        Vector2 kb = pp.knockback;
         OnVelocityImpulse(kb);
 
-        timeManager.DoHitStop(properties.hitstopTime);
+        CurrentHealth -= pp.damage;
+
+        timeManager.DoHitStop(pp.hitstopTime);
+
         if (blocked)
         {
             SwitchState(blockstun);
+            ((IStunState)currentState).SetStun(pp.stunTime);
             return HitReport.Block;
         }
 
         SwitchState(hitstun);
+        Hitstun hs = (Hitstun)currentState;
+
+        hs.SetStun(pp.stunTime);
+        hs.SetHardKD(pp.hardKD);
+
         return HitReport.Hit;
     }
 
     private HitReport GetThrownWith(GameAttackProperties properties)
     {
         if (isThrowInvulnerable) return HitReport.Whiff;
-
-        if (properties.attackStance != currentStance) return HitReport.Whiff;
+        if (isGrounded && currentState.jumpsEnabled && hasJumpInput) return HitReport.Whiff; 
+        if ((properties.attackStance == FighterStance.Air) != (currentStance == FighterStance.Air)) return HitReport.Whiff;
 
         return HitReport.Hit;
     }

@@ -246,6 +246,10 @@ MonoBehaviour:
     m_Bits: 0
   groundCheckXDistance: 0.1
   groundCheckYDistance: 0.1
+  MaxHealth: 5000
+  CurrentHealth: 0
+  softKnockdownTime: 0.1
+  hardKnockdownTime: 0.4
   walkAccel: 50
   walkMaxSpeed: 5
   groundFriction: 40

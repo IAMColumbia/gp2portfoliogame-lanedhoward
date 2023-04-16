@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hitstun : FighterState
+public class Hitstun : FighterState, IStunState
 {
 
     float hitstun;
+    private bool wasEverAirborne;
+    private bool hardKD;
 
     public Hitstun(FighterMain fighterMain) : base(fighterMain)
     {
@@ -20,6 +22,11 @@ public class Hitstun : FighterState
 
         fighter.canAct = false;
         fighter.canBlock = false;
+
+        fighter.isThrowInvulnerable = true;
+
+        wasEverAirborne = false;
+        hardKD = false;
 
         UpdateStance();
 
@@ -47,21 +54,55 @@ public class Hitstun : FighterState
 
         if (fighter.currentStance == FighterStance.Air)
         {
+            wasEverAirborne = true;
             if (stateTimer > 0.1f)
             {
                 if (fighter.isGrounded)
                 {
                     fighter.SwitchState(fighter.knockdown);
+                    float kdTime = hardKD ? fighter.hardKnockdownTime : fighter.softKnockdownTime;
+                    ((IStunState)fighter.currentState).SetStun(kdTime);
                 }
             }
         }
         else
         {
+            if (wasEverAirborne)
+            {
+                if (stateTimer > 0.1f)
+                {
+                    if (fighter.isGrounded)
+                    {
+                        fighter.SwitchState(fighter.knockdown);
+                        float kdTime = hardKD ? fighter.hardKnockdownTime : fighter.softKnockdownTime;
+                        ((IStunState)fighter.currentState).SetStun(kdTime);
+                    }
+                }
+            }
             DoFriction(fighter.groundFriction);
         }
 
         UpdateStance();
 
-        TimeTransitionToNextState(hitstun, NeutralOrAir());
+        if (!wasEverAirborne)
+        {
+            TimeTransitionToNextState(hitstun, NeutralOrAir());
+        }
+    }
+
+    public override void ExitState()
+    {
+        base.ExitState();
+        fighter.isThrowInvulnerable = false;
+    }
+
+    public void SetStun(float stun)
+    {
+        hitstun = stun;
+    }
+
+    public void SetHardKD(bool _hardKD)
+    {
+        hardKD = _hardKD;
     }
 }

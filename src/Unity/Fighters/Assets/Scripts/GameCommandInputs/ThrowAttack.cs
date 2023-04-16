@@ -39,6 +39,10 @@ public class ThrowAttackSuccess : GameAttack
     public override void OnActive(FighterMain fighter)
     {
         base.OnActive(fighter);
+        if (hitSound != null)
+        {
+            fighter.PlaySound(hitSound);
+        }
 
         fighter.otherFighterMain.isStrikeInvulnerable = false;
         fighter.otherFighterMain.canBlock = false;

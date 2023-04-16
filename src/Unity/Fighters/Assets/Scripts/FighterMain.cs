@@ -23,7 +23,7 @@ public enum HitReport
 }
 
 [RequireComponent(typeof(PlayerInput))]
-public class FighterMain : MonoBehaviour, IHitboxResponder
+public class FighterMain : SoundPlayer, IHitboxResponder
 {
     public FighterInputReceiver inputReceiver;
     public FighterAnimator fighterAnimator;
@@ -91,6 +91,11 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
 
     [Header("Test/Training Values")]
     public bool blockEverything;
+
+    [Header("Sounds")]
+    public AudioClip[] whiffSounds;
+    public AudioClip[] hitSounds;
+    public AudioClip[] blockSounds;
 
     void Awake()
     {

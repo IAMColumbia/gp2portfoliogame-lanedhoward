@@ -68,6 +68,9 @@ public class FiveA : GameAttack
         conditions.Add(new StanceCondition(this, FighterStance.Standing));
         conditions.Add(new GatlingCondition(this));
 
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[0];
+
         properties.AnimationName = "Jab";
 
         properties.blockType = GameAttackProperties.BlockType.Mid;
@@ -97,6 +100,9 @@ public class TwoA : GameAttack
         conditions.Add(new ButtonCondition(this, new AttackA()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new GatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[0];
 
         properties.AnimationName = "Crouchjab";
 
@@ -129,6 +135,9 @@ public class JumpA : GameAttack
         conditions.Add(new StanceCondition(this, FighterStance.Air));
         conditions.Add(new GatlingCondition(this));
 
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[0];
+
         properties.AnimationName = "Jumpknee";
 
         properties.blockType = GameAttackProperties.BlockType.High;
@@ -159,6 +168,9 @@ public class FiveB : GameAttack
         conditions.Add(new StanceCondition(this, FighterStance.Standing));
         conditions.Add(new GatlingCondition(this));
 
+        //whiffSound = fighter.whiffSounds[0];
+       // hitSound = fighter.hitSounds[2];
+
         properties.AnimationName = "Fullpunch";
 
         properties.blockType = GameAttackProperties.BlockType.Mid;
@@ -188,6 +200,9 @@ public class TwoB : GameAttack
         conditions.Add(new ButtonCondition(this, new AttackB()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new GatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[3];
 
         properties.AnimationName = "Crouchkick";
 
@@ -220,6 +235,9 @@ public class JumpB : GameAttack
         conditions.Add(new StanceCondition(this, FighterStance.Air));
         conditions.Add(new GatlingCondition(this));
 
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[3];
+
         properties.AnimationName = "Jumpslice";
 
         properties.blockType = GameAttackProperties.BlockType.High;
@@ -247,6 +265,9 @@ public class SixTwoThreeA : GameAttack
         conditions.Add(new GestureCondition(this, new DragonPunch()));
         conditions.Add(new ButtonCondition(this, new AttackA()));
         conditions.Add(new GatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[1];
+        //hitSound = fighter.hitSounds[4];
 
         properties.AnimationName = "Dragonpunch";
 
@@ -290,6 +311,9 @@ public class TwoOneFourB : GameAttack
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new GatlingCondition(this));
 
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[3];
+
         properties.AnimationName = "Overhead";
 
         properties.blockType = GameAttackProperties.BlockType.High;
@@ -321,6 +345,9 @@ public class GrabWhiff : ThrowAttack
         conditions.Add(new StanceCondition(this, FighterStance.Standing));
         conditions.Add(new NoGatlingCondition(this));
 
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[0];
+
         properties.AnimationName = "ThrowWhiff";
     }
 }
@@ -330,6 +357,9 @@ public class GrabSuccess : ThrowAttackSuccess
     public GrabSuccess() : base()
     {
         properties.AnimationName = "ThrowSuccess";
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[2];
 
         properties.hitProperties.knockback.Set(-5f, 7f);
         properties.hitProperties.selfKnockback.Set(0f, 0);

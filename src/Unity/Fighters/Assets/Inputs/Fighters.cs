@@ -464,7 +464,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0d1bbb34-c126-4355-a58f-1c59cda7947a"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",

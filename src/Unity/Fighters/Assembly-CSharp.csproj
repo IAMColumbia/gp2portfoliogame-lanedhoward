@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\FighterStates\Knockdown.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\Grabbing.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Neutral.cs" />
     <Compile Include="Assets\Scripts\Hitboxes\IHitboxResponder.cs" />
     <Compile Include="Assets\Scripts\FighterButtons.cs" />
@@ -76,7 +77,9 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadablePackage.cs" />
     <Compile Include="Assets\Inputs\Fighters.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IReadPackage.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\GetGrabbed.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttackCondition.cs" />
+    <Compile Include="Assets\Scripts\System\GameManager.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableGesture.cs" />
     <Compile Include="Assets\Scripts\System\TimeManager.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\ThrowAttack.cs" />
@@ -90,9 +93,11 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\Button.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\GameMoveInputs.cs" />
     <Compile Include="Assets\Scripts\FighterInputReceiver.cs" />
+    <Compile Include="Assets\Scripts\System\Healthbar.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IInputReceiver.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IHostPackage.cs" />
     <Compile Include="Assets\Scripts\FighterMain.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\IStunState.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IGesture.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableGestureWithShortcuts.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Prejump.cs" />
@@ -104,11 +109,7 @@
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttack.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\FighterStates\GetGrabbed.cs" />
-    <Compile Include="Assets\Scripts\FighterStates\Grabbing.cs" />
-    <Compile Include="Assets\Scripts\System\Healthbar.cs" />
-    <Compile Include="Assets\Scripts\System\GameManager.cs" />
-    <Compile Include="Assets\Scripts\FighterStates\IStunState.cs" />
+    <Compile Include="Assets\Scripts\SoundPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

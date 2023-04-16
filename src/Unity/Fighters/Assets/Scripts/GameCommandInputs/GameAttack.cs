@@ -30,11 +30,16 @@ public class GameAttack
 
     // counterhit state (and maybe more things that come with that ?)
 
-    protected FighterMain fighter;
+    public FighterMain fighter;
 
     public List<GameAttackCondition> conditions;
 
     public GameAttackProperties properties;
+
+    public AudioClip whiffSound;
+    public AudioClip hitSound;
+    public int whiffSoundIndex;
+    public int hitSoundIndex;
 
     public GameAttack()
     {
@@ -51,7 +56,10 @@ public class GameAttack
 
     public virtual void OnStartup(FighterMain fighter)
     {
-
+        if (whiffSound != null)
+        {
+            fighter.PlaySound(whiffSound);
+        }
     }
 
     public virtual void OnActive(FighterMain fighter)
@@ -66,7 +74,10 @@ public class GameAttack
 
     public virtual void OnHit(FighterMain fighter, FighterMain otherFighter)
     {
-
+        if (hitSound != null)
+        {
+            fighter.PlaySound(hitSound);
+        }
     }
 
     public virtual void OnBlock(FighterMain fighter, FighterMain otherFighter)

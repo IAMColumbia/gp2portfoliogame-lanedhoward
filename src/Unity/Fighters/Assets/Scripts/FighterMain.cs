@@ -92,7 +92,7 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
     [Header("Test/Training Values")]
     public bool blockEverything;
 
-    void Start()
+    void Awake()
     {
         timeManager = FindObjectOfType<TimeManager>();
 

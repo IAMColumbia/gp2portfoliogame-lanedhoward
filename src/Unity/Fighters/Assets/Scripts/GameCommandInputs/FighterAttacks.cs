@@ -301,7 +301,7 @@ public class TwoOneFourB : GameAttack
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
-        properties.hitProperties.knockback.Set(-3f, 8.5f);
+        properties.hitProperties.knockback.Set(-3f, 10.5f);
         properties.hitProperties.selfKnockback.Set(-5f, 0);
         properties.hitProperties.damage = 300f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;

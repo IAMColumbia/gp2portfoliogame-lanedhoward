@@ -151,9 +151,17 @@ public class FighterInputReceiver : IInputReceiver
             GameMoveInput moveInput = null;
 
             // TODO: find a better way than hard coding these
-            if (s is BackDashGesture b) 
+            if (s is BackDashGesture) 
             {
                 moveInput = new GameMoveInput(new BackGesture(), new DashMacro());
+            }
+            if (s is DashGesture)
+            {
+                moveInput = new GameMoveInput(new ForwardGesture(), new DashMacro());
+            }
+            if (s is NeutralDashGesture)
+            {
+                moveInput = new GameMoveInput(new NeutralGesture(), new DashMacro());
             }
 
 

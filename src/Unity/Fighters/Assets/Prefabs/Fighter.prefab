@@ -260,6 +260,15 @@ MonoBehaviour:
   walkMaxSpeed: 5
   groundFriction: 40
   velocityToStopMoveAnimation: 1
+  forwardDashTime: 0.3
+  forwardDashVelocity: {x: 6, y: 5}
+  backDashTime: 0.3
+  backDashVelocity: {x: -6, y: 5}
+  neutralDashTime: 0.3
+  neutralDashVelocity: {x: 0, y: 5}
+  backDashStrikeInvulnTime: 0.1
+  dashJumpCancelWindow: 0.1
+  dashMomentumMultiplier: 0.7
   jumpVelocityHorizontal: 3
   jumpVelocityVertical: 12
   jumpMomentumMultiplier: 0.5

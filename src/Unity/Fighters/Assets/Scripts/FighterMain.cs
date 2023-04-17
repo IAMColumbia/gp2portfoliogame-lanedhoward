@@ -54,7 +54,9 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public Getup getup;
     public Grabbing grabbing;
     public GetGrabbed getGrabbed;
+    public Dashing dashing;
     public Backdashing backdashing;
+    public Neutraldashing neutraldashing;
 
     [Header("Health Values")]
     public float MaxHealth = 1000;
@@ -75,6 +77,17 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public float walkMaxSpeed;
     public float groundFriction;
     public float velocityToStopMoveAnimation;
+
+    [Header("Dashing Values")]
+    public float forwardDashTime = 0.3f;
+    public Vector2 forwardDashVelocity;
+    public float backDashTime = 0.3f;
+    public Vector2 backDashVelocity;
+    public float neutralDashTime = 0.3f;
+    public Vector2 neutralDashVelocity;
+    public float backDashStrikeInvulnTime = 0.1f;
+    public float dashJumpCancelWindow = 0.1f;
+    public float dashMomentumMultiplier;
 
     [Header("Jump Values")]
     public float jumpVelocityHorizontal;
@@ -143,7 +156,9 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         getup = new Getup(this);
         grabbing = new Grabbing(this);
         getGrabbed = new GetGrabbed(this);
+        dashing = new Dashing(this);
         backdashing = new Backdashing(this);
+        neutraldashing = new Neutraldashing(this);
 
         currentAttack = null;
         fighterAttacks = FighterAttacks.GetFighterAttacks();
@@ -305,6 +320,15 @@ public class FighterMain : SoundPlayer, IHitboxResponder
             v.x = -v.x;
         }
         fighterRigidbody.velocity = new Vector2(fighterRigidbody.velocity.x + v.x, fighterRigidbody.velocity.y + v.y);
+    }
+
+    public void OnVelocityImpulse(Vector2 v, float momentumMultiplier)
+    {
+        if (ShouldFaceDirection() == Directions.FacingDirection.LEFT)
+        {
+            v.x = -v.x;
+        }
+        fighterRigidbody.velocity = new Vector2((fighterRigidbody.velocity.x * momentumMultiplier) + (v.x), v.y);
     }
 
     public void OnHaltVerticalVelocity()

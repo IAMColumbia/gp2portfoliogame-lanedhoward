@@ -106,11 +106,13 @@
     <Compile Include="Assets\Scripts\FighterStates\Blockstun.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Gestures\DefaultGestures.cs" />
     <Compile Include="Assets\Scripts\PriorityQueue.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\Backdashing.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\HostPackageComparer.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttack.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\FighterStates\Backdashing.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\Dashing.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\Neutraldashing.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

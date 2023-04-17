@@ -21,7 +21,9 @@ public static class FighterAttacks
                 new TwoOneFourB(),
                 new BackThrowWhiff(new GrabSuccess()),
                 new GrabWhiff(new GrabSuccess()),
-                new BackDash()
+                new BackDash(),
+                new ForwardDash(),
+                new NeutralDash()
             };
         return attacks;
     }
@@ -441,6 +443,52 @@ public class BackDash : GameAttack
         base.OnStartup(fighter);
 
         fighter.SwitchState(fighter.backdashing);
+
+    }
+}
+public class ForwardDash : GameAttack
+{
+    public ForwardDash() : base()
+    {
+        conditions.Add(new GestureCondition(this, new ForwardGesture()));
+        conditions.Add(new ButtonCondition(this, new DashMacro()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new StanceCondition(this, FighterStance.Standing));
+        conditions.Add(new NoGatlingCondition(this));
+
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
+
+        properties.AnimationName = "Air_Rising";
+    }
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+
+        fighter.SwitchState(fighter.dashing);
+
+    }
+}
+
+public class NeutralDash : GameAttack
+{
+    public NeutralDash() : base()
+    {
+        conditions.Add(new GestureCondition(this, new NeutralGesture()));
+        conditions.Add(new ButtonCondition(this, new DashMacro()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new NoGatlingCondition(this));
+
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
+
+        properties.AnimationName = "Air_Rising";
+    }
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+
+        fighter.SwitchState(fighter.neutraldashing);
 
     }
 }

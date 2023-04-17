@@ -20,8 +20,10 @@ public static class FighterGestures
                 new CrouchGesture(),
                 new BackGesture(),
                 new ForwardGesture(),
+                new NeutralGesture(),
                 new DashGesture(),
                 new BackDashGesture(),
+                new NeutralDashGesture(),
                 new NoGesture()
             };
         return gestures;
@@ -44,10 +46,15 @@ public class DashGesture : ReadableGesture, IStandaloneGesture
     {
         base.ResetRequiredInputs();
 
+        requiredInputs.Push(new GestureComponent(Direction.Neutral, InputReader.TimeBetweenSequentialInputs));
         requiredInputs.Push(new GestureComponent(Direction.Forward, InputReader.TimeBetweenSequentialInputs));
         requiredInputs.Push(new GestureComponent(Direction.Neutral, InputReader.TimeBetweenSequentialInputs));
         requiredInputs.Push(new GestureComponent(Direction.Forward, 0));
 
+        disallowedInputs.Add(new GestureComponent(Direction.Back, 0));
+        disallowedInputs.Add(new GestureComponent(Direction.DownBack, 0));
+        disallowedInputs.Add(new GestureComponent(Direction.UpBack, 0));
+        disallowedInputs.Add(new GestureComponent(Direction.Down, 0));
     }
 }
 
@@ -62,10 +69,42 @@ public class BackDashGesture : ReadableGesture, IStandaloneGesture
     {
         base.ResetRequiredInputs();
 
+        requiredInputs.Push(new GestureComponent(Direction.Neutral, InputReader.TimeBetweenSequentialInputs));
         requiredInputs.Push(new GestureComponent(Direction.Back, InputReader.TimeBetweenSequentialInputs));
         requiredInputs.Push(new GestureComponent(Direction.Neutral, InputReader.TimeBetweenSequentialInputs));
         requiredInputs.Push(new GestureComponent(Direction.Back, 0));
 
+        disallowedInputs.Add(new GestureComponent(Direction.Forward, 0));
+        disallowedInputs.Add(new GestureComponent(Direction.DownForward, 0));
+        disallowedInputs.Add(new GestureComponent(Direction.UpForward, 0));
+        disallowedInputs.Add(new GestureComponent(Direction.Down, 0));
+
+    }
+}
+
+public class NeutralDashGesture : ReadableGesture, IStandaloneGesture
+{
+    public NeutralDashGesture()
+    {
+        Priority = 200; // arbitrary
+    }
+
+    protected override void ResetRequiredInputs()
+    {
+        base.ResetRequiredInputs();
+
+        requiredInputs.Push(new GestureComponent(Direction.Neutral, InputReader.TimeBetweenSequentialInputs));
+        requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenSequentialInputs));
+        requiredInputs.Push(new GestureComponent(Direction.Neutral, InputReader.TimeBetweenSequentialInputs));
+        requiredInputs.Push(new GestureComponent(Direction.Down, 0));
+
+        disallowedInputs.Add(new GestureComponent(Direction.Forward, 0));
+        disallowedInputs.Add(new GestureComponent(Direction.DownForward, 0));
+        disallowedInputs.Add(new GestureComponent(Direction.UpForward, 0));
+
+        disallowedInputs.Add(new GestureComponent(Direction.Back, 0));
+        disallowedInputs.Add(new GestureComponent(Direction.DownBack, 0));
+        disallowedInputs.Add(new GestureComponent(Direction.UpBack, 0));
     }
 }
 
@@ -123,11 +162,13 @@ public class NoGesture : ReadableGesture
     }
 }
 
-public class CrouchGesture : ReadableGesture
+public class MultipleSingleDirectionGesture : ReadableGesture
 {
-    public CrouchGesture() : base()
+    public List<Direction> directions;
+    public MultipleSingleDirectionGesture() : base()
     {
         Priority = 500;
+        directions = new List<Direction>();
     }
 
     public override bool Read(List<ReadablePackage> inputs, float currentTime, FacingDirection facingDirection)
@@ -135,12 +176,34 @@ public class CrouchGesture : ReadableGesture
         if (inputs.Count > 0)
         {
             Direction dir = inputs.Last().GetDirectionFacingForward(facingDirection);
-            if (dir == Direction.DownForward || dir == Direction.Down || dir == Direction.DownBack)
+            if (directions.Any(d => d == dir))
             {
                 return true;
             }
         }
         return false;
+    }
+}
+
+public class CrouchGesture : MultipleSingleDirectionGesture
+{
+    public CrouchGesture() : base()
+    {
+        Priority = 500;
+        directions.Add(Direction.Down);
+        directions.Add(Direction.DownForward);
+        directions.Add(Direction.DownBack);
+    }
+}
+
+public class ForwardOrNeutralGesture : MultipleSingleDirectionGesture
+{
+    public ForwardOrNeutralGesture() : base()
+    {
+        Priority = 500;
+        directions.Add(Direction.Neutral);
+        directions.Add(Direction.Forward);
+
     }
 }
 
@@ -178,6 +241,14 @@ public class BackGesture : SingleDirectionGesture
 public class ForwardGesture : SingleDirectionGesture
 {
     public ForwardGesture() : base(Direction.Forward)
+    {
+
+    }
+}
+
+public class NeutralGesture : SingleDirectionGesture
+{
+    public NeutralGesture() : base(Direction.Neutral)
     {
 
     }

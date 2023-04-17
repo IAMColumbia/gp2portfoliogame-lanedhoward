@@ -15,20 +15,27 @@ public static class FighterGestures
                 new QuarterCircleBack(),
                 new QuarterCircleForward(),
                 new DragonPunch(),
-                new Dash(),
+                new DashGesture(),
                 new ForwardHalfCircleForward(),
                 new CrouchGesture(),
                 new BackGesture(),
                 new ForwardGesture(),
+                new DashGesture(),
+                new BackDashGesture(),
                 new NoGesture()
             };
         return gestures;
     }
 }
 
-public class Dash : ReadableGesture
+public interface IStandaloneGesture
 {
-    public Dash()
+
+}
+
+public class DashGesture : ReadableGesture, IStandaloneGesture
+{
+    public DashGesture()
     {
         Priority = 200; // arbitrary
     }
@@ -39,7 +46,25 @@ public class Dash : ReadableGesture
 
         requiredInputs.Push(new GestureComponent(Direction.Forward, InputReader.TimeBetweenSequentialInputs));
         requiredInputs.Push(new GestureComponent(Direction.Neutral, InputReader.TimeBetweenSequentialInputs));
-        requiredInputs.Push(new GestureComponent(Direction.Forward, InputReader.TimeBetweenSequentialInputs));
+        requiredInputs.Push(new GestureComponent(Direction.Forward, 0));
+
+    }
+}
+
+public class BackDashGesture : ReadableGesture, IStandaloneGesture
+{
+    public BackDashGesture()
+    {
+        Priority = 200; // arbitrary
+    }
+
+    protected override void ResetRequiredInputs()
+    {
+        base.ResetRequiredInputs();
+
+        requiredInputs.Push(new GestureComponent(Direction.Back, InputReader.TimeBetweenSequentialInputs));
+        requiredInputs.Push(new GestureComponent(Direction.Neutral, InputReader.TimeBetweenSequentialInputs));
+        requiredInputs.Push(new GestureComponent(Direction.Back, 0));
 
     }
 }

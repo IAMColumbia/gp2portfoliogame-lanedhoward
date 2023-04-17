@@ -79,7 +79,7 @@ public class FighterInputReceiver : IInputReceiver
         }
 
 
-        if (package.buttons.Count > 0)
+        if (package.buttons.Count > 0 || package.gestures.Any(g => g is IStandaloneGesture))
         {
             bufferedInput = package;
             bufferedAttackTime = 0;
@@ -103,6 +103,15 @@ public class FighterInputReceiver : IInputReceiver
 
     public GameAttack ParseAttack(IReadPackage package)
     {
+        if (package.buttons.Count <= 0)
+        {
+            if (package.gestures.Any(g => g is IStandaloneGesture))
+            {
+                return ParseAttackStandalone(package);
+            }
+            return null;
+        }
+        
         NoGesture noGesture = new NoGesture();
 
         IGesture currentGesture = noGesture;
@@ -126,6 +135,39 @@ public class FighterInputReceiver : IInputReceiver
                     // found our attack!
                     return attack;
                 }
+            }
+        }
+        return null;
+    }
+
+    private GameAttack ParseAttackStandalone(IReadPackage package)
+    {
+        List<IStandaloneGesture> standalones = package.gestures.Where(g => g is IStandaloneGesture).Cast<IStandaloneGesture>().ToList();
+
+        
+
+        foreach (var s in standalones)
+        {
+            GameMoveInput moveInput = null;
+
+            // TODO: find a better way than hard coding these
+            if (s is BackDashGesture b) 
+            {
+                moveInput = new GameMoveInput(new BackGesture(), new DashMacro());
+            }
+
+
+            if (moveInput != null)
+            {
+                foreach (GameAttack attack in fighter.fighterAttacks)
+                {
+                    if (attack.CanExecute(moveInput, fighter))
+                    {
+                        // found our attack!
+                        return attack;
+                    }
+                }
+
             }
         }
         return null;

@@ -54,6 +54,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public Getup getup;
     public Grabbing grabbing;
     public GetGrabbed getGrabbed;
+    public Backdashing backdashing;
 
     [Header("Health Values")]
     public float MaxHealth = 1000;
@@ -142,6 +143,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         getup = new Getup(this);
         grabbing = new Grabbing(this);
         getGrabbed = new GetGrabbed(this);
+        backdashing = new Backdashing(this);
 
         currentAttack = null;
         fighterAttacks = FighterAttacks.GetFighterAttacks();
@@ -296,7 +298,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         }
     }
 
-    protected void OnVelocityImpulse(Vector2 v)
+    public void OnVelocityImpulse(Vector2 v)
     {
         if (ShouldFaceDirection() == Directions.FacingDirection.LEFT)
         {

@@ -20,7 +20,8 @@ public static class FighterAttacks
                 new SixTwoThreeA(),
                 new TwoOneFourB(),
                 new BackThrowWhiff(new GrabSuccess()),
-                new GrabWhiff(new GrabSuccess())
+                new GrabWhiff(new GrabSuccess()),
+                new BackDash()
             };
         return attacks;
     }
@@ -417,5 +418,29 @@ public class GrabSuccess : ThrowAttackSuccess
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
         properties.hitProperties.hardKD = true;
+    }
+}
+
+public class BackDash : GameAttack
+{
+    public BackDash() : base()
+    {
+        conditions.Add(new GestureCondition(this, new BackGesture()));
+        conditions.Add(new ButtonCondition(this, new DashMacro()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new StanceCondition(this, FighterStance.Standing));
+        conditions.Add(new NoGatlingCondition(this));
+
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
+
+        properties.AnimationName = "Air_Rising";
+    }
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+
+        fighter.SwitchState(fighter.backdashing);
+
     }
 }

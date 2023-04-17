@@ -36,8 +36,6 @@ public class GameAttack
 
     public GameAttackProperties properties;
 
-    public AudioClip whiffSound;
-    public AudioClip hitSound;
     public int whiffSoundIndex;
     public int hitSoundIndex;
 
@@ -100,7 +98,8 @@ public class GameAttackProperties
         Heavy,
         Special,
         Super,
-        Throw
+        Throw,
+        Other
     }
 
     public enum BlockType

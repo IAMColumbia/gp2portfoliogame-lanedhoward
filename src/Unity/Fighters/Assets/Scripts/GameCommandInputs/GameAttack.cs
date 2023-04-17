@@ -56,10 +56,7 @@ public class GameAttack
 
     public virtual void OnStartup(FighterMain fighter)
     {
-        if (whiffSound != null)
-        {
-            fighter.PlaySound(whiffSound);
-        }
+        fighter.PlaySound(fighter.whiffSounds[whiffSoundIndex]);
     }
 
     public virtual void OnActive(FighterMain fighter)
@@ -74,10 +71,7 @@ public class GameAttack
 
     public virtual void OnHit(FighterMain fighter, FighterMain otherFighter)
     {
-        if (hitSound != null)
-        {
-            fighter.PlaySound(hitSound);
-        }
+        fighter.PlaySound(fighter.hitSounds[hitSoundIndex]);
     }
 
     public virtual void OnBlock(FighterMain fighter, FighterMain otherFighter)

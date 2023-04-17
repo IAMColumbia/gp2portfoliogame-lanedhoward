@@ -70,6 +70,8 @@ public class FiveA : GameAttack
 
         //whiffSound = fighter.whiffSounds[0];
         //hitSound = fighter.hitSounds[0];
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
 
         properties.AnimationName = "Jab";
 
@@ -103,6 +105,8 @@ public class TwoA : GameAttack
 
         //whiffSound = fighter.whiffSounds[0];
         //hitSound = fighter.hitSounds[0];
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
 
         properties.AnimationName = "Crouchjab";
 
@@ -137,6 +141,8 @@ public class JumpA : GameAttack
 
         //whiffSound = fighter.whiffSounds[0];
         //hitSound = fighter.hitSounds[0];
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
 
         properties.AnimationName = "Jumpknee";
 
@@ -169,7 +175,9 @@ public class FiveB : GameAttack
         conditions.Add(new GatlingCondition(this));
 
         //whiffSound = fighter.whiffSounds[0];
-       // hitSound = fighter.hitSounds[2];
+        // hitSound = fighter.hitSounds[2];
+        whiffSoundIndex = 0;
+        hitSoundIndex = 2;
 
         properties.AnimationName = "Fullpunch";
 
@@ -203,6 +211,8 @@ public class TwoB : GameAttack
 
         //whiffSound = fighter.whiffSounds[0];
         //hitSound = fighter.hitSounds[3];
+        whiffSoundIndex = 0;
+        hitSoundIndex = 3;
 
         properties.AnimationName = "Crouchkick";
 
@@ -237,6 +247,8 @@ public class JumpB : GameAttack
 
         //whiffSound = fighter.whiffSounds[0];
         //hitSound = fighter.hitSounds[3];
+        whiffSoundIndex = 0;
+        hitSoundIndex = 3;
 
         properties.AnimationName = "Jumpslice";
 
@@ -268,6 +280,8 @@ public class SixTwoThreeA : GameAttack
 
         //whiffSound = fighter.whiffSounds[1];
         //hitSound = fighter.hitSounds[4];
+        whiffSoundIndex = 1;
+        hitSoundIndex = 3;
 
         properties.AnimationName = "Dragonpunch";
 
@@ -313,6 +327,8 @@ public class TwoOneFourB : GameAttack
 
         //whiffSound = fighter.whiffSounds[0];
         //hitSound = fighter.hitSounds[3];
+        whiffSoundIndex = 0;
+        hitSoundIndex = 3;
 
         properties.AnimationName = "Overhead";
 
@@ -347,6 +363,8 @@ public class GrabWhiff : ThrowAttack
 
         //whiffSound = fighter.whiffSounds[0];
         //hitSound = fighter.hitSounds[0];
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
 
         properties.AnimationName = "ThrowWhiff";
     }
@@ -360,6 +378,8 @@ public class GrabSuccess : ThrowAttackSuccess
 
         //whiffSound = fighter.whiffSounds[0];
         //hitSound = fighter.hitSounds[2];
+        whiffSoundIndex = 0;
+        hitSoundIndex = 2;
 
         properties.hitProperties.knockback.Set(-5f, 7f);
         properties.hitProperties.selfKnockback.Set(0f, 0);

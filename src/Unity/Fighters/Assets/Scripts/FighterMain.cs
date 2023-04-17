@@ -380,6 +380,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
         if (blocked)
         {
+            PlaySound(blockSounds[0]);
             SwitchState(blockstun);
             ((IStunState)currentState).SetStun(pp.stunTime);
             return HitReport.Block;

@@ -44,7 +44,7 @@ public class GameAttack
     public GameAttack()
     {
         conditions = new List<GameAttackCondition>();
-        properties = new GameAttackProperties();
+        properties = new GameAttackProperties(this);
     }
 
     public virtual bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
@@ -56,7 +56,10 @@ public class GameAttack
 
     public virtual void OnStartup(FighterMain fighter)
     {
-        fighter.PlaySound(fighter.whiffSounds[whiffSoundIndex]);
+        if (whiffSoundIndex >= 0)
+        {
+            fighter.PlaySound(fighter.whiffSounds[whiffSoundIndex]);
+        }
     }
 
     public virtual void OnActive(FighterMain fighter)
@@ -71,7 +74,10 @@ public class GameAttack
 
     public virtual void OnHit(FighterMain fighter, FighterMain otherFighter)
     {
-        fighter.PlaySound(fighter.hitSounds[hitSoundIndex]);
+        if (hitSoundIndex >= 0)
+        {
+            fighter.PlaySound(fighter.hitSounds[hitSoundIndex]);
+        }
     }
 
     public virtual void OnBlock(FighterMain fighter, FighterMain otherFighter)
@@ -105,6 +111,8 @@ public class GameAttackProperties
         Throw
     }
 
+    public GameAttack parent;
+
     public string AnimationName;
 
     public BlockType blockType;
@@ -114,8 +122,9 @@ public class GameAttackProperties
     public GameAttackPropertiesProperties blockProperties;
     public GameAttackPropertiesProperties hitProperties;
 
-    public GameAttackProperties()
+    public GameAttackProperties(GameAttack _parent)
     {
+        this.parent = _parent;
         AnimationName = string.Empty;
         blockType = BlockType.Mid;
         attackType = AttackType.Light;

@@ -96,6 +96,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public AudioClip[] whiffSounds;
     public AudioClip[] hitSounds;
     public AudioClip[] blockSounds;
+    public AudioClip throwTechSound;
 
     void Awake()
     {
@@ -245,7 +246,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         facingDirection = Directions.FacingDirection.RIGHT;
     }
 
-    protected void TurnAroundVisually()
+    public void TurnAroundVisually()
     {
         Vector3 localScale = transform.localScale;
         localScale.x *= -1f;
@@ -401,6 +402,22 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         if (isGrounded && currentState.jumpsEnabled && hasJumpInput) return HitReport.Whiff; 
         if ((properties.attackStance == FighterStance.Air) != (currentStance == FighterStance.Air)) return HitReport.Whiff;
 
+        if (isCurrentlyAttacking && currentAttack is ThrowAttack currentThrow)
+        {
+            if (currentThrow.canTech)
+            {
+                if (properties.parent is ThrowAttack enemyThrow)
+                {
+                    if (enemyThrow.canBeTeched)
+                    {
+                        InitializeThrowTech();
+                        return HitReport.Whiff;
+                    }
+                }
+            }
+
+        }
+
         return HitReport.Hit;
     }
 
@@ -491,6 +508,23 @@ public class FighterMain : SoundPlayer, IHitboxResponder
             FaceDirection(shouldFaceDirection);
         }
     }
+    /// <summary>
+    /// Only the fighter who would otherwise be getting thrown should initialize the throw tech
+    /// </summary>
+    public void InitializeThrowTech()
+    {
+        timeManager.DoHitStop(10f / 60f);
+        PlaySound(throwTechSound);
+        TechThrow();
+        otherFighterMain.TechThrow();
+    }
 
-    
+    public void TechThrow()
+    {
+        SwitchState(hitstun);
+        Hitstun hs = (Hitstun)currentState;
+        hs.SetStun(0.3f);
+        Vector2 kb = new Vector2(-10,0);
+        OnVelocityImpulse(kb);
+    }
 }

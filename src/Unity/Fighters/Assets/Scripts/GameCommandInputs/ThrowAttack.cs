@@ -7,11 +7,16 @@ using System.Threading.Tasks;
 
 public class ThrowAttack : GameAttack
 {
+    public bool canTech;
+    public bool canBeTeched;
     public ThrowAttackSuccess success;
 
     public ThrowAttack(ThrowAttackSuccess _success) : base()
     {
         success = _success;
+
+        canTech = true;
+        canBeTeched = true;
 
         properties.attackType = GameAttackProperties.AttackType.Throw;
         properties.blockType = GameAttackProperties.BlockType.Throw;
@@ -38,11 +43,10 @@ public class ThrowAttackSuccess : GameAttack
     }
     public override void OnActive(FighterMain fighter)
     {
-        base.OnActive(fighter);
-        if (hitSound != null)
-        {
-            fighter.PlaySound(hitSound);
-        }
+        // throw success on active is basically base onhit
+
+        base.OnHit(fighter, fighter.otherFighterMain);
+
 
         fighter.otherFighterMain.isStrikeInvulnerable = false;
         fighter.otherFighterMain.canBlock = false;

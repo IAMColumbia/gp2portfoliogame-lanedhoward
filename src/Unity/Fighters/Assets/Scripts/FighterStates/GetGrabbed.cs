@@ -1,12 +1,16 @@
+using CommandInputReaderLibrary;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GetGrabbed : FighterState
 {
+    public bool canTech;
+
     public GetGrabbed(FighterMain fighterMain) : base(fighterMain)
     {
         jumpsEnabled = false;
+        canTech = true;
     }
 
     public override void EnterState()
@@ -15,6 +19,8 @@ public class GetGrabbed : FighterState
 
         fighter.canAct = false;
         fighter.canBlock = false;
+
+        canTech = true;
 
         UpdateStance();
         fighter.fighterAnimator.StartAnimation("GetGrabbed");
@@ -28,6 +34,28 @@ public class GetGrabbed : FighterState
     public override void DoState()
     {
         base.DoState();
+        if (canTech)
+        {
+            if (fighter.inputReceiver.bufferedInput != null)
+            {
+                UpdateStance();
+                var foundAttack = fighter.inputReceiver.ParseAttack(fighter.inputReceiver.bufferedInput);
+
+                if (foundAttack != null)
+                {
+                    ThrowAttack foundThrow = (ThrowAttack)foundAttack;
+                    if (foundThrow != null)
+                    {
+                        if (foundThrow.canTech)
+                        {
+                            fighter.inputReceiver.bufferedInput = null;
+                            fighter.InitializeThrowTech();
+                        }
+                    }
+                }
+
+            }
+        }
 
     }
 

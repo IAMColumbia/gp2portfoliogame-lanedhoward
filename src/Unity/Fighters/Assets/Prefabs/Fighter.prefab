@@ -261,11 +261,11 @@ MonoBehaviour:
   jumpMomentumMultiplier: 0.5
   hasCrouchInput: 0
   hasJumpInput: 0
-  isGrounded: 0
+  isGrounded: 1
   canAct: 0
   canBlock: 0
   isCurrentlyAttacking: 0
-  currentStance: 0
+  currentStance: 1
   facingDirection: 0
   isStrikeInvulnerable: 0
   isThrowInvulnerable: 0
@@ -281,6 +281,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d5b12f917025a9a489ee303063a26c05, type: 3}
   blockSounds:
   - {fileID: 8300000, guid: 470a5173824ac2a45931aee638948ab8, type: 3}
+  throwTechSound: {fileID: 8300000, guid: 618cb72e0ed85ac47809de66811faf0a, type: 3}
 --- !u!61 &9020838737738353917
 BoxCollider2D:
   m_ObjectHideFlags: 0

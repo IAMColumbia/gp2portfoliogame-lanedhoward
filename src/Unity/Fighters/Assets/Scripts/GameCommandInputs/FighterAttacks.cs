@@ -19,6 +19,7 @@ public static class FighterAttacks
                 new JumpB(),
                 new SixTwoThreeA(),
                 new TwoOneFourB(),
+                new BackThrowWhiff(new GrabSuccess()),
                 new GrabWhiff(new GrabSuccess())
             };
         return attacks;
@@ -151,13 +152,13 @@ public class JumpA : GameAttack
         properties.attackStance = FighterStance.Air;
 
         properties.blockProperties.knockback.Set(-2.5f, 0);
-        properties.blockProperties.selfKnockback.Set(-2f, 0);
+        properties.blockProperties.selfKnockback.Set(-1f, 0);
         properties.blockProperties.damage = 0f;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel1_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel1_blockstun;
 
         properties.hitProperties.knockback.Set(-3f, 0);
-        properties.hitProperties.selfKnockback.Set(-2f, 0);
+        properties.hitProperties.selfKnockback.Set(-1f, 0);
         properties.hitProperties.damage = 100f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel1_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel1_hitstun;
@@ -370,6 +371,35 @@ public class GrabWhiff : ThrowAttack
     }
 }
 
+public class BackThrowWhiff : ThrowAttack
+{
+    public BackThrowWhiff(ThrowAttackSuccess _success) : base(_success)
+    {
+        conditions.Add(new GestureCondition(this, new BackGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new StanceCondition(this, FighterStance.Standing));
+        conditions.Add(new NoGatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[0];
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
+
+        properties.AnimationName = "ThrowWhiff";
+    }
+
+    public override void OnHit(FighterMain fighter, FighterMain otherFighter)
+    {
+        Vector3 originalPos = fighter.transform.position;
+        fighter.transform.position = fighter.throwPivot.position;
+        otherFighter.transform.position = originalPos;
+        fighter.AutoTurnaround();
+
+        base.OnHit(fighter, otherFighter);
+    }
+}
+
 public class GrabSuccess : ThrowAttackSuccess
 {
     public GrabSuccess() : base()
@@ -378,7 +408,7 @@ public class GrabSuccess : ThrowAttackSuccess
 
         //whiffSound = fighter.whiffSounds[0];
         //hitSound = fighter.hitSounds[2];
-        whiffSoundIndex = 0;
+        whiffSoundIndex = -1;
         hitSoundIndex = 2;
 
         properties.hitProperties.knockback.Set(-5f, 7f);

@@ -18,6 +18,8 @@ public static class FighterGestures
                 new Dash(),
                 new ForwardHalfCircleForward(),
                 new CrouchGesture(),
+                new BackGesture(),
+                new ForwardGesture(),
                 new NoGesture()
             };
         return gestures;
@@ -114,5 +116,44 @@ public class CrouchGesture : ReadableGesture
             }
         }
         return false;
+    }
+}
+
+public class SingleDirectionGesture : ReadableGesture
+{
+    public Direction requiredDirection;
+    public SingleDirectionGesture(Direction direction) : base()
+    {
+        requiredDirection = direction;
+        Priority = 500;
+    }
+
+    public override bool Read(List<ReadablePackage> inputs, float currentTime, FacingDirection facingDirection)
+    {
+        if (inputs.Count > 0)
+        {
+            Direction dir = inputs.Last().GetDirectionFacingForward(facingDirection);
+            if (dir == requiredDirection)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+public class BackGesture : SingleDirectionGesture
+{
+    public BackGesture() : base(Direction.Back)
+    {
+
+    }
+}
+
+public class ForwardGesture : SingleDirectionGesture
+{
+    public ForwardGesture() : base(Direction.Forward)
+    {
+
     }
 }

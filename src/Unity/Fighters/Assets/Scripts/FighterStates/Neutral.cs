@@ -30,10 +30,12 @@ public class Neutral : FighterState
         if (fighter.currentStance == FighterStance.Standing)
         {
             fighter.fighterAnimator.StartAnimation("Idle");
+            fighter.fighterAnimator.AnimationUpdateCrouchingBool(false);
         }
         else
         {
             fighter.fighterAnimator.StartAnimation("Crouchidle");
+            fighter.fighterAnimator.AnimationUpdateCrouchingBool(true);
         }
         
     }

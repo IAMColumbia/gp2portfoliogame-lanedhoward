@@ -34,7 +34,7 @@ public class GetGrabbed : FighterState
     public override void DoState()
     {
         base.DoState();
-        if (canTech)
+        if (canTech && stateTimer <= fighter.throwTechWindow)
         {
             if (fighter.inputReceiver.bufferedInput != null)
             {

@@ -252,6 +252,10 @@ MonoBehaviour:
   CurrentHealth: 0
   softKnockdownTime: 0.1
   hardKnockdownTime: 0.4
+  throwTechWindow: 0.16666667
+  throwTechHitstun: 0.3
+  throwTechKnockback: {x: -9, y: 0}
+  throwTechHitstop: 0.16666667
   walkAccel: 50
   walkMaxSpeed: 5
   groundFriction: 40

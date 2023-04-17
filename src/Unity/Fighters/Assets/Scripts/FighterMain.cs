@@ -63,6 +63,12 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public float softKnockdownTime = 0.25f;
     public float hardKnockdownTime = 1.25f;
 
+    [Header("Throw Tech Values")]
+    public float throwTechWindow = 10f / 60f;
+    public float throwTechHitstun = 0.3f;
+    public Vector2 throwTechKnockback;
+    public float throwTechHitstop = 10f / 60f;
+
     [Header("Movement Values")]
     public float walkAccel;
     public float walkMaxSpeed;
@@ -513,7 +519,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     /// </summary>
     public void InitializeThrowTech()
     {
-        timeManager.DoHitStop(10f / 60f);
+        timeManager.DoHitStop(throwTechHitstop);
         PlaySound(throwTechSound);
         TechThrow();
         otherFighterMain.TechThrow();
@@ -523,8 +529,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     {
         SwitchState(hitstun);
         Hitstun hs = (Hitstun)currentState;
-        hs.SetStun(0.3f);
-        Vector2 kb = new Vector2(-10,0);
-        OnVelocityImpulse(kb);
+        hs.SetStun(throwTechHitstun);
+        OnVelocityImpulse(throwTechKnockback);
     }
 }

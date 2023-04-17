@@ -70,7 +70,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public float throwTechWindow = 10f / 60f;
     public float throwTechHitstun = 0.3f;
     public Vector2 throwTechKnockback;
-    public float throwTechHitstop = 10f / 60f;
+    public float throwTechHitstop = 15f / 60f;
 
     [Header("Movement Values")]
     public float walkAccel;
@@ -80,14 +80,21 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
     [Header("Dashing Values")]
     public float forwardDashTime = 0.3f;
+    public float forwardDashActionableDelay = 0.1f;
     public Vector2 forwardDashVelocity;
+
     public float backDashTime = 0.3f;
-    public Vector2 backDashVelocity;
-    public float neutralDashTime = 0.3f;
-    public Vector2 neutralDashVelocity;
+    public float backDashActionableDelay = 0.1f;
     public float backDashStrikeInvulnTime = 0.1f;
+    public Vector2 backDashVelocity;
+    
+    public float neutralDashTime = 0.3f;
+    public float neutralDashActionableDelay = 0.1f;
+    public Vector2 neutralDashVelocity;
+
     public float dashJumpCancelWindow = 0.1f;
     public float dashMomentumMultiplier;
+
 
     [Header("Jump Values")]
     public float jumpVelocityHorizontal;

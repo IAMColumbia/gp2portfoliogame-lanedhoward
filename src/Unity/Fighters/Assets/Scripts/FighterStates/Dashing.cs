@@ -8,6 +8,7 @@ public class Dashing : FighterState
 
     protected float dashTime;
     protected float invulnTime;
+    protected float actionableDelay;
 
     protected Vector2 dashVelocity;
 
@@ -17,6 +18,7 @@ public class Dashing : FighterState
         invulnTime = 0f;
         dashTime = fighterMain.forwardDashTime;
         dashVelocity = fighterMain.forwardDashVelocity;
+        actionableDelay = fighterMain.forwardDashActionableDelay;
     }
 
     public override void EnterState()
@@ -47,6 +49,11 @@ public class Dashing : FighterState
     public override void DoState()
     {
         base.DoState();
+
+        if (!fighter.canAct && stateTimer > actionableDelay)
+        {
+            fighter.canAct = true;
+        }
 
         if (fighter.isStrikeInvulnerable && stateTimer > invulnTime)
         {

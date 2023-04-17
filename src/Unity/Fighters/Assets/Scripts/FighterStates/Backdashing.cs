@@ -13,5 +13,7 @@ public class Backdashing : Dashing
         invulnTime = fighterMain.backDashStrikeInvulnTime;
         dashTime = fighterMain.backDashTime;
         dashVelocity = fighterMain.backDashVelocity;
+
+        actionableDelay = fighterMain.backDashActionableDelay;
     }
 }

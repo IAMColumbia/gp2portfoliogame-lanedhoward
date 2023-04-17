@@ -13,5 +13,7 @@ public class Neutraldashing : Dashing
         invulnTime = 0;
         dashTime = fighterMain.neutralDashTime;
         dashVelocity = fighterMain.neutralDashVelocity;
+
+        actionableDelay = fighterMain.neutralDashActionableDelay;
     }
 }

@@ -261,12 +261,15 @@ MonoBehaviour:
   groundFriction: 40
   velocityToStopMoveAnimation: 1
   forwardDashTime: 0.3
-  forwardDashVelocity: {x: 6, y: 5}
+  forwardDashActionableDelay: 0.1
+  forwardDashVelocity: {x: 4, y: 7.5}
   backDashTime: 0.3
-  backDashVelocity: {x: -6, y: 5}
-  neutralDashTime: 0.3
-  neutralDashVelocity: {x: 0, y: 5}
+  backDashActionableDelay: 0.1
   backDashStrikeInvulnTime: 0.1
+  backDashVelocity: {x: -4, y: 7.5}
+  neutralDashTime: 0.3
+  neutralDashActionableDelay: 0.1
+  neutralDashVelocity: {x: 0, y: 7.5}
   dashJumpCancelWindow: 0.1
   dashMomentumMultiplier: 0.7
   jumpVelocityHorizontal: 3
@@ -336,7 +339,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2.9
+  m_GravityScale: 3.1
   m_Material: {fileID: 6200000, guid: b4310aa3fa47235498d7211a12faedcb, type: 2}
   m_Interpolate: 1
   m_SleepingMode: 1

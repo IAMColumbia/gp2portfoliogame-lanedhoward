@@ -1,5 +1,6 @@
 Release Notes version 3 Final
 
+whats new:
 - damage & improved knockback
 - sounds
 - new moves
@@ -9,6 +10,15 @@ Release Notes version 3 Final
 - hopping
 - various fixed and improvements
 
+
+whats next:
+- fixing standing / sliding on peoples heads
+- air hit properties to allow for juggle combos
+- new moves
+- second character?
+- character select screen
+- rebindable controls
+- larger stage with dynamic camera
 
 
 playesting day 0 footage: https://www.youtube.com/watch?v=LyAZ3PXxWKE

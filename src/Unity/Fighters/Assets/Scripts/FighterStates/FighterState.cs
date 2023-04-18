@@ -186,12 +186,14 @@ public abstract class FighterState
         return false;
     }
 
-    protected void AllowLanding()
+    protected bool AllowLanding()
     {
         if (fighter.isGrounded)
         {
             fighter.SwitchState(fighter.neutral);
+            return true;
         }
+        return false;
     }
 
     protected FighterState NeutralOrAir()

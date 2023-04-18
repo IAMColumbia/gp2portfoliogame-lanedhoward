@@ -56,6 +56,8 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\FighterStates\Knockdown.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\Grabbing.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Neutral.cs" />
     <Compile Include="Assets\Scripts\Hitboxes\IHitboxResponder.cs" />
     <Compile Include="Assets\Scripts\FighterButtons.cs" />
@@ -64,6 +66,7 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\Gestures\GestureComponent.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadPackage.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\InputHost.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\Dashing.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Directions.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IReadableGesture.cs" />
     <Compile Include="Assets\Scripts\Hitboxes\Hitbox.cs" />
@@ -72,35 +75,70 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\IButton.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Hitstun.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IInputHost.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\Neutraldashing.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadablePackage.cs" />
     <Compile Include="Assets\Inputs\Fighters.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IReadPackage.cs" />
+    <Compile Include="Assets\Scripts\SoundPlayer.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\GetGrabbed.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttackCondition.cs" />
+    <Compile Include="Assets\Scripts\System\GameManager.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableGesture.cs" />
+    <Compile Include="Assets\Scripts\System\TimeManager.cs" />
+    <Compile Include="Assets\Scripts\GameCommandInputs\ThrowAttack.cs" />
     <Compile Include="Assets\Scripts\FighterStates\FighterState.cs" />
     <Compile Include="Assets\Scripts\Hitboxes\Hurtbox.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\FighterGestures.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\FighterAttacks.cs" />
     <Compile Include="Assets\Scripts\FighterAnimationEvents.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Air.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\Getup.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Button.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\GameMoveInputs.cs" />
     <Compile Include="Assets\Scripts\FighterInputReceiver.cs" />
+    <Compile Include="Assets\Scripts\System\Healthbar.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IInputReceiver.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IHostPackage.cs" />
     <Compile Include="Assets\Scripts\FighterMain.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\IStunState.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IGesture.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableGestureWithShortcuts.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Prejump.cs" />
     <Compile Include="Assets\Scripts\FighterAnimator.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\Blockstun.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Gestures\DefaultGestures.cs" />
     <Compile Include="Assets\Scripts\PriorityQueue.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\Backdashing.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\HostPackageComparer.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttack.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\FighterStates\Knockdown.cs" />
-    <Compile Include="Assets\Scripts\FighterStates\Getup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald-Bold - OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
+    <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

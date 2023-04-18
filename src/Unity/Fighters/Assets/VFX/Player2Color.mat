@@ -41,5 +41,5 @@ Material:
     m_Colors:
     - _MainColor: {r: 0.41960788, g: 0.76695293, b: 1, a: 0}
     - _SecondaryColor: {r: 0.1381274, g: 0.46293646, b: 0.754717, a: 0}
-    - _SpecialColor: {r: 0.74661463, g: 0.13163044, b: 0.8018868, a: 0}
+    - _SpecialColor: {r: 0.1211819, g: 0.6981132, b: 0.40365735, a: 0}
   m_BuildTextureStacks: []

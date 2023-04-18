@@ -16,6 +16,7 @@ public class Neutral : FighterState
         fighter.currentStance = FighterStance.Standing;
 
         fighter.canAct = true;
+        fighter.canBlock = true;
 
         UpdateStance();
 
@@ -29,10 +30,12 @@ public class Neutral : FighterState
         if (fighter.currentStance == FighterStance.Standing)
         {
             fighter.fighterAnimator.StartAnimation("Idle");
+            fighter.fighterAnimator.AnimationUpdateCrouchingBool(false);
         }
         else
         {
             fighter.fighterAnimator.StartAnimation("Crouchidle");
+            fighter.fighterAnimator.AnimationUpdateCrouchingBool(true);
         }
         
     }

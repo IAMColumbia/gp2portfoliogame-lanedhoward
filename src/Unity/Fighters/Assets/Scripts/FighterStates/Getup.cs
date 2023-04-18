@@ -17,6 +17,7 @@ public class Getup : FighterState
         base.EnterState();
 
         fighter.canAct = false;
+        fighter.canBlock = true;
 
         fighter.isStrikeInvulnerable = true;
         fighter.isThrowInvulnerable = true;

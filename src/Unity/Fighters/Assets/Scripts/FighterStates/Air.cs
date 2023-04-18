@@ -16,6 +16,7 @@ public class Air : FighterState
         fighter.currentStance = FighterStance.Air;
 
         fighter.canAct = true;
+        fighter.canBlock = true;
 
         bool isFalling = UpdateFallingAnimationBool();
 

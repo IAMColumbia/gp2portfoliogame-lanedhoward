@@ -38,7 +38,7 @@ public class FighterInspector : Editor
 
         DrawPastStates();
 
-
+        DrawCurrentAttack(fighter);
     }
 
     private void DrawPastStates()
@@ -57,5 +57,15 @@ public class FighterInspector : Editor
             pastStates[i] = pastStates[i - 1];
         }
         pastStates[0] = name;
+    }
+
+    private void DrawCurrentAttack(FighterMain fighter)
+    {
+        string attackName = "";
+        if (fighter.currentAttack != null)
+        {
+            attackName = fighter.currentAttack.GetType().Name;
+        }
+        EditorGUILayout.LabelField("Current Attack: " + attackName);
     }
 }

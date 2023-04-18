@@ -1,4 +1,5 @@
 using CommandInputReaderLibrary;
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,8 +15,15 @@ public enum FighterStance
     Air = 4
 }
 
+public enum HitReport
+{
+    Whiff,
+    Hit,
+    Block
+}
+
 [RequireComponent(typeof(PlayerInput))]
-public class FighterMain : MonoBehaviour, IHitboxResponder
+public class FighterMain : SoundPlayer, IHitboxResponder
 {
     public FighterInputReceiver inputReceiver;
     public FighterAnimator fighterAnimator;
@@ -25,6 +33,8 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
     public BoxCollider2D fighterCollider;
 
     public GameObject otherFighter;
+    public FighterMain otherFighterMain;
+    public Transform throwPivot;
 
     public LayerMask groundMask;
     public float groundCheckXDistance;
@@ -39,15 +49,52 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
     public Air air;
     public AttackState attacking;
     public Hitstun hitstun;
+    public Blockstun blockstun;
     public Knockdown knockdown;
     public Getup getup;
+    public Grabbing grabbing;
+    public GetGrabbed getGrabbed;
+    public Dashing dashing;
+    public Backdashing backdashing;
+    public Neutraldashing neutraldashing;
 
+    [Header("Health Values")]
+    public float MaxHealth = 1000;
+    public float CurrentHealth = 0;
+
+    [Header("KD Values")]
+    public float softKnockdownTime = 0.25f;
+    public float hardKnockdownTime = 1.25f;
+
+    [Header("Throw Tech Values")]
+    public float throwTechWindow = 10f / 60f;
+    public float throwTechHitstun = 0.3f;
+    public Vector2 throwTechKnockback;
+    public float throwTechHitstop = 15f / 60f;
 
     [Header("Movement Values")]
     public float walkAccel;
     public float walkMaxSpeed;
     public float groundFriction;
     public float velocityToStopMoveAnimation;
+
+    [Header("Dashing Values")]
+    public float forwardDashTime = 0.3f;
+    public float forwardDashActionableDelay = 0.1f;
+    public Vector2 forwardDashVelocity;
+
+    public float backDashTime = 0.3f;
+    public float backDashActionableDelay = 0.1f;
+    public float backDashStrikeInvulnTime = 0.1f;
+    public Vector2 backDashVelocity;
+    
+    public float neutralDashTime = 0.3f;
+    public float neutralDashActionableDelay = 0.1f;
+    public Vector2 neutralDashVelocity;
+
+    public float dashJumpCancelWindow = 0.1f;
+    public float dashMomentumMultiplier;
+
 
     [Header("Jump Values")]
     public float jumpVelocityHorizontal;
@@ -60,14 +107,28 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
     public bool hasJumpInput;
     public bool isGrounded;
     public bool canAct;
+    public bool canBlock;
+    public bool isCurrentlyAttacking;
     public FighterStance currentStance;
     public GameAttack currentAttack;
     public Directions.FacingDirection facingDirection;
     public bool isStrikeInvulnerable = false;
     public bool isThrowInvulnerable = false;
+    public TimeManager timeManager;
 
-    void Start()
+    [Header("Test/Training Values")]
+    public bool blockEverything;
+
+    [Header("Sounds")]
+    public AudioClip[] whiffSounds;
+    public AudioClip[] hitSounds;
+    public AudioClip[] blockSounds;
+    public AudioClip throwTechSound;
+
+    void Awake()
     {
+        timeManager = FindObjectOfType<TimeManager>();
+
         var inputHost = new FighterInputHost(GetComponent<PlayerInput>());
         var inputReader = new InputReader(inputHost);
         inputReader.SetPossibleGestures(FighterGestures.GetDefaultGestures());
@@ -75,6 +136,11 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
 
         fighterRigidbody = GetComponent<Rigidbody2D>();
         fighterCollider = GetComponent<BoxCollider2D>();
+
+        if (otherFighter != null)
+        {
+            otherFighterMain = otherFighter.GetComponent<FighterMain>();
+        }
 
         fighterAnimationEvents = GetComponentInChildren<FighterAnimationEvents>();
         fighterAnimationEvents.FighterAnimationHaltVerticalVelocity += OnHaltVerticalVelocity;
@@ -92,23 +158,34 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
         air = new Air(this);
         attacking = new AttackState(this);
         hitstun = new Hitstun(this);
+        blockstun = new Blockstun(this);
         knockdown = new Knockdown(this);
         getup = new Getup(this);
+        grabbing = new Grabbing(this);
+        getGrabbed = new GetGrabbed(this);
+        dashing = new Dashing(this);
+        backdashing = new Backdashing(this);
+        neutraldashing = new Neutraldashing(this);
 
         currentAttack = null;
         fighterAttacks = FighterAttacks.GetFighterAttacks();
 
+        CurrentHealth = MaxHealth;
+
         InitializeFacingDirection();
+        inputReceiver.UpdateFacingDirection();
 
         SwitchState(neutral);
     }
 
+    void Update()
+    {
+        CheckForInputs();
+    }
 
     void FixedUpdate()
     {
         CheckForGroundedness();
-        
-        CheckForInputs();
 
         HandleInputs();
 
@@ -142,19 +219,31 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
         if (canAct && inputReceiver.bufferedInput != null)
         {
             UpdateStance();
-            currentAttack = inputReceiver.ParseAttack(inputReceiver.bufferedInput);
+            var foundAttack = inputReceiver.ParseAttack(inputReceiver.bufferedInput);
             inputReceiver.bufferedInput = null;
 
-            if (currentAttack != null)
+            if (foundAttack != null)
             {
-                if (currentStance == FighterStance.Standing || currentStance == FighterStance.Crouching)
-                {
-                    AutoTurnaround();
-                }
-                SwitchState(attacking);
+                SetCurrentAttack(foundAttack);
             }
             
         }
+    }
+
+    public void SetCurrentAttack(GameAttack newAttack)
+    {
+        if (currentAttack != null)
+        {
+            currentAttack.OnExit(this);
+        }
+
+        currentAttack = newAttack;
+        if (currentStance == FighterStance.Standing || currentStance == FighterStance.Crouching)
+        {
+            AutoTurnaround();
+        }
+        SwitchState(attacking);
+        currentAttack.OnStartup(this);
     }
 
     public void CheckForGroundedness()
@@ -187,7 +276,7 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
         facingDirection = Directions.FacingDirection.RIGHT;
     }
 
-    protected void TurnAroundVisually()
+    public void TurnAroundVisually()
     {
         Vector3 localScale = transform.localScale;
         localScale.x *= -1f;
@@ -217,26 +306,51 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
 
     protected void OnAttackActive()
     {
-
+        if (currentAttack != null)
+        {
+            currentAttack.OnActive(this);
+        }
     }
 
     protected void OnAttackRecovery()
     {
-
+        if (currentAttack != null)
+        {
+            currentAttack.OnRecovery(this);
+        }
     }
 
-    protected void OnVelocityImpulse(Vector2 v)
+    public void OnVelocityImpulse(Vector2 v)
     {
-        if (facingDirection == Directions.FacingDirection.LEFT)
+        if (ShouldFaceDirection() == Directions.FacingDirection.LEFT)
         {
             v.x = -v.x;
         }
         fighterRigidbody.velocity = new Vector2(fighterRigidbody.velocity.x + v.x, fighterRigidbody.velocity.y + v.y);
     }
 
-    protected void OnHaltVerticalVelocity()
+    public void OnVelocityImpulse(Vector2 v, float momentumMultiplier)
+    {
+        if (ShouldFaceDirection() == Directions.FacingDirection.LEFT)
+        {
+            v.x = -v.x;
+        }
+        fighterRigidbody.velocity = new Vector2((fighterRigidbody.velocity.x * momentumMultiplier) + (v.x), v.y);
+    }
+
+    public void OnHaltVerticalVelocity()
     {
         fighterRigidbody.velocity = new Vector2(fighterRigidbody.velocity.x, 0);
+    }
+
+    public void OnHaltHorizontalVelocity()
+    {
+        fighterRigidbody.velocity = new Vector2(0, fighterRigidbody.velocity.y);
+    }
+
+    public void OnHaltAllVelocity()
+    {
+        fighterRigidbody.velocity = Vector2.zero;
     }
 
     bool IHitboxResponder.CollidedWith(Collider2D collider)
@@ -250,25 +364,165 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
         {
             if (hurtbox.fighterParent == this) return false;
 
-            bool successfulHit = hurtbox.fighterParent.GetHitWith(currentAttack.properties);
+            HitReport report = hurtbox.fighterParent.GetHitWith(currentAttack.properties);
+
+            //react to the hit report ???????
+
+            bool successfulHit = report != HitReport.Whiff;
+
+            if (successfulHit)
+            {
+                GameAttackPropertiesProperties pp;
+                // allow for cancels on hit or block
+                canAct = true;
+                if (report == HitReport.Hit)
+                {
+                    currentAttack.OnHit(this, hurtbox.fighterParent);
+                    pp = currentAttack.properties.hitProperties;
+                }
+                else
+                {
+                    //blocked 
+                    currentAttack.OnBlock(this, hurtbox.fighterParent);
+                    pp = currentAttack.properties.blockProperties;
+                }
+
+                Vector2 kb = pp.selfKnockback;
+                OnVelocityImpulse(kb);
+            }
+
             return successfulHit;
         }
         return false;
     }
 
-    public bool GetHitWith(GameAttackProperties properties)
+    public HitReport GetHitWith(GameAttackProperties properties)
     {
-        if (isStrikeInvulnerable) return false;
-
-        //knockback
-        Vector2 kb = properties.knockback;
+        if (properties.blockType == GameAttackProperties.BlockType.Throw) return GetThrownWith(properties);
+        
+        if (isStrikeInvulnerable) return HitReport.Whiff;
 
         AutoTurnaround();
 
+        // decide if we blocked
+        bool blocked = DidWeBlock(properties);
+
+        GameAttackPropertiesProperties pp = blocked ? properties.blockProperties : properties.hitProperties;
+
+        //knockback
+        // probably will need to separate this into hit kb and block kb, or apply modifiers or somthing
+        Vector2 kb = pp.knockback;
         OnVelocityImpulse(kb);
 
+        CurrentHealth -= pp.damage;
+
+        timeManager.DoHitStop(pp.hitstopTime);
+
+        if (blocked)
+        {
+            PlaySound(blockSounds[0]);
+            SwitchState(blockstun);
+            ((IStunState)currentState).SetStun(pp.stunTime);
+            return HitReport.Block;
+        }
+
         SwitchState(hitstun);
-        return true;
+        Hitstun hs = (Hitstun)currentState;
+
+        hs.SetStun(pp.stunTime);
+        hs.SetHardKD(pp.hardKD);
+
+        return HitReport.Hit;
+    }
+
+    private HitReport GetThrownWith(GameAttackProperties properties)
+    {
+        if (isThrowInvulnerable) return HitReport.Whiff;
+        if (isGrounded && currentState.jumpsEnabled && hasJumpInput) return HitReport.Whiff; 
+        if ((properties.attackStance == FighterStance.Air) != (currentStance == FighterStance.Air)) return HitReport.Whiff;
+
+        if (isCurrentlyAttacking && currentAttack is ThrowAttack currentThrow)
+        {
+            if (currentThrow.canTech)
+            {
+                if (properties.parent is ThrowAttack enemyThrow)
+                {
+                    if (enemyThrow.canBeTeched)
+                    {
+                        InitializeThrowTech();
+                        return HitReport.Whiff;
+                    }
+                }
+            }
+
+        }
+
+        return HitReport.Hit;
+    }
+
+    protected bool DidWeBlock(GameAttackProperties properties)
+    {
+        if (canBlock)
+        {
+            if (blockEverything)
+            {
+                if (currentStance != FighterStance.Air)
+                {
+                    if (properties.blockType == GameAttackProperties.BlockType.Low)
+                    {
+                        currentStance = FighterStance.Crouching;
+                    }
+                    if (properties.blockType == GameAttackProperties.BlockType.High)
+                    {
+                        currentStance = FighterStance.Standing;
+                    }
+                }
+                return true;
+            }
+            Directions.Direction dir = inputReceiver.GetDirection();
+
+            if (currentStance == FighterStance.Air)
+            {
+                if (dir == Directions.Direction.Back || dir == Directions.Direction.DownBack || dir == Directions.Direction.UpBack)
+                {
+                    // air block / chicken block
+                    return true;
+
+                }
+                return false;
+            }
+
+            switch (properties.blockType)
+            {
+                // cannot upback to block on ground, to punish trying to jump out of pressure all the time
+
+                case GameAttackProperties.BlockType.Low:
+                    if (dir == Directions.Direction.DownBack)
+                    {
+                        // crouch block
+                        return true;
+
+                    }
+                    break;
+                case GameAttackProperties.BlockType.High:
+                    if (dir == Directions.Direction.Back)
+                    {
+                        // high block
+                        return true;
+
+                    }
+                    break;
+                case GameAttackProperties.BlockType.Mid:
+                    if (dir == Directions.Direction.Back || dir == Directions.Direction.DownBack)
+                    {
+                        // any block
+                        return true;
+
+                    }
+                    break;
+            }
+        }
+        return false;
     }
 
     public Directions.FacingDirection ShouldFaceDirection()
@@ -292,5 +546,23 @@ public class FighterMain : MonoBehaviour, IHitboxResponder
         {
             FaceDirection(shouldFaceDirection);
         }
+    }
+    /// <summary>
+    /// Only the fighter who would otherwise be getting thrown should initialize the throw tech
+    /// </summary>
+    public void InitializeThrowTech()
+    {
+        timeManager.DoHitStop(throwTechHitstop);
+        PlaySound(throwTechSound);
+        TechThrow();
+        otherFighterMain.TechThrow();
+    }
+
+    public void TechThrow()
+    {
+        SwitchState(hitstun);
+        Hitstun hs = (Hitstun)currentState;
+        hs.SetStun(throwTechHitstun);
+        OnVelocityImpulse(throwTechKnockback);
     }
 }

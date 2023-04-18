@@ -30,16 +30,19 @@ public class GameAttack
 
     // counterhit state (and maybe more things that come with that ?)
 
-    protected FighterMain fighter;
+    public FighterMain fighter;
 
     public List<GameAttackCondition> conditions;
 
     public GameAttackProperties properties;
 
+    public int whiffSoundIndex;
+    public int hitSoundIndex;
+
     public GameAttack()
     {
         conditions = new List<GameAttackCondition>();
-        properties = new GameAttackProperties();
+        properties = new GameAttackProperties(this);
     }
 
     public virtual bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
@@ -49,6 +52,41 @@ public class GameAttack
         return conditions.All(c => c.CanExecute(moveInput, fighter));
     }
 
+    public virtual void OnStartup(FighterMain fighter)
+    {
+        if (whiffSoundIndex >= 0)
+        {
+            fighter.PlaySound(fighter.whiffSounds[whiffSoundIndex]);
+        }
+    }
+
+    public virtual void OnActive(FighterMain fighter)
+    {
+
+    }
+
+    public virtual void OnRecovery(FighterMain fighter)
+    {
+
+    }
+
+    public virtual void OnHit(FighterMain fighter, FighterMain otherFighter)
+    {
+        if (hitSoundIndex >= 0)
+        {
+            fighter.PlaySound(fighter.hitSounds[hitSoundIndex]);
+        }
+    }
+
+    public virtual void OnBlock(FighterMain fighter, FighterMain otherFighter)
+    {
+
+    }
+
+    public virtual void OnExit(FighterMain fighter)
+    {
+
+    }
 }
 
 public class GameAttackProperties
@@ -59,16 +97,61 @@ public class GameAttackProperties
         Medium,
         Heavy,
         Special,
-        Super
+        Super,
+        Throw,
+        Other
     }
+
+    public enum BlockType
+    {
+        Low,
+        High,
+        Mid,
+        Throw
+    }
+
+    public GameAttack parent;
 
     public string AnimationName;
 
-    public Vector2 knockback;
+    public BlockType blockType;
+    public AttackType attackType;
+    public FighterStance attackStance;
 
-    public GameAttackProperties()
+    public GameAttackPropertiesProperties blockProperties;
+    public GameAttackPropertiesProperties hitProperties;
+
+    public GameAttackProperties(GameAttack _parent)
     {
+        this.parent = _parent;
         AnimationName = string.Empty;
-        knockback = new Vector2(-2,0);
+        blockType = BlockType.Mid;
+        attackType = AttackType.Light;
+        attackStance = FighterStance.Standing;
+
+        blockProperties = new GameAttackPropertiesProperties();
+        hitProperties = new GameAttackPropertiesProperties();
     }
 }
+
+public class GameAttackPropertiesProperties
+{
+    public float hitstopTime;
+    public float stunTime;
+    public float damage;
+    public Vector2 knockback;
+    public Vector2 selfKnockback;
+
+    public bool hardKD;
+
+    public GameAttackPropertiesProperties()
+    {
+        hitstopTime = 0f;
+        stunTime = 0f;
+        damage = 0f;
+        knockback = Vector2.zero;
+        selfKnockback = Vector2.zero;
+        hardKD = false;
+    }
+}
+

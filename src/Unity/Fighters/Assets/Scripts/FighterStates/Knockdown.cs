@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Knockdown : FighterState
+public class Knockdown : FighterState, IStunState
 {
 
     float knockdownTime;
@@ -19,6 +19,7 @@ public class Knockdown : FighterState
         base.EnterState();
 
         fighter.canAct = false;
+        fighter.canBlock = false;
 
         fighter.isStrikeInvulnerable = true;
         fighter.isThrowInvulnerable = true;
@@ -34,5 +35,10 @@ public class Knockdown : FighterState
         DoFriction(fighter.groundFriction);
 
         TimeTransitionToNextState(knockdownTime, fighter.getup);
+    }
+
+    public void SetStun(float stun)
+    {
+        knockdownTime = stun;
     }
 }

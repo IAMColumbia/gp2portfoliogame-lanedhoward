@@ -1,1 +1,14 @@
 Release Notes version 3 Final
+
+- damage & improved knockback
+- sounds
+- new moves
+- grabs
+- some HUD
+- game start and end
+- hopping
+- various fixed and improvements
+
+
+
+playesting day 0 footage: https://www.youtube.com/watch?v=LyAZ3PXxWKE

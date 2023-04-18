@@ -9,6 +9,7 @@ public class Dashing : FighterState
     protected float dashTime;
     protected float invulnTime;
     protected float actionableDelay;
+    protected float jumpCancelTime;
 
     protected Vector2 dashVelocity;
 
@@ -19,6 +20,7 @@ public class Dashing : FighterState
         dashTime = fighterMain.forwardDashTime;
         dashVelocity = fighterMain.forwardDashVelocity;
         actionableDelay = fighterMain.forwardDashActionableDelay;
+        jumpCancelTime = fighterMain.dashJumpCancelWindow;
     }
 
     public override void EnterState()
@@ -58,6 +60,17 @@ public class Dashing : FighterState
         if (fighter.isStrikeInvulnerable && stateTimer > invulnTime)
         {
             fighter.isStrikeInvulnerable = false;
+        }
+
+        if (stateTimer < jumpCancelTime)
+        {
+            if (fighter.hasJumpInput)
+            {
+                fighter.SwitchState(fighter.air);        
+                // jump;
+                fighter.fighterRigidbody.velocity = new Vector2((fighter.fighterRigidbody.velocity.x * fighter.dashMomentumMultiplier) + (fighter.jumpVelocityHorizontal * fighter.inputReceiver.LeftRight), fighter.jumpVelocityVertical);
+                
+            }
         }
 
         if (fighter.currentStance == FighterStance.Air)

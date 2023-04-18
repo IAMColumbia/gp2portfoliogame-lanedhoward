@@ -44,8 +44,8 @@ public static class FighterAttacks
     public static float attackLevel3_blockstun;
     static FighterAttacks()
     {
-        attackLevel1_hithitstop = 3f / 60f;
-        attackLevel1_blockhitstop = 2f / 60f;
+        attackLevel1_hithitstop = 4f / 60f;
+        attackLevel1_blockhitstop = 3f / 60f;
         attackLevel1_hitstun = 13f / 60f;
         attackLevel1_blockstun = 9f / 60f;
 
@@ -180,7 +180,7 @@ public class FiveB : GameAttack
 
         //whiffSound = fighter.whiffSounds[0];
         // hitSound = fighter.hitSounds[2];
-        whiffSoundIndex = 0;
+        whiffSoundIndex = 1;
         hitSoundIndex = 2;
 
         properties.AnimationName = "Fullpunch";
@@ -215,7 +215,7 @@ public class TwoB : GameAttack
 
         //whiffSound = fighter.whiffSounds[0];
         //hitSound = fighter.hitSounds[3];
-        whiffSoundIndex = 0;
+        whiffSoundIndex = 2;
         hitSoundIndex = 3;
 
         properties.AnimationName = "Crouchkick";
@@ -251,7 +251,7 @@ public class JumpB : GameAttack
 
         //whiffSound = fighter.whiffSounds[0];
         //hitSound = fighter.hitSounds[3];
-        whiffSoundIndex = 0;
+        whiffSoundIndex = 2;
         hitSoundIndex = 3;
 
         properties.AnimationName = "Jumpslice";
@@ -284,7 +284,7 @@ public class SixTwoThreeA : GameAttack
 
         //whiffSound = fighter.whiffSounds[1];
         //hitSound = fighter.hitSounds[4];
-        whiffSoundIndex = 1;
+        whiffSoundIndex = 4;
         hitSoundIndex = 3;
 
         properties.AnimationName = "Dragonpunch";
@@ -331,7 +331,7 @@ public class TwoOneFourB : GameAttack
 
         //whiffSound = fighter.whiffSounds[0];
         //hitSound = fighter.hitSounds[3];
-        whiffSoundIndex = 0;
+        whiffSoundIndex = 2;
         hitSoundIndex = 3;
 
         properties.AnimationName = "Overhead";

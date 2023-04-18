@@ -288,8 +288,11 @@ MonoBehaviour:
   timeManager: {fileID: 0}
   blockEverything: 0
   whiffSounds:
-  - {fileID: 8300000, guid: f89fe1f35d9f1b94cbb297ca0b04392a, type: 3}
-  - {fileID: 8300000, guid: 0febcbcbe2122cd49b0adc7d9dedfc0f, type: 3}
+  - {fileID: 8300000, guid: d811b577d06049e4d949192cde9ea2d1, type: 3}
+  - {fileID: 8300000, guid: 362073ef3ac26f04dbc2efc09950aefd, type: 3}
+  - {fileID: 8300000, guid: 569a9a9003641714c83e56d48dbf3f55, type: 3}
+  - {fileID: 8300000, guid: c33bfdd77d90aa54c9a6e9612a5c442e, type: 3}
+  - {fileID: 8300000, guid: 6847788e142519642bf8470ed20dc4fb, type: 3}
   hitSounds:
   - {fileID: 8300000, guid: 46c7a1c1a1192c94dbcb83868ddf5a0c, type: 3}
   - {fileID: 8300000, guid: 123aa45c3845ccc4089c2c158a2a1898, type: 3}
@@ -311,7 +314,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.1}
+  m_Offset: {x: 0, y: 0.45}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -322,7 +325,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.2}
+  m_Size: {x: 0.6, y: 0.9}
   m_EdgeRadius: 0
 --- !u!50 &9020838737738353918
 Rigidbody2D:

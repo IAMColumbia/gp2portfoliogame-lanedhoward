@@ -666,7 +666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e02568adbd9d93949b47876bd886fbd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitstopTimeScale: 0.01
+  hitstopTimeScale: 0.005
   baseHitstopDuration: 0.08
   realTimeUntilTimeScaleReset: 0
   isInSlowmo: 0

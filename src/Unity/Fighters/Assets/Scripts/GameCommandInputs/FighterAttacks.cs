@@ -44,18 +44,18 @@ public static class FighterAttacks
     public static float attackLevel3_blockstun;
     static FighterAttacks()
     {
-        attackLevel1_hithitstop = 4f / 60f;
-        attackLevel1_blockhitstop = 3f / 60f;
-        attackLevel1_hitstun = 13f / 60f;
-        attackLevel1_blockstun = 9f / 60f;
+        attackLevel1_hithitstop = 9f / 60f;
+        attackLevel1_blockhitstop = 7f / 60f;
+        attackLevel1_hitstun = 11f / 60f;
+        attackLevel1_blockstun = 10f / 60f;
 
-        attackLevel2_hithitstop = 6f / 60f;
-        attackLevel2_blockhitstop = 4f / 60f;
+        attackLevel2_hithitstop = 11f / 60f;
+        attackLevel2_blockhitstop = 9f / 60f;
         attackLevel2_hitstun = 17f / 60f;
-        attackLevel2_blockstun = 12f / 60f;
+        attackLevel2_blockstun = 14f / 60f;
 
-        attackLevel3_hithitstop = 8f / 60f;
-        attackLevel3_blockhitstop = 6f / 60f;
+        attackLevel3_hithitstop = 13f / 60f;
+        attackLevel3_blockhitstop = 11f / 60f;
         attackLevel3_hitstun = 25f / 60f;
         attackLevel3_blockstun = 18f / 60f;
     }
@@ -346,8 +346,8 @@ public class TwoOneFourB : GameAttack
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
-        properties.hitProperties.knockback.Set(-3f, 10.5f);
-        properties.hitProperties.selfKnockback.Set(-5f, 0);
+        properties.hitProperties.knockback.Set(-4f, 13.5f);
+        properties.hitProperties.selfKnockback.Set(-4f, 0);
         properties.hitProperties.damage = 300f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;

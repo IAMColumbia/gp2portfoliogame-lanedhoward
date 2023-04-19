@@ -270,7 +270,7 @@ MonoBehaviour:
   neutralDashTime: 0.3
   neutralDashActionableDelay: 0.1
   neutralDashVelocity: {x: 0, y: 7.5}
-  dashJumpCancelWindow: 0.1
+  dashJumpCancelWindow: 0.08
   dashMomentumMultiplier: 0.7
   jumpVelocityHorizontal: 3
   jumpVelocityVertical: 12

@@ -8,6 +8,8 @@ using System;
 public class FighterInspector : Editor
 {
     private string[] pastStates;
+    private FighterMain fighter;
+
 
     public FighterInspector()
     {
@@ -18,7 +20,10 @@ public class FighterInspector : Editor
     {
         base.OnInspectorGUI();
 
-        FighterMain fighter = (FighterMain)target;
+        if (fighter == null)
+        {
+            fighter = (FighterMain)target;
+        }
 
         if (fighter != null)
         {

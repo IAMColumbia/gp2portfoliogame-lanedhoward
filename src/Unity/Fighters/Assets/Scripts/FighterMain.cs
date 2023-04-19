@@ -220,10 +220,10 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         {
             UpdateStance();
             var foundAttack = inputReceiver.ParseAttack(inputReceiver.bufferedInput);
-            inputReceiver.bufferedInput = null;
 
             if (foundAttack != null)
             {
+                inputReceiver.bufferedInput = null;
                 SetCurrentAttack(foundAttack);
             }
             

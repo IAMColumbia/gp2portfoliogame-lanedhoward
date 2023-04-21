@@ -140,6 +140,7 @@ public class GameAttackPropertiesProperties
     public float stunTime;
     public float damage;
     public Vector2 knockback;
+    public Vector2 airKnockback;
     public Vector2 selfKnockback;
 
     public bool hardKD;
@@ -150,6 +151,7 @@ public class GameAttackPropertiesProperties
         stunTime = 0f;
         damage = 0f;
         knockback = Vector2.zero;
+        airKnockback = Vector2.zero;
         selfKnockback = Vector2.zero;
         hardKD = false;
     }

@@ -62,6 +62,9 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public float MaxHealth = 1000;
     public float CurrentHealth = 0;
 
+    [Header("Combo Values")]
+    public float JuggleMomentumMultiplier = 0.2f;
+
     [Header("KD Values")]
     public float softKnockdownTime = 0.25f;
     public float hardKnockdownTime = 1.25f;
@@ -115,6 +118,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public bool isStrikeInvulnerable = false;
     public bool isThrowInvulnerable = false;
     public TimeManager timeManager;
+    public Combo currentCombo;
 
     [Header("Test/Training Values")]
     public bool blockEverything;
@@ -124,6 +128,9 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public AudioClip[] hitSounds;
     public AudioClip[] blockSounds;
     public AudioClip throwTechSound;
+
+    public event EventHandler GotHit;
+    public event EventHandler LeftHitstun;
 
     void Awake()
     {
@@ -169,6 +176,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
         currentAttack = null;
         fighterAttacks = FighterAttacks.GetFighterAttacks();
+
+        currentCombo = new Combo();
 
         CurrentHealth = MaxHealth;
 
@@ -254,7 +263,10 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
     public void SwitchState(FighterState newState)
     {
-        currentState?.ExitState();
+        if (currentState != null && newState.GetType() != currentState.GetType())
+        {
+            currentState.ExitState();
+        }
 
         currentState = newState;
 
@@ -338,6 +350,15 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         fighterRigidbody.velocity = new Vector2((fighterRigidbody.velocity.x * momentumMultiplier) + (v.x), v.y);
     }
 
+    public void OnVelocityImpulseJuggle(Vector2 v, float momentumMultiplier)
+    {
+        if (ShouldFaceDirection() == Directions.FacingDirection.LEFT)
+        {
+            v.x = -v.x;
+        }
+        fighterRigidbody.velocity = new Vector2((fighterRigidbody.velocity.x * momentumMultiplier) + (v.x), (fighterRigidbody.velocity.y * momentumMultiplier) + v.y);
+    }
+
     public void OnHaltVerticalVelocity()
     {
         fighterRigidbody.velocity = new Vector2(fighterRigidbody.velocity.x, 0);
@@ -411,8 +432,17 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
         //knockback
         // probably will need to separate this into hit kb and block kb, or apply modifiers or somthing
-        Vector2 kb = pp.knockback;
-        OnVelocityImpulse(kb);
+        Vector2 kb;
+        if (isGrounded)
+        {
+            kb = pp.knockback;
+        }
+        else
+        {
+            kb = pp.airKnockback;
+        }
+
+        OnVelocityImpulseJuggle(kb,JuggleMomentumMultiplier);
 
         CurrentHealth -= pp.damage;
 
@@ -425,6 +455,17 @@ public class FighterMain : SoundPlayer, IHitboxResponder
             ((IStunState)currentState).SetStun(pp.stunTime);
             return HitReport.Block;
         }
+
+        if (!currentCombo.currentlyGettingComboed)
+        {
+            currentCombo.ResetCombo();
+            currentCombo.currentlyGettingComboed = true;
+        }
+        currentCombo.hitCount += 1;
+        currentCombo.totalDamage += pp.damage;
+
+        GotHit?.Invoke(this, EventArgs.Empty);
+        
 
         SwitchState(hitstun);
         Hitstun hs = (Hitstun)currentState;
@@ -523,6 +564,12 @@ public class FighterMain : SoundPlayer, IHitboxResponder
             }
         }
         return false;
+    }
+
+    public void ExitHitstun()
+    {
+        currentCombo.currentlyGettingComboed = false;
+        LeftHitstun?.Invoke(this, EventArgs.Empty);
     }
 
     public Directions.FacingDirection ShouldFaceDirection()

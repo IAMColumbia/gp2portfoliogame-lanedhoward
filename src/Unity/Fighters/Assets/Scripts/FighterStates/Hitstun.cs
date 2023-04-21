@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -94,6 +95,8 @@ public class Hitstun : FighterState, IStunState
     {
         base.ExitState();
         fighter.isThrowInvulnerable = false;
+        fighter.ExitHitstun();
+        
     }
 
     public void SetStun(float stun)

@@ -7,6 +7,8 @@ public class Healthbar : MonoBehaviour
 {
     public float percent;
     public Image healthbar;
+    public float minPercent;
+    public float gutsPower;
 
     // Update is called once per frame
     void Update()
@@ -24,6 +26,7 @@ public class Healthbar : MonoBehaviour
             percent = 0; 
             return;
         }
-        percent = current / max;
+        percent = Mathf.Pow((current / max), gutsPower);
+        percent = Mathf.Max(percent, minPercent);
     }
 }

@@ -205,3 +205,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   percent: 1
   healthbar: {fileID: 3409997337070840966}
+  minPercent: 0.005
+  gutsPower: 1.3

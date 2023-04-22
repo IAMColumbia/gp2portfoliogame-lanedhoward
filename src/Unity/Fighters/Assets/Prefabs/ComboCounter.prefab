@@ -331,4 +331,7 @@ MonoBehaviour:
   exitColor:
     serializedVersion: 2
     rgba: 4765420
+  fadeColor:
+    serializedVersion: 2
+    rgba: 2448072
   comboTimeout: 1

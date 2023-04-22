@@ -134,7 +134,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1609858207}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 18028810}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91d99f78f90cf85418cc3db055ba8270, type: 3}
   m_Name: 
@@ -1886,7 +1886,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a8fe130ad622eff45859d2b1ad830bc9, type: 2}
     - target: {fileID: 9020838737738351360, guid: b35326e5997f61944bee8ac2774395a9, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9020838737738351360, guid: b35326e5997f61944bee8ac2774395a9, type: 3}
       propertyPath: otherFighter
@@ -2293,7 +2293,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 9020838737653949695}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2085310032}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91d99f78f90cf85418cc3db055ba8270, type: 3}
   m_Name: 
@@ -2735,7 +2735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9020838737738351360, guid: b35326e5997f61944bee8ac2774395a9, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9020838737738351360, guid: b35326e5997f61944bee8ac2774395a9, type: 3}
       propertyPath: otherFighter

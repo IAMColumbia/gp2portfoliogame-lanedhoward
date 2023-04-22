@@ -30,7 +30,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     protected FighterAnimationEvents fighterAnimationEvents;
 
     public Rigidbody2D fighterRigidbody;
-    public BoxCollider2D fighterCollider;
+    public Collider2D fighterCollider;
 
     public GameObject otherFighter;
     public FighterMain otherFighterMain;
@@ -142,7 +142,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         inputReceiver = new FighterInputReceiver(this, inputHost, inputReader);
 
         fighterRigidbody = GetComponent<Rigidbody2D>();
-        fighterCollider = GetComponent<BoxCollider2D>();
+        fighterCollider = GetComponent<Collider2D>();
 
         if (otherFighter != null)
         {

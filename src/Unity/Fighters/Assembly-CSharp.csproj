@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadPackage.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\InputHost.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Dashing.cs" />
+    <Compile Include="Assets\Scripts\System\ComboUI.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Directions.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IReadableGesture.cs" />
     <Compile Include="Assets\Scripts\Hitboxes\Hitbox.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Assets\Inputs\Fighters.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IReadPackage.cs" />
     <Compile Include="Assets\Scripts\SoundPlayer.cs" />
+    <Compile Include="Assets\Scripts\GameCommandInputs\Combo.cs" />
     <Compile Include="Assets\Scripts\FighterStates\GetGrabbed.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttackCondition.cs" />
     <Compile Include="Assets\Scripts\System\GameManager.cs" />
@@ -113,8 +115,6 @@
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttack.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\GameCommandInputs\Combo.cs" />
-    <Compile Include="Assets\Scripts\System\ComboUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -36,7 +36,7 @@ public class AttackState : FighterState
         if (fighter.currentStance == FighterStance.Air)
         {
             wasEverAirborne = true;
-            if (stateTimer > 0.1f)
+            if (stateTimer > 0.1f && (fighter.currentAttackState == CurrentAttackState.Recovery || fighter.currentAttack.properties.landCancelStartup))
             {
                 AllowLanding();
             }
@@ -45,7 +45,7 @@ public class AttackState : FighterState
         {
             if (wasEverAirborne)
             {
-                if (stateTimer > 0.1f)
+                if (stateTimer > 0.1f && (fighter.currentAttackState == CurrentAttackState.Recovery || fighter.currentAttack.properties.landCancelStartup))
                 {
                     AllowLanding();
                 }

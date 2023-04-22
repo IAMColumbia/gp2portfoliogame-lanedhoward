@@ -206,4 +206,4 @@ MonoBehaviour:
   percent: 1
   healthbar: {fileID: 3409997337070840966}
   minPercent: 0.005
-  gutsPower: 1.3
+  gutsPower: 1.1

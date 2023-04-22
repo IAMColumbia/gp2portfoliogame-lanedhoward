@@ -264,7 +264,7 @@ MonoBehaviour:
   forwardDashTime: 0.3
   forwardDashActionableDelay: 0.1
   forwardDashVelocity: {x: 5, y: 7.5}
-  backDashTime: 0.3
+  backDashTime: 0.5
   backDashActionableDelay: 0.1
   backDashStrikeInvulnTime: 0.1
   backDashVelocity: {x: -5, y: 7.5}
@@ -283,6 +283,7 @@ MonoBehaviour:
   canBlock: 0
   isCurrentlyAttacking: 0
   currentStance: 1
+  currentAttackState: 0
   facingDirection: 0
   isStrikeInvulnerable: 0
   isThrowInvulnerable: 0

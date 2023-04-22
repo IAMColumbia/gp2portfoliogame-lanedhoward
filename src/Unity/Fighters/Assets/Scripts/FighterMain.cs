@@ -22,6 +22,13 @@ public enum HitReport
     Block
 }
 
+public enum CurrentAttackState
+{
+    Startup,
+    Active,
+    Recovery
+}
+
 [RequireComponent(typeof(PlayerInput))]
 public class FighterMain : SoundPlayer, IHitboxResponder
 {
@@ -114,6 +121,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public bool isCurrentlyAttacking;
     public FighterStance currentStance;
     public GameAttack currentAttack;
+    public CurrentAttackState currentAttackState = CurrentAttackState.Startup;
     public Directions.FacingDirection facingDirection;
     public bool isStrikeInvulnerable = false;
     public bool isThrowInvulnerable = false;
@@ -251,6 +259,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         {
             AutoTurnaround();
         }
+        currentAttackState = CurrentAttackState.Startup;
         SwitchState(attacking);
         currentAttack.OnStartup(this);
     }
@@ -320,6 +329,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     {
         if (currentAttack != null)
         {
+            currentAttackState = CurrentAttackState.Active;
             currentAttack.OnActive(this);
         }
     }
@@ -328,6 +338,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     {
         if (currentAttack != null)
         {
+            currentAttackState = CurrentAttackState.Recovery;
             currentAttack.OnRecovery(this);
         }
     }
@@ -442,14 +453,13 @@ public class FighterMain : SoundPlayer, IHitboxResponder
             kb = pp.airKnockback;
         }
 
-        OnVelocityImpulseJuggle(kb,JuggleMomentumMultiplier);
-
-        CurrentHealth -= pp.damage;
-
         timeManager.DoHitStop(pp.hitstopTime);
 
         if (blocked)
         {
+            OnVelocityImpulseJuggle(kb, JuggleMomentumMultiplier);
+            CurrentHealth -= pp.damage;
+
             PlaySound(blockSounds[0]);
             SwitchState(blockstun);
             ((IStunState)currentState).SetStun(pp.stunTime);
@@ -461,8 +471,15 @@ public class FighterMain : SoundPlayer, IHitboxResponder
             currentCombo.ResetCombo();
             currentCombo.currentlyGettingComboed = true;
         }
-        currentCombo.hitCount += 1;
-        currentCombo.totalDamage += pp.damage;
+        
+        currentCombo.AddHit();
+
+        float hitDamage = Mathf.Ceil(pp.damage * currentCombo.damageScale);
+        
+        CurrentHealth -= hitDamage;
+        currentCombo.totalDamage += hitDamage;
+        
+        OnVelocityImpulseJuggle(kb, JuggleMomentumMultiplier);
 
         GotHit?.Invoke(this, EventArgs.Empty);
         

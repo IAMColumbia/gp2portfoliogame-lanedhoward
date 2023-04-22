@@ -118,6 +118,8 @@ public class GameAttackProperties
     public AttackType attackType;
     public FighterStance attackStance;
 
+    public bool landCancelStartup;
+
     public GameAttackPropertiesProperties blockProperties;
     public GameAttackPropertiesProperties hitProperties;
 
@@ -128,6 +130,8 @@ public class GameAttackProperties
         blockType = BlockType.Mid;
         attackType = AttackType.Light;
         attackStance = FighterStance.Standing;
+
+        landCancelStartup = true;
 
         blockProperties = new GameAttackPropertiesProperties();
         hitProperties = new GameAttackPropertiesProperties();

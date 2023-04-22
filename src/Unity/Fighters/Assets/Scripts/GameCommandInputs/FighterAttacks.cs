@@ -302,6 +302,7 @@ public class SixTwoThreeA : GameAttack
         properties.blockType = GameAttackProperties.BlockType.Mid;
         properties.attackType = GameAttackProperties.AttackType.Special;
         properties.attackStance = FighterStance.Standing;
+        properties.landCancelStartup = false;
 
         properties.blockProperties.knockback.Set(-2f, 0);
         properties.blockProperties.airKnockback.Set(-2f, 3);

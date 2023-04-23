@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 [Flags]
 public enum FighterStance
@@ -128,6 +129,12 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public TimeManager timeManager;
     public Combo currentCombo;
 
+    [Header("Wall Values")]
+    public bool isAtTheWall = false;
+    public Directions.FacingDirection wallDirection = Directions.FacingDirection.RIGHT;
+    public Vector2 wallKeepoutKnockback;
+    public float wallKeepoutMaxHeight;
+
     [Header("Test/Training Values")]
     public bool blockEverything;
 
@@ -159,7 +166,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
         fighterAnimationEvents = GetComponentInChildren<FighterAnimationEvents>();
         fighterAnimationEvents.FighterAnimationHaltVerticalVelocity += OnHaltVerticalVelocity;
-        fighterAnimationEvents.FighterAnimationVelocityImpulse += OnVelocityImpulse;
+        fighterAnimationEvents.FighterAnimationVelocityImpulse += OnVelocityImpulseRelativeToSelf;
         fighterAnimationEvents.FighterAttackActiveStarted += OnAttackActive;
         fighterAnimationEvents.FighterAttackRecoveryStarted += OnAttackRecovery;
 
@@ -207,6 +214,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         HandleInputs();
 
         DoCurrentState();
+
+        PushAwayFromWall();
     }
 
     private void CheckForInputs()
@@ -343,7 +352,25 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         }
     }
 
-    public void OnVelocityImpulse(Vector2 v)
+    public void OnVelocityImpulseRelativeToSelf(Vector2 v)
+    {
+        if (facingDirection == Directions.FacingDirection.LEFT)
+        {
+            v.x = -v.x;
+        }
+        fighterRigidbody.velocity = new Vector2(fighterRigidbody.velocity.x + v.x, fighterRigidbody.velocity.y + v.y);
+    }
+
+    public void OnVelocityImpulse(Vector2 v, float momentumMultiplier)
+    {
+        if (facingDirection == Directions.FacingDirection.LEFT)
+        {
+            v.x = -v.x;
+        }
+        fighterRigidbody.velocity = new Vector2((fighterRigidbody.velocity.x * momentumMultiplier) + (v.x), v.y);
+    }
+
+    public void OnVelocityImpulseRelativeToOtherFighter(Vector2 v)
     {
         if (ShouldFaceDirection() == Directions.FacingDirection.LEFT)
         {
@@ -352,7 +379,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         fighterRigidbody.velocity = new Vector2(fighterRigidbody.velocity.x + v.x, fighterRigidbody.velocity.y + v.y);
     }
 
-    public void OnVelocityImpulse(Vector2 v, float momentumMultiplier)
+    public void OnVelocityImpulseRelativeToOtherFighter(Vector2 v, float momentumMultiplier)
     {
         if (ShouldFaceDirection() == Directions.FacingDirection.LEFT)
         {
@@ -419,8 +446,15 @@ public class FighterMain : SoundPlayer, IHitboxResponder
                     pp = currentAttack.properties.blockProperties;
                 }
 
+
                 Vector2 kb = pp.selfKnockback;
-                OnVelocityImpulse(kb);
+                
+                if (hurtbox.fighterParent.isAtTheWall)
+                {
+                    kb.x += pp.knockback.x / 2;
+                }
+
+                OnVelocityImpulseRelativeToOtherFighter(kb);
             }
 
             return successfulHit;
@@ -479,7 +513,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         CurrentHealth -= hitDamage;
         currentCombo.totalDamage += hitDamage;
         
-        OnVelocityImpulseJuggle(kb, JuggleMomentumMultiplier);
+        OnVelocityImpulseJuggle(kb, JuggleMomentumMultiplier * currentCombo.momentumScale);
 
         GotHit?.Invoke(this, EventArgs.Empty);
         
@@ -627,6 +661,43 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         SwitchState(hitstun);
         Hitstun hs = (Hitstun)currentState;
         hs.SetStun(throwTechHitstun);
-        OnVelocityImpulse(throwTechKnockback);
+        OnVelocityImpulseRelativeToOtherFighter(throwTechKnockback);
+    }
+
+    private void PushAwayFromWall()
+    {
+        if (isAtTheWall && !isGrounded && otherFighterMain.isAtTheWall && otherFighterMain.isGrounded && wallDirection == otherFighterMain.wallDirection && (transform.position.y - otherFighter.transform.position.y) <= wallKeepoutMaxHeight)
+        {
+            Vector2 v = wallKeepoutKnockback * Time.deltaTime;
+            if (wallDirection != facingDirection)
+            {
+                v.x = -v.x;
+            }
+            OnVelocityImpulseRelativeToSelf(v);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("WallTrigger"))
+        {
+            isAtTheWall = true;
+            if (collision.gameObject.transform.position.x > transform.position.x)
+            {
+                wallDirection = Directions.FacingDirection.RIGHT;
+            }
+            else
+            {
+                wallDirection = Directions.FacingDirection.LEFT;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("WallTrigger"))
+        {
+            isAtTheWall = false;
+        }
     }
 }

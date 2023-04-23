@@ -288,6 +288,10 @@ MonoBehaviour:
   isStrikeInvulnerable: 0
   isThrowInvulnerable: 0
   timeManager: {fileID: 0}
+  isAtTheWall: 0
+  wallDirection: 0
+  wallKeepoutKnockback: {x: -5, y: 0}
+  wallKeepoutMaxHeight: 3
   blockEverything: 0
   whiffSounds:
   - {fileID: 8300000, guid: d811b577d06049e4d949192cde9ea2d1, type: 3}

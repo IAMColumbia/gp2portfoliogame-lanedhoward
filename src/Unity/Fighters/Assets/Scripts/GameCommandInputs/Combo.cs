@@ -11,9 +11,12 @@ public class Combo
     public float totalDamage;
 
     public float damageScale;
+    public float momentumScale;
 
-    private const float SCALING_PER_HIT = 0.825f;
-    private const float MIN_SCALING = 0.3f;
+    private const float DAMAGE_SCALING_PER_HIT = 0.825f;
+    private const float DAMAGE_MIN_SCALING = 0.3f;
+    private const float MOMENTUM_SCALING_PER_HIT = 1.17f;
+    private const float MOMENTUM_MAX_SCALING = 1.0f;
     private const int MAX_UNSCALED_HITS = 2;
 
     public Combo()
@@ -27,21 +30,23 @@ public class Combo
         hitCount = 0;
         totalDamage = 0;
         damageScale = 1;
+        momentumScale = 1;
     }
 
     public void AddHit()
     {
         hitCount += 1;
 
-        UpdateDamageScaling();
+        UpdateComboScaling();
     }
 
-    private void UpdateDamageScaling()
+    private void UpdateComboScaling()
     {
         if (hitCount > MAX_UNSCALED_HITS)
         {
-            float newScale = damageScale * SCALING_PER_HIT;
-            damageScale = MathF.Max(newScale, MIN_SCALING);
+            damageScale = MathF.Max(damageScale * DAMAGE_SCALING_PER_HIT, DAMAGE_MIN_SCALING);
+            momentumScale = MathF.Min(momentumScale * MOMENTUM_SCALING_PER_HIT, MOMENTUM_MAX_SCALING);
+
         }
     }
 

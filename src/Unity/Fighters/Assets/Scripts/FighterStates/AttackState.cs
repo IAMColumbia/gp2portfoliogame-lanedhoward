@@ -5,6 +5,9 @@ using UnityEngine;
 public class AttackState : FighterState
 {
     private bool wasEverAirborne;
+
+    public bool allowJumping;
+
     public AttackState(FighterMain fighterMain) : base(fighterMain)
     {
         jumpsEnabled = false;
@@ -20,6 +23,8 @@ public class AttackState : FighterState
         fighter.canBlock = false;
 
         wasEverAirborne = false;
+
+        allowJumping = false;
 
         fighter.isCurrentlyAttacking = true;
 
@@ -50,6 +55,12 @@ public class AttackState : FighterState
                     AllowLanding();
                 }
             }
+
+            if (allowJumping)
+            {
+                AllowJumping();
+            }
+
             DoFriction(fighter.groundFriction);
         }
 

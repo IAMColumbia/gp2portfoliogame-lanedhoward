@@ -17,6 +17,9 @@ public static class FighterAttacks
                 new TwoB(),
                 new FiveB(),
                 new JumpB(),
+                new TwoC(),
+                new FiveC(),
+                new JumpC(),
                 new SixTwoThreeA(),
                 new TwoOneFourB(),
                 new BackThrowWhiff(new GrabSuccess()),
@@ -44,20 +47,20 @@ public static class FighterAttacks
     public static float attackLevel3_blockstun;
     static FighterAttacks()
     {
-        attackLevel1_hithitstop = 9f / 60f;
-        attackLevel1_blockhitstop = 7f / 60f;
-        attackLevel1_hitstun = 11f / 60f;
-        attackLevel1_blockstun = 10f / 60f;
+        attackLevel1_hithitstop = 7f / 60f;
+        attackLevel1_blockhitstop = 5f / 60f;
+        attackLevel1_hitstun = 14f / 60f;
+        attackLevel1_blockstun = 12f / 60f;
 
-        attackLevel2_hithitstop = 11f / 60f;
-        attackLevel2_blockhitstop = 9f / 60f;
-        attackLevel2_hitstun = 17f / 60f;
-        attackLevel2_blockstun = 14f / 60f;
+        attackLevel2_hithitstop = 9f / 60f;
+        attackLevel2_blockhitstop = 7f / 60f;
+        attackLevel2_hitstun = 19f / 60f;
+        attackLevel2_blockstun = 16f / 60f;
 
-        attackLevel3_hithitstop = 13f / 60f;
-        attackLevel3_blockhitstop = 11f / 60f;
+        attackLevel3_hithitstop = 11f / 60f;
+        attackLevel3_blockhitstop = 9f / 60f;
         attackLevel3_hitstun = 25f / 60f;
-        attackLevel3_blockstun = 18f / 60f;
+        attackLevel3_blockstun = 20f / 60f;
     }
 
 }
@@ -206,6 +209,25 @@ public class FiveB : GameAttack
         properties.hitProperties.damage = 200f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
+        
+    }
+
+    public override void OnHit(FighterMain fighter, FighterMain otherFighter)
+    {
+        base.OnHit(fighter, otherFighter);
+        if (fighter.currentState is AttackState a)
+        {
+            a.allowJumping = true;
+        }
+    }
+
+    public override void OnBlock(FighterMain fighter, FighterMain otherFighter)
+    {
+        base.OnBlock(fighter, otherFighter);
+        if (fighter.currentState is AttackState a)
+        {
+            a.allowJumping = true;
+        }
     }
 }
 
@@ -237,7 +259,7 @@ public class TwoB : GameAttack
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
 
-        properties.hitProperties.knockback.Set(-5f, 6f);
+        properties.hitProperties.knockback.Set(-6f, 5f);
         properties.hitProperties.airKnockback.Set(-5f, 9f);
         properties.hitProperties.selfKnockback.Set(-4f, 0);
         properties.hitProperties.damage = 250f;
@@ -258,6 +280,138 @@ public class JumpB : GameAttack
         conditions.Add(new GatlingCondition(this));
 
         //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[0];
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
+
+        properties.AnimationName = "JD";
+
+        properties.blockType = GameAttackProperties.BlockType.High;
+        properties.attackType = GameAttackProperties.AttackType.Medium;
+        properties.attackStance = FighterStance.Air;
+
+        properties.blockProperties.knockback.Set(-3.5f, 0);
+        properties.blockProperties.airKnockback.Set(-3.5f, 3);
+        properties.blockProperties.selfKnockback.Set(-2f, 0);
+        properties.blockProperties.damage = 0f;
+        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
+        properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
+
+        properties.hitProperties.knockback.Set(-7f, 10f);
+        properties.hitProperties.airKnockback.Set(-7f, 9f);
+        properties.hitProperties.selfKnockback.Set(-0.5f, 0);
+        properties.hitProperties.damage = 200f;
+        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
+        properties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
+        properties.hitProperties.wallBounce = true;
+    }
+}
+
+public class FiveC : GameAttack
+{
+    public FiveC() : base()
+    {
+        conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new StanceCondition(this, FighterStance.Standing));
+        conditions.Add(new GatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
+        // hitSound = fighter.hitSounds[2];
+        whiffSoundIndex = 1;
+        hitSoundIndex = 2;
+
+        properties.AnimationName = "ShoulderBash";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Heavy;
+        properties.attackStance = FighterStance.Standing;
+
+        properties.blockProperties.knockback.Set(-5f, 0);
+        properties.blockProperties.airKnockback.Set(-5f, 3);
+        properties.blockProperties.selfKnockback.Set(-8f, 0);
+        properties.blockProperties.damage = 0;
+        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
+
+        properties.hitProperties.knockback.Set(-7f, 5f);
+        properties.hitProperties.airKnockback.Set(-11f, 10f);
+        properties.hitProperties.selfKnockback.Set(-6f, 0);
+        properties.hitProperties.damage = 400f;
+        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
+        properties.hitProperties.wallBounce = true;
+    }
+}
+
+public class TwoC : GameAttack
+{
+    public TwoC() : base()
+    {
+        //conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new GestureCondition(this, new CrouchGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new GatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[3];
+        whiffSoundIndex = 2;
+        hitSoundIndex = 3;
+
+        properties.AnimationName = "Launcher";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Heavy;
+        properties.attackStance = FighterStance.Crouching;
+
+        properties.blockProperties.knockback.Set(-5f, 0);
+        properties.blockProperties.airKnockback.Set(-5, 5);
+        properties.blockProperties.selfKnockback.Set(-8f, 0);
+        properties.blockProperties.damage = 0f;
+        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
+
+        properties.hitProperties.knockback.Set(-3f, 13.5f);
+        properties.hitProperties.airKnockback.Set(-3f, 9f);
+        properties.hitProperties.selfKnockback.Set(-4f, 0);
+        properties.hitProperties.damage = 150f;
+        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
+        properties.hitProperties.hardKD = false;
+    }
+
+    public override void OnHit(FighterMain fighter, FighterMain otherFighter)
+    {
+        base.OnHit(fighter, otherFighter);
+        if (fighter.currentState is AttackState a)
+        {
+            a.allowJumping = true;
+        }
+    }
+
+    public override void OnBlock(FighterMain fighter, FighterMain otherFighter)
+    {
+        base.OnBlock(fighter, otherFighter);
+        if (fighter.currentState is AttackState a)
+        {
+            a.allowJumping = true;
+        }
+    }
+}
+
+public class JumpC : GameAttack
+{
+    public JumpC() : base()
+    {
+        conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new GroundedCondition(this, false));
+        conditions.Add(new StanceCondition(this, FighterStance.Air));
+        conditions.Add(new GatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
         //hitSound = fighter.hitSounds[3];
         whiffSoundIndex = 2;
         hitSoundIndex = 3;
@@ -265,7 +419,7 @@ public class JumpB : GameAttack
         properties.AnimationName = "Jumpslice";
 
         properties.blockType = GameAttackProperties.BlockType.High;
-        properties.attackType = GameAttackProperties.AttackType.Medium;
+        properties.attackType = GameAttackProperties.AttackType.Heavy;
         properties.attackStance = FighterStance.Air;
 
         properties.blockProperties.knockback.Set(-4f, 0);
@@ -374,7 +528,7 @@ public class GrabWhiff : ThrowAttack
 {
     public GrabWhiff(ThrowAttackSuccess _success) : base(_success)
     {
-        conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new GestureCondition(this, new ForwardGesture()));
         conditions.Add(new ButtonCondition(this, new AttackC()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new StanceCondition(this, FighterStance.Standing));

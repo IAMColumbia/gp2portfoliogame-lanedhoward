@@ -451,7 +451,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
                 
                 if (hurtbox.fighterParent.isAtTheWall)
                 {
-                    kb.x += pp.knockback.x / 2;
+                    kb.x += pp.knockback.x / 3;
                 }
 
                 OnVelocityImpulseRelativeToOtherFighter(kb);
@@ -523,6 +523,11 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
         hs.SetStun(pp.stunTime);
         hs.SetHardKD(pp.hardKD);
+        hs.SetWallBounce(pp.wallBounce);
+        if (pp.wallBounce && isAtTheWall)
+        {
+            hs.CheckForWallbounce();
+        }
 
         return HitReport.Hit;
     }
@@ -617,6 +622,13 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         return false;
     }
 
+    public void DoWallBounce()
+    {
+        //timeManager.DoHitStop(0.1f);
+        //PlaySound(hitSounds[0]);
+        fighterRigidbody.velocity = new Vector2(-fighterRigidbody.velocity.x, fighterRigidbody.velocity.y);
+    }
+
     public void ExitHitstun()
     {
         currentCombo.currentlyGettingComboed = false;
@@ -690,6 +702,12 @@ public class FighterMain : SoundPlayer, IHitboxResponder
             {
                 wallDirection = Directions.FacingDirection.LEFT;
             }
+
+            if (currentState is Hitstun h)
+            {
+                h.CheckForWallbounce();
+            }
+
         }
     }
 

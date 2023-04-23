@@ -148,6 +148,7 @@ public class GameAttackPropertiesProperties
     public Vector2 selfKnockback;
 
     public bool hardKD;
+    public bool wallBounce;
 
     public GameAttackPropertiesProperties()
     {
@@ -158,6 +159,7 @@ public class GameAttackPropertiesProperties
         airKnockback = Vector2.zero;
         selfKnockback = Vector2.zero;
         hardKD = false;
+        wallBounce = false;
     }
 }
 

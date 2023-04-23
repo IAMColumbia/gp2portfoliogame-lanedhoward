@@ -121,12 +121,20 @@ public class GameManager : MonoBehaviour
         var hs = (Knockdown)deadFighter.currentState;
         hs.SetStun(50000);
 
+        gameActive = false;
 
+        deadFighter.timeManager.DoHitStop(1f);
+
+        StartCoroutine(DeathEffectCoroutine());
+        
+    }
+
+    private IEnumerator DeathEffectCoroutine()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
         WinScreen.SetActive(true);
 
         eventSystem.SetSelectedGameObject(RematchButton);
-        
-        gameActive = false;
     }
 
     public void RestartGame()

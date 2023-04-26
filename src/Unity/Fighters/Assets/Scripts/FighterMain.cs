@@ -468,6 +468,18 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         
         if (isStrikeInvulnerable) return HitReport.Whiff;
 
+        if (isCurrentlyAttacking)
+        {
+            if (currentAttack != null)
+            {
+                HitReport? attackReport = currentAttack.OnGetHitDuring(this, properties);
+                if (attackReport != null)
+                {
+                    return (HitReport)attackReport;
+                }
+            }
+        }
+
         AutoTurnaround();
 
         // decide if we blocked

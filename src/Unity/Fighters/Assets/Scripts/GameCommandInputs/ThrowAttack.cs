@@ -39,7 +39,16 @@ public class ThrowAttackSuccess : GameAttack
         base.OnStartup(fighter);
 
         fighter.SwitchState(fighter.grabbing);
+
+        bool otherFighterCanTech = fighter.otherFighterMain.canAct && !fighter.otherFighterMain.isCurrentlyAttacking;
         fighter.otherFighterMain.SwitchState(fighter.otherFighterMain.getGrabbed);
+        if (!otherFighterCanTech)
+        {
+            if (fighter.otherFighterMain.currentState is GetGrabbed gg)
+            {
+                gg.canTech = false;
+            }
+        }
     }
     public override void OnActive(FighterMain fighter)
     {

@@ -87,6 +87,18 @@ public class GameAttack
     {
 
     }
+
+    /// <summary>
+    /// Override and return anything but null to take over getting hit logic.
+    /// Useful for armor, guardpoint, parries, etc
+    /// </summary>
+    /// <param name="fighter"></param>
+    /// <param name="properties"></param>
+    /// <returns></returns>
+    public virtual HitReport? OnGetHitDuring(FighterMain fighter, GameAttackProperties properties)
+    {
+        return null;
+    }
 }
 
 public class GameAttackProperties

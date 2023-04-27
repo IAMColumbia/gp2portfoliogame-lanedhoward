@@ -5,5 +5,8 @@ using UnityEngine;
 [CreateAssetMenu]
 public class CharacterModule : ScriptableObject
 {
-    
+    public CharacterModule() : base()
+    {
+
+    }
 }

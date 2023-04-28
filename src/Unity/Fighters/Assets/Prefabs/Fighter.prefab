@@ -120,7 +120,7 @@ MonoBehaviour:
   fighterParent: {fileID: 0}
   id: 0
   offset: {x: 0, y: 1, z: 0}
-  halfExtents: {x: 0.25, y: 0.9, z: 0}
+  halfExtents: {x: 0.25, y: 0.7, z: 0}
   _state: 0
   OpenForCollision: 0
 --- !u!61 &1341059940749780049
@@ -147,7 +147,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 1.8}
+  m_Size: {x: 0.5, y: 1.4}
   m_EdgeRadius: 0
 --- !u!50 &7492368703100562711
 Rigidbody2D:

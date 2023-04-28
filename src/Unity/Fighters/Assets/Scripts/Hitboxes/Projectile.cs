@@ -35,6 +35,7 @@ public class Projectile : MonoBehaviour, IHitboxResponder
 
             if (successfulHit)
             {
+                fighterParent.PlaySound(fighterParent.hitSounds[projectileProperties.parent.hitSoundIndex]);
                 this.EndProjectile();
             }
 
@@ -46,6 +47,8 @@ public class Projectile : MonoBehaviour, IHitboxResponder
         if (projectile != null)
         {
             if (projectile.fighterParent == fighterParent) return false;
+
+            fighterParent.PlaySound(fighterParent.hitSounds[projectileProperties.parent.hitSoundIndex]);
 
             projectile.EndProjectile();
             this.EndProjectile();
@@ -116,6 +119,7 @@ public class Projectile : MonoBehaviour, IHitboxResponder
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
+            fighterParent.PlaySound(fighterParent.hitSounds[projectileProperties.parent.hitSoundIndex]);
             EndProjectile();
         }
     }

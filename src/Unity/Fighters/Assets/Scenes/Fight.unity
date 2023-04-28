@@ -2601,6 +2601,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 1.17
       objectReference: {fileID: 0}
+    - target: {fileID: 7501725220959110809, guid: b35326e5997f61944bee8ac2774395a9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9020838737491521558, guid: b35326e5997f61944bee8ac2774395a9, type: 3}
       propertyPath: m_SortingLayer
       value: 5

@@ -115,7 +115,10 @@ public class Hitbox : MonoBehaviour
 
     public void SetResponder(IHitboxResponder _responder)
     {
-        responder = _responder;
+        if (_responder != null)
+        {
+            responder = _responder;
+        }
     }
 
 }

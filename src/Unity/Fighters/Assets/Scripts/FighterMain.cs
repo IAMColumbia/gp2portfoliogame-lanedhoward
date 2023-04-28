@@ -128,6 +128,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public bool isThrowInvulnerable = false;
     public TimeManager timeManager;
     public Combo currentCombo;
+    public Projectile fireball;
 
     [Header("Wall Values")]
     public bool isAtTheWall = false;

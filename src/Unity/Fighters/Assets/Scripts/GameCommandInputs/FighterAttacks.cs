@@ -527,6 +527,7 @@ public class TwoOneFourB : GameAttack
 
 public class TwoThreeSixC : GameAttack
 {
+    GameAttackProperties fireballProperties;
     public TwoThreeSixC() : base()
     {
         conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
@@ -559,6 +560,38 @@ public class TwoThreeSixC : GameAttack
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
         properties.hitProperties.hardKD = false;
+
+        fireballProperties = new GameAttackProperties(this);
+
+        fireballProperties.blockType = GameAttackProperties.BlockType.Mid;
+        fireballProperties.attackType = GameAttackProperties.AttackType.Special;
+        fireballProperties.attackStance = FighterStance.Standing;
+
+        fireballProperties.blockProperties.knockback.Set(-5f, 0);
+        fireballProperties.blockProperties.airKnockback.Set(-3f, 5f);
+        fireballProperties.blockProperties.damage = 75f;
+        fireballProperties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
+        fireballProperties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
+
+        fireballProperties.hitProperties.knockback.Set(-6f, 0f);
+        fireballProperties.hitProperties.airKnockback.Set(-4f, 6f);
+        fireballProperties.hitProperties.damage = 150f;
+        fireballProperties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
+        fireballProperties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
+        fireballProperties.hitProperties.hardKD = false;
+
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+
+        if (!fighter.fireball.projectileActive)
+        {
+            fighter.fireball.projectileProperties = fireballProperties;
+            fighter.fireball.StartProjectile();
+        }
+
     }
 }
 

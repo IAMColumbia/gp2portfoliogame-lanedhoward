@@ -14,6 +14,7 @@ public class FighterInputHost : IInputHost
     private InputAction attackA;
     private InputAction attackB;
     private InputAction attackC;
+    private InputAction attackD;
     private InputAction dashMacro;
 
     public FighterInputHost(PlayerInput _playerInput)
@@ -31,6 +32,7 @@ public class FighterInputHost : IInputHost
         attackA = player.FindAction("AttackA");
         attackB = player.FindAction("AttackB");
         attackC = player.FindAction("AttackC");
+        attackD = player.FindAction("AttackD");
         dashMacro = player.FindAction("DashMacro");
     }
 
@@ -45,6 +47,7 @@ public class FighterInputHost : IInputHost
         AddButtonToHostPackage<AttackA>(p, attackA);
         AddButtonToHostPackage<AttackB>(p, attackB);
         AddButtonToHostPackage<AttackC>(p, attackC);
+        AddButtonToHostPackage<AttackD>(p, attackD);
         AddButtonToHostPackage<DashMacro>(p, dashMacro);
 
         return p;

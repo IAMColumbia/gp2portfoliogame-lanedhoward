@@ -22,6 +22,7 @@ public static class FighterAttacks
                 new JumpC(),
                 new SixTwoThreeA(),
                 new TwoOneFourB(),
+                new TwoThreeSixC(),
                 new BackThrowWhiff(new GrabSuccess()),
                 new GrabWhiff(new GrabSuccess()),
                 new BackDash(),
@@ -524,12 +525,49 @@ public class TwoOneFourB : GameAttack
     }
 }
 
+public class TwoThreeSixC : GameAttack
+{
+    public TwoThreeSixC() : base()
+    {
+        conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
+        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new GatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[3];
+        whiffSoundIndex = 2;
+        hitSoundIndex = 3;
+
+        properties.AnimationName = "FireballStomp";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Standing;
+
+        properties.blockProperties.knockback.Set(-5f, 0);
+        properties.blockProperties.airKnockback.Set(-3f, 5f);
+        properties.blockProperties.selfKnockback.Set(-7f, 0);
+        properties.blockProperties.damage = 50f;
+        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
+        properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
+
+        properties.hitProperties.knockback.Set(-3f, 6f);
+        properties.hitProperties.airKnockback.Set(-3f, 6f);
+        properties.hitProperties.selfKnockback.Set(-4f, 0);
+        properties.hitProperties.damage = 125f;
+        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
+        properties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
+        properties.hitProperties.hardKD = false;
+    }
+}
+
 public class GrabWhiff : ThrowAttack
 {
     public GrabWhiff(ThrowAttackSuccess _success) : base(_success)
     {
-        conditions.Add(new GestureCondition(this, new ForwardGesture()));
-        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackD()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new StanceCondition(this, FighterStance.Standing));
         conditions.Add(new NoGatlingCondition(this));
@@ -548,7 +586,7 @@ public class BackThrowWhiff : ThrowAttack
     public BackThrowWhiff(ThrowAttackSuccess _success) : base(_success)
     {
         conditions.Add(new GestureCondition(this, new BackGesture()));
-        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new ButtonCondition(this, new AttackD()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new StanceCondition(this, FighterStance.Standing));
         conditions.Add(new NoGatlingCondition(this));

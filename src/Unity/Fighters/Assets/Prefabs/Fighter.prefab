@@ -103,7 +103,7 @@ MonoBehaviour:
   fighterParent: {fileID: 9020838737738351360}
   originalParent: {fileID: 8825922811738063820}
   hitbox: {fileID: 1613674468550532483}
-  velocity: {x: 5.5, y: 0}
+  velocity: {x: 5, y: 0}
   projectileActive: 0
 --- !u!114 &1613674468550532483
 MonoBehaviour:

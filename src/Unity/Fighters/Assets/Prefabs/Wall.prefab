@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6446215207683566580}
   - component: {fileID: 6446215207683566579}
   - component: {fileID: 6446215207683566578}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,7 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 878327102893183571}
   - component: {fileID: 6622780729682753894}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WallTrigger
   m_TagString: WallTrigger
   m_Icon: {fileID: 0}

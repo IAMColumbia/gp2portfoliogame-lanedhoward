@@ -70,8 +70,20 @@ public class Projectile : MonoBehaviour, IHitboxResponder
 
         transform.position = pos;
 
+        transform.localScale = new Vector3(1, 1, 1);
+
+        //var otherXdir = Mathf.Sign(originalParent.lossyScale.x);
+        //var myXdir = Mathf.Sign(transform.localScale.x);
+
+        if (fighterParent.facingDirection == CommandInputReaderLibrary.Directions.FacingDirection.LEFT)
+        {
+            //transform.localScale.Set(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+
         hitbox.SetResponder(this);
         hitbox.OpenForCollision = true;
+        hitbox._state = ColliderState.Open;
 
     }
 
@@ -80,7 +92,12 @@ public class Projectile : MonoBehaviour, IHitboxResponder
         hitbox.OpenForCollision = false;
         gameObject.SetActive(false);
         projectileActive = false;
-        transform.SetPositionAndRotation(originalParent.transform.position, originalParent.transform.rotation);
+        //transform.SetPositionAndRotation(originalParent.transform.position, originalParent.transform.rotation);
+        /*if (Mathf.Sign(originalParent.lossyScale.x) != Mathf.Sign(transform.lossyScale.x))
+        {
+            transform.localScale.Set(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        }*/
+        //transform.localScale.Set(1, 1, 1);
         transform.SetParent(originalParent, false);
 
     }
@@ -92,6 +109,14 @@ public class Projectile : MonoBehaviour, IHitboxResponder
         if (projectileActive)
         {
             this.transform.position = new Vector3(transform.position.x + velocity.x * Time.deltaTime * Mathf.Sign(transform.lossyScale.x), transform.position.y + velocity.y * Time.deltaTime, transform.position.z);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            EndProjectile();
         }
     }
 }

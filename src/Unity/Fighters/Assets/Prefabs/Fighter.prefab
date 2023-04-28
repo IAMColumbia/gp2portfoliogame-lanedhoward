@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 2919510070634168920}
   - component: {fileID: 1613674468550532483}
   - component: {fileID: 1341059940749780049}
-  m_Layer: 0
+  - component: {fileID: 7492368703100562711}
+  m_Layer: 18
   m_Name: Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +103,7 @@ MonoBehaviour:
   fighterParent: {fileID: 9020838737738351360}
   originalParent: {fileID: 8825922811738063820}
   hitbox: {fileID: 1613674468550532483}
-  velocity: {x: 10, y: 0}
+  velocity: {x: 5.5, y: 0}
   projectileActive: 0
 --- !u!114 &1613674468550532483
 MonoBehaviour:
@@ -120,6 +121,7 @@ MonoBehaviour:
   id: 0
   offset: {x: 0, y: 1, z: 0}
   halfExtents: {x: 0.25, y: 0.9, z: 0}
+  _state: 0
   OpenForCollision: 0
 --- !u!61 &1341059940749780049
 BoxCollider2D:
@@ -131,7 +133,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 1}
@@ -147,6 +149,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 1.8}
   m_EdgeRadius: 0
+--- !u!50 &7492368703100562711
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7501725220959110809}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &8011111597918475088
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +225,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8074982943798472160}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8, y: 0, z: 0}
+  m_LocalPosition: {x: 0.35, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -348,7 +371,7 @@ GameObject:
   - component: {fileID: 5051400795614754434}
   - component: {fileID: 9020838737738353918}
   - component: {fileID: 3818826600590594923}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Fighter
   m_TagString: Fighter
   m_Icon: {fileID: 0}

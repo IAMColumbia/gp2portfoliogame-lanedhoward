@@ -105,6 +105,7 @@
     <Compile Include="Assets\Scripts\FighterMain.cs" />
     <Compile Include="Assets\Scripts\FighterStates\IStunState.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IGesture.cs" />
+    <Compile Include="Assets\Scripts\Hitboxes\Projectile.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableGestureWithShortcuts.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Prejump.cs" />
     <Compile Include="Assets\Scripts\FighterAnimator.cs" />
@@ -116,7 +117,6 @@
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttack.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\Hitboxes\Projectile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

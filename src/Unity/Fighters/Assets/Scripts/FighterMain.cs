@@ -246,6 +246,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         if (canAct && inputReceiver.bufferedInput != null)
         {
             UpdateStance();
+
             var foundAttack = inputReceiver.ParseAttack(inputReceiver.bufferedInput);
 
             if (foundAttack != null)

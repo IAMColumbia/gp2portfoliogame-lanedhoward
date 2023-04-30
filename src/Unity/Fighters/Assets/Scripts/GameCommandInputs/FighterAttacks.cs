@@ -260,7 +260,7 @@ public class TwoB : GameAttack
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
 
-        properties.hitProperties.knockback.Set(-6f, 5f);
+        properties.hitProperties.knockback.Set(-6f, 6f);
         properties.hitProperties.airKnockback.Set(-1.5f, 9f);
         properties.hitProperties.selfKnockback.Set(-4f, 0);
         properties.hitProperties.damage = 250f;
@@ -542,7 +542,7 @@ public class TwoThreeSixB : GameAttack
 
         properties.AnimationName = "FireballStomp";
 
-        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.blockType = GameAttackProperties.BlockType.Low;
         properties.attackType = GameAttackProperties.AttackType.Special;
         properties.attackStance = FighterStance.Standing;
 
@@ -553,8 +553,8 @@ public class TwoThreeSixB : GameAttack
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
 
-        properties.hitProperties.knockback.Set(-3f, 6f);
-        properties.hitProperties.airKnockback.Set(-3f, 6f);
+        properties.hitProperties.knockback.Set(-3f, 8f);
+        properties.hitProperties.airKnockback.Set(-3f, 8f);
         properties.hitProperties.selfKnockback.Set(-4f, 0);
         properties.hitProperties.damage = 125f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
@@ -568,7 +568,7 @@ public class TwoThreeSixB : GameAttack
         fireballProperties.attackStance = FighterStance.Standing;
 
         fireballProperties.blockProperties.knockback.Set(-5f, 0);
-        fireballProperties.blockProperties.airKnockback.Set(-3f, 5f);
+        fireballProperties.blockProperties.airKnockback.Set(-3f, 6f);
         fireballProperties.blockProperties.damage = 75f;
         fireballProperties.blockProperties.hitstopTime = FighterAttacks.attackLevel1_blockhitstop;
         fireballProperties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;

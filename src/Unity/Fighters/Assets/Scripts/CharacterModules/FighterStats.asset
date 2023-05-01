@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6527b4a829a77e746abf9f339269bc52, type: 3}
   m_Name: FighterStats
   m_EditorClassIdentifier: 
+  Name: Fighter!
+  material: {fileID: 0}
   MaxHealth: 4000
   JuggleMomentumMultiplier: 0.2
   softKnockdownTime: 0.1

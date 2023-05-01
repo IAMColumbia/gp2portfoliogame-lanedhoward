@@ -118,6 +118,8 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
     <Compile Include="Assets\Scripts\CharacterModules\FighterModule.cs" />
+    <Compile Include="Assets\Scripts\GameCommandInputs\BlackHandAttacks.cs" />
+    <Compile Include="Assets\Scripts\CharacterModules\BlackhandModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

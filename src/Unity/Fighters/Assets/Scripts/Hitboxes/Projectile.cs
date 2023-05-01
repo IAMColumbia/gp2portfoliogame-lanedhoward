@@ -125,4 +125,9 @@ public class Projectile : MonoBehaviour, IHitboxResponder
             EndProjectile();
         }
     }
+
+    public void SetMaterial(Material mat)
+    {
+        this.GetComponent<SpriteRenderer>().material = mat;
+    }
 }

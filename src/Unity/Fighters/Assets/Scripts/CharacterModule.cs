@@ -7,6 +7,10 @@ using UnityEngine.Rendering;
 [CreateAssetMenu]
 public class CharacterModule : ScriptableObject
 {
+    [Header("Cosmetics")]
+    public string Name;
+    public Material[] materials;
+
     [Header("Health Values")]
     public float MaxHealth = 1000;
 

@@ -23,7 +23,7 @@ public static class FighterAttacks
                 new SixTwoThreeC(),
                 new TwoOneFourC(),
                 new TwoThreeSixB(),
-                new CannonGrabWhiff(new CannonGrabSuccess()),
+                //new CannonGrabWhiff(new CannonGrabSuccess()),
                 new BackThrowWhiff(new GrabSuccess()),
                 new GrabWhiff(new GrabSuccess()),
                 new AirBackThrowWhiff(new AirGrabSuccess()),
@@ -815,50 +815,5 @@ public class NeutralDash : GameAttack
 
         fighter.SwitchState(fighter.neutraldashing);
 
-    }
-}
-
-// blackhand
-public class CannonGrabWhiff : ThrowAttack
-{
-    public CannonGrabWhiff(ThrowAttackSuccess _success) : base(_success)
-    {
-        conditions.Add(new GestureCondition(this, new DragonPunch()));
-        conditions.Add(new ButtonCondition(this, new AttackD()));
-        conditions.Add(new GroundedCondition(this, true));
-        conditions.Add(new NoGatlingCondition(this));
-
-        //whiffSound = fighter.whiffSounds[0];
-        //hitSound = fighter.hitSounds[0];
-        whiffSoundIndex = 0;
-        hitSoundIndex = 1;
-
-        properties.AnimationName = "CannonGrab";
-
-        canBeTeched = false;
-        canTech = false;
-        
-    }
-}
-
-public class CannonGrabSuccess : ThrowAttackSuccess
-{
-    public CannonGrabSuccess() : base()
-    {
-        properties.AnimationName = "CannonGrabSuccess";
-
-        //whiffSound = fighter.whiffSounds[0];
-        //hitSound = fighter.hitSounds[2];
-        whiffSoundIndex = -1;
-        hitSoundIndex = 3;
-
-        properties.hitProperties.knockback.Set(-20f, 7.5f);
-        properties.hitProperties.selfKnockback.Set(0f, 0);
-        properties.hitProperties.damage = 1600f;
-        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel4_hithitstop;
-        properties.hitProperties.stunTime = FighterAttacks.attackLevel4_hitstun;
-        properties.hitProperties.hardKD = true;
-
-        properties.hitProperties.wallBounce = true;
     }
 }

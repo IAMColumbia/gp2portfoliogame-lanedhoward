@@ -33,6 +33,9 @@ public enum CurrentAttackState
 [RequireComponent(typeof(PlayerInput))]
 public class FighterMain : SoundPlayer, IHitboxResponder
 {
+    [Header("Character Module!!!")]
+    public CharacterModule characterModule;
+
     public FighterInputReceiver inputReceiver;
     public FighterAnimator fighterAnimator;
     protected FighterAnimationEvents fighterAnimationEvents;
@@ -154,7 +157,6 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
         var inputHost = new FighterInputHost(GetComponent<PlayerInput>());
         var inputReader = new InputReader(inputHost);
-        inputReader.SetPossibleGestures(FighterGestures.GetDefaultGestures());
         inputReceiver = new FighterInputReceiver(this, inputHost, inputReader);
 
         fighterRigidbody = GetComponent<Rigidbody2D>();
@@ -174,8 +176,19 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         groundMask = LayerMask.GetMask("Ground");
 
         fighterAnimator = new FighterAnimator(this);
-        fighterAnimator.velocityToStopMovingAnim = velocityToStopMoveAnimation;
 
+        currentAttack = null;
+        
+        currentCombo = new Combo();
+
+        InitializeFacingDirection();
+        inputReceiver.UpdateFacingDirection();
+
+        InitializeCharacterModule();
+
+        CurrentHealth = MaxHealth;
+        fighterAnimator.velocityToStopMovingAnim = velocityToStopMoveAnimation;
+        
         neutral = new Neutral(this);
         prejump = new Prejump(this);
         air = new Air(this);
@@ -190,17 +203,47 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         backdashing = new Backdashing(this);
         neutraldashing = new Neutraldashing(this);
 
-        currentAttack = null;
-        fighterAttacks = FighterAttacks.GetFighterAttacks();
-
-        currentCombo = new Combo();
-
-        CurrentHealth = MaxHealth;
-
-        InitializeFacingDirection();
-        inputReceiver.UpdateFacingDirection();
-
+        fireball.SetMaterial(this.GetComponentInChildren<SpriteRenderer>().material);
+        
         SwitchState(neutral);
+    }
+
+    public void InitializeCharacterModule()
+    {
+        MaxHealth = characterModule.MaxHealth;
+        JuggleMomentumMultiplier = characterModule.JuggleMomentumMultiplier;
+
+        softKnockdownTime = characterModule.softKnockdownTime;
+        hardKnockdownTime = characterModule.hardKnockdownTime;
+
+        walkAccel = characterModule.walkAccel;
+        walkMaxSpeed = characterModule.walkMaxSpeed;
+        groundFriction = characterModule.groundFriction;
+        velocityToStopMoveAnimation = characterModule.velocityToStopMoveAnimation;
+
+        forwardDashTime = characterModule.forwardDashTime;
+        forwardDashActionableDelay = characterModule.forwardDashActionableDelay;
+        forwardDashVelocity = characterModule.forwardDashVelocity;
+
+        backDashTime = characterModule.backDashTime;
+        backDashActionableDelay = characterModule.backDashActionableDelay;
+        backDashStrikeInvulnTime = characterModule.backDashStrikeInvulnTime;
+        backDashVelocity = characterModule.backDashVelocity;
+
+        neutralDashTime = characterModule.neutralDashTime;
+        neutralDashActionableDelay = characterModule.neutralDashActionableDelay;
+        neutralDashVelocity = characterModule.neutralDashVelocity;
+
+        dashJumpCancelWindow = characterModule.dashJumpCancelWindow;
+        dashMomentumMultiplier = characterModule.dashMomentumMultiplier;
+
+        jumpVelocityHorizontal = characterModule.jumpVelocityHorizontal;
+        jumpVelocityVertical = characterModule.jumpVelocityVertical;
+        jumpMomentumMultiplier = characterModule.jumpMomentumMultiplier;
+
+        fighterAttacks = characterModule.GetGameAttacks();
+        inputReceiver.SetPossibleGestures(characterModule.GetPossibleGestures());
+        
     }
 
     void Update()

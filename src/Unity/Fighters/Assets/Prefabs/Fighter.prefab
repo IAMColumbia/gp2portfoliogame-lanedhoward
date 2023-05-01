@@ -194,7 +194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8011111597918475088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.44, y: 0, z: 0}
+  m_LocalPosition: {x: 1.26, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -451,14 +451,14 @@ MonoBehaviour:
     m_Bits: 0
   groundCheckXDistance: 0.1
   groundCheckYDistance: 0.1
-  MaxHealth: 5000
+  MaxHealth: 4000
   CurrentHealth: 0
   JuggleMomentumMultiplier: 0.2
   softKnockdownTime: 0.1
   hardKnockdownTime: 0.4
   throwTechWindow: 0.16666667
-  throwTechHitstun: 0.3
-  throwTechKnockback: {x: -9, y: 0}
+  throwTechHitstun: 0.4
+  throwTechKnockback: {x: -11, y: 0}
   throwTechHitstop: 0.16666667
   walkAccel: 50
   walkMaxSpeed: 5

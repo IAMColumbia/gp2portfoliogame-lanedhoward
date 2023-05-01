@@ -75,12 +75,9 @@ public class Projectile : MonoBehaviour, IHitboxResponder
 
         transform.localScale = new Vector3(1, 1, 1);
 
-        //var otherXdir = Mathf.Sign(originalParent.lossyScale.x);
-        //var myXdir = Mathf.Sign(transform.localScale.x);
 
         if (fighterParent.facingDirection == CommandInputReaderLibrary.Directions.FacingDirection.LEFT)
         {
-            //transform.localScale.Set(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
             transform.localScale = new Vector3(-1, 1, 1);
         }
 
@@ -88,6 +85,7 @@ public class Projectile : MonoBehaviour, IHitboxResponder
         hitbox.OpenForCollision = true;
         hitbox._state = ColliderState.Open;
 
+        fighterParent.GotHit += OnFighterGotHit;
     }
 
     public void EndProjectile()
@@ -95,13 +93,9 @@ public class Projectile : MonoBehaviour, IHitboxResponder
         hitbox.OpenForCollision = false;
         gameObject.SetActive(false);
         projectileActive = false;
-        //transform.SetPositionAndRotation(originalParent.transform.position, originalParent.transform.rotation);
-        /*if (Mathf.Sign(originalParent.lossyScale.x) != Mathf.Sign(transform.lossyScale.x))
-        {
-            transform.localScale.Set(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
-        }*/
-        //transform.localScale.Set(1, 1, 1);
         transform.SetParent(originalParent, false);
+
+        fighterParent.GotHit -= OnFighterGotHit;
 
     }
 
@@ -120,6 +114,14 @@ public class Projectile : MonoBehaviour, IHitboxResponder
         if (collision.gameObject.CompareTag("Wall"))
         {
             fighterParent.PlaySound(fighterParent.hitSounds[projectileProperties.parent.hitSoundIndex]);
+            EndProjectile();
+        }
+    }
+
+    public void OnFighterGotHit(object sender, EventArgs e)
+    {
+        if (projectileActive)
+        {
             EndProjectile();
         }
     }

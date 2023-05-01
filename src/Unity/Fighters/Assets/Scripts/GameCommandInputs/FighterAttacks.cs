@@ -23,8 +23,11 @@ public static class FighterAttacks
                 new SixTwoThreeC(),
                 new TwoOneFourC(),
                 new TwoThreeSixB(),
+                new CannonGrabWhiff(new CannonGrabSuccess()),
                 new BackThrowWhiff(new GrabSuccess()),
                 new GrabWhiff(new GrabSuccess()),
+                new AirBackThrowWhiff(new AirGrabSuccess()),
+                new AirGrabWhiff(new AirGrabSuccess()),
                 new BackDash(),
                 new ForwardDash(),
                 new NeutralDash()
@@ -46,6 +49,11 @@ public static class FighterAttacks
     public static float attackLevel3_blockhitstop;
     public static float attackLevel3_hitstun;
     public static float attackLevel3_blockstun;
+
+    public static float attackLevel4_hithitstop;
+    public static float attackLevel4_blockhitstop;
+    public static float attackLevel4_hitstun;
+    public static float attackLevel4_blockstun;
     static FighterAttacks()
     {
         attackLevel1_hithitstop = 7f / 60f;
@@ -62,6 +70,11 @@ public static class FighterAttacks
         attackLevel3_blockhitstop = 9f / 60f;
         attackLevel3_hitstun = 25f / 60f;
         attackLevel3_blockstun = 20f / 60f;
+
+        attackLevel4_hithitstop = 15f / 60f;
+        attackLevel4_blockhitstop = 12f / 60f;
+        attackLevel4_hitstun = 32f / 60f;
+        attackLevel4_blockstun = 26f / 60f;
     }
 
 }
@@ -656,7 +669,79 @@ public class GrabSuccess : ThrowAttackSuccess
 
         properties.hitProperties.knockback.Set(-5f, 7f);
         properties.hitProperties.selfKnockback.Set(0f, 0);
-        properties.hitProperties.damage = 250f;
+        properties.hitProperties.damage = 500f;
+        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
+        properties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
+        properties.hitProperties.hardKD = true;
+    }
+}
+
+public class AirGrabWhiff : ThrowAttack
+{
+    public AirGrabWhiff(ThrowAttackSuccess _success) : base(_success)
+    {
+        conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackD()));
+        conditions.Add(new GroundedCondition(this, false));
+        conditions.Add(new StanceCondition(this, FighterStance.Air));
+        conditions.Add(new NoGatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[0];
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
+
+        properties.AnimationName = "ThrowWhiff";
+
+        properties.attackStance = FighterStance.Air;
+    }
+}
+
+public class AirBackThrowWhiff : ThrowAttack
+{
+    public AirBackThrowWhiff(ThrowAttackSuccess _success) : base(_success)
+    {
+        conditions.Add(new GestureCondition(this, new BackGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackD()));
+        conditions.Add(new GroundedCondition(this, false));
+        conditions.Add(new StanceCondition(this, FighterStance.Air));
+        conditions.Add(new NoGatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[0];
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
+
+        properties.AnimationName = "ThrowWhiff";
+
+        properties.attackStance = FighterStance.Air;
+    }
+
+    public override void OnHit(FighterMain fighter, FighterMain otherFighter)
+    {
+        Vector3 originalPos = fighter.transform.position;
+        fighter.transform.position = fighter.throwPivot.position;
+        otherFighter.transform.position = originalPos;
+        fighter.AutoTurnaround();
+
+        base.OnHit(fighter, otherFighter);
+    }
+}
+
+public class AirGrabSuccess : ThrowAttackSuccess
+{
+    public AirGrabSuccess() : base()
+    {
+        properties.AnimationName = "ThrowSuccess";
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[2];
+        whiffSoundIndex = -1;
+        hitSoundIndex = 2;
+
+        properties.hitProperties.airKnockback.Set(-2f, 7f);
+        properties.hitProperties.selfKnockback.Set(0f, 0);
+        properties.hitProperties.damage = 500f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
         properties.hitProperties.hardKD = true;
@@ -730,5 +815,50 @@ public class NeutralDash : GameAttack
 
         fighter.SwitchState(fighter.neutraldashing);
 
+    }
+}
+
+// blackhand
+public class CannonGrabWhiff : ThrowAttack
+{
+    public CannonGrabWhiff(ThrowAttackSuccess _success) : base(_success)
+    {
+        conditions.Add(new GestureCondition(this, new DragonPunch()));
+        conditions.Add(new ButtonCondition(this, new AttackD()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new NoGatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[0];
+        whiffSoundIndex = 0;
+        hitSoundIndex = 1;
+
+        properties.AnimationName = "CannonGrab";
+
+        canBeTeched = false;
+        canTech = false;
+        
+    }
+}
+
+public class CannonGrabSuccess : ThrowAttackSuccess
+{
+    public CannonGrabSuccess() : base()
+    {
+        properties.AnimationName = "CannonGrabSuccess";
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[2];
+        whiffSoundIndex = -1;
+        hitSoundIndex = 3;
+
+        properties.hitProperties.knockback.Set(-20f, 7.5f);
+        properties.hitProperties.selfKnockback.Set(0f, 0);
+        properties.hitProperties.damage = 1600f;
+        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel4_hithitstop;
+        properties.hitProperties.stunTime = FighterAttacks.attackLevel4_hitstun;
+        properties.hitProperties.hardKD = true;
+
+        properties.hitProperties.wallBounce = true;
     }
 }

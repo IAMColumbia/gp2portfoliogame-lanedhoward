@@ -526,6 +526,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         
         CurrentHealth -= hitDamage;
         currentCombo.totalDamage += hitDamage;
+
+        kb *= currentCombo.knockbackScale;
         
         OnVelocityImpulseJuggle(kb, JuggleMomentumMultiplier * currentCombo.momentumScale);
 

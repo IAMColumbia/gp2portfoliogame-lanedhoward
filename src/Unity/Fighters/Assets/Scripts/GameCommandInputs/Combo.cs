@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 public class Combo
 {
@@ -12,11 +13,14 @@ public class Combo
 
     public float damageScale;
     public float momentumScale;
+    public Vector2 knockbackScale;
 
     private const float DAMAGE_SCALING_PER_HIT = 0.825f;
     private const float DAMAGE_MIN_SCALING = 0.3f;
     private const float MOMENTUM_SCALING_PER_HIT = 1.17f;
     private const float MOMENTUM_MAX_SCALING = 1.0f;
+    private const float KNOCKBACK_MAX_SCALING = 10f;
+    private const float KNOCKBACK_SCALING_PER_HIT = 1.02f;
     private const int MAX_UNSCALED_HITS = 2;
 
     public Combo()
@@ -31,6 +35,7 @@ public class Combo
         totalDamage = 0;
         damageScale = 1;
         momentumScale = 1;
+        knockbackScale = Vector2.one;
     }
 
     public void AddHit()
@@ -46,7 +51,8 @@ public class Combo
         {
             damageScale = MathF.Max(damageScale * DAMAGE_SCALING_PER_HIT, DAMAGE_MIN_SCALING);
             momentumScale = MathF.Min(momentumScale * MOMENTUM_SCALING_PER_HIT, MOMENTUM_MAX_SCALING);
-
+            knockbackScale.x = MathF.Min(knockbackScale.x * KNOCKBACK_SCALING_PER_HIT, KNOCKBACK_MAX_SCALING);
+            knockbackScale.y = MathF.Max(knockbackScale.y / KNOCKBACK_SCALING_PER_HIT, 1/KNOCKBACK_MAX_SCALING);
         }
     }
 

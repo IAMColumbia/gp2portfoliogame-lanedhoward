@@ -67,9 +67,9 @@ public class CannonGrabSuccess : ThrowAttackSuccess
         whiffSoundIndex = -1;
         hitSoundIndex = 3;
 
-        properties.hitProperties.knockback.Set(-20f, 7.5f);
+        properties.hitProperties.knockback.Set(-20f, 8f);
         properties.hitProperties.selfKnockback.Set(0f, 0);
-        properties.hitProperties.damage = 1600f;
+        properties.hitProperties.damage = 1300f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel4_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel4_hitstun;
         properties.hitProperties.hardKD = true;

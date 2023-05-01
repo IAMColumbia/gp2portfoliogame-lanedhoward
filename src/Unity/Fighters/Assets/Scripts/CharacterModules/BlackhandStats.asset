@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: BlackhandStats
   m_EditorClassIdentifier: 
   Name: Captain Blackhand
-  materials: []
+  materials:
+  - {fileID: 2100000, guid: 60a2e37dd07c8c84399b54e789aeb9f2, type: 2}
+  - {fileID: 2100000, guid: 69756b4c28b4b064f99f7522aa0d9994, type: 2}
   MaxHealth: 4000
   JuggleMomentumMultiplier: 0.2
   softKnockdownTime: 0.1
@@ -30,8 +32,8 @@ MonoBehaviour:
   backDashStrikeInvulnTime: 0.2
   backDashVelocity: {x: -5, y: 5}
   neutralDashTime: 0.3
-  neutralDashActionableDelay: 0.3
-  neutralDashVelocity: {x: 0, y: 5}
+  neutralDashActionableDelay: 0.18
+  neutralDashVelocity: {x: 0, y: 9}
   dashJumpCancelWindow: 0.1
   dashMomentumMultiplier: 0.8
   jumpVelocityHorizontal: 3

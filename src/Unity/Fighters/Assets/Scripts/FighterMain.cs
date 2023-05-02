@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 using UnityEngine.UIElements;
 
 [Flags]
@@ -154,8 +155,10 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     void Awake()
     {
         timeManager = FindObjectOfType<TimeManager>();
+        
+        PlayerInput pi = GetComponent<PlayerInput>();
 
-        var inputHost = new FighterInputHost(GetComponent<PlayerInput>());
+        var inputHost = new FighterInputHost(pi);
         var inputReader = new InputReader(inputHost);
         inputReceiver = new FighterInputReceiver(this, inputHost, inputReader);
 

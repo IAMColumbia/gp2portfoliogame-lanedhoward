@@ -56,6 +56,8 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CharacterModules\BlackhandModule.cs" />
+    <Compile Include="Assets\Scripts\CharacterModules\FighterModule.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Knockdown.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Grabbing.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Neutral.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttackCondition.cs" />
     <Compile Include="Assets\Scripts\System\GameManager.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableGesture.cs" />
+    <Compile Include="Assets\Scripts\GameCommandInputs\BlackHandAttacks.cs" />
     <Compile Include="Assets\Scripts\System\TimeManager.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\ThrowAttack.cs" />
     <Compile Include="Assets\Scripts\FighterStates\FighterState.cs" />
@@ -117,9 +120,9 @@
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttack.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\CharacterModules\FighterModule.cs" />
-    <Compile Include="Assets\Scripts\GameCommandInputs\BlackHandAttacks.cs" />
-    <Compile Include="Assets\Scripts\CharacterModules\BlackhandModule.cs" />
+    <Compile Include="Assets\Scripts\System\PlayerConfigurationManager.cs" />
+    <Compile Include="Assets\Scripts\System\PlayerSetupController.cs" />
+    <Compile Include="Assets\Scripts\System\SpawnPlayerSetupMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

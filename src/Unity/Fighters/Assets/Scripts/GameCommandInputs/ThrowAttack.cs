@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using UnityEngine;
 
 public class ThrowAttack : GameAttack
 {
@@ -34,6 +34,13 @@ public class ThrowAttack : GameAttack
 
 public class ThrowAttackSuccess : GameAttack
 {
+    public bool flipOnTech;
+
+    public ThrowAttackSuccess()
+    {
+        flipOnTech = false;
+    }
+
     public override void OnStartup(FighterMain fighter)
     {
         base.OnStartup(fighter);
@@ -67,5 +74,28 @@ public class ThrowAttackSuccess : GameAttack
         }
 
         fighter.otherFighterMain.GetHitWith(this.properties);
+    }
+
+    public virtual void OnThrowTeched(FighterMain fighter, FighterMain otherFighter)
+    {
+        if (flipOnTech)
+        {
+            fighter.ThrowFlipPlayers();
+        }
+    }
+}
+
+public class BackThrowAttack : ThrowAttack
+{
+    public BackThrowAttack(ThrowAttackSuccess _success) : base(_success)
+    {
+        success.flipOnTech = true;
+    }
+
+    public override void OnHit(FighterMain fighter, FighterMain otherFighter)
+    {
+        fighter.ThrowFlipPlayers();
+
+        base.OnHit(fighter, otherFighter);
     }
 }

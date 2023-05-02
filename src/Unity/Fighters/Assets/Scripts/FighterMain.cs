@@ -747,10 +747,23 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
     public void TechThrow()
     {
+        if (isCurrentlyAttacking && currentAttack is ThrowAttackSuccess currentThrowSuccess)
+        {
+            currentThrowSuccess.OnThrowTeched(this, otherFighterMain);
+        }
         SwitchState(hitstun);
         Hitstun hs = (Hitstun)currentState;
         hs.SetStun(throwTechHitstun);
         OnVelocityImpulseRelativeToOtherFighter(throwTechKnockback);
+    }
+
+    public void ThrowFlipPlayers()
+    {
+        Vector3 originalPos = transform.position;
+        transform.position = throwPivot.position;
+        otherFighterMain.transform.position = originalPos;
+        AutoTurnaround();
+        otherFighterMain.AutoTurnaround();
     }
 
     private void PushAwayFromWall()

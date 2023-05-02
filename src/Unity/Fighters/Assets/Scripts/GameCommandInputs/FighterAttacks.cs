@@ -638,7 +638,7 @@ public class GrabWhiff : ThrowAttack
     }
 }
 
-public class BackThrowWhiff : ThrowAttack
+public class BackThrowWhiff : BackThrowAttack
 {
     public BackThrowWhiff(ThrowAttackSuccess _success) : base(_success)
     {
@@ -656,15 +656,7 @@ public class BackThrowWhiff : ThrowAttack
         properties.AnimationName = "ThrowWhiff";
     }
 
-    public override void OnHit(FighterMain fighter, FighterMain otherFighter)
-    {
-        Vector3 originalPos = fighter.transform.position;
-        fighter.transform.position = fighter.throwPivot.position;
-        otherFighter.transform.position = originalPos;
-        fighter.AutoTurnaround();
-
-        base.OnHit(fighter, otherFighter);
-    }
+    
 }
 
 public class GrabSuccess : ThrowAttackSuccess
@@ -705,10 +697,14 @@ public class AirGrabWhiff : ThrowAttack
         properties.AnimationName = "ThrowWhiff";
 
         properties.attackStance = FighterStance.Air;
+
+        properties.landingLagTime = 8f / 60f;
+
+        
     }
 }
 
-public class AirBackThrowWhiff : ThrowAttack
+public class AirBackThrowWhiff : BackThrowAttack
 {
     public AirBackThrowWhiff(ThrowAttackSuccess _success) : base(_success)
     {
@@ -726,6 +722,10 @@ public class AirBackThrowWhiff : ThrowAttack
         properties.AnimationName = "ThrowWhiff";
 
         properties.attackStance = FighterStance.Air;
+
+        properties.landingLagTime = 8f / 60f;
+
+
     }
 
     public override void OnHit(FighterMain fighter, FighterMain otherFighter)

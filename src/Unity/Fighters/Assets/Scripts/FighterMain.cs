@@ -741,8 +741,9 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     {
         timeManager.DoHitStop(throwTechHitstop);
         PlaySound(throwTechSound);
-        TechThrow();
+        // do other fighter first because he might need to unflip a backthrow
         otherFighterMain.TechThrow();
+        TechThrow();
     }
 
     public void TechThrow()

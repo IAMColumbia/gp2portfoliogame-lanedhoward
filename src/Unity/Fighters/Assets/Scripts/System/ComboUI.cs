@@ -41,7 +41,10 @@ public class ComboUI : MonoBehaviour
 
     public void StartEndComboCount()
     {
-        endCombocount = StartCoroutine(EndComboCount());
+        if (this.isActiveAndEnabled)
+        {
+            endCombocount = StartCoroutine(EndComboCount());
+        }
     }
 
     public IEnumerator EndComboCount()

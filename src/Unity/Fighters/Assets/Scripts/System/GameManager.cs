@@ -3,16 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject fighterPrefab;
+
     [Header("Player 1")]
+    public Transform player1spawn;
     public FighterMain player1;
     public Healthbar player1Healthbar;
     public ComboUI player1comboUI;
 
     [Header("Player 2")]
+    public Transform player2spawn;
     public FighterMain player2;
     public Healthbar player2Healthbar;
     public ComboUI player2comboUI;
@@ -30,7 +35,19 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        gameActive = true;
+        /*
+        if (PlayerConfigurationManager.Instance == null)
+        {
+            SceneManager.LoadScene("PlayerSetup");
+            return;
+        }
+        */
+
+        //SpawnPlayers();
+
+        
+
+        gameActive = false;
 
         player1.enabled = false;
         player2.enabled = false;
@@ -44,11 +61,12 @@ public class GameManager : MonoBehaviour
         player1comboUI.HideText();
         player2comboUI.HideText();
 
-        StartScreen.SetActive(true);
+        //StartScreen.SetActive(true);
         Countdown.SetActive(false);
         WinScreen.SetActive(false);
 
-        eventSystem.SetSelectedGameObject(StartButton);
+        //eventSystem.SetSelectedGameObject(StartButton);
+        StartCoroutine(StartGame());
     }
 
     private void Player_LeftHitstun(object sender, EventArgs e)
@@ -155,6 +173,7 @@ public class GameManager : MonoBehaviour
         CountdownText.text = "All aboard!!!";
         player1.enabled = true;
         player2.enabled = true;
+        gameActive = true;
         yield return new WaitForSeconds(0.75f);
         Countdown.SetActive(false);
     }
@@ -165,5 +184,47 @@ public class GameManager : MonoBehaviour
         StartCoroutine(StartGame());
     }
 
-    
+    public void SpawnPlayers()
+    {
+        var configManager = PlayerConfigurationManager.Instance;
+
+        for (int i = 0; i < 2; i++)
+        {
+            if (configManager.playerConfigs[i] != null)
+            {
+                //var dev = configManager.playerConfigs[i].Input.user.pairedDevices;
+
+                Transform t = i == 0 ? player1spawn : player2spawn;
+                var fighter = PlayerInput.Instantiate(fighterPrefab,
+                    playerIndex: configManager.playerConfigs[i].PlayerIndex, 
+                    controlScheme: configManager.playerConfigs[i].Input.currentControlScheme, 
+                    pairWithDevice: configManager.playerConfigs[i].Input.devices[0]
+                    );
+                fighter.transform.position = t.position;
+
+                Debug.Log($"Player created: Player {configManager.playerConfigs[i].PlayerIndex} with {configManager.playerConfigs[i].Input.devices[0].name}");
+
+                var fm = fighter.GetComponent<FighterMain>();
+
+                fm.characterModule = configManager.playerConfigs[i].Character;
+
+                if (i==0)
+                {
+                    player1 = fm;
+                }
+                else
+                {
+                    player2 = fm;
+                }
+            }
+        }
+
+        player1.otherFighter = player2.gameObject;
+        player1.otherFighterMain = player2;
+        player1.AutoTurnaround();
+
+        player2.otherFighter = player1.gameObject;
+        player2.otherFighterMain = player1;
+        player1.AutoTurnaround();
+    }
 }

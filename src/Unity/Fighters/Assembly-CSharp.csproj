@@ -77,6 +77,8 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\HostPackage.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IButton.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Hitstun.cs" />
+    <Compile Include="Assets\Scripts\System\PlayerConfigurationManager.cs" />
+    <Compile Include="Assets\Scripts\System\PlayerSetupController.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IInputHost.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Neutraldashing.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadablePackage.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="Assets\Scripts\FighterStates\Air.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Getup.cs" />
     <Compile Include="Assets\Scripts\CharacterModule.cs" />
+    <Compile Include="Assets\Scripts\System\SpawnPlayerSetupMenu.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Button.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\GameMoveInputs.cs" />
     <Compile Include="Assets\Scripts\FighterInputReceiver.cs" />
@@ -120,9 +123,6 @@
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttack.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\System\PlayerConfigurationManager.cs" />
-    <Compile Include="Assets\Scripts\System\PlayerSetupController.cs" />
-    <Compile Include="Assets\Scripts\System\SpawnPlayerSetupMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

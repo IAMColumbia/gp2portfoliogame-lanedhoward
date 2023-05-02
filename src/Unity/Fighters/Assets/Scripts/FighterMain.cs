@@ -186,11 +186,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
         InitializeFacingDirection();
         inputReceiver.UpdateFacingDirection();
-
-        InitializeCharacterModule();
-
-        CurrentHealth = MaxHealth;
-        fighterAnimator.velocityToStopMovingAnim = velocityToStopMoveAnimation;
+        
+        
         
         neutral = new Neutral(this);
         prejump = new Prejump(this);
@@ -202,13 +199,29 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         getup = new Getup(this);
         grabbing = new Grabbing(this);
         getGrabbed = new GetGrabbed(this);
+
+        
+        
+        SwitchState(neutral);
+    }
+
+    public override void Start()
+    {
+        base.Start();
+
+
+        InitializeCharacterModule();
+
+        CurrentHealth = MaxHealth;
+        fighterAnimator.velocityToStopMovingAnim = velocityToStopMoveAnimation;
+
         dashing = new Dashing(this);
         backdashing = new Backdashing(this);
         neutraldashing = new Neutraldashing(this);
 
         fireball.SetMaterial(this.GetComponentInChildren<SpriteRenderer>().material);
-        
-        SwitchState(neutral);
+
+        AutoTurnaround();
     }
 
     public void InitializeCharacterModule()

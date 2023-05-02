@@ -6,7 +6,7 @@ public class SoundPlayer : MonoBehaviour
 {
     public AudioSource audioSource;
 
-    public void Start()
+    public virtual void Start()
     {
         audioSource = GetComponent<AudioSource>();
     }

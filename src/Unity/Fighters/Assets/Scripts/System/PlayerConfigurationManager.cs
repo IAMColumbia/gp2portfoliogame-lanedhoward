@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerConfigurationManager : MonoBehaviour
 {
-    private List<PlayerConfiguration> playerConfigs;
+    public List<PlayerConfiguration> playerConfigs;
 
     public int MaxPlayers = 2;
 
@@ -32,6 +32,7 @@ public class PlayerConfigurationManager : MonoBehaviour
         if(!playerConfigs.Any(p => p.PlayerIndex == pi.playerIndex))
         {
             pi.transform.SetParent(transform);
+            Debug.Log($"Player joined: Player {pi.playerIndex} with {pi.devices[0].name}");
             playerConfigs.Add(new PlayerConfiguration(pi));
         }
     }

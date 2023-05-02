@@ -454,6 +454,8 @@ public class JumpC : GameAttack
 
 public class SixTwoThreeC : GameAttack
 {
+    private float baseLandingLagTime = 0.25f;
+    private float onHitLandingLagTime = 0f;
     public SixTwoThreeC() : base()
     {
         conditions.Add(new GestureCondition(this, new DragonPunch()));
@@ -471,6 +473,7 @@ public class SixTwoThreeC : GameAttack
         properties.attackType = GameAttackProperties.AttackType.Special;
         properties.attackStance = FighterStance.Standing;
         properties.landCancelStartup = false;
+        properties.landingLagTime = baseLandingLagTime;
 
         properties.blockProperties.knockback.Set(-2f, 0);
         properties.blockProperties.airKnockback.Set(-2f, 3);
@@ -492,12 +495,20 @@ public class SixTwoThreeC : GameAttack
     {
         base.OnStartup(fighter);
         fighter.isStrikeInvulnerable = true;
+        properties.landingLagTime = baseLandingLagTime;
     }
 
     public override void OnActive(FighterMain fighter)
     {
         base.OnActive(fighter);
         fighter.isStrikeInvulnerable = false;
+    }
+
+    public override void OnHit(FighterMain fighter, FighterMain otherFighter)
+    {
+        base.OnHit(fighter, otherFighter);
+
+        properties.landingLagTime = onHitLandingLagTime;
     }
 }
 

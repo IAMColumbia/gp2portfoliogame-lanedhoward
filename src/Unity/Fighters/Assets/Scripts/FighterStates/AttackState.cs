@@ -43,7 +43,8 @@ public class AttackState : FighterState
             wasEverAirborne = true;
             if (stateTimer > 0.1f && (fighter.currentAttackState == CurrentAttackState.Recovery || fighter.currentAttack.properties.landCancelStartup))
             {
-                AllowLanding();
+                AttackLanding();
+                //AllowLanding();
             }
         }
         else
@@ -52,7 +53,8 @@ public class AttackState : FighterState
             {
                 if (stateTimer > 0.1f && (fighter.currentAttackState == CurrentAttackState.Recovery || fighter.currentAttack.properties.landCancelStartup))
                 {
-                    AllowLanding();
+                    AttackLanding();
+                    //AllowLanding();
                 }
             }
 
@@ -78,5 +80,21 @@ public class AttackState : FighterState
     protected void ResetCurrentAttack()
     {
         fighter.currentAttack = null;
+    }
+
+    protected void AttackLanding()
+    {
+        if (fighter.currentAttack.properties.landingLagTime > 0f)
+        {
+            if (fighter.isGrounded)
+            {
+                fighter.SwitchState(fighter.landingLag);
+                ((IStunState)fighter.currentState).SetStun(fighter.currentAttack.properties.landingLagTime);
+            }
+        }
+        else
+        {
+            AllowLanding();
+        }
     }
 }

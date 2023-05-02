@@ -132,6 +132,8 @@ public class GameAttackProperties
 
     public bool landCancelStartup;
 
+    public float landingLagTime;
+
     public GameAttackPropertiesProperties blockProperties;
     public GameAttackPropertiesProperties hitProperties;
 
@@ -144,6 +146,7 @@ public class GameAttackProperties
         attackStance = FighterStance.Standing;
 
         landCancelStartup = true;
+        landingLagTime = 0f;
 
         blockProperties = new GameAttackPropertiesProperties();
         hitProperties = new GameAttackPropertiesProperties();

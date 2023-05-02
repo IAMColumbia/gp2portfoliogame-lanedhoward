@@ -69,6 +69,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public Dashing dashing;
     public Backdashing backdashing;
     public Neutraldashing neutraldashing;
+    public LandingLag landingLag;
 
     [Header("Health Values")]
     public float MaxHealth = 1000;
@@ -199,6 +200,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         getup = new Getup(this);
         grabbing = new Grabbing(this);
         getGrabbed = new GetGrabbed(this);
+        landingLag = new LandingLag(this);
 
         
         

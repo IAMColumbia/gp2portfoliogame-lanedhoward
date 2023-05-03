@@ -35,15 +35,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        /*
+        
         if (PlayerConfigurationManager.Instance == null)
         {
             SceneManager.LoadScene("PlayerSetup");
             return;
         }
-        */
+        
 
-        //SpawnPlayers();
+        SpawnPlayers();
 
         
 
@@ -192,21 +192,23 @@ public class GameManager : MonoBehaviour
         {
             if (configManager.playerConfigs[i] != null)
             {
-                //var dev = configManager.playerConfigs[i].Input.user.pairedDevices;
 
                 Transform t = i == 0 ? player1spawn : player2spawn;
-                var fighter = PlayerInput.Instantiate(fighterPrefab,
-                    playerIndex: configManager.playerConfigs[i].PlayerIndex, 
-                    controlScheme: configManager.playerConfigs[i].Input.currentControlScheme, 
-                    pairWithDevice: configManager.playerConfigs[i].Input.devices[0]
-                    );
+
+                GameObject fighter = Instantiate(fighterPrefab);
+
                 fighter.transform.position = t.position;
 
                 Debug.Log($"Player created: Player {configManager.playerConfigs[i].PlayerIndex} with {configManager.playerConfigs[i].Input.devices[0].name}");
 
                 var fm = fighter.GetComponent<FighterMain>();
 
+                fm.InitializePlayerInput(configManager.playerConfigs[i].Input);
+
                 fm.characterModule = configManager.playerConfigs[i].Character;
+                fm.InitializeCharacterModule();
+
+                fm.SetMaterial(configManager.playerConfigs[i].Character.materials[configManager.playerConfigs[i].CharacterMaterialIndex]);
 
                 if (i==0)
                 {
@@ -225,6 +227,6 @@ public class GameManager : MonoBehaviour
 
         player2.otherFighter = player1.gameObject;
         player2.otherFighterMain = player1;
-        player1.AutoTurnaround();
+        player2.AutoTurnaround();
     }
 }

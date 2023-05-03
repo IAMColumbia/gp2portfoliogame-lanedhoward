@@ -31,11 +31,12 @@ public enum CurrentAttackState
     Recovery
 }
 
-[RequireComponent(typeof(PlayerInput))]
+//[RequireComponent(typeof(PlayerInput))]
 public class FighterMain : SoundPlayer, IHitboxResponder
 {
     [Header("Character Module!!!")]
     public CharacterModule characterModule;
+    protected bool chararacterModuleInitialized = false;
 
     public FighterInputReceiver inputReceiver;
     public FighterAnimator fighterAnimator;
@@ -157,11 +158,9 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     {
         timeManager = FindObjectOfType<TimeManager>();
         
-        PlayerInput pi = GetComponent<PlayerInput>();
+        //PlayerInput pi = GetComponent<PlayerInput>();
 
-        var inputHost = new FighterInputHost(pi);
-        var inputReader = new InputReader(inputHost);
-        inputReceiver = new FighterInputReceiver(this, inputHost, inputReader);
+        
 
         fighterRigidbody = GetComponent<Rigidbody2D>();
         fighterCollider = GetComponent<Collider2D>();
@@ -186,7 +185,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         currentCombo = new Combo();
 
         InitializeFacingDirection();
-        inputReceiver.UpdateFacingDirection();
+        
         
         
         
@@ -211,8 +210,13 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     {
         base.Start();
 
+        if (!chararacterModuleInitialized)
+        {
+            InitializeCharacterModule();
+        }
 
-        InitializeCharacterModule();
+
+        inputReceiver.UpdateFacingDirection();
 
         CurrentHealth = MaxHealth;
         fighterAnimator.velocityToStopMovingAnim = velocityToStopMoveAnimation;
@@ -221,7 +225,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         backdashing = new Backdashing(this);
         neutraldashing = new Neutraldashing(this);
 
-        fireball.SetMaterial(this.GetComponentInChildren<SpriteRenderer>().material);
+        
 
         AutoTurnaround();
     }
@@ -261,6 +265,23 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
         fighterAttacks = characterModule.GetGameAttacks();
         inputReceiver.SetPossibleGestures(characterModule.GetPossibleGestures());
+
+        chararacterModuleInitialized = true;
+    }
+
+    public void InitializePlayerInput(PlayerInput pi)
+    {
+        var inputHost = new FighterInputHost(pi);
+        var inputReader = new InputReader(inputHost);
+        inputReceiver = new FighterInputReceiver(this, inputHost, inputReader);
+    }
+
+    public void SetMaterial(Material mat)
+    {
+        foreach (var sr in GetComponentsInChildren<SpriteRenderer>())
+        {
+            sr.material = mat;
+        }
         
     }
 

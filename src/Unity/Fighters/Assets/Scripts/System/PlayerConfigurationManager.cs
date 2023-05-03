@@ -45,7 +45,7 @@ public class PlayerConfigurationManager : MonoBehaviour
     public void SetReady(int index)
     {
         playerConfigs[index].IsReady = true;
-        if (playerConfigs.All(p => p.IsReady == true))
+        if (playerConfigs.Count >= MaxPlayers && playerConfigs.All(p => p.IsReady == true))
         {
             SceneManager.LoadScene("Fight");
         }
@@ -68,5 +68,6 @@ public class PlayerConfiguration
     {
         PlayerIndex = pi.playerIndex;
         Input = pi;
+        CharacterMaterialIndex = PlayerIndex;
     }
 }

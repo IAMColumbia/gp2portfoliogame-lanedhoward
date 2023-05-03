@@ -224,9 +224,11 @@ public class GameManager : MonoBehaviour
         player1.otherFighter = player2.gameObject;
         player1.otherFighterMain = player2;
         player1.AutoTurnaround();
+        player1Healthbar.SetNametag(player1.characterModule.Name);
 
         player2.otherFighter = player1.gameObject;
         player2.otherFighterMain = player1;
         player2.AutoTurnaround();
+        player2Healthbar.SetNametag(player2.characterModule.Name);
     }
 }

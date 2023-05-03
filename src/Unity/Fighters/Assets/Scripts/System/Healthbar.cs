@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,8 @@ public class Healthbar : MonoBehaviour
     public Image healthbar;
     public float minPercent;
     public float gutsPower;
+
+    public TextMeshProUGUI nametag;
 
     // Update is called once per frame
     void Update()
@@ -28,5 +31,10 @@ public class Healthbar : MonoBehaviour
         }
         percent = Mathf.Pow((current / max), gutsPower);
         percent = Mathf.Max(percent, minPercent);
+    }
+
+    public void SetNametag(string name)
+    {
+        nametag.SetText(name);
     }
 }

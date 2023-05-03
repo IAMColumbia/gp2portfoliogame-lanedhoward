@@ -343,3 +343,4 @@ MonoBehaviour:
   healthbar: {fileID: 3409997337070840966}
   minPercent: 0.005
   gutsPower: 1.1
+  nametag: {fileID: 6479479014584800117}

@@ -20,6 +20,7 @@ public static class BlackhandAttacks
                 new TwoC(),
                 new FiveC(),
                 new JumpC(),
+                new SharkCall(),
                 new CannonGrabWhiff(new CannonGrabSuccess()),
                 new BackThrowWhiff(new GrabSuccess()),
                 new GrabWhiff(new GrabSuccess()),
@@ -75,5 +76,42 @@ public class CannonGrabSuccess : ThrowAttackSuccess
         properties.hitProperties.hardKD = true;
 
         properties.hitProperties.wallBounce = true;
+    }
+}
+
+public class SharkCall : GameAttack
+{
+    public SharkCall() : base()
+    {
+        conditions.Add(new GestureCondition(this, new DragonPunch()));
+        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new GatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[3];
+        whiffSoundIndex = 2;
+        hitSoundIndex = 3;
+
+        properties.AnimationName = "SharkCall";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Standing;
+
+        properties.blockProperties.knockback.Set(-2f, 0);
+        properties.blockProperties.airKnockback.Set(-2f, -4);
+        properties.blockProperties.selfKnockback.Set(-7f, 0);
+        properties.blockProperties.damage = 50f;
+        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
+
+        properties.hitProperties.knockback.Set(-1f, 6f);
+        properties.hitProperties.airKnockback.Set(-1f, 10.5f);
+        properties.hitProperties.selfKnockback.Set(-4f, 0);
+        properties.hitProperties.damage = 450f;
+        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
+        properties.hitProperties.hardKD = false;
     }
 }

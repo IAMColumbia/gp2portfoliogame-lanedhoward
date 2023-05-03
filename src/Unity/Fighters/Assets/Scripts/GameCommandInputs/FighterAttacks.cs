@@ -23,7 +23,6 @@ public static class FighterAttacks
                 new SixTwoThreeC(),
                 new TwoOneFourC(),
                 new TwoThreeSixB(),
-                //new CannonGrabWhiff(new CannonGrabSuccess()),
                 new BackThrowWhiff(new GrabSuccess()),
                 new GrabWhiff(new GrabSuccess()),
                 new AirBackThrowWhiff(new AirGrabSuccess()),

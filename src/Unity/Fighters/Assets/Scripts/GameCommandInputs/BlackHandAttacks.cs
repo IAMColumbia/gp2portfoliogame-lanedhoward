@@ -100,9 +100,9 @@ public class SharkCall : GameAttack
         properties.attackStance = FighterStance.Standing;
 
         properties.blockProperties.knockback.Set(-2f, 0);
-        properties.blockProperties.airKnockback.Set(-2f, -4);
+        properties.blockProperties.airKnockback.Set(-2f, -2);
         properties.blockProperties.selfKnockback.Set(-7f, 0);
-        properties.blockProperties.damage = 50f;
+        properties.blockProperties.damage = 75f;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 

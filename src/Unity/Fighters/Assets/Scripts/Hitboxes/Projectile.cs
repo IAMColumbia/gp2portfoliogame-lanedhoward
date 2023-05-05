@@ -17,6 +17,11 @@ public class Projectile : MonoBehaviour, IHitboxResponder
     public float lifetime = 20f;
     public float timer = 0f;
 
+    public bool breakOnWallContact = true;
+    public bool selfDamage = false;
+
+    public float maxHitDistance = 100f;
+
     //public int hits = 1;
 
     bool IHitboxResponder.CollidedWith(Collider2D collider)
@@ -28,7 +33,8 @@ public class Projectile : MonoBehaviour, IHitboxResponder
 
         if (hurtbox != null)
         {
-            if (hurtbox.fighterParent == fighterParent) return false;
+            if (hurtbox.fighterParent == fighterParent && !selfDamage) return false;
+            if (Vector3.Distance(this.transform.position, collider.transform.position) > maxHitDistance) return false;
 
             HitReport report = hurtbox.fighterParent.GetHitWith(projectileProperties);
 
@@ -63,6 +69,11 @@ public class Projectile : MonoBehaviour, IHitboxResponder
 
     public void StartProjectile()
     {
+        StartProjectile(Vector3.zero);
+    }
+
+    public void StartProjectile(Vector3 offset)
+    {
         if (originalParent == null)
         {
             originalParent = transform.parent;
@@ -70,7 +81,14 @@ public class Projectile : MonoBehaviour, IHitboxResponder
         gameObject.SetActive(true);
         projectileActive = true;
 
-        Vector3 pos = originalParent.position;
+        bool facingLeft = fighterParent.facingDirection == CommandInputReaderLibrary.Directions.FacingDirection.LEFT;
+
+        if (facingLeft)
+        {
+            offset.x *= -1;
+        }
+
+        Vector3 pos = originalParent.position + offset;
 
         transform.SetParent(null);
 
@@ -79,7 +97,7 @@ public class Projectile : MonoBehaviour, IHitboxResponder
         transform.localScale = new Vector3(1, 1, 1);
 
 
-        if (fighterParent.facingDirection == CommandInputReaderLibrary.Directions.FacingDirection.LEFT)
+        if (facingLeft)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
@@ -122,10 +140,14 @@ public class Projectile : MonoBehaviour, IHitboxResponder
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Wall"))
+        if (breakOnWallContact)
         {
-            fighterParent.PlaySound(fighterParent.hitSounds[projectileProperties.parent.hitSoundIndex]);
-            EndProjectile();
+            if (collision.gameObject.CompareTag("Wall"))
+            {
+                fighterParent.PlaySound(fighterParent.hitSounds[projectileProperties.parent.hitSoundIndex]);
+                EndProjectile();
+            }
+
         }
     }
 

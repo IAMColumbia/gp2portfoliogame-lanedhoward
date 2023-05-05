@@ -10,7 +10,7 @@ public class SpawnPlayerSetupMenu : MonoBehaviour
     public PlayerInput input;
     private void Awake()
     {
-        var rootMenu = GameObject.Find("UICanvas");
+        var rootMenu = GameObject.Find("Menus");
         if (rootMenu != null)
         {
             var menu = Instantiate(playerSetupMenuPrefab, rootMenu.transform);

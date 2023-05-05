@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxPlayers: 2
+  configPrefab: {fileID: 4616921224231067461, guid: 3697d6691ecb14c42ae78b5e1e7bd755, type: 3}
+  defaultCharacter: {fileID: 11400000, guid: 34c10423f2e25284f9eabac345d3dc9b, type: 2}
 --- !u!114 &1204359385259436247
 MonoBehaviour:
   m_ObjectHideFlags: 0

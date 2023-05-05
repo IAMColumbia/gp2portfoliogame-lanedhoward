@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2166132397958963972, guid: dd49196d4ed24cf45a73ac74811c8c32, type: 3}
       propertyPath: velocity.x
-      value: -8
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 2373229198103690463, guid: dd49196d4ed24cf45a73ac74811c8c32, type: 3}
       propertyPath: offset.y

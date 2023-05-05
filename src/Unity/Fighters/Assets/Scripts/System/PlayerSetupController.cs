@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerSetupController : MonoBehaviour
 {
     public int PlayerIndex;
 
     public TextMeshProUGUI titleText;
+    public Image previewImage;
 
-    public float ignoreInputTime = 1.0f;
+    public float ignoreInputTime = 0.25f;
     public bool inputEnabled;
+
+    private int forceStart = 5;
 
     public void SetPlayerIndex(int pi)
     {
@@ -32,7 +36,39 @@ public class PlayerSetupController : MonoBehaviour
         if (!inputEnabled) return;
 
         PlayerConfigurationManager.Instance.SetCharacter(PlayerIndex, character);
+        UpdatePreviewImage();
+    }
+
+    public void SetColor(int modifier)
+    {
+        if (!inputEnabled) return;
+
+        PlayerConfigurationManager.Instance.SetMaterialIndex(PlayerIndex, modifier);
+
+        UpdatePreviewImage();
+    }
+
+    public void SetReady()
+    {
         PlayerConfigurationManager.Instance.SetReady(PlayerIndex);
 
+        forceStart -= 1;
+        if (forceStart <= 0)
+        {
+            PlayerConfigurationManager.Instance.ForceStart();
+        }
+
+        UpdatePreviewImage();
+    }
+
+    public void UpdatePreviewImage()
+    {
+        Material newMat = PlayerConfigurationManager.Instance.GetMaterial(PlayerIndex);
+
+        if (newMat == null) return;
+
+        previewImage.color = Color.white;
+
+        previewImage.material = newMat;
     }
 }

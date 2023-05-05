@@ -199,7 +199,7 @@ public class GameManager : MonoBehaviour
 
                 fighter.transform.position = t.position;
 
-                Debug.Log($"Player created: Player {configManager.playerConfigs[i].PlayerIndex} with {configManager.playerConfigs[i].Input.devices[0].name}");
+                //Debug.Log($"Player created: Player {configManager.playerConfigs[i].PlayerIndex} with {configManager.playerConfigs[i].Input.devices[0].name}");
 
                 var fm = fighter.GetComponent<FighterMain>();
 

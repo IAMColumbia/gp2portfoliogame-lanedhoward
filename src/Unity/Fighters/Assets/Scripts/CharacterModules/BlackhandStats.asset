@@ -39,3 +39,4 @@ MonoBehaviour:
   jumpVelocityHorizontal: 3
   jumpVelocityVertical: 12
   jumpMomentumMultiplier: 0.8
+  fireballPrefab: {fileID: 1780595657908455682, guid: 6922fc3d383af8d45a976e38e4431378, type: 3}

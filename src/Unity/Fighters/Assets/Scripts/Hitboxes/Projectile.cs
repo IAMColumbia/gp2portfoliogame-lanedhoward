@@ -14,6 +14,9 @@ public class Projectile : MonoBehaviour, IHitboxResponder
 
     public bool projectileActive;
 
+    public float lifetime = 20f;
+    public float timer = 0f;
+
     //public int hits = 1;
 
     bool IHitboxResponder.CollidedWith(Collider2D collider)
@@ -86,6 +89,8 @@ public class Projectile : MonoBehaviour, IHitboxResponder
         hitbox._state = ColliderState.Open;
 
         fighterParent.GotHit += OnFighterGotHit;
+
+        timer = 0f;
     }
 
     public void EndProjectile()
@@ -106,6 +111,12 @@ public class Projectile : MonoBehaviour, IHitboxResponder
         if (projectileActive)
         {
             this.transform.position = new Vector3(transform.position.x + velocity.x * Time.deltaTime * Mathf.Sign(transform.lossyScale.x), transform.position.y + velocity.y * Time.deltaTime, transform.position.z);
+
+            if (timer >= lifetime)
+            {
+                EndProjectile();
+            }
+            timer += Time.deltaTime;
         }
     }
 

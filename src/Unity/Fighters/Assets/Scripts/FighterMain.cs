@@ -134,6 +134,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public bool isThrowInvulnerable = false;
     public TimeManager timeManager;
     public Combo currentCombo;
+    public Transform fireballSpawnpoint;
     public Projectile fireball;
 
     [Header("Wall Values")]
@@ -266,6 +267,14 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         fighterAttacks = characterModule.GetGameAttacks();
         inputReceiver.SetPossibleGestures(characterModule.GetPossibleGestures());
 
+        if (characterModule.fireballPrefab != null)
+        {
+            GameObject fb = Instantiate(characterModule.fireballPrefab, fireballSpawnpoint);
+            fireball = fb.GetComponent<Projectile>();
+            fireball.fighterParent = this;
+            fireball.gameObject.SetActive(false);
+        }
+
         chararacterModuleInitialized = true;
     }
 
@@ -281,6 +290,11 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         foreach (var sr in GetComponentsInChildren<SpriteRenderer>())
         {
             sr.material = mat;
+        }
+
+        if (fireball != null)
+        {
+            fireball.SetMaterial(mat);
         }
         
     }

@@ -51,6 +51,9 @@ public class CharacterModule : ScriptableObject
     [Tooltip("Multiplier applied to current x velocity before the jump.")]
     public float jumpMomentumMultiplier;
 
+    [Header("Fireball")]
+    public GameObject fireballPrefab;
+
     public virtual List<GameAttack> GetGameAttacks()
     {
         throw new System.NotImplementedException();

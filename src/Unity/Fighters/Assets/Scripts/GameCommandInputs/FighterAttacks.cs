@@ -272,7 +272,7 @@ public class TwoB : GameAttack
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
 
-        properties.hitProperties.knockback.Set(-6f, 6f);
+        properties.hitProperties.knockback.Set(-3f, 6f);
         properties.hitProperties.airKnockback.Set(-1.5f, 9f);
         properties.hitProperties.selfKnockback.Set(-4f, 0);
         properties.hitProperties.damage = 250f;
@@ -386,9 +386,9 @@ public class TwoC : GameAttack
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
-        properties.hitProperties.knockback.Set(-1f, 13.5f);
-        properties.hitProperties.airKnockback.Set(-1f, 9f);
-        properties.hitProperties.selfKnockback.Set(-4f, 0);
+        properties.hitProperties.knockback.Set(-0.5f, 13.5f);
+        properties.hitProperties.airKnockback.Set(-0.5f, 9f);
+        properties.hitProperties.selfKnockback.Set(-3f, 0);
         properties.hitProperties.damage = 150f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
@@ -727,15 +727,6 @@ public class AirBackThrowWhiff : BackThrowAttack
 
     }
 
-    public override void OnHit(FighterMain fighter, FighterMain otherFighter)
-    {
-        Vector3 originalPos = fighter.transform.position;
-        fighter.transform.position = fighter.throwPivot.position;
-        otherFighter.transform.position = originalPos;
-        fighter.AutoTurnaround();
-
-        base.OnHit(fighter, otherFighter);
-    }
 }
 
 public class AirGrabSuccess : ThrowAttackSuccess

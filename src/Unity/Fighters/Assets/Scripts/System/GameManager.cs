@@ -169,7 +169,7 @@ public class GameManager : MonoBehaviour
         {
             introTimeline.Play();
         }
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         Countdown.SetActive(true);
         CountdownText.text = "All aboard!!!";
         yield return new WaitForSeconds(1f);

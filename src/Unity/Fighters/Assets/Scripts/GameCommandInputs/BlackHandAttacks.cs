@@ -41,7 +41,7 @@ public class CannonGrabWhiff : ThrowAttack
 {
     public CannonGrabWhiff(ThrowAttackSuccess _success) : base(_success)
     {
-        conditions.Add(new GestureCondition(this, new DragonPunch()));
+        conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
         conditions.Add(new ButtonCondition(this, new AttackD()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new NoGatlingCondition(this));
@@ -111,7 +111,7 @@ public class SharkCall : GameAttack
         properties.hitProperties.knockback.Set(-1f, 6f);
         properties.hitProperties.airKnockback.Set(-1f, 10.5f);
         properties.hitProperties.selfKnockback.Set(-4f, 0);
-        properties.hitProperties.damage = 450f;
+        properties.hitProperties.damage = 300f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
         properties.hitProperties.hardKD = false;

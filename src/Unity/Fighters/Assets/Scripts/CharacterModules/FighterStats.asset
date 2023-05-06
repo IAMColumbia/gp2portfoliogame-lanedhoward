@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6527b4a829a77e746abf9f339269bc52, type: 3}
   m_Name: FighterStats
   m_EditorClassIdentifier: 
-  Name: Fighter!
+  Name: The People's Champ!!
   materials:
   - {fileID: 2100000, guid: 6a17db4d6a8b85b41ad8c5ff2dbdad69, type: 2}
   - {fileID: 2100000, guid: a8fe130ad622eff45859d2b1ad830bc9, type: 2}

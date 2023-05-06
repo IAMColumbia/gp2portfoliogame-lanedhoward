@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -30,6 +31,8 @@ public class GameManager : MonoBehaviour
     public GameObject Countdown;
     public TMPro.TextMeshProUGUI CountdownText;
     public EventSystem eventSystem;
+
+    public PlayableDirector introTimeline;
 
     private bool gameActive;
 
@@ -162,15 +165,15 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator StartGame()
     {
-        yield return new WaitForSeconds(0.25f);
+        if (introTimeline != null)
+        {
+            introTimeline.Play();
+        }
+        yield return new WaitForSeconds(3f);
         Countdown.SetActive(true);
-        CountdownText.text = "3...";
-        yield return new WaitForSeconds(0.75f);
-        CountdownText.text = "2...";
-        yield return new WaitForSeconds(0.75f);
-        CountdownText.text = "1...";
-        yield return new WaitForSeconds(0.75f);
         CountdownText.text = "All aboard!!!";
+        yield return new WaitForSeconds(1f);
+        CountdownText.text = "Fight!";
         player1.enabled = true;
         player2.enabled = true;
         gameActive = true;

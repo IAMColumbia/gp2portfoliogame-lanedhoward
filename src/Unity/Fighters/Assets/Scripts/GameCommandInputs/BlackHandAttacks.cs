@@ -159,7 +159,7 @@ public class WaveCall : GameAttack
         fireballProperties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
         fireballProperties.hitProperties.hardKD = false;
 
-        spawnOffset = new Vector3(25, 0, 0);
+        spawnOffset = new Vector3(21, 0, 0);
     }
 
     public override void OnActive(FighterMain fighter)
@@ -170,8 +170,8 @@ public class WaveCall : GameAttack
         {
             fighter.fireball.projectileProperties = fireballProperties;
             fighter.fireball.breakOnWallContact = false;
+            fighter.fireball.breakOnHit = false;
             fighter.fireball.lifetime = 5f;
-            fighter.fireball.selfDamage = true;
             fighter.fireball.maxHitDistance = 1f;
             fighter.fireball.StartProjectile(spawnOffset);
         }

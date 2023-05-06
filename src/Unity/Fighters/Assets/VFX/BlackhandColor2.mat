@@ -39,7 +39,7 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _MainColor: {r: 0.3169811, g: 0.56901294, b: 0.7924528, a: 0}
+    - _MainColor: {r: 0.27725163, g: 0.8301887, b: 0.8194572, a: 0}
     - _SecondaryColor: {r: 0.3584906, g: 0.19894487, b: 0.11972231, a: 1}
     - _SpecialColor: {r: 0.93485594, g: 0.9433962, b: 0.742257, a: 1}
   m_BuildTextureStacks: []

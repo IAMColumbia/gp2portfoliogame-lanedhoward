@@ -12,6 +12,7 @@ public class Healthbar : MonoBehaviour
     public float gutsPower;
 
     public TextMeshProUGUI nametag;
+    public Image portrait;
 
     // Update is called once per frame
     void Update()
@@ -36,5 +37,12 @@ public class Healthbar : MonoBehaviour
     public void SetNametag(string name)
     {
         nametag.SetText(name);
+    }
+
+    public void SetMaterial(Material mat)
+    {
+        //healthbar.CrossFadeColor(mat.GetColor("_MainColor"),0,false,false);
+        //healthbar.material = mat;
+        portrait.material = mat;
     }
 }

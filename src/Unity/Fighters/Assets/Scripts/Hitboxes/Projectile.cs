@@ -19,6 +19,7 @@ public class Projectile : MonoBehaviour, IHitboxResponder
 
     public bool breakOnWallContact = true;
     public bool selfDamage = false;
+    public bool breakOnHit = true;
 
     public float maxHitDistance = 100f;
 
@@ -153,7 +154,7 @@ public class Projectile : MonoBehaviour, IHitboxResponder
 
     public void OnFighterGotHit(object sender, EventArgs e)
     {
-        if (projectileActive)
+        if (projectileActive && breakOnHit)
         {
             EndProjectile();
         }

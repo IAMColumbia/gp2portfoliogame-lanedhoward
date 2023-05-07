@@ -95,5 +95,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: PirateFireball
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2166132397958963972, guid: dd49196d4ed24cf45a73ac74811c8c32, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dd49196d4ed24cf45a73ac74811c8c32, type: 3}
+--- !u!1 &1780595657908455682 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6814210493323356101, guid: dd49196d4ed24cf45a73ac74811c8c32, type: 3}
+  m_PrefabInstance: {fileID: 5054448382550716103}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4367870921282979687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780595657908455682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dce0ac40facd98e4a86d416f57c93fca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fighterParent: {fileID: 0}
+  originalParent: {fileID: 0}
+  hitbox: {fileID: 7406844032417370648}
+  velocity: {x: -9, y: 0}
+  projectileActive: 0
+  lifetime: 3
+  timer: 0
+  breakOnWallContact: 0
+  selfDamage: 0
+  breakOnHit: 0
+  maxHitDistance: 1
+  wallXpos: 12
+--- !u!114 &7406844032417370648 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2373229198103690463, guid: dd49196d4ed24cf45a73ac74811c8c32, type: 3}
+  m_PrefabInstance: {fileID: 5054448382550716103}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780595657908455682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 855131524e7ff6b42b520d3685782a18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

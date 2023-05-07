@@ -68,28 +68,24 @@ public class Projectile : MonoBehaviour, IHitboxResponder
         return false;
     }
 
-    public void StartProjectile()
-    {
-        StartProjectile(Vector3.zero);
-    }
-
-    public void StartProjectile(Vector3 offset)
+    public virtual void StartProjectile()
     {
         if (originalParent == null)
         {
             originalParent = transform.parent;
         }
+        StartProjectile(originalParent.position);
+    }
+
+    public virtual void StartProjectile(Vector3 position)
+    {
+        
         gameObject.SetActive(true);
         projectileActive = true;
 
         bool facingLeft = fighterParent.facingDirection == CommandInputReaderLibrary.Directions.FacingDirection.LEFT;
 
-        if (facingLeft)
-        {
-            offset.x *= -1;
-        }
-
-        Vector3 pos = originalParent.position + offset;
+        Vector3 pos = position;
 
         transform.SetParent(null);
 
@@ -112,11 +108,12 @@ public class Projectile : MonoBehaviour, IHitboxResponder
         timer = 0f;
     }
 
-    public void EndProjectile()
+    public virtual void EndProjectile()
     {
         hitbox.OpenForCollision = false;
         gameObject.SetActive(false);
         projectileActive = false;
+        this.transform.position = Vector3.zero;
         transform.SetParent(originalParent, false);
 
         fighterParent.GotHit -= OnFighterGotHit;

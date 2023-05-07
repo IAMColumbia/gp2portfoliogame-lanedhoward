@@ -152,8 +152,8 @@ public class WaveCall : GameAttack
         fireballProperties.blockProperties.hitstopTime = FighterAttacks.attackLevel1_blockhitstop;
         fireballProperties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
 
-        fireballProperties.hitProperties.knockback.Set(6f, 4f);
-        fireballProperties.hitProperties.airKnockback.Set(6f, 4f);
+        fireballProperties.hitProperties.knockback.Set(6f, 6f);
+        fireballProperties.hitProperties.airKnockback.Set(6f, 6f);
         fireballProperties.hitProperties.damage = 100f;
         fireballProperties.hitProperties.hitstopTime = FighterAttacks.attackLevel1_hithitstop;
         fireballProperties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
@@ -169,11 +169,7 @@ public class WaveCall : GameAttack
         if (!fighter.fireball.projectileActive)
         {
             fighter.fireball.projectileProperties = fireballProperties;
-            fighter.fireball.breakOnWallContact = false;
-            fighter.fireball.breakOnHit = false;
-            fighter.fireball.lifetime = 5f;
-            fighter.fireball.maxHitDistance = 1f;
-            fighter.fireball.StartProjectile(spawnOffset);
+            fighter.fireball.StartProjectile();
         }
 
     }

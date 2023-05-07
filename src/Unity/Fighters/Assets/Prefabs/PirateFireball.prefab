@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dce0ac40facd98e4a86d416f57c93fca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 6440532431092797411}
   fighterParent: {fileID: 0}
   originalParent: {fileID: 0}
   hitbox: {fileID: 7406844032417370648}
@@ -126,7 +127,13 @@ MonoBehaviour:
   selfDamage: 0
   breakOnHit: 0
   maxHitDistance: 1
+  fireballStartSound: {fileID: 8300000, guid: dfdaaeef652b2674db26113035f774cb, type: 3}
   wallXpos: 12
+--- !u!82 &6440532431092797411 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2253026977626775844, guid: dd49196d4ed24cf45a73ac74811c8c32, type: 3}
+  m_PrefabInstance: {fileID: 5054448382550716103}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7406844032417370648 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2373229198103690463, guid: dd49196d4ed24cf45a73ac74811c8c32, type: 3}

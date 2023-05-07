@@ -1287,7 +1287,7 @@ MonoBehaviour:
   PlayerIndex: 0
   titleText: {fileID: 4987103254502877903}
   previewImage: {fileID: 2388451151339235133}
-  ignoreInputTime: 1
+  ignoreInputTime: 0.25
   inputEnabled: 0
 --- !u!1 &4987103255653669118
 GameObject:

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour, IHitboxResponder
+public class Projectile : SoundPlayer, IHitboxResponder
 {
     public GameAttackProperties projectileProperties;
     public FighterMain fighterParent;
@@ -22,6 +22,8 @@ public class Projectile : MonoBehaviour, IHitboxResponder
     public bool breakOnHit = true;
 
     public float maxHitDistance = 100f;
+
+    public AudioClip fireballStartSound;
 
     //public int hits = 1;
 
@@ -70,6 +72,7 @@ public class Projectile : MonoBehaviour, IHitboxResponder
 
     public virtual void StartProjectile()
     {
+        
         if (originalParent == null)
         {
             originalParent = transform.parent;
@@ -79,9 +82,11 @@ public class Projectile : MonoBehaviour, IHitboxResponder
 
     public virtual void StartProjectile(Vector3 position)
     {
-        
+
         gameObject.SetActive(true);
         projectileActive = true;
+
+        PlaySound(fireballStartSound);
 
         bool facingLeft = fighterParent.facingDirection == CommandInputReaderLibrary.Directions.FacingDirection.LEFT;
 

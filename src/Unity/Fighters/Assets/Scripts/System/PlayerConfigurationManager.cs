@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -44,6 +45,7 @@ public class PlayerConfigurationManager : MonoBehaviour
     public void SetCharacter(int index, CharacterModule character)
     {
         playerConfigs[index].Character = character;
+        playerConfigs[index].CharacterMaterialIndex = 0;
     }
 
     public void SetReady(int index)

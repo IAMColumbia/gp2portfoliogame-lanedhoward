@@ -15,6 +15,7 @@ MonoBehaviour:
   Name: Captain Blackhand
   materials:
   - {fileID: 2100000, guid: 60a2e37dd07c8c84399b54e789aeb9f2, type: 2}
+  - {fileID: 2100000, guid: d25a58a977ee9ec4eaa94db5899dbf0b, type: 2}
   - {fileID: 2100000, guid: 69756b4c28b4b064f99f7522aa0d9994, type: 2}
   - {fileID: 2100000, guid: c38f27553a3fba04286d6fb58cc468ed, type: 2}
   - {fileID: 2100000, guid: e7575c920d13bea4abe6c058c574c912, type: 2}

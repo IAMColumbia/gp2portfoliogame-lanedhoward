@@ -15,6 +15,7 @@ MonoBehaviour:
   Name: The People's Champ!!
   materials:
   - {fileID: 2100000, guid: 6a17db4d6a8b85b41ad8c5ff2dbdad69, type: 2}
+  - {fileID: 2100000, guid: e5408ccd2d0d01b4face6752dc82e411, type: 2}
   - {fileID: 2100000, guid: a8fe130ad622eff45859d2b1ad830bc9, type: 2}
   - {fileID: 2100000, guid: 52008ec5a6587b34b9e5ec08c14bd8bf, type: 2}
   - {fileID: 2100000, guid: 26a6d4b597b279548aab2b323f82dce4, type: 2}

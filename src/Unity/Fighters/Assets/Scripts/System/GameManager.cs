@@ -98,6 +98,9 @@ public class GameManager : MonoBehaviour
         player1Healthbar.SetHealthbar(1,1);
         player2Healthbar.SetHealthbar(1,1);
 
+        player1Healthbar.UpdateHearts(player1lives);
+        player2Healthbar.UpdateHearts(player2lives);
+
         //StartScreen.SetActive(true);
         Announcer.SetActive(false);
         winScreen.gameObject.SetActive(false);
@@ -185,7 +188,10 @@ public class GameManager : MonoBehaviour
             {
                 RoundEndTypes roundEnd = HandleRoundEnd(p1died, p2died, perfect);
                 // round is over
-                
+                player1Healthbar.UpdateHearts(player1lives);
+                player2Healthbar.UpdateHearts(player2lives);
+
+
                 StartCoroutine(RoundEndCoroutine(roundEnd));
             }
         }

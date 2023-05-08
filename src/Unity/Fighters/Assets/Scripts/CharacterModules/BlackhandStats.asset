@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3d5b995d8e9f04ba63dd47a019817c, type: 3}
   m_Name: BlackhandStats
   m_EditorClassIdentifier: 
-  Name: Captain Blackhand
+  Name: Barnacle Bill Roddy
   materials:
   - {fileID: 2100000, guid: 60a2e37dd07c8c84399b54e789aeb9f2, type: 2}
   - {fileID: 2100000, guid: d25a58a977ee9ec4eaa94db5899dbf0b, type: 2}

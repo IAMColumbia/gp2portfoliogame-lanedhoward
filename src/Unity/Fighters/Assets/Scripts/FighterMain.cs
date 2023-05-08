@@ -235,7 +235,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     {
         if (fireball != null)
         {
-            Destroy(fireball);
+            Destroy(fireball.gameObject);
         }
     }
 

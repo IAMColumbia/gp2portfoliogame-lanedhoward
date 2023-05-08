@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class PlayerSetupController : MonoBehaviour
@@ -9,6 +10,7 @@ public class PlayerSetupController : MonoBehaviour
     public int PlayerIndex;
 
     public TextMeshProUGUI titleText;
+    public TextMeshProUGUI controllerText;
     public Image previewImage;
 
     public float ignoreInputTime = 0.25f;
@@ -16,10 +18,11 @@ public class PlayerSetupController : MonoBehaviour
 
     private int forceStart = 5;
 
-    public void SetPlayerIndex(int pi)
+    public void SetPlayer(PlayerInput pi)
     {
-        PlayerIndex = pi;
-        titleText.SetText("Player " + (pi + 1).ToString());
+        PlayerIndex = pi.playerIndex;
+        titleText.SetText("Player " + (PlayerIndex + 1).ToString());
+        controllerText.SetText(pi.devices[0].displayName);
         ignoreInputTime = Time.time + ignoreInputTime;
     }
 

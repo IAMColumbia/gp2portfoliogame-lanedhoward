@@ -14,6 +14,8 @@ public class Healthbar : MonoBehaviour
     public TextMeshProUGUI nametag;
     public Image portrait;
 
+    public Image[] hearts;
+
     // Update is called once per frame
     void Update()
     {
@@ -44,5 +46,25 @@ public class Healthbar : MonoBehaviour
         //healthbar.CrossFadeColor(mat.GetColor("_MainColor"),0,false,false);
         //healthbar.material = mat;
         portrait.material = mat;
+        foreach (var h in hearts)
+        {
+            h.material = mat;
+        }
+    }
+
+    public void UpdateHearts(int lives)
+    {
+        foreach(var h in hearts)
+        {
+            h.gameObject.SetActive(true);
+        }
+        if (lives < 2)
+        {
+            hearts[1].gameObject.SetActive(false);
+        }
+        if (lives < 1)
+        {
+            hearts[0].gameObject.SetActive(false);
+        }
     }
 }

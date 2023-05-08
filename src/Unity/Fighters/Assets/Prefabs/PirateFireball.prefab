@@ -121,7 +121,7 @@ MonoBehaviour:
   hitbox: {fileID: 7406844032417370648}
   velocity: {x: -9, y: 0}
   projectileActive: 0
-  lifetime: 3
+  lifetime: 2.5
   timer: 0
   breakOnWallContact: 0
   selfDamage: 0

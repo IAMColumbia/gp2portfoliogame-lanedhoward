@@ -11,30 +11,45 @@ public class GameManager : MonoBehaviour
 {
     public GameObject fighterPrefab;
 
+    public int round;
+
     [Header("Player 1")]
     public Transform player1spawn;
     public FighterMain player1;
     public Healthbar player1Healthbar;
     public ComboUI player1comboUI;
+    public int player1lives;
+    public int player1GameWins;
 
     [Header("Player 2")]
     public Transform player2spawn;
     public FighterMain player2;
     public Healthbar player2Healthbar;
     public ComboUI player2comboUI;
+    public int player2lives;
+    public int player2GameWins;
 
     [Header("UI")]
-    public GameObject WinScreen;
+    public WinScreen winScreen;
     public GameObject RematchButton;
     public GameObject StartScreen;
     public GameObject StartButton;
-    public GameObject Countdown;
-    public TMPro.TextMeshProUGUI CountdownText;
+
+    public GameObject Announcer;
+    public TMPro.TextMeshProUGUI AnnouncerText;
+
     public EventSystem eventSystem;
 
     public PlayableDirector introTimeline;
 
     private bool gameActive;
+
+    public enum RoundEndTypes
+    {
+        Normal,
+        Perfect,
+        DoubleKO
+    }
 
     private void Start()
     {
@@ -44,11 +59,27 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("PlayerSetup");
             return;
         }
-        
 
+        player1GameWins = 0;
+        player2GameWins = 0;
+
+        NewGame();
+    }
+
+    public void NewGame()
+    {
+        round = 1;
+
+        player1lives = 2;
+        player2lives = 2;
+
+
+        SetupRound();
+    }
+
+    public void SetupRound()
+    {
         SpawnPlayers();
-
-        
 
         gameActive = false;
 
@@ -64,12 +95,15 @@ public class GameManager : MonoBehaviour
         player1comboUI.HideText();
         player2comboUI.HideText();
 
+        player1Healthbar.SetHealthbar(1,1);
+        player2Healthbar.SetHealthbar(1,1);
+
         //StartScreen.SetActive(true);
-        Countdown.SetActive(false);
-        WinScreen.SetActive(false);
+        Announcer.SetActive(false);
+        winScreen.gameObject.SetActive(false);
 
         //eventSystem.SetSelectedGameObject(StartButton);
-        StartCoroutine(StartGame());
+        StartCoroutine(StartRound());
     }
 
     private void Player_LeftHitstun(object sender, EventArgs e)
@@ -124,16 +158,60 @@ public class GameManager : MonoBehaviour
             player1Healthbar.SetHealthbar(player1.CurrentHealth, player1.MaxHealth);
             player2Healthbar.SetHealthbar(player2.CurrentHealth, player2.MaxHealth);
 
+            bool p1died = false;
+            bool p2died = false;
+            bool perfect = false;
             if (player1.CurrentHealth <= 0)
             {
                 DeathEffect(player1);
+                p1died = true;
+                if (player2.CurrentHealth == player2.MaxHealth)
+                {
+                    perfect = true;
+                }
             }
 
             if (player2.CurrentHealth <= 0)
             {
                 DeathEffect(player2);
+                p2died = true;
+                if (player1.CurrentHealth == player1.MaxHealth)
+                {
+                    perfect = true;
+                }
+            }
+
+            if (p1died || p2died)
+            {
+                RoundEndTypes roundEnd = HandleRoundEnd(p1died, p2died, perfect);
+                // round is over
+                
+                StartCoroutine(RoundEndCoroutine(roundEnd));
             }
         }
+    }
+
+    protected RoundEndTypes HandleRoundEnd(bool p1died, bool p2died, bool perfect)
+    {
+        if (p1died && p2died)
+        {
+            // double ko
+            player1lives = 1;
+            player2lives = 1;
+            return RoundEndTypes.DoubleKO;
+        }
+
+        if (p1died)
+        {
+            player1lives -= 1;
+            if (perfect) return RoundEndTypes.Perfect;
+            return RoundEndTypes.Normal;
+        }
+        
+        player2lives -= 1;
+        if (perfect) return RoundEndTypes.Perfect;
+        return RoundEndTypes.Normal;
+        
     }
 
     private void DeathEffect(FighterMain deadFighter)
@@ -145,46 +223,107 @@ public class GameManager : MonoBehaviour
         gameActive = false;
 
         deadFighter.timeManager.DoHitStop(1f);
-
-        StartCoroutine(DeathEffectCoroutine());
-        
     }
 
-    private IEnumerator DeathEffectCoroutine()
+    private IEnumerator RoundEndCoroutine(RoundEndTypes endType)
     {
         yield return new WaitForSecondsRealtime(0.5f);
-        WinScreen.SetActive(true);
+        Announcer.SetActive(true);
+        switch (endType)
+        {
+            case RoundEndTypes.DoubleKO:
+                AnnouncerText.text = $"DOUBLE K.O.!!";
+                break;
+            case RoundEndTypes.Perfect:
+                AnnouncerText.text = $"PERFECT!!";
+                break;
+            default:
+                AnnouncerText.text = $"END OF THE LINE!";
+                break;
+        }
+        
+        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSeconds(1.5f);
+        Announcer.SetActive(false);
 
-        eventSystem.SetSelectedGameObject(RematchButton);
+        yield return new WaitForSeconds(3f);
+
+        if (player1lives <= 0 || player2lives <= 0)
+        {
+            // game is over
+
+            Announcer.SetActive(true);
+            if (player1lives <= 0)
+            {
+                AnnouncerText.text = $"{player2.characterModule.Name} wins!!!";
+                player2GameWins += 1;
+            }
+            else
+            {
+                AnnouncerText.text = $"{player1.characterModule.Name} wins!!!";
+                player1GameWins += 1;
+            }
+
+            winScreen.gameObject.SetActive(true);
+            winScreen.UpdateRecord(player1GameWins, player2GameWins);
+
+            eventSystem.SetSelectedGameObject(RematchButton);
+        }
+        else
+        {
+            RestartRound();
+        }
+
     }
 
-    public void RestartGame()
+    public void Rematch()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Destroy(player1.gameObject);
+        Destroy(player2.gameObject);
+
+        NewGame();
     }
 
-    private IEnumerator StartGame()
+
+
+    public void RestartRound()
+    {
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        round += 1;
+
+        Destroy(player1.gameObject);
+        Destroy(player2.gameObject);
+
+        SetupRound();
+
+    }
+
+    private IEnumerator StartRound()
     {
         if (introTimeline != null)
         {
             introTimeline.Play();
         }
         yield return new WaitForSeconds(2f);
-        Countdown.SetActive(true);
-        CountdownText.text = "All aboard!!!";
+        Announcer.SetActive(true);
+        AnnouncerText.text = $"Round {round}-";
         yield return new WaitForSeconds(1f);
-        CountdownText.text = "Fight!";
+        Announcer.SetActive(false);
+        yield return new WaitForSeconds(0.25f);
+        Announcer.SetActive(true);
+        AnnouncerText.text = "All aboard!!!";
         player1.enabled = true;
         player2.enabled = true;
         gameActive = true;
-        yield return new WaitForSeconds(0.75f);
-        Countdown.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        Announcer.SetActive(false);
     }
 
     public void StartGameButton()
     {
         StartScreen.SetActive(false);
-        StartCoroutine(StartGame());
+        StartCoroutine(StartRound());
     }
 
     public void SpawnPlayers()

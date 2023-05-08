@@ -11,6 +11,11 @@ public class ReverseFireball : Projectile
 
     public override void StartProjectile()
     {
+        if (originalParent == null)
+        {
+            originalParent = transform.parent;
+        }
+
         bool facingLeft = fighterParent.facingDirection == CommandInputReaderLibrary.Directions.FacingDirection.LEFT;
 
         UnityEngine.Vector3 newPos = new UnityEngine.Vector3(facingLeft ? -wallXpos : wallXpos, fighterParent.transform.position.y, transform.position.z);

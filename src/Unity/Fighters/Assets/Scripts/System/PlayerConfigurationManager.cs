@@ -109,6 +109,8 @@ public class PlayerConfiguration
 
     public int CharacterMaterialIndex;
 
+    public int GameWins;
+
     public PlayerConfiguration(PlayerInput pi)
     {
         PlayerIndex = pi.playerIndex;

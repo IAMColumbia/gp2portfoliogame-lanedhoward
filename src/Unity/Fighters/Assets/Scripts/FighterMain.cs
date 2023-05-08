@@ -231,6 +231,14 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         AutoTurnaround();
     }
 
+    private void OnDestroy()
+    {
+        if (fireball != null)
+        {
+            Destroy(fireball);
+        }
+    }
+
     public void InitializeCharacterModule()
     {
         MaxHealth = characterModule.MaxHealth;

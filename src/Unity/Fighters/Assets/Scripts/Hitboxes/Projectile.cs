@@ -72,7 +72,6 @@ public class Projectile : SoundPlayer, IHitboxResponder
 
     public virtual void StartProjectile()
     {
-        
         if (originalParent == null)
         {
             originalParent = transform.parent;

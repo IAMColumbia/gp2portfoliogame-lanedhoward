@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\Hitboxes\ReverseFireball.cs" />
     <Compile Include="Assets\Scripts\Hitboxes\Hitbox.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Gesture.cs" />
+    <Compile Include="Assets\Scripts\System\WinScreen.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\HostPackage.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IButton.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Hitstun.cs" />
@@ -125,7 +126,6 @@
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttack.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\System\WinScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -136,6 +136,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\Scripts\Class1.cd" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />

@@ -290,6 +290,11 @@ public class GameManager : MonoBehaviour
         NewGame();
     }
 
+    public void ReturnToCharacterSelect()
+    {
+        PlayerConfigurationManager.Instance.BackToCharacterSelect();
+    }
+
 
 
     public void RestartRound()

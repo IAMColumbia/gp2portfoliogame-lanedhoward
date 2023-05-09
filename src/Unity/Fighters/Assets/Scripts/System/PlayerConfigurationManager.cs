@@ -21,7 +21,7 @@ public class PlayerConfigurationManager : MonoBehaviour
     {
         if (Instance != null)
         {
-
+            Destroy(this.gameObject);
         }
         else
         {
@@ -94,6 +94,16 @@ public class PlayerConfigurationManager : MonoBehaviour
             SetCharacter(1, defaultCharacter);
             SetReady(1);
         }
+    }
+
+    public void BackToCharacterSelect()
+    {
+        playerConfigs.Clear();
+        foreach (PlayerInput pi in GetComponentsInChildren<PlayerInput>())
+        {
+            Destroy(pi.gameObject);
+        }
+        SceneManager.LoadScene("PlayerSetup");
     }
 }
 

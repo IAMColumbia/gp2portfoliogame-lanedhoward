@@ -57,6 +57,18 @@ public class CannonGrabWhiff : ThrowAttack
         canTech = false;
 
     }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        fighter.isThrowInvulnerable = true;
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+        fighter.isThrowInvulnerable = false;
+    }
 }
 
 public class CannonGrabSuccess : ThrowAttackSuccess

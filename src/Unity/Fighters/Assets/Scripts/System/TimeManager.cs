@@ -12,7 +12,7 @@ public class TimeManager : MonoBehaviour
 
     private void Start()
     {
-        
+        ResetTimeScale();
     }
 
     public void SetTimeScale(float newTimeScale)

@@ -26,7 +26,7 @@ public class Hitbox : MonoBehaviour
     private Color collisionOpenColor = Color.red;
     private Color collidingColor = Color.magenta;
 
-    private ColliderState _state = ColliderState.Closed;
+    public ColliderState _state = ColliderState.Closed;
     public bool OpenForCollision;
 
     private IHitboxResponder responder;
@@ -115,7 +115,10 @@ public class Hitbox : MonoBehaviour
 
     public void SetResponder(IHitboxResponder _responder)
     {
-        responder = _responder;
+        if (_responder != null)
+        {
+            responder = _responder;
+        }
     }
 
 }

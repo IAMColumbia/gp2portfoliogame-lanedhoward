@@ -39,6 +39,11 @@ public class FighterInputReceiver : IInputReceiver
         bufferedAttackTimeMax = 0.2f; // TODO: Convert this into "frames" like the input reader uses
     }
 
+    public void SetPossibleGestures(List<IReadableGesture> possibleGestures)
+    {
+        inputReader.SetPossibleGestures(possibleGestures);
+    }
+
     public bool CheckForInputs()
     {
         ManageBuffer();

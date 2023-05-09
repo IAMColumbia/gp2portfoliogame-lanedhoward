@@ -8,6 +8,8 @@ TagManager:
   - Fighter
   - Hitbox
   - Hurtbox
+  - WallTrigger
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -20,14 +22,14 @@ TagManager:
   - 
   - 
   - Ground
-  - 
+  - Wall
   - Pushbox
   - 
   - 
   - Hurtbox
   - 
   - Hitbox
-  - 
+  - Projectile
   - 
   - 
   - 

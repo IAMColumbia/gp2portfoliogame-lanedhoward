@@ -42,6 +42,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "AttackD",
+                    "type": "Button",
+                    "id": "4b0b37ff-d48b-4afd-9270-3ee44bf2fc7b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "DashMacro",
                     "type": "Button",
                     "id": "72e084d6-4e96-4f50-9243-8c6723c5e407",
@@ -404,12 +413,23 @@
                 },
                 {
                     "name": "",
-                    "id": "c08eca6b-8a1c-4437-af20-31ced6ab0029",
+                    "id": "a84ce758-4da3-4c04-9f71-3c01dfc19ed1",
+                    "path": "<Keyboard>/semicolon",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "AttackD",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "639cd535-3906-44de-bdc8-401c5e33b27d",
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "DashMacro",
+                    "action": "AttackD",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

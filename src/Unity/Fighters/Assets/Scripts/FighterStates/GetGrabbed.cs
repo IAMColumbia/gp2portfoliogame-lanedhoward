@@ -43,8 +43,7 @@ public class GetGrabbed : FighterState
 
                 if (foundAttack != null)
                 {
-                    ThrowAttack foundThrow = (ThrowAttack)foundAttack;
-                    if (foundThrow != null)
+                    if (foundAttack is ThrowAttack foundThrow)
                     {
                         if (foundThrow.canTech)
                         {

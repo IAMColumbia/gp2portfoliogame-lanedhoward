@@ -9,6 +9,7 @@ public class Hitstun : FighterState, IStunState
     float hitstun;
     private bool wasEverAirborne;
     private bool hardKD;
+    private bool wallBounce;
 
     public Hitstun(FighterMain fighterMain) : base(fighterMain)
     {
@@ -28,6 +29,7 @@ public class Hitstun : FighterState, IStunState
 
         wasEverAirborne = false;
         hardKD = false;
+        wallBounce = false;
 
         UpdateStance();
 
@@ -107,5 +109,19 @@ public class Hitstun : FighterState, IStunState
     public void SetHardKD(bool _hardKD)
     {
         hardKD = _hardKD;
+    }
+
+    public void SetWallBounce(bool _wallBounce)
+    {
+        wallBounce = _wallBounce;
+    }
+
+    public void CheckForWallbounce()
+    {
+        if (wallBounce)
+        {
+            wallBounce = false;
+            fighter.DoWallBounce();
+        }
     }
 }

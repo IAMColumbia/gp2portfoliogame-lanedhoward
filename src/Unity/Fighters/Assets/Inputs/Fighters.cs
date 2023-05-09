@@ -64,6 +64,15 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""AttackD"",
+                    ""type"": ""Button"",
+                    ""id"": ""4b0b37ff-d48b-4afd-9270-3ee44bf2fc7b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""DashMacro"",
                     ""type"": ""Button"",
                     ""id"": ""72e084d6-4e96-4f50-9243-8c6723c5e407"",
@@ -426,12 +435,23 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c08eca6b-8a1c-4437-af20-31ced6ab0029"",
+                    ""id"": ""a84ce758-4da3-4c04-9f71-3c01dfc19ed1"",
+                    ""path"": ""<Keyboard>/semicolon"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""AttackD"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""639cd535-3906-44de-bdc8-401c5e33b27d"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""DashMacro"",
+                    ""action"": ""AttackD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -528,6 +548,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
         m_Fighter_AttackA = m_Fighter.FindAction("AttackA", throwIfNotFound: true);
         m_Fighter_AttackB = m_Fighter.FindAction("AttackB", throwIfNotFound: true);
         m_Fighter_AttackC = m_Fighter.FindAction("AttackC", throwIfNotFound: true);
+        m_Fighter_AttackD = m_Fighter.FindAction("AttackD", throwIfNotFound: true);
         m_Fighter_DashMacro = m_Fighter.FindAction("DashMacro", throwIfNotFound: true);
         m_Fighter_Join = m_Fighter.FindAction("Join", throwIfNotFound: true);
         // UI
@@ -597,6 +618,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
     private readonly InputAction m_Fighter_AttackA;
     private readonly InputAction m_Fighter_AttackB;
     private readonly InputAction m_Fighter_AttackC;
+    private readonly InputAction m_Fighter_AttackD;
     private readonly InputAction m_Fighter_DashMacro;
     private readonly InputAction m_Fighter_Join;
     public struct FighterActions
@@ -607,6 +629,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
         public InputAction @AttackA => m_Wrapper.m_Fighter_AttackA;
         public InputAction @AttackB => m_Wrapper.m_Fighter_AttackB;
         public InputAction @AttackC => m_Wrapper.m_Fighter_AttackC;
+        public InputAction @AttackD => m_Wrapper.m_Fighter_AttackD;
         public InputAction @DashMacro => m_Wrapper.m_Fighter_DashMacro;
         public InputAction @Join => m_Wrapper.m_Fighter_Join;
         public InputActionMap Get() { return m_Wrapper.m_Fighter; }
@@ -630,6 +653,9 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                 @AttackC.started -= m_Wrapper.m_FighterActionsCallbackInterface.OnAttackC;
                 @AttackC.performed -= m_Wrapper.m_FighterActionsCallbackInterface.OnAttackC;
                 @AttackC.canceled -= m_Wrapper.m_FighterActionsCallbackInterface.OnAttackC;
+                @AttackD.started -= m_Wrapper.m_FighterActionsCallbackInterface.OnAttackD;
+                @AttackD.performed -= m_Wrapper.m_FighterActionsCallbackInterface.OnAttackD;
+                @AttackD.canceled -= m_Wrapper.m_FighterActionsCallbackInterface.OnAttackD;
                 @DashMacro.started -= m_Wrapper.m_FighterActionsCallbackInterface.OnDashMacro;
                 @DashMacro.performed -= m_Wrapper.m_FighterActionsCallbackInterface.OnDashMacro;
                 @DashMacro.canceled -= m_Wrapper.m_FighterActionsCallbackInterface.OnDashMacro;
@@ -652,6 +678,9 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                 @AttackC.started += instance.OnAttackC;
                 @AttackC.performed += instance.OnAttackC;
                 @AttackC.canceled += instance.OnAttackC;
+                @AttackD.started += instance.OnAttackD;
+                @AttackD.performed += instance.OnAttackD;
+                @AttackD.canceled += instance.OnAttackD;
                 @DashMacro.started += instance.OnDashMacro;
                 @DashMacro.performed += instance.OnDashMacro;
                 @DashMacro.canceled += instance.OnDashMacro;
@@ -727,6 +756,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
         void OnAttackA(InputAction.CallbackContext context);
         void OnAttackB(InputAction.CallbackContext context);
         void OnAttackC(InputAction.CallbackContext context);
+        void OnAttackD(InputAction.CallbackContext context);
         void OnDashMacro(InputAction.CallbackContext context);
         void OnJoin(InputAction.CallbackContext context);
     }

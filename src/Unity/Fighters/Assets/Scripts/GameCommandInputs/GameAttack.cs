@@ -87,6 +87,18 @@ public class GameAttack
     {
 
     }
+
+    /// <summary>
+    /// Override and return anything but null to take over getting hit logic.
+    /// Useful for armor, guardpoint, parries, etc
+    /// </summary>
+    /// <param name="fighter"></param>
+    /// <param name="properties"></param>
+    /// <returns></returns>
+    public virtual HitReport? OnGetHitDuring(FighterMain fighter, GameAttackProperties properties)
+    {
+        return null;
+    }
 }
 
 public class GameAttackProperties
@@ -118,6 +130,10 @@ public class GameAttackProperties
     public AttackType attackType;
     public FighterStance attackStance;
 
+    public bool landCancelStartup;
+
+    public float landingLagTime;
+
     public GameAttackPropertiesProperties blockProperties;
     public GameAttackPropertiesProperties hitProperties;
 
@@ -128,6 +144,9 @@ public class GameAttackProperties
         blockType = BlockType.Mid;
         attackType = AttackType.Light;
         attackStance = FighterStance.Standing;
+
+        landCancelStartup = true;
+        landingLagTime = 0f;
 
         blockProperties = new GameAttackPropertiesProperties();
         hitProperties = new GameAttackPropertiesProperties();
@@ -144,6 +163,7 @@ public class GameAttackPropertiesProperties
     public Vector2 selfKnockback;
 
     public bool hardKD;
+    public bool wallBounce;
 
     public GameAttackPropertiesProperties()
     {
@@ -154,6 +174,7 @@ public class GameAttackPropertiesProperties
         airKnockback = Vector2.zero;
         selfKnockback = Vector2.zero;
         hardKD = false;
+        wallBounce = false;
     }
 }
 

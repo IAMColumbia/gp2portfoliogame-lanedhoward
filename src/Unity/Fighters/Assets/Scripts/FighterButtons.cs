@@ -28,6 +28,14 @@ public class AttackC : Button
     }
 }
 
+public class AttackD : Button
+{
+    public AttackD()
+    {
+        Priority = 20;
+    }
+}
+
 public class DashMacro : Button
 {
     public DashMacro()

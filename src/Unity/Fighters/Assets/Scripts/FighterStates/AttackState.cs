@@ -5,6 +5,9 @@ using UnityEngine;
 public class AttackState : FighterState
 {
     private bool wasEverAirborne;
+
+    public bool allowJumping;
+
     public AttackState(FighterMain fighterMain) : base(fighterMain)
     {
         jumpsEnabled = false;
@@ -21,6 +24,8 @@ public class AttackState : FighterState
 
         wasEverAirborne = false;
 
+        allowJumping = false;
+
         fighter.isCurrentlyAttacking = true;
 
         //fighter.currentStance = FighterStance.Crouching;
@@ -36,20 +41,28 @@ public class AttackState : FighterState
         if (fighter.currentStance == FighterStance.Air)
         {
             wasEverAirborne = true;
-            if (stateTimer > 0.1f)
+            if (stateTimer > 0.1f && (fighter.currentAttackState == CurrentAttackState.Recovery || fighter.currentAttack.properties.landCancelStartup))
             {
-                AllowLanding();
+                AttackLanding();
+                //AllowLanding();
             }
         }
         else
         {
             if (wasEverAirborne)
             {
-                if (stateTimer > 0.1f)
+                if (stateTimer > 0.1f && (fighter.currentAttackState == CurrentAttackState.Recovery || fighter.currentAttack.properties.landCancelStartup))
                 {
-                    AllowLanding();
+                    AttackLanding();
+                    //AllowLanding();
                 }
             }
+
+            if (allowJumping)
+            {
+                AllowJumping();
+            }
+
             DoFriction(fighter.groundFriction);
         }
 
@@ -67,5 +80,21 @@ public class AttackState : FighterState
     protected void ResetCurrentAttack()
     {
         fighter.currentAttack = null;
+    }
+
+    protected void AttackLanding()
+    {
+        if (fighter.currentAttack.properties.landingLagTime > 0f)
+        {
+            if (fighter.isGrounded)
+            {
+                fighter.SwitchState(fighter.landingLag);
+                ((IStunState)fighter.currentState).SetStun(fighter.currentAttack.properties.landingLagTime);
+            }
+        }
+        else
+        {
+            AllowLanding();
+        }
     }
 }

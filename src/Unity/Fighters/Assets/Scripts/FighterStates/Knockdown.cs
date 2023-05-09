@@ -32,7 +32,7 @@ public class Knockdown : FighterState, IStunState
     {
         base.DoState();
 
-        DoFriction(fighter.groundFriction);
+        if (fighter.isGrounded) DoFriction(fighter.groundFriction);
 
         TimeTransitionToNextState(knockdownTime, fighter.getup);
     }

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6527b4a829a77e746abf9f339269bc52, type: 3}
+  m_Name: FighterStats
+  m_EditorClassIdentifier: 
+  Name: The People's Champ!!
+  materials:
+  - {fileID: 2100000, guid: 6a17db4d6a8b85b41ad8c5ff2dbdad69, type: 2}
+  - {fileID: 2100000, guid: e5408ccd2d0d01b4face6752dc82e411, type: 2}
+  - {fileID: 2100000, guid: a8fe130ad622eff45859d2b1ad830bc9, type: 2}
+  - {fileID: 2100000, guid: 52008ec5a6587b34b9e5ec08c14bd8bf, type: 2}
+  - {fileID: 2100000, guid: 26a6d4b597b279548aab2b323f82dce4, type: 2}
+  MaxHealth: 4000
+  JuggleMomentumMultiplier: 0.2
+  softKnockdownTime: 0.1
+  hardKnockdownTime: 0.5
+  walkAccel: 50
+  walkMaxSpeed: 5
+  groundFriction: 40
+  velocityToStopMoveAnimation: 1
+  forwardDashTime: 0.3
+  forwardDashActionableDelay: 0.1
+  forwardDashVelocity: {x: 5, y: 7.5}
+  backDashTime: 0.5
+  backDashActionableDelay: 0.1
+  backDashStrikeInvulnTime: 0.1
+  backDashVelocity: {x: -5, y: 7.5}
+  neutralDashTime: 0.3
+  neutralDashActionableDelay: 0.1
+  neutralDashVelocity: {x: 0, y: 7.5}
+  dashJumpCancelWindow: 0.09
+  dashMomentumMultiplier: 0.5
+  jumpVelocityHorizontal: 3
+  jumpVelocityVertical: 12
+  jumpMomentumMultiplier: 0.5
+  fireballPrefab: {fileID: 6814210493323356101, guid: dd49196d4ed24cf45a73ac74811c8c32, type: 3}

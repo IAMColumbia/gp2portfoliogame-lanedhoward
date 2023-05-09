@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player2Color
+  m_Name: FighterColor2
   m_Shader: {fileID: -6465566751694194690, guid: 864ea19888a78b04898a69721488bdbb, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -39,7 +39,7 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _MainColor: {r: 0.41960788, g: 0.76695293, b: 1, a: 0}
-    - _SecondaryColor: {r: 0.1381274, g: 0.46293646, b: 0.754717, a: 0}
-    - _SpecialColor: {r: 0.1211819, g: 0.6981132, b: 0.40365735, a: 0}
+    - _MainColor: {r: 0.8666667, g: 0.53735095, b: 0.325, a: 1}
+    - _SecondaryColor: {r: 0.6886792, g: 0.23435403, b: 0.1195443, a: 0}
+    - _SpecialColor: {r: 0.8867924, g: 0.11210393, b: 0.17620854, a: 0}
   m_BuildTextureStacks: []

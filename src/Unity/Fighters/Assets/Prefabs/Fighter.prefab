@@ -24,12 +24,43 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8011111597918475088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.44, y: 0, z: 0}
+  m_LocalPosition: {x: 1.26, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9020838737491521560}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8074982943798472160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8825922811738063820}
+  m_Layer: 0
+  m_Name: FireballSpawnpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8825922811738063820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8074982943798472160}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.35, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9020838737491521560}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9020838737491521561
 GameObject:
@@ -67,6 +98,7 @@ Transform:
   - {fileID: 1157753397649676042}
   - {fileID: 3458845494036635208}
   - {fileID: 3363776167004572742}
+  - {fileID: 8825922811738063820}
   m_Father: {fileID: 9020838737738351361}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -90,7 +122,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6a17db4d6a8b85b41ad8c5ff2dbdad69, type: 2}
+  - {fileID: 2100000, guid: 26a6d4b597b279548aab2b323f82dce4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -163,12 +195,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9020838737738351361}
-  - component: {fileID: 9020838737738353919}
   - component: {fileID: 9020838737738351360}
-  - component: {fileID: 9020838737738353917}
+  - component: {fileID: 5051400795614754434}
   - component: {fileID: 9020838737738353918}
   - component: {fileID: 3818826600590594923}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Fighter
   m_TagString: Fighter
   m_Icon: {fileID: 0}
@@ -191,40 +222,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9020838737738353919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9020838737738351362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: da601ac19a5f4c048a2b1babdc50d84f, type: 3}
-  m_NotificationBehavior: 3
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 606bad0d-b83d-4c89-9ee0-ca9345c72dbc
-    m_ActionName: Fighter/Move[/Keyboard/space,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Gamepad
-  m_DefaultActionMap: Fighter
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &9020838737738351360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,6 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
+  characterModule: {fileID: 11400000, guid: 34c10423f2e25284f9eabac345d3dc9b, type: 2}
   fighterRigidbody: {fileID: 0}
   fighterCollider: {fileID: 0}
   otherFighter: {fileID: 0}
@@ -246,15 +244,16 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 0
-  groundCheckXDistance: 0.1
-  groundCheckYDistance: 0.1
-  MaxHealth: 5000
+  groundCheckXDistance: 0.05
+  groundCheckYDistance: 0.05
+  MaxHealth: 4000
   CurrentHealth: 0
+  JuggleMomentumMultiplier: 0.2
   softKnockdownTime: 0.1
   hardKnockdownTime: 0.4
   throwTechWindow: 0.16666667
-  throwTechHitstun: 0.3
-  throwTechKnockback: {x: -9, y: 0}
+  throwTechHitstun: 0.4
+  throwTechKnockback: {x: -11, y: 0}
   throwTechHitstop: 0.16666667
   walkAccel: 50
   walkMaxSpeed: 5
@@ -263,7 +262,7 @@ MonoBehaviour:
   forwardDashTime: 0.3
   forwardDashActionableDelay: 0.1
   forwardDashVelocity: {x: 5, y: 7.5}
-  backDashTime: 0.3
+  backDashTime: 0.5
   backDashActionableDelay: 0.1
   backDashStrikeInvulnTime: 0.1
   backDashVelocity: {x: -5, y: 7.5}
@@ -282,10 +281,17 @@ MonoBehaviour:
   canBlock: 0
   isCurrentlyAttacking: 0
   currentStance: 1
+  currentAttackState: 0
   facingDirection: 0
   isStrikeInvulnerable: 0
   isThrowInvulnerable: 0
   timeManager: {fileID: 0}
+  fireballSpawnpoint: {fileID: 8825922811738063820}
+  fireball: {fileID: 0}
+  isAtTheWall: 0
+  wallDirection: 0
+  wallKeepoutKnockback: {x: -5, y: 0}
+  wallKeepoutMaxHeight: 3
   blockEverything: 0
   whiffSounds:
   - {fileID: 8300000, guid: d811b577d06049e4d949192cde9ea2d1, type: 3}
@@ -301,8 +307,8 @@ MonoBehaviour:
   blockSounds:
   - {fileID: 8300000, guid: 470a5173824ac2a45931aee638948ab8, type: 3}
   throwTechSound: {fileID: 8300000, guid: 618cb72e0ed85ac47809de66811faf0a, type: 3}
---- !u!61 &9020838737738353917
-BoxCollider2D:
+--- !u!70 &5051400795614754434
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -314,19 +320,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.45}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.9}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: 0.3}
+  m_Size: {x: 0.6, y: 0.6}
+  m_Direction: 0
 --- !u!50 &9020838737738353918
 Rigidbody2D:
   serializedVersion: 4

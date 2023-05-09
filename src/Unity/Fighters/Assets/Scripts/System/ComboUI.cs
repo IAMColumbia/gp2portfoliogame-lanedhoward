@@ -41,15 +41,18 @@ public class ComboUI : MonoBehaviour
 
     public void StartEndComboCount()
     {
-        endCombocount = StartCoroutine(EndComboCount());
+        if (this.isActiveAndEnabled)
+        {
+            endCombocount = StartCoroutine(EndComboCount());
+        }
     }
 
     public IEnumerator EndComboCount()
     {
         //comboCountText.color = exitColor;
         //comboDamageText.color = exitColor;
-        comboCountText.CrossFadeColor(exitColor, 0.25f, false, false);
-        comboDamageText.CrossFadeColor(exitColor, 0.25f, false, false);
+        comboCountText.CrossFadeColor(exitColor, comboTimeout/1.5f, false, false);
+        comboDamageText.CrossFadeColor(exitColor, comboTimeout/1.5f, false, false);
         yield return new WaitForSeconds(comboTimeout);
         HideText();
     }

@@ -579,8 +579,8 @@ public class TwoOneFourA : GameAttack
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel1_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel1_blockstun;
 
-        properties.hitProperties.knockback.Set(10f, 6f);
-        properties.hitProperties.airKnockback.Set(10f, 6f);
+        properties.hitProperties.knockback.Set(9f, 6f);
+        properties.hitProperties.airKnockback.Set(9f, 6f);
         properties.hitProperties.selfKnockback.Set(0, 0);
         properties.hitProperties.damage = 100f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel1_hithitstop;
@@ -589,7 +589,7 @@ public class TwoOneFourA : GameAttack
 
         properties.landCancelStartup = false;
 
-        airdashVelocity = new Vector2(8f, 6f);
+        airdashVelocity = new Vector2(7f, 6f);
     }
 
     public override void OnActive(FighterMain fighter)

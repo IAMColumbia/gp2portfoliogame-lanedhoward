@@ -173,6 +173,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
         fighterAnimationEvents = GetComponentInChildren<FighterAnimationEvents>();
         fighterAnimationEvents.FighterAnimationHaltVerticalVelocity += OnHaltVerticalVelocity;
+        fighterAnimationEvents.FighterAnimationHaltHorizontalVelocity += OnHaltHorizontalVelocity;
         fighterAnimationEvents.FighterAnimationVelocityImpulse += OnVelocityImpulseRelativeToSelf;
         fighterAnimationEvents.FighterAttackActiveStarted += OnAttackActive;
         fighterAnimationEvents.FighterAttackRecoveryStarted += OnAttackRecovery;

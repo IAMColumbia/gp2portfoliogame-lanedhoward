@@ -22,6 +22,7 @@ public static class FighterAttacks
                 new JumpC(),
                 new SixTwoThreeC(),
                 new TwoOneFourC(),
+                new TwoOneFourA(),
                 new TwoThreeSixB(),
                 new BackThrowWhiff(new GrabSuccess()),
                 new GrabWhiff(new GrabSuccess()),
@@ -310,8 +311,8 @@ public class JumpB : GameAttack
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
 
-        properties.hitProperties.knockback.Set(-7f, 10f);
-        properties.hitProperties.airKnockback.Set(-7f, 9f);
+        properties.hitProperties.knockback.Set(-5f, 10f);
+        properties.hitProperties.airKnockback.Set(-5f, 9f);
         properties.hitProperties.selfKnockback.Set(-0.5f, 0);
         properties.hitProperties.damage = 200f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
@@ -545,6 +546,58 @@ public class TwoOneFourC : GameAttack
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
         properties.hitProperties.hardKD = false;
+
+        
+    }
+}
+
+public class TwoOneFourA : GameAttack
+{
+    Vector2 airdashVelocity;
+    public TwoOneFourA() : base()
+    {
+        conditions.Add(new GestureCondition(this, new QuarterCircleBack()));
+        conditions.Add(new ButtonCondition(this, new AttackA()));
+        conditions.Add(new GroundedCondition(this, false));
+        conditions.Add(new GatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[3];
+        whiffSoundIndex = 0;
+        hitSoundIndex = 1;
+
+        properties.AnimationName = "Airdash";
+
+        properties.blockType = GameAttackProperties.BlockType.High;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Air;
+
+        properties.blockProperties.knockback.Set(-3f, 0);
+        properties.blockProperties.airKnockback.Set(-3f, 3);
+        properties.blockProperties.selfKnockback.Set(0, 0);
+        properties.blockProperties.damage = 25f;
+        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel1_blockhitstop;
+        properties.blockProperties.stunTime = FighterAttacks.attackLevel1_blockstun;
+
+        properties.hitProperties.knockback.Set(10f, 6f);
+        properties.hitProperties.airKnockback.Set(10f, 6f);
+        properties.hitProperties.selfKnockback.Set(0, 0);
+        properties.hitProperties.damage = 100f;
+        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel1_hithitstop;
+        properties.hitProperties.stunTime = FighterAttacks.attackLevel1_hitstun;
+        properties.hitProperties.hardKD = false;
+
+        properties.landCancelStartup = false;
+
+        airdashVelocity = new Vector2(8f, 6f);
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+
+        fighter.OnHaltAllVelocity();
+        fighter.OnVelocityImpulseRelativeToSelf(airdashVelocity);
     }
 }
 

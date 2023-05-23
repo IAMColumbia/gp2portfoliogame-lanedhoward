@@ -23,6 +23,7 @@ public static class BlackhandAttacks
                 new JumpC(),
                 new SharkCall(),
                 new WaveCall(),
+                new Pegleg(),
                 new CannonGrabWhiff(new CannonGrabSuccess()),
                 new BackThrowWhiff(new GrabSuccess()),
                 new GrabWhiff(new GrabSuccess()),
@@ -184,5 +185,42 @@ public class WaveCall : GameAttack
             fighter.fireball.StartProjectile();
         }
 
+    }
+}
+
+public class Pegleg : GameAttack
+{
+    public Pegleg() : base()
+    {
+        conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
+        conditions.Add(new ButtonCondition(this, new AttackB()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new GatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[3];
+        whiffSoundIndex = 2;
+        hitSoundIndex = 3;
+
+        properties.AnimationName = "Pegleg";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Standing;
+
+        properties.blockProperties.knockback.Set(-6f, 0);
+        properties.blockProperties.airKnockback.Set(-6f, 3f);
+        properties.blockProperties.selfKnockback.Set(-9f, 0);
+        properties.blockProperties.damage = 75f;
+        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
+        properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
+
+        properties.hitProperties.knockback.Set(-10f, 6f);
+        properties.hitProperties.airKnockback.Set(-10f, 6f);
+        properties.hitProperties.selfKnockback.Set(-3f, 0);
+        properties.hitProperties.damage = 350f;
+        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
+        properties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
+        properties.hitProperties.hardKD = true;
     }
 }

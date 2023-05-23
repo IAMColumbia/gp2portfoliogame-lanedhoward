@@ -90,7 +90,7 @@ PrefabInstance:
     - target: {fileID: 6723908043291465869, guid: dd49196d4ed24cf45a73ac74811c8c32, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -4880535760362204724, guid: ffe37a2c10e0a024eb7a7ceb693a3a58, type: 3}
+      objectReference: {fileID: -6036550999487056464, guid: ffe37a2c10e0a024eb7a7ceb693a3a58, type: 3}
     - target: {fileID: 6814210493323356101, guid: dd49196d4ed24cf45a73ac74811c8c32, type: 3}
       propertyPath: m_Name
       value: PirateFireball

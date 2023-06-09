@@ -147,7 +147,7 @@ public class Projectile : SoundPlayer, IHitboxResponder
             if (collision.gameObject.CompareTag("Wall"))
             {
                 fighterParent.PlaySound(fighterParent.hitSounds[projectileProperties.parent.hitSoundIndex]);
-                EndProjectile();
+                StartCoroutine(DelayEndProjectile(0.2f));
             }
 
         }
@@ -164,5 +164,14 @@ public class Projectile : SoundPlayer, IHitboxResponder
     public void SetMaterial(Material mat)
     {
         this.GetComponent<SpriteRenderer>().material = mat;
+    }
+
+    private IEnumerator DelayEndProjectile(float delaySeconds)
+    {
+        yield return new WaitForSeconds(delaySeconds);
+        if (projectileActive)
+        {
+            EndProjectile();
+        }
     }
 }

@@ -8,8 +8,9 @@ using UnityEngine.Rendering;
 public class CharacterModule : ScriptableObject
 {
     [Header("Cosmetics")]
-    public string Name;
+    public string CharacterName;
     public Material[] materials;
+    public AudioClip song;
 
     [Header("Health Values")]
     public float MaxHealth = 1000;

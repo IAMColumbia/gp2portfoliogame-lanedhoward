@@ -6,7 +6,7 @@ public class SoundPlayer : MonoBehaviour
 {
     public AudioSource audioSource;
 
-    public virtual void Start()
+    public virtual void Awake()
     {
         audioSource = GetComponent<AudioSource>();
     }

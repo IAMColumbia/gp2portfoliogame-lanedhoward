@@ -20,10 +20,10 @@ public static class FighterAttacks
                 new TwoC(),
                 new FiveC(),
                 new JumpC(),
-                new SixTwoThreeC(),
-                new TwoOneFourC(),
-                new TwoOneFourA(),
-                new TwoThreeSixB(),
+                new PeoplesUppercut(),
+                new Overhead(),
+                new StageDive(),
+                new FireballStomp(),
                 new BackThrowWhiff(new GrabSuccess()),
                 new GrabWhiff(new GrabSuccess()),
                 new AirBackThrowWhiff(new AirGrabSuccess()),
@@ -314,7 +314,7 @@ public class JumpB : GameAttack
         properties.hitProperties.knockback.Set(-5f, 10f);
         properties.hitProperties.airKnockback.Set(-5f, 9f);
         properties.hitProperties.selfKnockback.Set(-0.5f, 0);
-        properties.hitProperties.damage = 200f;
+        properties.hitProperties.damage = 250f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
         properties.hitProperties.wallBounce = true;
@@ -444,19 +444,19 @@ public class JumpC : GameAttack
         properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
         properties.hitProperties.knockback.Set(-6f, 0);
-        properties.hitProperties.airKnockback.Set(-2f, 7f);
+        properties.hitProperties.airKnockback.Set(-2f, 8.5f);
         properties.hitProperties.selfKnockback.Set(-5f, 0);
-        properties.hitProperties.damage = 300f;
+        properties.hitProperties.damage = 450f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
     }
 }
 
-public class SixTwoThreeC : GameAttack
+public class PeoplesUppercut : GameAttack
 {
     private float baseLandingLagTime = 0.25f;
     private float onHitLandingLagTime = 0f;
-    public SixTwoThreeC() : base()
+    public PeoplesUppercut() : base()
     {
         conditions.Add(new GestureCondition(this, new DragonPunch()));
         conditions.Add(new ButtonCondition(this, new AttackC()));
@@ -478,14 +478,14 @@ public class SixTwoThreeC : GameAttack
         properties.blockProperties.knockback.Set(-2f, 0);
         properties.blockProperties.airKnockback.Set(-2f, 3);
         properties.blockProperties.selfKnockback.Set(-4f, 0);
-        properties.blockProperties.damage = 50f;
+        properties.blockProperties.damage = 100f;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
         properties.hitProperties.knockback.Set(-5f, 13f);
-        properties.hitProperties.airKnockback.Set(-5f, 10f);
+        properties.hitProperties.airKnockback.Set(-5f, 11f);
         properties.hitProperties.selfKnockback.Set(-2f, 0);
-        properties.hitProperties.damage = 350f;
+        properties.hitProperties.damage = 500f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
         properties.hitProperties.hardKD = true;
@@ -512,9 +512,9 @@ public class SixTwoThreeC : GameAttack
     }
 }
 
-public class TwoOneFourC : GameAttack
+public class Overhead : GameAttack
 {
-    public TwoOneFourC() : base()
+    public Overhead() : base()
     {
         conditions.Add(new GestureCondition(this, new QuarterCircleBack()));
         conditions.Add(new ButtonCondition(this, new AttackC()));
@@ -551,12 +551,12 @@ public class TwoOneFourC : GameAttack
     }
 }
 
-public class TwoOneFourA : GameAttack
+public class StageDive : GameAttack
 {
     Vector2 airdashVelocity;
-    public TwoOneFourA() : base()
+    public StageDive() : base()
     {
-        conditions.Add(new GestureCondition(this, new QuarterCircleBack()));
+        conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
         conditions.Add(new ButtonCondition(this, new AttackA()));
         conditions.Add(new GroundedCondition(this, false));
         conditions.Add(new GatlingCondition(this));
@@ -601,10 +601,10 @@ public class TwoOneFourA : GameAttack
     }
 }
 
-public class TwoThreeSixB : GameAttack
+public class FireballStomp : GameAttack
 {
     GameAttackProperties fireballProperties;
-    public TwoThreeSixB() : base()
+    public FireballStomp() : base()
     {
         conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
         conditions.Add(new ButtonCondition(this, new AttackB()));
@@ -650,8 +650,8 @@ public class TwoThreeSixB : GameAttack
         fireballProperties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
 
         fireballProperties.hitProperties.knockback.Set(-6f, 0f);
-        fireballProperties.hitProperties.airKnockback.Set(-4f, 6f);
-        fireballProperties.hitProperties.damage = 150f;
+        fireballProperties.hitProperties.airKnockback.Set(-2f, 9f);
+        fireballProperties.hitProperties.damage = 200f;
         fireballProperties.hitProperties.hitstopTime = FighterAttacks.attackLevel1_hithitstop;
         fireballProperties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
         fireballProperties.hitProperties.hardKD = false;

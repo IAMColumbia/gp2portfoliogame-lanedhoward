@@ -1979,6 +1979,7 @@ MonoBehaviour:
   AnnouncerText: {fileID: 926545506}
   eventSystem: {fileID: 993452741}
   introTimeline: {fileID: 1914259774}
+  musicPlayer: {fileID: 1593764031}
 --- !u!4 &1298733303
 Transform:
   m_ObjectHideFlags: 0
@@ -2608,7 +2609,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1593764028}
   - component: {fileID: 1593764030}
-  - component: {fileID: 1593764029}
+  - component: {fileID: 1593764031}
   m_Layer: 0
   m_Name: MusicPlayer
   m_TagString: Untagged
@@ -2631,19 +2632,6 @@ Transform:
   m_Father: {fileID: 1973852855}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1593764029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1593764027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38e4fdcb71dc38441a8af1b27dd3b706, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
 --- !u!82 &1593764030
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2655,7 +2643,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ff261eb8c2bed8b468509bfc107755da, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -2740,6 +2728,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1593764031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593764027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67103c5f4b1367449b2e7589a8f3a56d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  defaultMusic: {fileID: 8300000, guid: c5e9ac1d8bf6993469052b8d9e616281, type: 3}
 --- !u!114 &1606481551 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5959976711682364778, guid: 7c756400acc59cb4f9d1b9618dc80edd, type: 3}

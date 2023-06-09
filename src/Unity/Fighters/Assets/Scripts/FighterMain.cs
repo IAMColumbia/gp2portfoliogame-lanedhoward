@@ -155,8 +155,10 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public event EventHandler GotHit;
     public event EventHandler LeftHitstun;
 
-    void Awake()
+    public override void Awake()
     {
+        base.Awake();
+
         timeManager = FindObjectOfType<TimeManager>();
         
         //PlayerInput pi = GetComponent<PlayerInput>();
@@ -208,9 +210,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         SwitchState(neutral);
     }
 
-    public override void Start()
+    public void Start()
     {
-        base.Start();
 
         if (!chararacterModuleInitialized)
         {

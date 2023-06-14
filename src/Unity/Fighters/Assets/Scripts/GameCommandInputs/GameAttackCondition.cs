@@ -108,7 +108,7 @@ public class GatlingCondition : GameAttackCondition
 
         if (fighter.currentAttack == null)
         {
-            // idk????
+            return true;
         }
 
         if (fighter.currentAttack.properties.attackType == GameAttackProperties.AttackType.Throw)
@@ -146,6 +146,33 @@ public class NoGatlingCondition : GameAttackCondition
     public override bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
     {
         if (!fighter.isCurrentlyAttacking) return true;
+        return false;
+    }
+}
+
+public class FollowUpCondition : GameAttackCondition
+{
+    Type followUpFrom;
+    public FollowUpCondition(GameAttack _parent, Type _followUpFrom) : base(_parent)
+    {
+        followUpFrom = _followUpFrom;
+    }
+
+    public override bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
+    {
+        if (!fighter.isCurrentlyAttacking) return false;
+
+        if (fighter.currentAttack == null)
+        {
+            return false;
+        }
+
+
+        if (fighter.currentAttack.GetType() == followUpFrom)
+        {
+            return true;
+        }
+
         return false;
     }
 }

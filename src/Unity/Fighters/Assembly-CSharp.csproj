@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CharacterModules\BlackhandModule.cs" />
     <Compile Include="Assets\Scripts\CharacterModules\FighterModule.cs" />
+    <Compile Include="Assets\Scripts\LaneLibrary\RandomMethods.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Knockdown.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Grabbing.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Neutral.cs" />
@@ -84,17 +85,21 @@
     <Compile Include="Assets\Scripts\System\PlayerSetupController.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IInputHost.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Neutraldashing.cs" />
+    <Compile Include="Assets\Scripts\LaneLibrary\Swapper.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadablePackage.cs" />
     <Compile Include="Assets\Inputs\Fighters.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IReadPackage.cs" />
     <Compile Include="Assets\Scripts\SoundPlayer.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\Combo.cs" />
+    <Compile Include="Assets\Scripts\GameCommandInputs\FormerKingAttacks.cs" />
     <Compile Include="Assets\Scripts\FighterStates\GetGrabbed.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttackCondition.cs" />
+    <Compile Include="Assets\Scripts\LaneLibrary\Shuffler.cs" />
     <Compile Include="Assets\Scripts\System\GameManager.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableGesture.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\BlackHandAttacks.cs" />
     <Compile Include="Assets\Scripts\System\TimeManager.cs" />
+    <Compile Include="Assets\Scripts\LaneLibrary\ConsoleUtils.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\ThrowAttack.cs" />
     <Compile Include="Assets\Scripts\FighterStates\FighterState.cs" />
     <Compile Include="Assets\Scripts\Hitboxes\Hurtbox.cs" />
@@ -109,6 +114,7 @@
     <Compile Include="Assets\Scripts\GameCommandInputs\GameMoveInputs.cs" />
     <Compile Include="Assets\Scripts\FighterInputReceiver.cs" />
     <Compile Include="Assets\Scripts\System\Healthbar.cs" />
+    <Compile Include="Assets\Scripts\CharacterModules\FormerKingModule.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IInputReceiver.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IHostPackage.cs" />
     <Compile Include="Assets\Scripts\FighterMain.cs" />
@@ -116,6 +122,7 @@
     <Compile Include="Assets\Scripts\FighterStates\IStunState.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IGesture.cs" />
     <Compile Include="Assets\Scripts\Hitboxes\Projectile.cs" />
+    <Compile Include="Assets\Scripts\LaneLibrary\Extensions.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableGestureWithShortcuts.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Prejump.cs" />
     <Compile Include="Assets\Scripts\FighterAnimator.cs" />
@@ -127,11 +134,6 @@
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttack.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\LaneLibrary\ConsoleUtils.cs" />
-    <Compile Include="Assets\Scripts\LaneLibrary\Extensions.cs" />
-    <Compile Include="Assets\Scripts\LaneLibrary\Shuffler.cs" />
-    <Compile Include="Assets\Scripts\LaneLibrary\Swapper.cs" />
-    <Compile Include="Assets\Scripts\LaneLibrary\RandomMethods.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

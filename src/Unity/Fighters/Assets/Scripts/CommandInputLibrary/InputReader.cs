@@ -26,7 +26,7 @@ namespace CommandInputReaderLibrary
         public static float TimeBetweenSequentialInputs = 8;
         public static float TimeBetweenNonSequentialInputs = 16;
 
-        public static float MinChargeTime = 35;
+        public static float MinChargeTime = 25;
         public static float MaxTimeBetweenChargePartitions = 16;
         public static float MaxTimeBetweenChargeAndRelease = 16;
         public static float MaxTimeAfterRelease = 8;

@@ -48,7 +48,7 @@ public class FighterInputReceiver : IInputReceiver
     {
         ManageBuffer();
 
-        IReadPackage package = inputReader.Tick(TimeSpan.FromSeconds(Time.deltaTime));
+        IReadPackage package = inputReader.Tick(TimeSpan.FromSeconds(Time.unscaledDeltaTime));
 
         if (package == null)
         {

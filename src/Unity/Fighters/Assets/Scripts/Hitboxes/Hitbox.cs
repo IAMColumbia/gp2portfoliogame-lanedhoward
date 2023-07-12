@@ -31,6 +31,8 @@ public class Hitbox : MonoBehaviour
 
     private IHitboxResponder responder;
 
+    public Vector3 actingOffset;
+
     private void Start()
     {
         SetResponder(fighterParent);
@@ -40,7 +42,7 @@ public class Hitbox : MonoBehaviour
 
     public void CheckHitbox()
     {
-        Vector3 actingOffset = new Vector3(offset.x * transform.lossyScale.x, offset.y * transform.lossyScale.y, offset.z * transform.lossyScale.z);
+        actingOffset = new Vector3(offset.x * transform.lossyScale.x, offset.y * transform.lossyScale.y, offset.z * transform.lossyScale.z);
 
         
         List<Collider2D> colliders = new List<Collider2D>();
@@ -53,7 +55,7 @@ public class Hitbox : MonoBehaviour
             foreach (Collider2D c in colliders)
             {
                 if (responder == null) break;
-                if (responder.CollidedWith(c))
+                if (responder.CollidedWith(c, c.ClosestPoint(transform.position + actingOffset)))
                 {
                     _state = ColliderState.Colliding;
                     break;

@@ -152,6 +152,9 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public AudioClip[] blockSounds;
     public AudioClip throwTechSound;
 
+    [Header("Particles")]
+    public ParticleSystem smallHitParticles;
+
     public event EventHandler GotHit;
     public event EventHandler LeftHitstun;
 
@@ -520,7 +523,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         fighterRigidbody.velocity = Vector2.zero;
     }
 
-    bool IHitboxResponder.CollidedWith(Collider2D collider)
+    bool IHitboxResponder.CollidedWith(Collider2D collider, Vector3 hitPosition)
     {
         if (currentAttack == null) throw new Exception("Hitbox hit without a current attack");
 
@@ -546,12 +549,23 @@ public class FighterMain : SoundPlayer, IHitboxResponder
                 {
                     currentAttack.OnHit(this, hurtbox.fighterParent);
                     pp = currentAttack.properties.hitProperties;
+
+                    if (hitPosition != null)
+                    {
+                        PlayHitVFX(hitPosition);
+                    }
+
                 }
                 else
                 {
                     //blocked 
                     currentAttack.OnBlock(this, hurtbox.fighterParent);
                     pp = currentAttack.properties.blockProperties;
+
+                    if (hitPosition != null)
+                    {
+                        PlayBlockVFX(hitPosition);
+                    }
                 }
 
 
@@ -853,5 +867,16 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         {
             isAtTheWall = false;
         }
+    }
+
+    public void PlayHitVFX(Vector3 hitLocation)
+    {
+        smallHitParticles.transform.position = hitLocation;
+        smallHitParticles.Play();
+    }
+
+    public void PlayBlockVFX(Vector3 hitLocation)
+    {
+
     }
 }

@@ -27,7 +27,7 @@ public class Projectile : SoundPlayer, IHitboxResponder
 
     //public int hits = 1;
 
-    bool IHitboxResponder.CollidedWith(Collider2D collider)
+    bool IHitboxResponder.CollidedWith(Collider2D collider, Vector3 hitPosition)
     {
         if (projectileProperties == null) throw new Exception("Hitbox hit without a current attack");
 
@@ -48,6 +48,16 @@ public class Projectile : SoundPlayer, IHitboxResponder
             if (successfulHit)
             {
                 fighterParent.PlaySound(fighterParent.hitSounds[projectileProperties.parent.hitSoundIndex]);
+
+                if (report == HitReport.Hit)
+                {
+                    fighterParent.PlayHitVFX(hitPosition);
+                }
+                else
+                {
+                    fighterParent.PlayBlockVFX(hitPosition);
+                }
+
                 this.EndProjectile();
             }
 

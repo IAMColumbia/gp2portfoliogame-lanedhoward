@@ -56,6 +56,9 @@ TagManager:
   - name: Ground
     uniqueID: 2134144101
     locked: 0
+  - name: Particles_Back
+    uniqueID: 3156012315
+    locked: 0
   - name: Entities_Back
     uniqueID: 2449276809
     locked: 0
@@ -64,6 +67,9 @@ TagManager:
     locked: 0
   - name: Entities_Front
     uniqueID: 2923338277
+    locked: 0
+  - name: Particles_Front
+    uniqueID: 1422036949
     locked: 0
   - name: Foreground
     uniqueID: 3964471101

@@ -141,7 +141,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -292844093
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -8296385383580801948, guid: c7f6ffe7d18460f46ad5c463242adf4f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -219,6 +219,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9020838737491521560}
+  - {fileID: 356044139189969363}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -307,6 +308,7 @@ MonoBehaviour:
   blockSounds:
   - {fileID: 8300000, guid: 470a5173824ac2a45931aee638948ab8, type: 3}
   throwTechSound: {fileID: 8300000, guid: 618cb72e0ed85ac47809de66811faf0a, type: 3}
+  smallHitParticles: {fileID: 356044139189969360}
 --- !u!70 &5051400795614754434
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -599,6 +601,45 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6178828023707570158, guid: fdaca7a7580990448813ff254fd742b8, type: 3}
   m_PrefabInstance: {fileID: 1186473325923254090}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2143663366717786579
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 9020838737738351361}
+    m_Modifications:
+    - target: {fileID: 1823744799044036608, guid: d0a11fe85fdaec94db40eab1ea296e1f, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823744799044036608, guid: d0a11fe85fdaec94db40eab1ea296e1f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823744799044036608, guid: d0a11fe85fdaec94db40eab1ea296e1f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823744799044036608, guid: d0a11fe85fdaec94db40eab1ea296e1f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823744799044036621, guid: d0a11fe85fdaec94db40eab1ea296e1f, type: 3}
+      propertyPath: m_Name
+      value: SmallHitParticles
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d0a11fe85fdaec94db40eab1ea296e1f, type: 3}
+--- !u!198 &356044139189969360 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1823744799044036611, guid: d0a11fe85fdaec94db40eab1ea296e1f, type: 3}
+  m_PrefabInstance: {fileID: 2143663366717786579}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &356044139189969363 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1823744799044036608, guid: d0a11fe85fdaec94db40eab1ea296e1f, type: 3}
+  m_PrefabInstance: {fileID: 2143663366717786579}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3702321143157341184
 PrefabInstance:

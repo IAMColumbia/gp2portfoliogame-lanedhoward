@@ -99,14 +99,14 @@ public class FiveA : GameAttack
         properties.attackStance = FighterStance.Standing;
 
         properties.blockProperties.knockback.Set(-2.5f, 0);
-        properties.blockProperties.airKnockback.Set(-2.5f, 3);
+        properties.blockProperties.airKnockback.Set(-2.5f, 5f);
         properties.blockProperties.selfKnockback.Set(-5f, 0);
         properties.blockProperties.damage = 0f;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel1_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel1_blockstun;
 
         properties.hitProperties.knockback.Set(-3f, 0);
-        properties.hitProperties.airKnockback.Set(-1.75f, 6f);
+        properties.hitProperties.airKnockback.Set(-1.75f, 9f);
         properties.hitProperties.selfKnockback.Set(-4f, 0);
         properties.hitProperties.damage = 85f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel1_hithitstop;
@@ -137,14 +137,14 @@ public class TwoA : GameAttack
 
 
         properties.blockProperties.knockback.Set(-2.5f, 0);
-        properties.blockProperties.airKnockback.Set(-2.5f, 3);
+        properties.blockProperties.airKnockback.Set(-2.5f, 5f);
         properties.blockProperties.selfKnockback.Set(-5f, 0);
         properties.blockProperties.damage = 0f;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel1_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel1_blockstun;
 
         properties.hitProperties.knockback.Set(-3f, 0);
-        properties.hitProperties.airKnockback.Set(-1.75f, 6f);
+        properties.hitProperties.airKnockback.Set(-1.75f, 9f);
         properties.hitProperties.selfKnockback.Set(-4f, 0);
         properties.hitProperties.damage = 75f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel1_hithitstop;
@@ -174,14 +174,14 @@ public class JumpA : GameAttack
         properties.attackStance = FighterStance.Air;
 
         properties.blockProperties.knockback.Set(-2.5f, 0);
-        properties.blockProperties.airKnockback.Set(-2.5f, 3);
+        properties.blockProperties.airKnockback.Set(-2.5f, 5f);
         properties.blockProperties.selfKnockback.Set(-1f, 0);
         properties.blockProperties.damage = 0f;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel1_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel1_blockstun;
 
         properties.hitProperties.knockback.Set(-3f, 0);
-        properties.hitProperties.airKnockback.Set(-1.5f, 6f);
+        properties.hitProperties.airKnockback.Set(-1.5f, 9f);
         properties.hitProperties.selfKnockback.Set(-1f, 0);
         properties.hitProperties.damage = 100f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel1_hithitstop;
@@ -211,14 +211,14 @@ public class FiveB : GameAttack
         properties.attackStance = FighterStance.Standing;
 
         properties.blockProperties.knockback.Set(-3f, 0);
-        properties.blockProperties.airKnockback.Set(-3f, 3);
+        properties.blockProperties.airKnockback.Set(-3f, 6f);
         properties.blockProperties.selfKnockback.Set(-6f, 0);
         properties.blockProperties.damage = 0f;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
 
         properties.hitProperties.knockback.Set(-5f, 0);
-        properties.hitProperties.airKnockback.Set(-1.75f, 7f);
+        properties.hitProperties.airKnockback.Set(-1.75f, 11f);
         properties.hitProperties.selfKnockback.Set(-5f, 0);
         properties.hitProperties.damage = 200f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
@@ -267,14 +267,14 @@ public class TwoB : GameAttack
         properties.attackStance = FighterStance.Crouching;
 
         properties.blockProperties.knockback.Set(-3f, 0);
-        properties.blockProperties.airKnockback.Set(-3, 3);
+        properties.blockProperties.airKnockback.Set(-3, 5f);
         properties.blockProperties.selfKnockback.Set(-6f, 0);
         properties.blockProperties.damage = 0f;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
 
-        properties.hitProperties.knockback.Set(-3f, 6f);
-        properties.hitProperties.airKnockback.Set(-1.5f, 9f);
+        properties.hitProperties.knockback.Set(-3f, 9f);
+        properties.hitProperties.airKnockback.Set(-1.5f, 11f);
         properties.hitProperties.selfKnockback.Set(-4f, 0);
         properties.hitProperties.damage = 250f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
@@ -305,14 +305,14 @@ public class JumpB : GameAttack
         properties.attackStance = FighterStance.Air;
 
         properties.blockProperties.knockback.Set(-3.5f, 0);
-        properties.blockProperties.airKnockback.Set(-3.5f, 3);
+        properties.blockProperties.airKnockback.Set(-3.5f, 5f);
         properties.blockProperties.selfKnockback.Set(-2f, 0);
         properties.blockProperties.damage = 0f;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
 
-        properties.hitProperties.knockback.Set(-5f, 10f);
-        properties.hitProperties.airKnockback.Set(-5f, 9f);
+        properties.hitProperties.knockback.Set(-5f, 12f);
+        properties.hitProperties.airKnockback.Set(-5f, 11f);
         properties.hitProperties.selfKnockback.Set(-0.5f, 0);
         properties.hitProperties.damage = 250f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
@@ -343,14 +343,14 @@ public class FiveC : GameAttack
         properties.attackStance = FighterStance.Standing;
 
         properties.blockProperties.knockback.Set(-5f, 0);
-        properties.blockProperties.airKnockback.Set(-5f, 3);
+        properties.blockProperties.airKnockback.Set(-5f, 5f);
         properties.blockProperties.selfKnockback.Set(-8f, 0);
         properties.blockProperties.damage = 0;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
-        properties.hitProperties.knockback.Set(-7f, 5f);
-        properties.hitProperties.airKnockback.Set(-11f, 10f);
+        properties.hitProperties.knockback.Set(-7f, 8f);
+        properties.hitProperties.airKnockback.Set(-11f, 12f);
         properties.hitProperties.selfKnockback.Set(-6f, 0);
         properties.hitProperties.damage = 400f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
@@ -381,14 +381,14 @@ public class TwoC : GameAttack
         properties.attackStance = FighterStance.Crouching;
 
         properties.blockProperties.knockback.Set(-5f, 0);
-        properties.blockProperties.airKnockback.Set(-5, 5);
+        properties.blockProperties.airKnockback.Set(-5, 8f);
         properties.blockProperties.selfKnockback.Set(-8f, 0);
         properties.blockProperties.damage = 0f;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
-        properties.hitProperties.knockback.Set(-0.5f, 13.5f);
-        properties.hitProperties.airKnockback.Set(-0.5f, 9f);
+        properties.hitProperties.knockback.Set(-0.5f, 18f);
+        properties.hitProperties.airKnockback.Set(-0.5f, 14f);
         properties.hitProperties.selfKnockback.Set(-3f, 0);
         properties.hitProperties.damage = 150f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
@@ -437,14 +437,14 @@ public class JumpC : GameAttack
         properties.attackStance = FighterStance.Air;
 
         properties.blockProperties.knockback.Set(-4f, 0);
-        properties.blockProperties.airKnockback.Set(-4, 3);
+        properties.blockProperties.airKnockback.Set(-4, 5f);
         properties.blockProperties.selfKnockback.Set(-6f, 0);
         properties.blockProperties.damage = 0f;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
         properties.hitProperties.knockback.Set(-6f, 0);
-        properties.hitProperties.airKnockback.Set(-2f, 8.5f);
+        properties.hitProperties.airKnockback.Set(-2f, 11f);
         properties.hitProperties.selfKnockback.Set(-5f, 0);
         properties.hitProperties.damage = 450f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
@@ -476,14 +476,14 @@ public class PeoplesUppercut : GameAttack
         properties.landingLagTime = baseLandingLagTime;
 
         properties.blockProperties.knockback.Set(-2f, 0);
-        properties.blockProperties.airKnockback.Set(-2f, 3);
+        properties.blockProperties.airKnockback.Set(-2f, 7f);
         properties.blockProperties.selfKnockback.Set(-4f, 0);
         properties.blockProperties.damage = 100f;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
-        properties.hitProperties.knockback.Set(-5f, 13f);
-        properties.hitProperties.airKnockback.Set(-5f, 11f);
+        properties.hitProperties.knockback.Set(-5f, 18f);
+        properties.hitProperties.airKnockback.Set(-5f, 15f);
         properties.hitProperties.selfKnockback.Set(-2f, 0);
         properties.hitProperties.damage = 500f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
@@ -533,14 +533,14 @@ public class Overhead : GameAttack
         properties.attackStance = FighterStance.Standing;
 
         properties.blockProperties.knockback.Set(-3f, 0);
-        properties.blockProperties.airKnockback.Set(-3f, 3);
+        properties.blockProperties.airKnockback.Set(-3f, 5f);
         properties.blockProperties.selfKnockback.Set(-8f, 0);
         properties.blockProperties.damage = 50f;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
-        properties.hitProperties.knockback.Set(-1f, 13.5f);
-        properties.hitProperties.airKnockback.Set(-1f, 6f);
+        properties.hitProperties.knockback.Set(-1f, 18f);
+        properties.hitProperties.airKnockback.Set(-1f, 9f);
         properties.hitProperties.selfKnockback.Set(-4f, 0);
         properties.hitProperties.damage = 300f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
@@ -573,14 +573,14 @@ public class StageDive : GameAttack
         properties.attackStance = FighterStance.Air;
 
         properties.blockProperties.knockback.Set(-3f, 0);
-        properties.blockProperties.airKnockback.Set(-3f, 3);
+        properties.blockProperties.airKnockback.Set(-3f, 5);
         properties.blockProperties.selfKnockback.Set(0, 0);
         properties.blockProperties.damage = 25f;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel1_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel1_blockstun;
 
-        properties.hitProperties.knockback.Set(9f, 6f);
-        properties.hitProperties.airKnockback.Set(9f, 6f);
+        properties.hitProperties.knockback.Set(9f, 9f);
+        properties.hitProperties.airKnockback.Set(9f, 9f);
         properties.hitProperties.selfKnockback.Set(0, 0);
         properties.hitProperties.damage = 100f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel1_hithitstop;
@@ -623,14 +623,14 @@ public class FireballStomp : GameAttack
         properties.attackStance = FighterStance.Standing;
 
         properties.blockProperties.knockback.Set(-5f, 0);
-        properties.blockProperties.airKnockback.Set(-3f, 5f);
+        properties.blockProperties.airKnockback.Set(-3f, 8f);
         properties.blockProperties.selfKnockback.Set(-7f, 0);
         properties.blockProperties.damage = 50f;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
 
-        properties.hitProperties.knockback.Set(-3f, 8f);
-        properties.hitProperties.airKnockback.Set(-3f, 8f);
+        properties.hitProperties.knockback.Set(-3f, 12f);
+        properties.hitProperties.airKnockback.Set(-3f, 12f);
         properties.hitProperties.selfKnockback.Set(-4f, 0);
         properties.hitProperties.damage = 125f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
@@ -644,13 +644,13 @@ public class FireballStomp : GameAttack
         fireballProperties.attackStance = FighterStance.Standing;
 
         fireballProperties.blockProperties.knockback.Set(-5f, 0);
-        fireballProperties.blockProperties.airKnockback.Set(-3f, 6f);
+        fireballProperties.blockProperties.airKnockback.Set(-3f, 9f);
         fireballProperties.blockProperties.damage = 75f;
         fireballProperties.blockProperties.hitstopTime = FighterAttacks.attackLevel1_blockhitstop;
         fireballProperties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
 
         fireballProperties.hitProperties.knockback.Set(-6f, 0f);
-        fireballProperties.hitProperties.airKnockback.Set(-2f, 9f);
+        fireballProperties.hitProperties.airKnockback.Set(-2f, 13f);
         fireballProperties.hitProperties.damage = 200f;
         fireballProperties.hitProperties.hitstopTime = FighterAttacks.attackLevel1_hithitstop;
         fireballProperties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
@@ -722,7 +722,7 @@ public class GrabSuccess : ThrowAttackSuccess
         whiffSoundIndex = -1;
         hitSoundIndex = 2;
 
-        properties.hitProperties.knockback.Set(-5f, 7f);
+        properties.hitProperties.knockback.Set(-5f, 10f);
         properties.hitProperties.selfKnockback.Set(0f, 0);
         properties.hitProperties.damage = 500f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
@@ -793,7 +793,7 @@ public class AirGrabSuccess : ThrowAttackSuccess
         whiffSoundIndex = -1;
         hitSoundIndex = 2;
 
-        properties.hitProperties.airKnockback.Set(-2f, 7f);
+        properties.hitProperties.airKnockback.Set(-2f, 10f);
         properties.hitProperties.selfKnockback.Set(0f, 0);
         properties.hitProperties.damage = 500f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;

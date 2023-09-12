@@ -94,6 +94,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public float walkMaxSpeed;
     public float groundFriction;
     public float velocityToStopMoveAnimation;
+    public float normalGravity;
+    public float comboGravity;
 
     [Header("Dashing Values")]
     public float forwardDashTime = 0.3f;
@@ -326,6 +328,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         DoCurrentState();
 
         PushAwayFromWall();
+
+        SetGravity();
     }
 
     private void CheckForInputs()
@@ -867,6 +871,20 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         {
             isAtTheWall = false;
         }
+    }
+
+    private void SetGravity()
+    {
+        if (currentCombo != null)
+        {
+            if (currentCombo.currentlyGettingComboed)
+            {
+                fighterRigidbody.gravityScale = comboGravity;
+                return;
+            }
+        }
+
+        fighterRigidbody.gravityScale = normalGravity;
     }
 
     public void PlayHitVFX(Vector3 hitLocation)

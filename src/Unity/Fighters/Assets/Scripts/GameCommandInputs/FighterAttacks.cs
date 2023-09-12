@@ -58,8 +58,8 @@ public static class FighterAttacks
     {
         attackLevel1_hithitstop = 7f / 60f;
         attackLevel1_blockhitstop = 5f / 60f;
-        attackLevel1_hitstun = 14f / 60f;
-        attackLevel1_blockstun = 12f / 60f;
+        attackLevel1_hitstun = 15f / 60f;
+        attackLevel1_blockstun = 13f / 60f;
 
         attackLevel2_hithitstop = 9f / 60f;
         attackLevel2_blockhitstop = 7f / 60f;
@@ -387,8 +387,8 @@ public class TwoC : GameAttack
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
-        properties.hitProperties.knockback.Set(-0.5f, 18f);
-        properties.hitProperties.airKnockback.Set(-0.5f, 14f);
+        properties.hitProperties.knockback.Set(-0.5f, 15f);
+        properties.hitProperties.airKnockback.Set(-0.5f, 11f);
         properties.hitProperties.selfKnockback.Set(-3f, 0);
         properties.hitProperties.damage = 150f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
@@ -482,8 +482,8 @@ public class PeoplesUppercut : GameAttack
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
-        properties.hitProperties.knockback.Set(-5f, 18f);
-        properties.hitProperties.airKnockback.Set(-5f, 15f);
+        properties.hitProperties.knockback.Set(-5f, 16f);
+        properties.hitProperties.airKnockback.Set(-5f, 14f);
         properties.hitProperties.selfKnockback.Set(-2f, 0);
         properties.hitProperties.damage = 500f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
@@ -539,7 +539,7 @@ public class Overhead : GameAttack
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
-        properties.hitProperties.knockback.Set(-1f, 18f);
+        properties.hitProperties.knockback.Set(-1f, 15f);
         properties.hitProperties.airKnockback.Set(-1f, 9f);
         properties.hitProperties.selfKnockback.Set(-4f, 0);
         properties.hitProperties.damage = 300f;

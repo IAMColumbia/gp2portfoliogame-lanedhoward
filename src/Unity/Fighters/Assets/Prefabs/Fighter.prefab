@@ -260,6 +260,8 @@ MonoBehaviour:
   walkMaxSpeed: 5
   groundFriction: 40
   velocityToStopMoveAnimation: 1
+  normalGravity: 7
+  comboGravity: 4.5
   forwardDashTime: 0.3
   forwardDashActionableDelay: 0.1
   forwardDashVelocity: {x: 5, y: 7.5}

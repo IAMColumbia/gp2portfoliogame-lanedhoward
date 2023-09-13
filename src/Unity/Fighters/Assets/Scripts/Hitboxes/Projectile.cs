@@ -51,11 +51,11 @@ public class Projectile : SoundPlayer, IHitboxResponder
 
                 if (report == HitReport.Hit)
                 {
-                    fighterParent.PlayHitVFX(hitPosition);
+                    fighterParent.PlayHitVFX(hitPosition, projectileProperties);
                 }
                 else
                 {
-                    fighterParent.PlayBlockVFX(hitPosition);
+                    fighterParent.PlayBlockVFX(hitPosition, projectileProperties);
                 }
 
                 this.EndProjectile();

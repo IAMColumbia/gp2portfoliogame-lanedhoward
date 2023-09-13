@@ -156,6 +156,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
     [Header("Particles")]
     public ParticleSystem smallHitParticles;
+    public ParticleSystem midHitParticles;
+    public ParticleSystem heavyHitParticles;
 
     public event EventHandler GotHit;
     public event EventHandler LeftHitstun;
@@ -556,7 +558,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
                     if (hitPosition != null)
                     {
-                        PlayHitVFX(hitPosition);
+                        PlayHitVFX(hitPosition, currentAttack.properties);
                     }
 
                 }
@@ -568,7 +570,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
                     if (hitPosition != null)
                     {
-                        PlayBlockVFX(hitPosition);
+                        PlayBlockVFX(hitPosition, currentAttack.properties);
                     }
                 }
 
@@ -887,13 +889,32 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         fighterRigidbody.gravityScale = normalGravity;
     }
 
-    public void PlayHitVFX(Vector3 hitLocation)
+    public void PlayHitVFX(Vector3 hitLocation, GameAttackProperties attackProperties)
     {
-        smallHitParticles.transform.position = hitLocation;
-        smallHitParticles.Play();
+        ParticleSystem particles;
+
+        //hack: build a better way to set particle type for each attack
+        switch (attackProperties.attackType)
+        {
+            case GameAttackProperties.AttackType.Light:
+            case GameAttackProperties.AttackType.Medium:
+            default:
+                particles = smallHitParticles;
+                break;
+            case GameAttackProperties.AttackType.Heavy:
+                particles = midHitParticles;
+                break;
+            case GameAttackProperties.AttackType.Special:
+            case GameAttackProperties.AttackType.Super:
+                particles = heavyHitParticles;
+                break;
+        }
+
+        particles.transform.position = hitLocation;
+        particles.Play();
     }
 
-    public void PlayBlockVFX(Vector3 hitLocation)
+    public void PlayBlockVFX(Vector3 hitLocation, GameAttackProperties attackProperties)
     {
 
     }

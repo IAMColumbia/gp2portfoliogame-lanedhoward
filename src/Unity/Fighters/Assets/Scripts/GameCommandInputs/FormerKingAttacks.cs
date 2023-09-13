@@ -60,14 +60,14 @@ public class Scepter1 : GameAttack
         properties.attackStance = FighterStance.Standing;
 
         properties.blockProperties.knockback.Set(-3f, 0);
-        properties.blockProperties.airKnockback.Set(-3f, 3);
+        properties.blockProperties.airKnockback.Set(-3f, 5);
         properties.blockProperties.selfKnockback.Set(-6f, 0);
         properties.blockProperties.damage = 0f;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
 
         properties.hitProperties.knockback.Set(-5f, 0);
-        properties.hitProperties.airKnockback.Set(-1.75f, 7f);
+        properties.hitProperties.airKnockback.Set(-1.75f, 12f);
         properties.hitProperties.selfKnockback.Set(-5f, 0);
         properties.hitProperties.damage = 200f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
@@ -97,14 +97,14 @@ public class Scepter2 : GameAttack
         properties.attackStance = FighterStance.Standing;
 
         properties.blockProperties.knockback.Set(-3f, 0);
-        properties.blockProperties.airKnockback.Set(-3f, 3);
+        properties.blockProperties.airKnockback.Set(-3f, 5);
         properties.blockProperties.selfKnockback.Set(-6f, 0);
         properties.blockProperties.damage = 0f;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
 
         properties.hitProperties.knockback.Set(-5f, 0);
-        properties.hitProperties.airKnockback.Set(-1.75f, 7f);
+        properties.hitProperties.airKnockback.Set(-1.75f, 12f);
         properties.hitProperties.selfKnockback.Set(-5f, 0);
         properties.hitProperties.damage = 175f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
@@ -134,14 +134,14 @@ public class Scepter3 : GameAttack
         properties.attackStance = FighterStance.Standing;
 
         properties.blockProperties.knockback.Set(-3f, 0);
-        properties.blockProperties.airKnockback.Set(-3f, 3);
+        properties.blockProperties.airKnockback.Set(-3f, 5);
         properties.blockProperties.selfKnockback.Set(-6f, 0);
         properties.blockProperties.damage = 0f;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel1_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel1_blockstun;
 
-        properties.hitProperties.knockback.Set(-1.5f, 7f);
-        properties.hitProperties.airKnockback.Set(-1.25f, 6.5f);
+        properties.hitProperties.knockback.Set(-1.5f, 10f);
+        properties.hitProperties.airKnockback.Set(-1.25f, 9f);
         properties.hitProperties.selfKnockback.Set(-2f, 0);
         properties.hitProperties.damage = 175f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel1_hithitstop;
@@ -170,7 +170,7 @@ public class Vault : GameAttack
         properties.attackType = GameAttackProperties.AttackType.Special;
         properties.attackStance = FighterStance.Standing;
 
-        airdashVelocity = new Vector2(15f, 0);
+        airdashVelocity = new Vector2(18f, 0);
     }
 
     public override void OnActive(FighterMain fighter)
@@ -211,14 +211,14 @@ public class VaultKick : GameAttack
         properties.attackStance = FighterStance.Standing;
 
         properties.blockProperties.knockback.Set(-5f, 0);
-        properties.blockProperties.airKnockback.Set(-5f, 3);
+        properties.blockProperties.airKnockback.Set(-5f, 5);
         properties.blockProperties.selfKnockback.Set(-8f, 0);
         properties.blockProperties.damage = 0;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
-        properties.hitProperties.knockback.Set(-9f, 12f);
-        properties.hitProperties.airKnockback.Set(-9f, 12f);
+        properties.hitProperties.knockback.Set(-9f, 18f);
+        properties.hitProperties.airKnockback.Set(-9f, 18f);
         properties.hitProperties.selfKnockback.Set(-6f, 0);
         properties.hitProperties.damage = 350f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;

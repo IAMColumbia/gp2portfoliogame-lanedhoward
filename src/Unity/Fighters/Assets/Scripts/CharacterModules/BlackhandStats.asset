@@ -24,23 +24,23 @@ MonoBehaviour:
   JuggleMomentumMultiplier: 0.2
   softKnockdownTime: 0.1
   hardKnockdownTime: 0.5
-  walkAccel: 35
+  walkAccel: 75
   walkMaxSpeed: 4
-  groundFriction: 35
+  groundFriction: 45
   velocityToStopMoveAnimation: 1
   forwardDashTime: 0.3
   forwardDashActionableDelay: 0.3
-  forwardDashVelocity: {x: 5, y: 5}
+  forwardDashVelocity: {x: 6, y: 9}
   backDashTime: 0.3
   backDashActionableDelay: 0.3
   backDashStrikeInvulnTime: 0.2
-  backDashVelocity: {x: -5, y: 5}
+  backDashVelocity: {x: -6, y: 9}
   neutralDashTime: 0.3
-  neutralDashActionableDelay: 0.18
-  neutralDashVelocity: {x: 0, y: 9}
+  neutralDashActionableDelay: 0.1
+  neutralDashVelocity: {x: 0, y: 13}
   dashJumpCancelWindow: 0.1
   dashMomentumMultiplier: 0.8
-  jumpVelocityHorizontal: 3
-  jumpVelocityVertical: 12
+  jumpVelocityHorizontal: 3.5
+  jumpVelocityVertical: 19
   jumpMomentumMultiplier: 0.8
   fireballPrefab: {fileID: 1780595657908455682, guid: 6922fc3d383af8d45a976e38e4431378, type: 3}

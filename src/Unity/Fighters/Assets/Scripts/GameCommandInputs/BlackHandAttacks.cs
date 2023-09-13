@@ -83,7 +83,7 @@ public class CannonGrabSuccess : ThrowAttackSuccess
         whiffSoundIndex = -1;
         hitSoundIndex = 3;
 
-        properties.hitProperties.knockback.Set(-20f, 8f);
+        properties.hitProperties.knockback.Set(-20f, 14f);
         properties.hitProperties.selfKnockback.Set(0f, 0);
         properties.hitProperties.damage = 1300f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel4_hithitstop;
@@ -115,14 +115,14 @@ public class SharkCall : GameAttack
         properties.attackStance = FighterStance.Standing;
 
         properties.blockProperties.knockback.Set(-2f, 0);
-        properties.blockProperties.airKnockback.Set(-2f, -2);
+        properties.blockProperties.airKnockback.Set(-2f, -4);
         properties.blockProperties.selfKnockback.Set(-7f, 0);
         properties.blockProperties.damage = 75f;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
-        properties.hitProperties.knockback.Set(-1f, 6f);
-        properties.hitProperties.airKnockback.Set(-1f, 10.5f);
+        properties.hitProperties.knockback.Set(-1f, 9f);
+        properties.hitProperties.airKnockback.Set(-1f, 16f);
         properties.hitProperties.selfKnockback.Set(-4f, 0);
         properties.hitProperties.damage = 300f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
@@ -160,13 +160,13 @@ public class WaveCall : GameAttack
         fireballProperties.attackStance = FighterStance.Standing;
 
         fireballProperties.blockProperties.knockback.Set(6f, 0);
-        fireballProperties.blockProperties.airKnockback.Set(4f, 4f);
+        fireballProperties.blockProperties.airKnockback.Set(4f, 6f);
         fireballProperties.blockProperties.damage = 25f;
         fireballProperties.blockProperties.hitstopTime = FighterAttacks.attackLevel1_blockhitstop;
         fireballProperties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
 
-        fireballProperties.hitProperties.knockback.Set(6f, 6f);
-        fireballProperties.hitProperties.airKnockback.Set(6f, 6f);
+        fireballProperties.hitProperties.knockback.Set(6f, 10f);
+        fireballProperties.hitProperties.airKnockback.Set(6f, 10f);
         fireballProperties.hitProperties.damage = 100f;
         fireballProperties.hitProperties.hitstopTime = FighterAttacks.attackLevel1_hithitstop;
         fireballProperties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
@@ -209,14 +209,14 @@ public class Pegleg : GameAttack
         properties.attackStance = FighterStance.Standing;
 
         properties.blockProperties.knockback.Set(-6f, 0);
-        properties.blockProperties.airKnockback.Set(-6f, 3f);
+        properties.blockProperties.airKnockback.Set(-6f, 5f);
         properties.blockProperties.selfKnockback.Set(-9f, 0);
         properties.blockProperties.damage = 75f;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
 
-        properties.hitProperties.knockback.Set(-10f, 6f);
-        properties.hitProperties.airKnockback.Set(-10f, 6f);
+        properties.hitProperties.knockback.Set(-10f, 9f);
+        properties.hitProperties.airKnockback.Set(-10f, 9f);
         properties.hitProperties.selfKnockback.Set(-3f, 0);
         properties.hitProperties.damage = 350f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;

@@ -449,6 +449,8 @@ public class JumpC : GameAttack
         properties.hitProperties.damage = 450f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
+
+        properties.landingLagTime = 4f / 60f;
     }
 }
 

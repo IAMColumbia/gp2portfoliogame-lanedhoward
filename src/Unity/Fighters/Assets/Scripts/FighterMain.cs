@@ -158,6 +158,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public ParticleSystem smallHitParticles;
     public ParticleSystem midHitParticles;
     public ParticleSystem heavyHitParticles;
+    public ParticleSystem blockParticles;
 
     public event EventHandler GotHit;
     public event EventHandler LeftHitstun;
@@ -916,6 +917,11 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
     public void PlayBlockVFX(Vector3 hitLocation, GameAttackProperties attackProperties)
     {
+        ParticleSystem particles;
 
+        particles = blockParticles;
+
+        particles.transform.position = hitLocation;
+        particles.Play();
     }
 }

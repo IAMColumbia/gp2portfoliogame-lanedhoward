@@ -21,7 +21,8 @@ public enum HitReport
 {
     Whiff,
     Hit,
-    Block
+    Block,
+    Parried
 }
 
 public enum CurrentAttackState
@@ -89,6 +90,9 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public Vector2 throwTechKnockback;
     public float throwTechHitstop = 15f / 60f;
 
+    [Header("Parry Values")]
+    public float parryHitstop = 15f / 60f;
+
     [Header("Movement Values")]
     public float walkAccel;
     public float walkMaxSpeed;
@@ -153,12 +157,14 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public AudioClip[] hitSounds;
     public AudioClip[] blockSounds;
     public AudioClip throwTechSound;
+    public AudioClip parrySound;
 
     [Header("Particles")]
     public ParticleSystem smallHitParticles;
     public ParticleSystem midHitParticles;
     public ParticleSystem heavyHitParticles;
     public ParticleSystem blockParticles;
+    public ParticleSystem parryParticles;
 
     public event EventHandler GotHit;
     public event EventHandler LeftHitstun;
@@ -545,6 +551,12 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
             //react to the hit report ???????
 
+            if (report == HitReport.Parried)
+            {
+                // do nothing, stop hitbox from colliding
+                return true;
+            }
+
             bool successfulHit = report != HitReport.Whiff;
 
             if (successfulHit)
@@ -617,7 +629,6 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         GameAttackPropertiesProperties pp = blocked ? properties.blockProperties : properties.hitProperties;
 
         //knockback
-        // probably will need to separate this into hit kb and block kb, or apply modifiers or somthing
         Vector2 kb;
         if (isGrounded)
         {
@@ -833,6 +844,14 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         otherFighterMain.AutoTurnaround();
     }
 
+    public void DoParry()
+    {
+        canAct = true;
+        timeManager.DoHitStop(parryHitstop);
+        PlaySound(parrySound);
+        PlayParryVFX();
+    }
+
     private void PushAwayFromWall()
     {
         if (isAtTheWall && !isGrounded && otherFighterMain.isAtTheWall && otherFighterMain.isGrounded && wallDirection == otherFighterMain.wallDirection && (transform.position.y - otherFighter.transform.position.y) <= wallKeepoutMaxHeight)
@@ -923,5 +942,10 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
         particles.transform.position = hitLocation;
         particles.Play();
+    }
+
+    public void PlayParryVFX()
+    {
+        parryParticles.Play();
     }
 }

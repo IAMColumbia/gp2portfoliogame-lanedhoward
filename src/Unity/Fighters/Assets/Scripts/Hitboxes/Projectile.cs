@@ -43,6 +43,8 @@ public class Projectile : SoundPlayer, IHitboxResponder
 
             //react to the hit report ???????
 
+            // TODO: specific parried code? but it should work fine without any
+
             bool successfulHit = report != HitReport.Whiff;
 
             if (successfulHit)

@@ -111,6 +111,11 @@ public class GatlingCondition : GameAttackCondition
             return true;
         }
 
+        if (fighter.currentAttack.properties.cancelIntoAnyAction)
+        {
+            return true;
+        }
+
         if (fighter.currentAttack.properties.attackType == GameAttackProperties.AttackType.Throw)
         {
             return false;
@@ -146,6 +151,12 @@ public class NoGatlingCondition : GameAttackCondition
     public override bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
     {
         if (!fighter.isCurrentlyAttacking) return true;
+
+        if (fighter.currentAttack.properties.cancelIntoAnyAction)
+        {
+            return true;
+        }
+
         return false;
     }
 }

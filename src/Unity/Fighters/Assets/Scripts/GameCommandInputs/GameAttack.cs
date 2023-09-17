@@ -134,6 +134,8 @@ public class GameAttackProperties
 
     public float landingLagTime;
 
+    public bool cancelIntoAnyAction;
+
     public GameAttackPropertiesProperties blockProperties;
     public GameAttackPropertiesProperties hitProperties;
 
@@ -147,6 +149,7 @@ public class GameAttackProperties
 
         landCancelStartup = true;
         landingLagTime = 0f;
+        cancelIntoAnyAction = false;
 
         blockProperties = new GameAttackPropertiesProperties();
         hitProperties = new GameAttackPropertiesProperties();

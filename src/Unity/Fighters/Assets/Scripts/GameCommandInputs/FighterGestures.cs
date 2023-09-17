@@ -21,9 +21,7 @@ public static class FighterGestures
                 new BackGesture(),
                 new ForwardGesture(),
                 new NeutralGesture(),
-                new DashGesture(),
-                new BackDashGesture(),
-                new NeutralDashGesture(),
+                new ForwardOrNeutralGesture(),
                 new NoGesture()
             };
         return gestures;

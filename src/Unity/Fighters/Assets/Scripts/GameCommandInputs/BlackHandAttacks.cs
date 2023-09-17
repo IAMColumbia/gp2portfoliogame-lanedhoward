@@ -29,6 +29,7 @@ public static class BlackhandAttacks
                 new GrabWhiff(new GrabSuccess()),
                 new AirBackThrowWhiff(new AirGrabSuccess()),
                 new AirGrabWhiff(new AirGrabSuccess()),
+                new Parry(),
                 new BackDash(),
                 new ForwardDash(),
                 new NeutralDash()

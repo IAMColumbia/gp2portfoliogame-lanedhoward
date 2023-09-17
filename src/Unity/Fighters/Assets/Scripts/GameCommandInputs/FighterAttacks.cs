@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static CommandInputReaderLibrary.Directions;
+using System.Runtime.CompilerServices;
 
 public static class FighterAttacks
 {
@@ -28,6 +29,7 @@ public static class FighterAttacks
                 new GrabWhiff(new GrabSuccess()),
                 new AirBackThrowWhiff(new AirGrabSuccess()),
                 new AirGrabWhiff(new AirGrabSuccess()),
+                new Parry(),
                 new BackDash(),
                 new ForwardDash(),
                 new NeutralDash()
@@ -680,7 +682,6 @@ public class GrabWhiff : ThrowAttack
         conditions.Add(new GestureCondition(this, new NoGesture()));
         conditions.Add(new ButtonCondition(this, new AttackD()));
         conditions.Add(new GroundedCondition(this, true));
-        conditions.Add(new StanceCondition(this, FighterStance.Standing));
         conditions.Add(new NoGatlingCondition(this));
 
         //whiffSound = fighter.whiffSounds[0];
@@ -699,7 +700,6 @@ public class BackThrowWhiff : BackThrowAttack
         conditions.Add(new GestureCondition(this, new BackGesture()));
         conditions.Add(new ButtonCondition(this, new AttackD()));
         conditions.Add(new GroundedCondition(this, true));
-        conditions.Add(new StanceCondition(this, FighterStance.Standing));
         conditions.Add(new NoGatlingCondition(this));
 
         //whiffSound = fighter.whiffSounds[0];
@@ -871,5 +871,88 @@ public class NeutralDash : GameAttack
 
         fighter.SwitchState(fighter.neutraldashing);
 
+    }
+}
+
+public class Parry : GameAttack
+{
+    private float baseLandingLagTime = 0.25f;
+    private float onHitLandingLagTime = 0f;
+
+    private bool parriedDuringStartup;
+
+    public Parry() : base()
+    {
+        conditions.Add(new GestureCondition(this, new CrouchGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackD()));
+        conditions.Add(new NoGatlingCondition(this));
+        //conditions.Add(new GroundedCondition(this, true));
+
+        whiffSoundIndex = 0;
+
+        properties.AnimationName = "Parry";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Crouching;
+        properties.landCancelStartup = false;
+        properties.landingLagTime = baseLandingLagTime;
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        properties.landingLagTime = baseLandingLagTime;
+        properties.cancelIntoAnyAction = false;
+        parriedDuringStartup = false;
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+        // if caught an attack during startup, do the parry now
+        if (parriedDuringStartup)
+        {
+            DoParry(fighter);
+        }
+    }
+
+    public override HitReport? OnGetHitDuring(FighterMain fighter, GameAttackProperties properties)
+    {
+        // we already know its not a throw
+
+        switch (fighter.currentAttackState)
+        {
+            case CurrentAttackState.Startup:
+                {
+                    parriedDuringStartup = true;
+
+                    return HitReport.Parried;
+                }
+            case CurrentAttackState.Active:
+                {
+                    DoParry(fighter);
+
+                    return HitReport.Parried;
+                }
+            default:
+            case CurrentAttackState.Recovery:
+                {
+                    return null;
+                }
+        }
+    }
+
+    public override void OnRecovery(FighterMain fighter)
+    {
+        base.OnRecovery(fighter);
+    }
+
+    private void DoParry(FighterMain fighter)
+    {
+        properties.cancelIntoAnyAction = true;
+        properties.landingLagTime = onHitLandingLagTime;
+
+        fighter.DoParry();
     }
 }

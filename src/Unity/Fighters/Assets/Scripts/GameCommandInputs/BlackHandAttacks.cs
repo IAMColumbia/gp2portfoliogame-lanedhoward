@@ -30,9 +30,11 @@ public static class BlackhandAttacks
                 new AirBackThrowWhiff(new AirGrabSuccess()),
                 new AirGrabWhiff(new AirGrabSuccess()),
                 new Parry(),
-                new BackDash(),
-                new ForwardDash(),
-                new NeutralDash()
+                new BackHop(),
+                new ForwardHop(),
+                new NeutralHop(),
+                new ForwardWavedash(),
+                new BackWavedash()
             };
         return attacks;
     }

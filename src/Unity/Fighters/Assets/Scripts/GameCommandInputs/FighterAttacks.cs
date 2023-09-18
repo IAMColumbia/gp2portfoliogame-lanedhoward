@@ -30,9 +30,11 @@ public static class FighterAttacks
                 new AirBackThrowWhiff(new AirGrabSuccess()),
                 new AirGrabWhiff(new AirGrabSuccess()),
                 new Parry(),
-                new BackDash(),
-                new ForwardDash(),
-                new NeutralDash()
+                new BackHop(),
+                new ForwardHop(),
+                new NeutralHop(),
+                new ForwardWavedash(),
+                new BackWavedash()
             };
         return attacks;
     }
@@ -804,14 +806,13 @@ public class AirGrabSuccess : ThrowAttackSuccess
     }
 }
 
-public class BackDash : GameAttack
+public class BackHop : GameAttack
 {
-    public BackDash() : base()
+    public BackHop() : base()
     {
         conditions.Add(new GestureCondition(this, new BackGesture()));
         conditions.Add(new ButtonCondition(this, new DashMacro()));
         conditions.Add(new GroundedCondition(this, true));
-        conditions.Add(new StanceCondition(this, FighterStance.Standing));
         conditions.Add(new NoGatlingCondition(this));
 
         whiffSoundIndex = 0;
@@ -827,14 +828,13 @@ public class BackDash : GameAttack
 
     }
 }
-public class ForwardDash : GameAttack
+public class ForwardHop : GameAttack
 {
-    public ForwardDash() : base()
+    public ForwardHop() : base()
     {
         conditions.Add(new GestureCondition(this, new ForwardGesture()));
         conditions.Add(new ButtonCondition(this, new DashMacro()));
         conditions.Add(new GroundedCondition(this, true));
-        conditions.Add(new StanceCondition(this, FighterStance.Standing));
         conditions.Add(new NoGatlingCondition(this));
 
         whiffSoundIndex = 0;
@@ -851,9 +851,9 @@ public class ForwardDash : GameAttack
     }
 }
 
-public class NeutralDash : GameAttack
+public class NeutralHop : GameAttack
 {
-    public NeutralDash() : base()
+    public NeutralHop() : base()
     {
         conditions.Add(new GestureCondition(this, new NeutralGesture()));
         conditions.Add(new ButtonCondition(this, new DashMacro()));
@@ -954,5 +954,85 @@ public class Parry : GameAttack
         properties.landingLagTime = onHitLandingLagTime;
 
         fighter.DoParry();
+    }
+}
+
+public class ForwardWavedash : GameAttack
+{
+    Vector2 wavedashVelocity;
+    public ForwardWavedash() : base()
+    {
+        conditions.Add(new GestureCondition(this, new DownForwardGesture()));
+        conditions.Add(new ButtonCondition(this, new DashMacro()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new NoGatlingCondition(this));
+
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
+
+        wavedashVelocity = new Vector2(14f, 0f);
+
+        properties.AnimationName = "WavedashForward";
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        properties.cancelIntoAnyAction = false;
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+
+        fighter.OnHaltAllVelocity();
+        fighter.OnVelocityImpulseRelativeToSelf(wavedashVelocity);
+    }
+
+    public override void OnRecovery(FighterMain fighter)
+    {
+        base.OnRecovery(fighter);
+
+        fighter.canAct = true;
+        properties.cancelIntoAnyAction = true;
+    }
+}
+
+public class BackWavedash : GameAttack
+{
+    Vector2 wavedashVelocity;
+    public BackWavedash() : base()
+    {
+        conditions.Add(new GestureCondition(this, new DownBackGesture()));
+        conditions.Add(new ButtonCondition(this, new DashMacro()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new NoGatlingCondition(this));
+
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
+
+        wavedashVelocity = new Vector2(-14f, 0f);
+
+        properties.AnimationName = "WavedashBack";
+    }
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        properties.cancelIntoAnyAction = false;
+    }
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+
+        fighter.OnHaltAllVelocity();
+        fighter.OnVelocityImpulseRelativeToSelf(wavedashVelocity);
+
+    }
+    public override void OnRecovery(FighterMain fighter)
+    {
+        base.OnRecovery(fighter);
+
+        fighter.canAct = true;
+        properties.cancelIntoAnyAction = true;
     }
 }

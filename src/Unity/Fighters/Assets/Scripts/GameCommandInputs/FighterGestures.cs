@@ -22,6 +22,8 @@ public static class FighterGestures
                 new ForwardGesture(),
                 new NeutralGesture(),
                 new ForwardOrNeutralGesture(),
+                new DownForwardGesture(),
+                new DownBackGesture(),
                 new NoGesture()
             };
         return gestures;
@@ -247,6 +249,22 @@ public class ForwardGesture : SingleDirectionGesture
 public class NeutralGesture : SingleDirectionGesture
 {
     public NeutralGesture() : base(Direction.Neutral)
+    {
+
+    }
+}
+
+public class DownForwardGesture : SingleDirectionGesture
+{
+    public DownForwardGesture() : base(Direction.DownForward)
+    {
+
+    }
+}
+
+public class DownBackGesture : SingleDirectionGesture
+{
+    public DownBackGesture() : base(Direction.DownBack)
     {
 
     }

@@ -1153,11 +1153,31 @@
     <Reference Include="Unity.VisualScripting.State">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
     </Reference>
+    <Reference Include="NaughtyAttributes.Editor">
+      <HintPath>Library\ScriptAssemblies\NaughtyAttributes.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="NaughtyAttributes.Test">
+      <HintPath>Library\ScriptAssemblies\NaughtyAttributes.Test.dll</HintPath>
+    </Reference>
+    <Reference Include="NaughtyAttributes.Core">
+      <HintPath>Library\ScriptAssemblies\NaughtyAttributes.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="JimmysUnityUtilities">
+      <HintPath>Library\ScriptAssemblies\JimmysUnityUtilities.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{83744CF1-096A-89E8-FA16-4ADD312234CF}</Project>
       <Name>Assembly-CSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="FancyTextRendering.Demo.csproj">
+      <Project>{DD6D5731-003A-DD1E-8400-5F982F5B0C5A}</Project>
+      <Name>FancyTextRendering.Demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="FancyTextRendering.csproj">
+      <Project>{B7425CE3-929F-06E6-2866-C84158DFA043}</Project>
+      <Name>FancyTextRendering</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

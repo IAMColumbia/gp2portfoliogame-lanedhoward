@@ -931,6 +931,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1587598999780684610, guid: dcea6b226b33dc641ba4187dbbf03a30, type: 3}
+      propertyPath: UVModule.sprites.Array.size
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8537526801641444015, guid: dcea6b226b33dc641ba4187dbbf03a30, type: 3}
       propertyPath: m_Name
       value: WavedashParticles

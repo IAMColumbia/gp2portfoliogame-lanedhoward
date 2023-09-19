@@ -979,6 +979,8 @@ public class ForwardWavedash : GameAttack
     {
         base.OnStartup(fighter);
         properties.cancelIntoAnyAction = false;
+
+        fighter.PlayWavedashVFX();
     }
 
     public override void OnActive(FighterMain fighter)
@@ -1019,6 +1021,8 @@ public class BackWavedash : GameAttack
     {
         base.OnStartup(fighter);
         properties.cancelIntoAnyAction = false;
+
+        fighter.PlayWavedashVFX();
     }
     public override void OnActive(FighterMain fighter)
     {

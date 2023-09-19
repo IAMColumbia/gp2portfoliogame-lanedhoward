@@ -165,6 +165,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public ParticleSystem heavyHitParticles;
     public ParticleSystem blockParticles;
     public ParticleSystem parryParticles;
+    public ParticleSystem wavedashParticles;
 
     public event EventHandler GotHit;
     public event EventHandler LeftHitstun;
@@ -947,5 +948,10 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public void PlayParryVFX()
     {
         parryParticles.Play();
+    }
+
+    public void PlayWavedashVFX()
+    {
+        wavedashParticles.Play();
     }
 }

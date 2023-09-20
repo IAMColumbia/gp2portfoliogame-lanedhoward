@@ -56,21 +56,21 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\MarkdownRenderingSettings.cs" />
+    <Compile Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\Markdown.cs" />
     <Compile Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\Markdown Logic\Tags.cs" />
     <Compile Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\Markdown Logic\Base\MarkdownLineProcessorBase.cs" />
+    <Compile Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\Markdown Logic\Headers.cs" />
     <Compile Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\ICustomTextPreProcessor.cs" />
+    <Compile Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\Markdown Logic\Lists.cs" />
     <Compile Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\MarkdownRenderer.cs" />
     <Compile Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\Markdown Logic\Base\MarkdownLine.cs" />
-    <Compile Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\LoadMarkdownFromResources.cs" />
-    <Compile Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\Markdown Logic\Headers.cs" />
-    <Compile Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\Markdown Logic\Lists.cs" />
-    <Compile Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\Markdown.cs" />
-    <Compile Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\Links\TextLinkHelper.cs" />
     <Compile Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\Markdown Logic\Links.cs" />
-    <Compile Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\Links\SimpleLinkBehavior.cs" />
+    <Compile Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\LoadMarkdownFromResources.cs" />
     <Compile Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\Markdown Logic\Base\SimpleMarkdownLineProcessor.cs" />
+    <Compile Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\MarkdownRenderingSettings.cs" />
     <Compile Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\Markdown Logic\Base\MarkdownTag.cs" />
+    <Compile Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\Links\SimpleLinkBehavior.cs" />
+    <Compile Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\Links\TextLinkHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FancyTextRendering\FancyTextRendering\Scripts\FancyTextRendering.asmdef" />

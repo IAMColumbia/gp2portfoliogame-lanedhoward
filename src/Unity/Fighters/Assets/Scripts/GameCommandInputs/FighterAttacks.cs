@@ -997,6 +997,11 @@ public class ForwardWavedash : GameAttack
 
         fighter.canAct = true;
         properties.cancelIntoAnyAction = true;
+        if (fighter.currentState is AttackState a)
+        {
+            a.allowJumping = true;
+        }
+
     }
 }
 
@@ -1038,5 +1043,9 @@ public class BackWavedash : GameAttack
 
         fighter.canAct = true;
         properties.cancelIntoAnyAction = true;
+        if (fighter.currentState is AttackState a)
+        {
+            a.allowJumping = true;
+        }
     }
 }

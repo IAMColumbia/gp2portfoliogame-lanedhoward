@@ -26,6 +26,7 @@ public class ThrowAttack : GameAttack
     {
         base.OnHit(fighter, otherFighter);
 
+        success.canBeTeched = canBeTeched;
         fighter.SetCurrentAttack(success);
 
 
@@ -35,10 +36,12 @@ public class ThrowAttack : GameAttack
 public class ThrowAttackSuccess : GameAttack
 {
     public bool flipOnTech;
+    public bool canBeTeched;
 
     public ThrowAttackSuccess()
     {
         flipOnTech = false;
+        canBeTeched = false;
     }
 
     public override void OnStartup(FighterMain fighter)
@@ -47,8 +50,12 @@ public class ThrowAttackSuccess : GameAttack
 
         fighter.SwitchState(fighter.grabbing);
 
-        bool otherFighterCanTech = fighter.otherFighterMain.canAct && !fighter.otherFighterMain.isCurrentlyAttacking;
+        bool otherFighterCanTech = fighter.otherFighterMain.canAct 
+            && !fighter.otherFighterMain.isCurrentlyAttacking 
+            && canBeTeched;
+
         fighter.otherFighterMain.SwitchState(fighter.otherFighterMain.getGrabbed);
+
         if (!otherFighterCanTech)
         {
             if (fighter.otherFighterMain.currentState is GetGrabbed gg)

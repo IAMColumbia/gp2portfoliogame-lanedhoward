@@ -29,12 +29,12 @@ MonoBehaviour:
   groundFriction: 45
   velocityToStopMoveAnimation: 1
   forwardDashTime: 0.3
-  forwardDashActionableDelay: 0.3
-  forwardDashVelocity: {x: 6, y: 9}
+  forwardDashActionableDelay: 0.1
+  forwardDashVelocity: {x: 3, y: 13}
   backDashTime: 0.3
-  backDashActionableDelay: 0.3
-  backDashStrikeInvulnTime: 0.2
-  backDashVelocity: {x: -6, y: 9}
+  backDashActionableDelay: 0.1
+  backDashStrikeInvulnTime: 0.1
+  backDashVelocity: {x: -3, y: 13}
   neutralDashTime: 0.3
   neutralDashActionableDelay: 0.1
   neutralDashVelocity: {x: 0, y: 13}

@@ -30,7 +30,8 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: Opaque
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - SHADOWCASTER
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -54,7 +55,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
-    - _CastShadows: 1
+    - _CastShadows: 0
     - _Cull: 2
     - _DstBlend: 0
     - _QueueControl: 0
@@ -66,5 +67,5 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 0}
-    - _ScrollSpeed: {r: 0.05, g: 0.05, b: 0, a: 0}
+    - _ScrollSpeed: {r: 0.05, g: 0.04, b: 0, a: 0}
   m_BuildTextureStacks: []

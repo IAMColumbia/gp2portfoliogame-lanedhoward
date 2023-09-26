@@ -156,12 +156,23 @@ public class Gun5Shot : GunStanceAttack
         properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
 
         properties.hitProperties.knockback.Set(-9f, 9f);
-        properties.hitProperties.airKnockback.Set(-9f, 11f);
+        properties.hitProperties.airKnockback.Set(-8f, 9f);
         properties.hitProperties.selfKnockback.Set(-4f, 0);
         properties.hitProperties.damage = 200f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
 
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        // play sound (gunshot) when active
+        base.OnStartup(fighter);
+        base.OnActive(fighter);
     }
 }
 
@@ -193,13 +204,24 @@ public class Gun2Shot : GunStanceAttack
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
 
-        properties.hitProperties.knockback.Set(-1.5f, 16f);
+        properties.hitProperties.knockback.Set(-1.5f, 14f);
         properties.hitProperties.airKnockback.Set(-2f, 13f);
         properties.hitProperties.selfKnockback.Set(-4f, 0);
         properties.hitProperties.damage = 200f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
 
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        // play sound (gunshot) when active
+        base.OnStartup(fighter);
+        base.OnActive(fighter);
     }
 }
 
@@ -231,14 +253,25 @@ public class Gun4Shot : GunStanceAttack
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
 
-        properties.hitProperties.knockback.Set(-11f, 0f);
-        properties.hitProperties.airKnockback.Set(-11f, 15f);
+        properties.hitProperties.knockback.Set(-10f, 0f);
+        properties.hitProperties.airKnockback.Set(-8f, 11f);
         properties.hitProperties.selfKnockback.Set(-5f, 0);
         properties.hitProperties.damage = 200f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
 
     }
+    public override void OnStartup(FighterMain fighter)
+    {
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        // play sound (gunshot) when active
+        base.OnStartup(fighter);
+        base.OnActive(fighter);
+    }
+
 }
 
 public class Gun6Shot : GunStanceAttack
@@ -269,12 +302,23 @@ public class Gun6Shot : GunStanceAttack
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
-        properties.hitProperties.knockback.Set(-9f, 9f);
-        properties.hitProperties.airKnockback.Set(-9f, 11f);
+        properties.hitProperties.knockback.Set(-9f, 10f);
+        properties.hitProperties.airKnockback.Set(-9f, 12f);
         properties.hitProperties.selfKnockback.Set(-4f, 0);
         properties.hitProperties.damage = 200f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
 
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        // play sound (gunshot) when active
+        base.OnStartup(fighter);
+        base.OnActive(fighter);
     }
 }

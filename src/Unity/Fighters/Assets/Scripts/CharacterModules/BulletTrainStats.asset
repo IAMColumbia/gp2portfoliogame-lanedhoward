@@ -23,7 +23,7 @@ MonoBehaviour:
   hardKnockdownTime: 0.5
   walkAccel: 100
   walkMaxSpeed: 4
-  groundFriction: 60
+  groundFriction: 40
   velocityToStopMoveAnimation: 1
   forwardDashTime: 0.3
   forwardDashActionableDelay: 0.1
@@ -36,8 +36,8 @@ MonoBehaviour:
   neutralDashActionableDelay: 0.1
   neutralDashVelocity: {x: 0, y: 13}
   dashJumpCancelWindow: 0
-  dashMomentumMultiplier: 0
-  jumpVelocityHorizontal: 4.5
+  dashMomentumMultiplier: 0.4
+  jumpVelocityHorizontal: 5
   jumpVelocityVertical: 19
   jumpMomentumMultiplier: 0.6
   fireballPrefab: {fileID: 6814210493323356101, guid: dd49196d4ed24cf45a73ac74811c8c32, type: 3}

@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Coming soon...
+  m_text: Bullet Train
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -2082,7 +2082,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 5915116718364049436}
   m_OnClick:
     m_PersistentCalls:
@@ -2092,7 +2092,7 @@ MonoBehaviour:
         m_MethodName: SetCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: b4d384b708538994fb16cef1da3ae45d, type: 2}
+          m_ObjectArgument: {fileID: 11400000, guid: 0403857f69354ec47947004298de64e5, type: 2}
           m_ObjectArgumentAssemblyTypeName: CharacterModule, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0

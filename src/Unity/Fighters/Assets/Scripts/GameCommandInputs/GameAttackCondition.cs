@@ -184,6 +184,43 @@ public class FollowUpCondition : GameAttackCondition
             return true;
         }
 
+        if (fighter.currentAttack.GetType().IsSubclassOf(followUpFrom))
+        {
+            return true;
+        }
+
         return false;
+    }
+}
+
+public class LogicalAndCondition : GameAttackCondition
+{
+    GameAttackCondition condition1;
+    GameAttackCondition condition2;
+    public LogicalAndCondition(GameAttack _parent, GameAttackCondition condition1, GameAttackCondition condition2) : base(_parent)
+    {
+        this.condition1 = condition1;
+        this.condition2 = condition2;
+    }
+
+    public override bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
+    {
+        return (condition1.CanExecute(moveInput, fighter) && condition2.CanExecute(moveInput, fighter));
+    }
+}
+
+public class LogicalOrCondition : GameAttackCondition
+{
+    GameAttackCondition condition1;
+    GameAttackCondition condition2;
+    public LogicalOrCondition(GameAttack _parent, GameAttackCondition condition1, GameAttackCondition condition2) : base(_parent)
+    {
+        this.condition1 = condition1;
+        this.condition2 = condition2;
+    }
+
+    public override bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
+    {
+        return (condition1.CanExecute(moveInput, fighter) || condition2.CanExecute(moveInput, fighter));
     }
 }

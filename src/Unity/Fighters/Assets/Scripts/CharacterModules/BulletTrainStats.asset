@@ -9,24 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6527b4a829a77e746abf9f339269bc52, type: 3}
-  m_Name: FighterStats
+  m_Script: {fileID: 11500000, guid: 314cf2e95dc00c44ab90490cf7a283d8, type: 3}
+  m_Name: BulletTrainStats
   m_EditorClassIdentifier: 
-  CharacterName: The People's Champ!!
+  CharacterName: Bullet Train
   materials:
-  - {fileID: 2100000, guid: 6a17db4d6a8b85b41ad8c5ff2dbdad69, type: 2}
-  - {fileID: 2100000, guid: e5408ccd2d0d01b4face6752dc82e411, type: 2}
-  - {fileID: 2100000, guid: a8fe130ad622eff45859d2b1ad830bc9, type: 2}
-  - {fileID: 2100000, guid: 52008ec5a6587b34b9e5ec08c14bd8bf, type: 2}
-  - {fileID: 2100000, guid: 26a6d4b597b279548aab2b323f82dce4, type: 2}
-  song: {fileID: 8300000, guid: c5e9ac1d8bf6993469052b8d9e616281, type: 3}
+  - {fileID: 2100000, guid: 6627a771f55f0794fa21d4a774fd1a44, type: 2}
+  - {fileID: 2100000, guid: 2838def5b6bd45447aa8fc84a876b2ad, type: 2}
+  song: {fileID: 8300000, guid: 609407973077a1249ae51f8f691aecf1, type: 3}
   MaxHealth: 4000
   JuggleMomentumMultiplier: 0.2
   softKnockdownTime: 0.1
   hardKnockdownTime: 0.5
   walkAccel: 100
-  walkMaxSpeed: 5
-  groundFriction: 50
+  walkMaxSpeed: 4
+  groundFriction: 60
   velocityToStopMoveAnimation: 1
   forwardDashTime: 0.3
   forwardDashActionableDelay: 0.1
@@ -39,8 +36,8 @@ MonoBehaviour:
   neutralDashActionableDelay: 0.1
   neutralDashVelocity: {x: 0, y: 13}
   dashJumpCancelWindow: 0
-  dashMomentumMultiplier: 0.5
-  jumpVelocityHorizontal: 5
+  dashMomentumMultiplier: 0
+  jumpVelocityHorizontal: 4.5
   jumpVelocityVertical: 19
-  jumpMomentumMultiplier: 0.5
+  jumpMomentumMultiplier: 0.6
   fireballPrefab: {fileID: 6814210493323356101, guid: dd49196d4ed24cf45a73ac74811c8c32, type: 3}

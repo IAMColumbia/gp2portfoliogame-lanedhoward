@@ -68,7 +68,10 @@ public class AttackState : FighterState
 
         UpdateStance();
 
-        AnimationEndTransitionToNextState(NeutralOrAir());
+        if (AnimationEndTransitionToNextState(NeutralOrAir()))
+        {
+            fighter.currentAttack.OnAnimationEnd(fighter);
+        }
     }
 
     public override void ExitState()

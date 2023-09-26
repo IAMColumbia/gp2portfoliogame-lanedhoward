@@ -33,7 +33,7 @@ MonoBehaviour:
   forwardDashVelocity: {x: 3, y: 13}
   backDashTime: 0.3
   backDashActionableDelay: 0.1
-  backDashStrikeInvulnTime: 0.1
+  backDashStrikeInvulnTime: 0
   backDashVelocity: {x: -3, y: 13}
   neutralDashTime: 0.3
   neutralDashActionableDelay: 0.1

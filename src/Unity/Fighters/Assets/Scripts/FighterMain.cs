@@ -385,7 +385,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     {
         if (currentAttack != null)
         {
-            currentAttack.OnExit(this);
+            currentAttack.OnCancel(this);
         }
 
         currentAttack = newAttack;

@@ -143,7 +143,7 @@ SpriteRenderer:
   m_SortingLayerID: -292844093
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8296385383580801948, guid: c7f6ffe7d18460f46ad5c463242adf4f, type: 3}
+  m_Sprite: {fileID: 4539995308073104131, guid: 93c38adb1813ccb42b734fb53ba20932, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -309,6 +309,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 569a9a9003641714c83e56d48dbf3f55, type: 3}
   - {fileID: 8300000, guid: c33bfdd77d90aa54c9a6e9612a5c442e, type: 3}
   - {fileID: 8300000, guid: 6847788e142519642bf8470ed20dc4fb, type: 3}
+  - {fileID: 8300000, guid: bc0533b04f645ff4fa68206fa7b275e0, type: 3}
   hitSounds:
   - {fileID: 8300000, guid: 46c7a1c1a1192c94dbcb83868ddf5a0c, type: 3}
   - {fileID: 8300000, guid: 123aa45c3845ccc4089c2c158a2a1898, type: 3}

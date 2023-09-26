@@ -83,7 +83,12 @@ public class GameAttack
 
     }
 
-    public virtual void OnExit(FighterMain fighter)
+    public virtual void OnCancel(FighterMain fighter)
+    {
+
+    }
+
+    public virtual void OnAnimationEnd(FighterMain fighter)
     {
 
     }

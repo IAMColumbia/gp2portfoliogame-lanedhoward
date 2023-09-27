@@ -29,6 +29,9 @@ public static class BulletTrainAttacks
                 new Gun2Shot(stance),
                 new Gun4Shot(stance),
                 new Gun6Shot(stance),
+                new GunReload(stance),
+                new GunSpinForward(stance),
+                new GunSpinBackward(stance),
                 new BackThrowWhiff(new GrabSuccess()),
                 new GrabWhiff(new GrabSuccess()),
                 new AirBackThrowWhiff(new AirGrabSuccess()),
@@ -75,6 +78,7 @@ public class GunStance : GameAttack
         properties.attackType = GameAttackProperties.AttackType.Special;
         properties.attackStance = FighterStance.Standing;
 
+        properties.landCancelStartup = false;
     }
 
     public override void OnStartup(FighterMain fighter)
@@ -90,7 +94,7 @@ public class GunDraw : GunStanceAttack
     {
         conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
         conditions.Add(new ButtonCondition(this, new AttackC()));
-        conditions.Add(new GroundedCondition(this, true));
+        //conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new GatlingCondition(this));
 
         whiffSoundIndex = 2;
@@ -101,6 +105,7 @@ public class GunDraw : GunStanceAttack
         properties.attackType = GameAttackProperties.AttackType.Special;
         properties.attackStance = FighterStance.Standing;
 
+        properties.landCancelStartup = false;
     }
 }
 
@@ -152,15 +157,15 @@ public class Gun5Shot : GunStanceAttack
         properties.blockProperties.airKnockback.Set(-7f, 6f);
         properties.blockProperties.selfKnockback.Set(-9f, 0);
         properties.blockProperties.damage = 50;
-        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
-        properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
+        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
         properties.hitProperties.knockback.Set(-9f, 9f);
         properties.hitProperties.airKnockback.Set(-8f, 9f);
-        properties.hitProperties.selfKnockback.Set(-4f, 0);
-        properties.hitProperties.damage = 200f;
-        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
-        properties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
+        properties.hitProperties.selfKnockback.Set(-2f, 0);
+        properties.hitProperties.damage = 350;
+        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
 
     }
 
@@ -201,15 +206,15 @@ public class Gun2Shot : GunStanceAttack
         properties.blockProperties.airKnockback.Set(-5f, 6f);
         properties.blockProperties.selfKnockback.Set(-4f, 0);
         properties.blockProperties.damage = 50;
-        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
-        properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
+        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
         properties.hitProperties.knockback.Set(-1.5f, 14f);
         properties.hitProperties.airKnockback.Set(-2f, 13f);
-        properties.hitProperties.selfKnockback.Set(-4f, 0);
-        properties.hitProperties.damage = 200f;
-        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
-        properties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
+        properties.hitProperties.selfKnockback.Set(-2f, 0);
+        properties.hitProperties.damage = 350;
+        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
 
     }
 
@@ -250,15 +255,15 @@ public class Gun4Shot : GunStanceAttack
         properties.blockProperties.airKnockback.Set(-9f, 6f);
         properties.blockProperties.selfKnockback.Set(-6f, 0);
         properties.blockProperties.damage = 50;
-        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
-        properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
+        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
         properties.hitProperties.knockback.Set(-10f, 0f);
-        properties.hitProperties.airKnockback.Set(-8f, 11f);
-        properties.hitProperties.selfKnockback.Set(-5f, 0);
-        properties.hitProperties.damage = 200f;
-        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
-        properties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
+        properties.hitProperties.airKnockback.Set(-6f, 10f);
+        properties.hitProperties.selfKnockback.Set(-2f, 0);
+        properties.hitProperties.damage = 350;
+        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
 
     }
     public override void OnStartup(FighterMain fighter)
@@ -302,10 +307,10 @@ public class Gun6Shot : GunStanceAttack
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
-        properties.hitProperties.knockback.Set(-9f, 10f);
-        properties.hitProperties.airKnockback.Set(-9f, 12f);
-        properties.hitProperties.selfKnockback.Set(-4f, 0);
-        properties.hitProperties.damage = 200f;
+        properties.hitProperties.knockback.Set(-6f, 15f);
+        properties.hitProperties.airKnockback.Set(-6f, 13f);
+        properties.hitProperties.selfKnockback.Set(-2f, 0);
+        properties.hitProperties.damage = 350;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
 
@@ -320,5 +325,116 @@ public class Gun6Shot : GunStanceAttack
         // play sound (gunshot) when active
         base.OnStartup(fighter);
         base.OnActive(fighter);
+    }
+}
+
+public class GunReload : GunStanceAttack
+{
+    public GunReload(GameAttack stance) : base(stance)
+    {
+        conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackA()));
+        conditions.Add(new GroundedCondition(this, true));
+        //conditions.Add(new FollowUpCondition(this, typeof(GunStanceAttack)));
+        conditions.Add(new LogicalOrCondition(this,
+            new FollowUpCondition(this, typeof(GunStance)),
+            new FollowUpCondition(this, typeof(GunStanceAttack))));
+
+        whiffSoundIndex = 2;
+
+        properties.AnimationName = "GunReload";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Standing;
+
+    }
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+        // reload a bullet
+    }
+    public override void OnRecovery(FighterMain fighter)
+    {
+        base.OnRecovery(fighter);
+        fighter.canAct = true;
+    }
+}
+
+public class GunSpinForward : GunStanceAttack
+{
+    Vector2 velocity;
+    public GunSpinForward(GameAttack stance) : base(stance)
+    {
+        conditions.Add(new GestureCondition(this, new ForwardOrNeutralGesture()));
+        conditions.Add(new ButtonCondition(this, new DashMacro()));
+        conditions.Add(new GroundedCondition(this, true));
+        //conditions.Add(new FollowUpCondition(this, typeof(GunStanceAttack)));
+        conditions.Add(new LogicalOrCondition(this,
+            new FollowUpCondition(this, typeof(GunStance)),
+            new FollowUpCondition(this, typeof(GunStanceAttack))));
+
+        whiffSoundIndex = 2;
+
+        properties.AnimationName = "GunSpinForward";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Standing;
+
+        velocity = new Vector2(12f, 0f);
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        fighter.PlayWavedashVFX();
+        fighter.OnHaltHorizontalVelocity();
+        fighter.OnVelocityImpulseRelativeToSelf(velocity);
+    }
+
+    public override void OnRecovery(FighterMain fighter)
+    {
+        base.OnRecovery(fighter);
+        fighter.canAct = true;
+    }
+}
+
+public class GunSpinBackward : GunStanceAttack
+{
+    Vector2 velocity;
+    public GunSpinBackward(GameAttack stance) : base(stance)
+    {
+        conditions.Add(new GestureCondition(this, new BackGesture()));
+        conditions.Add(new ButtonCondition(this, new DashMacro()));
+        conditions.Add(new GroundedCondition(this, true));
+        //conditions.Add(new FollowUpCondition(this, typeof(GunStanceAttack)));
+        conditions.Add(new LogicalOrCondition(this,
+            new FollowUpCondition(this, typeof(GunStance)),
+            new FollowUpCondition(this, typeof(GunStanceAttack))));
+
+        whiffSoundIndex = 2;
+
+        properties.AnimationName = "GunSpinBackward";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Standing;
+
+        velocity = new Vector2(-12f, 0f);
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        fighter.PlayWavedashVFX();
+        fighter.OnHaltHorizontalVelocity();
+        fighter.OnVelocityImpulseRelativeToSelf(velocity);
+    }
+
+    public override void OnRecovery(FighterMain fighter)
+    {
+        base.OnRecovery(fighter);
+        fighter.canAct = true;
     }
 }

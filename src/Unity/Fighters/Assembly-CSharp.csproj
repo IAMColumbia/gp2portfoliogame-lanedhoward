@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\CharacterModules\BlackhandModule.cs" />
     <Compile Include="Assets\Scripts\CharacterModules\FighterModule.cs" />
     <Compile Include="Assets\Scripts\LaneLibrary\RandomMethods.cs" />
+    <Compile Include="Assets\Scripts\CharacterModules\BulletTrainModule.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Knockdown.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Grabbing.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Neutral.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Assets\Scripts\System\GameManager.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableGesture.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\BlackHandAttacks.cs" />
+    <Compile Include="Assets\Scripts\GameCommandInputs\BulletTrainAttacks.cs" />
     <Compile Include="Assets\Scripts\System\TimeManager.cs" />
     <Compile Include="Assets\Scripts\LaneLibrary\ConsoleUtils.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\ThrowAttack.cs" />
@@ -135,8 +137,6 @@
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttack.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\GameCommandInputs\BulletTrainAttacks.cs" />
-    <Compile Include="Assets\Scripts\CharacterModules\BulletTrainModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

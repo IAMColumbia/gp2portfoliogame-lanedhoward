@@ -1968,6 +1968,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61c5ea8c9f44d4a40a2b750afd3f2be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1184261826 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 879676978272871807, guid: 98317d97a5d38934099afb97336c77db, type: 3}
+  m_PrefabInstance: {fileID: 1184261823}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55ac6ef5deb30d4084db2a20efebbcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1216362512
 GameObject:
   m_ObjectHideFlags: 0
@@ -2219,13 +2230,15 @@ MonoBehaviour:
   player1spawn: {fileID: 1462191732}
   player1: {fileID: 0}
   player1Healthbar: {fileID: 1184261825}
-  player1comboUI: {fileID: 2826498167450192564}
+  player1ComboUI: {fileID: 2826498167450192564}
+  player1StocksDisplay: {fileID: 1184261826}
   player1lives: 0
   player1GameWins: 0
   player2spawn: {fileID: 548818944}
   player2: {fileID: 0}
   player2Healthbar: {fileID: 1160802528177493823}
-  player2comboUI: {fileID: 1606481551}
+  player2ComboUI: {fileID: 1606481551}
+  player2StocksDisplay: {fileID: 1160802528177493824}
   player2lives: 0
   player2GameWins: 0
   winScreen: {fileID: 1862957022}
@@ -4091,6 +4104,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61c5ea8c9f44d4a40a2b750afd3f2be7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1160802528177493824 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 879676978272871807, guid: 98317d97a5d38934099afb97336c77db, type: 3}
+  m_PrefabInstance: {fileID: 1160802528177493821}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55ac6ef5deb30d4084db2a20efebbcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2826498167450192562

@@ -41,3 +41,6 @@ MonoBehaviour:
   jumpVelocityVertical: 19
   jumpMomentumMultiplier: 0.6
   fireballPrefab: {fileID: 6814210493323356101, guid: dd49196d4ed24cf45a73ac74811c8c32, type: 3}
+  displayStocks: 1
+  startingStocks: 6
+  stocksIcon: {fileID: 21300000, guid: 792e66fd7416e974db1be83c5c6d2657, type: 3}

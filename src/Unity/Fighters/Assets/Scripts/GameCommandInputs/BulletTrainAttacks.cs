@@ -30,6 +30,7 @@ public static class BulletTrainAttacks
                 new Gun4Shot(stance),
                 new Gun6Shot(stance),
                 new GunReload(stance),
+                new GunWhip(stance),
                 new GunSpinForward(stance),
                 new GunSpinBackward(stance),
                 new BackThrowWhiff(new GrabSuccess()),
@@ -178,6 +179,8 @@ public class Gun5Shot : GunStanceAttack
         // play sound (gunshot) when active
         base.OnStartup(fighter);
         base.OnActive(fighter);
+
+        fighter.SetStocks(fighter.GetStocks() - 1);
     }
 }
 
@@ -227,6 +230,8 @@ public class Gun2Shot : GunStanceAttack
         // play sound (gunshot) when active
         base.OnStartup(fighter);
         base.OnActive(fighter);
+
+        fighter.SetStocks(fighter.GetStocks() - 1);
     }
 }
 
@@ -275,6 +280,8 @@ public class Gun4Shot : GunStanceAttack
         // play sound (gunshot) when active
         base.OnStartup(fighter);
         base.OnActive(fighter);
+
+        fighter.SetStocks(fighter.GetStocks() - 1);
     }
 
 }
@@ -325,6 +332,8 @@ public class Gun6Shot : GunStanceAttack
         // play sound (gunshot) when active
         base.OnStartup(fighter);
         base.OnActive(fighter);
+
+        fighter.SetStocks(fighter.GetStocks() - 1);
     }
 }
 
@@ -353,6 +362,7 @@ public class GunReload : GunStanceAttack
     {
         base.OnActive(fighter);
         // reload a bullet
+        fighter.SetStocks(fighter.GetStocks() + 1);
     }
     public override void OnRecovery(FighterMain fighter)
     {
@@ -437,4 +447,44 @@ public class GunSpinBackward : GunStanceAttack
         base.OnRecovery(fighter);
         fighter.canAct = true;
     }
+}
+
+public class GunWhip : GunStanceAttack
+{
+    public GunWhip(GameAttack stance) : base(stance)
+    {
+        conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackB()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new LogicalOrCondition(this,
+            new FollowUpCondition(this, typeof(GunStance)),
+            new FollowUpCondition(this, typeof(GunStanceAttack))));
+
+        whiffSoundIndex = 2;
+        hitSoundIndex = 3;
+
+        properties.AnimationName = "GunWhip";
+
+        properties.blockType = GameAttackProperties.BlockType.High;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Standing;
+
+
+        properties.blockProperties.knockback.Set(-3f, 0);
+        properties.blockProperties.airKnockback.Set(-3f, -3f);
+        properties.blockProperties.selfKnockback.Set(-8f, 0);
+        properties.blockProperties.damage = 50f;
+        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
+
+        properties.hitProperties.knockback.Set(-1f, 9f);
+        properties.hitProperties.airKnockback.Set(-1f, -3f);
+        properties.hitProperties.selfKnockback.Set(-4f, 0);
+        properties.hitProperties.damage = 300f;
+        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
+        properties.hitProperties.hardKD = true;
+
+    }
+
 }

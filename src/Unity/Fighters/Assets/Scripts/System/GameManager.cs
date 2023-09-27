@@ -18,7 +18,8 @@ public class GameManager : MonoBehaviour
     public Transform player1spawn;
     public FighterMain player1;
     public Healthbar player1Healthbar;
-    public ComboUI player1comboUI;
+    public ComboUI player1ComboUI;
+    public StocksDisplay player1StocksDisplay;
     public int player1lives;
     public int player1GameWins;
 
@@ -26,7 +27,8 @@ public class GameManager : MonoBehaviour
     public Transform player2spawn;
     public FighterMain player2;
     public Healthbar player2Healthbar;
-    public ComboUI player2comboUI;
+    public ComboUI player2ComboUI;
+    public StocksDisplay player2StocksDisplay;
     public int player2lives;
     public int player2GameWins;
 
@@ -106,8 +108,8 @@ public class GameManager : MonoBehaviour
         player1.LeftHitstun += Player_LeftHitstun;
         player2.LeftHitstun += Player_LeftHitstun;
 
-        player1comboUI.HideText();
-        player2comboUI.HideText();
+        player1ComboUI.HideText();
+        player2ComboUI.HideText();
 
         player1Healthbar.SetHealthbar(1,1);
         player2Healthbar.SetHealthbar(1,1);
@@ -131,11 +133,11 @@ public class GameManager : MonoBehaviour
         ComboUI ui;
         if (s == player1)
         {
-            ui = player2comboUI;
+            ui = player2ComboUI;
         }
         else
         {
-            ui = player1comboUI;
+            ui = player1ComboUI;
         }
 
         ui.StartEndComboCount();
@@ -153,11 +155,11 @@ public class GameManager : MonoBehaviour
         ComboUI ui;
         if (s == player1)
         {
-            ui = player2comboUI;
+            ui = player2ComboUI;
         }
         else
         {
-            ui = player1comboUI;
+            ui = player1ComboUI;
         }
 
         if (!ui.isActiveAndEnabled) ui.ShowText();
@@ -393,12 +395,17 @@ public class GameManager : MonoBehaviour
         player1.AutoTurnaround();
         player1Healthbar.SetNametag(player1.characterModule.CharacterName);
         player1Healthbar.SetMaterial(configManager.playerConfigs[0].Character.materials[configManager.playerConfigs[0].CharacterMaterialIndex]);
+        player1StocksDisplay.InitializeStocksDisplay(player1);
+        player1StocksDisplay.SetMaterial(configManager.playerConfigs[0].Character.materials[configManager.playerConfigs[0].CharacterMaterialIndex]);
+
 
         player2.otherFighter = player1.gameObject;
         player2.otherFighterMain = player1;
         player2.AutoTurnaround();
         player2Healthbar.SetNametag(player2.characterModule.CharacterName);
         player2Healthbar.SetMaterial(configManager.playerConfigs[1].Character.materials[configManager.playerConfigs[1].CharacterMaterialIndex]);
+        player2StocksDisplay.InitializeStocksDisplay(player2);
+        player2StocksDisplay.SetMaterial(configManager.playerConfigs[1].Character.materials[configManager.playerConfigs[1].CharacterMaterialIndex]);
 
     }
 }

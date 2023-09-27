@@ -55,6 +55,11 @@ public class CharacterModule : ScriptableObject
     [Header("Fireball")]
     public GameObject fireballPrefab;
 
+    [Header("Stocks")]
+    public bool displayStocks;
+    public int startingStocks;
+    public Sprite stocksIcon;
+
     public virtual List<GameAttack> GetGameAttacks()
     {
         throw new System.NotImplementedException();

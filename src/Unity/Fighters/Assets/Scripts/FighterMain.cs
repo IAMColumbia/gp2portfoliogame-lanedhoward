@@ -7,7 +7,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
-using UnityEngine.UIElements;
 
 [Flags]
 public enum FighterStance
@@ -149,6 +148,11 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public Vector2 wallKeepoutKnockback;
     public float wallKeepoutMaxHeight;
 
+    [Header("Stocks")]
+    public bool displayStocks = false;
+    private int currentStocks = 0;
+    
+
     [Header("Test/Training Values")]
     public bool blockEverything;
 
@@ -169,6 +173,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
     public event EventHandler GotHit;
     public event EventHandler LeftHitstun;
+    public event EventHandler<int> StocksUpdated;
 
     public override void Awake()
     {
@@ -288,6 +293,9 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         jumpVelocityHorizontal = characterModule.jumpVelocityHorizontal;
         jumpVelocityVertical = characterModule.jumpVelocityVertical;
         jumpMomentumMultiplier = characterModule.jumpMomentumMultiplier;
+
+        displayStocks = characterModule.displayStocks;
+        currentStocks = characterModule.startingStocks;
 
         fighterAttacks = characterModule.GetGameAttacks();
         inputReceiver.SetPossibleGestures(characterModule.GetPossibleGestures());
@@ -953,5 +961,16 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public void PlayWavedashVFX()
     {
         wavedashParticles.Play();
+    }
+
+    public int GetStocks()
+    {
+        return currentStocks;
+    }
+
+    public void SetStocks(int newStocks)
+    {
+        currentStocks = newStocks;
+        StocksUpdated?.Invoke(this, newStocks);
     }
 }

@@ -302,6 +302,9 @@ MonoBehaviour:
   wallDirection: 0
   wallKeepoutKnockback: {x: -5, y: 0}
   wallKeepoutMaxHeight: 3
+  playerKeepoutKnockback: {x: -70, y: 0}
+  playerKeepoutPower: 0.7
+  playerKeepoutMaxVelocity: 6
   displayStocks: 0
   blockEverything: 0
   whiffSounds:
@@ -341,8 +344,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.3}
-  m_Size: {x: 0.6, y: 0.6}
+  m_Offset: {x: 0, y: 0.75}
+  m_Size: {x: 1, y: 1.5}
   m_Direction: 0
 --- !u!50 &9020838737738353918
 Rigidbody2D:

@@ -148,6 +148,11 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public Vector2 wallKeepoutKnockback;
     public float wallKeepoutMaxHeight;
 
+    [Header("Don't get inside each other")]
+    public Vector2 playerKeepoutKnockback;
+    public float playerKeepoutPower;
+    public float playerKeepoutMaxVelocity;
+
     [Header("Stocks")]
     public bool displayStocks = false;
     private int currentStocks = 0;
@@ -346,6 +351,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         DoCurrentState();
 
         PushAwayFromWall();
+
+        PushAwayFromOtherFighter();
 
         SetGravity();
     }
@@ -871,6 +878,38 @@ public class FighterMain : SoundPlayer, IHitboxResponder
                 v.x = -v.x;
             }
             OnVelocityImpulseRelativeToSelf(v);
+        }
+    }
+
+    private void PushAwayFromOtherFighter()
+    {
+        //if (Physics2D.BoxCast(transform.position, ))
+        if (otherFighterMain != null)
+        {
+            if (isGrounded && otherFighterMain.isGrounded)
+            {
+                ColliderDistance2D distance = Physics2D.Distance(fighterCollider, otherFighterMain.fighterCollider);
+                if (distance.isValid)
+                {
+                    if (distance.isOverlapped)
+                    {
+                        if (Mathf.Sign(fighterRigidbody.velocity.x) != Mathf.Sign(distance.normal.x)
+                            || (Mathf.Sign(fighterRigidbody.velocity.x) == Mathf.Sign(distance.normal.x) 
+                                && Mathf.Abs(fighterRigidbody.velocity.x) < playerKeepoutMaxVelocity))
+                        {
+                            float wallFactor = 1;
+                            if (otherFighterMain.isAtTheWall) wallFactor = 2;
+
+                            float scaleFactor = Mathf.Pow(-distance.distance, playerKeepoutPower);
+                            //float scaleFactor = Mathf.Clamp01(Mathf.Pow(1.6f * -distance.distance - 0.8f, 3f) + 0.5f);
+
+                            Vector2 v = playerKeepoutKnockback * Time.deltaTime * scaleFactor * wallFactor;
+                            OnVelocityImpulseRelativeToSelf(v);
+                        }
+
+                    }
+                }
+            }
         }
     }
 

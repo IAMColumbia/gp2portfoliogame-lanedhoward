@@ -347,6 +347,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
         PushAwayFromWall();
 
+        AdjustCollisionInAir();
+
         SetGravity();
     }
 
@@ -916,6 +918,22 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         }
 
         fighterRigidbody.gravityScale = normalGravity;
+    }
+
+    private bool lastGrounded = false;
+    private void AdjustCollisionInAir()
+    {
+        if (otherFighterMain == null)
+        {
+            return;
+        }
+
+        if (isGrounded != lastGrounded) // only do this block when isGrounded changes, not every update
+        {
+            //if both fighters are on the ground, don't ignore collsion. if either fighter is in the air, ignore collision
+            Physics2D.IgnoreCollision(fighterCollider, otherFighterMain.fighterCollider, !(isGrounded && otherFighterMain.isGrounded));
+            lastGrounded = isGrounded;
+        }
     }
 
     public void PlayHitVFX(Vector3 hitLocation, GameAttackProperties attackProperties)

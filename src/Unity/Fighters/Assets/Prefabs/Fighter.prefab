@@ -302,6 +302,7 @@ MonoBehaviour:
   wallDirection: 0
   wallKeepoutKnockback: {x: -5, y: 0}
   wallKeepoutMaxHeight: 3
+  displayStocks: 0
   blockEverything: 0
   whiffSounds:
   - {fileID: 8300000, guid: d811b577d06049e4d949192cde9ea2d1, type: 3}
@@ -310,6 +311,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c33bfdd77d90aa54c9a6e9612a5c442e, type: 3}
   - {fileID: 8300000, guid: 6847788e142519642bf8470ed20dc4fb, type: 3}
   - {fileID: 8300000, guid: bc0533b04f645ff4fa68206fa7b275e0, type: 3}
+  - {fileID: 8300000, guid: c8398678e5d13ef4896aa04edb4e7c52, type: 3}
+  - {fileID: 8300000, guid: deb774375d45bf2419d67d87a92cf1ac, type: 3}
   hitSounds:
   - {fileID: 8300000, guid: 46c7a1c1a1192c94dbcb83868ddf5a0c, type: 3}
   - {fileID: 8300000, guid: 123aa45c3845ccc4089c2c158a2a1898, type: 3}

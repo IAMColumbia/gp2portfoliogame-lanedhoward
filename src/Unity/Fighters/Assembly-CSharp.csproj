@@ -128,6 +128,7 @@
     <Compile Include="Assets\Scripts\LaneLibrary\Extensions.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableGestureWithShortcuts.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Prejump.cs" />
+    <Compile Include="Assets\Scripts\System\StocksDisplay.cs" />
     <Compile Include="Assets\Scripts\FighterAnimator.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Blockstun.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Gestures\DefaultGestures.cs" />
@@ -137,7 +138,6 @@
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttack.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\System\StocksDisplay.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

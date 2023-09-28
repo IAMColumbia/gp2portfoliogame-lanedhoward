@@ -29,6 +29,7 @@ public static class BulletTrainAttacks
                 new Gun2Shot(stance),
                 new Gun4Shot(stance),
                 new Gun6Shot(stance),
+                new GunEmpty(stance),
                 new GunReload(stance),
                 new GunWhip(stance),
                 new GunSpinForward(stance),
@@ -45,6 +46,42 @@ public static class BulletTrainAttacks
                 new BackWavedash()
             };
         return attacks;
+    }
+}
+
+public class HasAmmoCondition : GameAttackCondition
+{
+    public HasAmmoCondition(GameAttack _parent) : base(_parent)
+    {
+    }
+
+    public override bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
+    {
+        return fighter.GetStocks() > 0;
+    }
+}
+
+public class AmmoNotFullCondition : GameAttackCondition
+{
+    public AmmoNotFullCondition(GameAttack _parent) : base(_parent)
+    {
+    }
+
+    public override bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
+    {
+        return fighter.GetStocks() < 6;
+    }
+}
+
+public class AmmoEmptyCondition : GameAttackCondition
+{
+    public AmmoEmptyCondition(GameAttack _parent) : base(_parent)
+    {
+    }
+
+    public override bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
+    {
+        return fighter.GetStocks() == 0;
     }
 }
 
@@ -143,6 +180,7 @@ public class Gun5Shot : GunStanceAttack
         conditions.Add(new LogicalOrCondition(this,
             new FollowUpCondition(this, typeof(GunStance)),
             new FollowUpCondition(this, typeof(GunStanceAttack))));
+        conditions.Add(new HasAmmoCondition(this));
 
         whiffSoundIndex = 5;
         hitSoundIndex = 2;
@@ -194,6 +232,8 @@ public class Gun2Shot : GunStanceAttack
         conditions.Add(new LogicalOrCondition(this,
             new FollowUpCondition(this, typeof(GunStance)),
             new FollowUpCondition(this, typeof(GunStanceAttack))));
+        conditions.Add(new HasAmmoCondition(this));
+
 
         whiffSoundIndex = 5;
         hitSoundIndex = 2;
@@ -245,6 +285,8 @@ public class Gun4Shot : GunStanceAttack
         conditions.Add(new LogicalOrCondition(this,
             new FollowUpCondition(this, typeof(GunStance)),
             new FollowUpCondition(this, typeof(GunStanceAttack))));
+        conditions.Add(new HasAmmoCondition(this));
+
 
         whiffSoundIndex = 5;
         hitSoundIndex = 2;
@@ -296,6 +338,8 @@ public class Gun6Shot : GunStanceAttack
         conditions.Add(new LogicalOrCondition(this,
             new FollowUpCondition(this, typeof(GunStance)),
             new FollowUpCondition(this, typeof(GunStanceAttack))));
+        conditions.Add(new HasAmmoCondition(this));
+
 
         whiffSoundIndex = 5;
         hitSoundIndex = 2;
@@ -337,6 +381,44 @@ public class Gun6Shot : GunStanceAttack
     }
 }
 
+public class GunEmpty : GunStanceAttack
+{
+    public GunEmpty(GameAttack stance) : base(stance)
+    {
+        conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new LogicalOrCondition(this,
+            new FollowUpCondition(this, typeof(GunStance)),
+            new FollowUpCondition(this, typeof(GunStanceAttack))));
+        conditions.Add(new AmmoEmptyCondition(this));
+
+        whiffSoundIndex = 6;
+        hitSoundIndex = 2;
+
+        properties.AnimationName = "GunEmpty";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Standing;
+
+
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        // play sound (misfire) when active
+        base.OnStartup(fighter);
+        base.OnActive(fighter);
+
+        //fighter.SetStocks(fighter.GetStocks() - 1);
+    }
+}
+
 public class GunReload : GunStanceAttack
 {
     public GunReload(GameAttack stance) : base(stance)
@@ -361,8 +443,15 @@ public class GunReload : GunStanceAttack
     public override void OnActive(FighterMain fighter)
     {
         base.OnActive(fighter);
-        // reload a bullet
-        fighter.SetStocks(fighter.GetStocks() + 1);
+        // not maxed out on ammo
+        if (fighter.GetStocks() < 6)
+        {
+            // reload a bullet
+            fighter.SetStocks(fighter.GetStocks() + 1);
+            // play reload sound
+            fighter.PlaySound(fighter.whiffSounds[7]);
+
+        }
     }
     public override void OnRecovery(FighterMain fighter)
     {

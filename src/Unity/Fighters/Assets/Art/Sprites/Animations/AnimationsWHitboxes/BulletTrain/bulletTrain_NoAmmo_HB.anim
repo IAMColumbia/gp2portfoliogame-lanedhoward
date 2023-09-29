@@ -59,14 +59,36 @@ AnimationClip:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
-    genericBindings: []
-    pptrCurveMapping: []
+    genericBindings:
+    - serializedVersion: 2
+      path: 0
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    pptrCurveMapping:
+    - {fileID: -5238524230951732473, guid: d38d754dbccf5df4cbe0122d3e979af7, type: 3}
+    - {fileID: 1800797736756220817, guid: d38d754dbccf5df4cbe0122d3e979af7, type: 3}
+    - {fileID: -2477863399278225535, guid: d38d754dbccf5df4cbe0122d3e979af7, type: 3}
+    - {fileID: 830330305843620674, guid: d38d754dbccf5df4cbe0122d3e979af7, type: 3}
+    - {fileID: -7130722459630949590, guid: d38d754dbccf5df4cbe0122d3e979af7, type: 3}
+    - {fileID: 4117294237692200185, guid: d38d754dbccf5df4cbe0122d3e979af7, type: 3}
+    - {fileID: -3872916758789063976, guid: d38d754dbccf5df4cbe0122d3e979af7, type: 3}
+    - {fileID: 2852767993560922163, guid: d38d754dbccf5df4cbe0122d3e979af7, type: 3}
+    - {fileID: -8529863284343980306, guid: d38d754dbccf5df4cbe0122d3e979af7, type: 3}
+    - {fileID: 8867939952124193988, guid: d38d754dbccf5df4cbe0122d3e979af7, type: 3}
+    - {fileID: 9008719128742417571, guid: d38d754dbccf5df4cbe0122d3e979af7, type: 3}
+    - {fileID: 4597844465399777293, guid: d38d754dbccf5df4cbe0122d3e979af7, type: 3}
+    - {fileID: 3899504517444750602, guid: d38d754dbccf5df4cbe0122d3e979af7, type: 3}
+    - {fileID: 5636916544428428268, guid: d38d754dbccf5df4cbe0122d3e979af7, type: 3}
+    - {fileID: -1105180813981525664, guid: d38d754dbccf5df4cbe0122d3e979af7, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.49499992
+    m_StopTime: 0.4786666
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -85,4 +107,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.06666667
+    functionName: CallAttackActiveEvent
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.16666667
+    functionName: CallAttackRecoveryEvent
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     public int round;
 
+    public GameObject[] stages;
+
     [Header("Player 1")]
     public Transform player1spawn;
     public FighterMain player1;
@@ -64,6 +66,12 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("PlayerSetup");
             return;
         }
+
+        foreach (var s in stages)
+        {
+            s.SetActive(false);
+        }
+        LaneLibrary.RandomMethods.Choose(stages).SetActive(true);
 
         player1GameWins = 0;
         player2GameWins = 0;

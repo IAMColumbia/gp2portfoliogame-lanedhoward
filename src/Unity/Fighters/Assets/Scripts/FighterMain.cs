@@ -174,6 +174,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public event EventHandler GotHit;
     public event EventHandler LeftHitstun;
     public event EventHandler<int> StocksUpdated;
+    public event EventHandler PausePressed;
 
     public override void Awake()
     {
@@ -316,6 +317,13 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         var inputHost = new FighterInputHost(pi);
         var inputReader = new InputReader(inputHost);
         inputReceiver = new FighterInputReceiver(this, inputHost, inputReader);
+
+        inputHost.PausePressed += InputHost_PausePressed;
+    }
+
+    private void InputHost_PausePressed(object sender, EventArgs e)
+    {
+        PausePressed?.Invoke(this, e);
     }
 
     public void SetMaterial(Material mat)

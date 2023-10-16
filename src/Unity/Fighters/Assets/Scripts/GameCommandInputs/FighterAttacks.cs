@@ -23,7 +23,7 @@ public static class FighterAttacks
                 new JumpC(),
                 new PeoplesUppercut(),
                 new Overhead(),
-                new StageDive(),
+                //new StageDive(),
                 new FireballStomp(),
                 new BackThrowWhiff(new GrabSuccess()),
                 new GrabWhiff(new GrabSuccess()),

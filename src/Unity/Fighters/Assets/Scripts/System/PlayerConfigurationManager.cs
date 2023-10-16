@@ -85,6 +85,13 @@ public class PlayerConfigurationManager : MonoBehaviour
         return playerConfigs[index].Character.materials[playerConfigs[index].CharacterMaterialIndex];
     }
 
+    public CharacterModule GetCharacter(int index)
+    {
+        if (playerConfigs[index].Character == null) return null;
+
+        return playerConfigs[index].Character;
+    }
+
     public void ForceStart()
     {
         if (playerConfigs.Count < MaxPlayers)

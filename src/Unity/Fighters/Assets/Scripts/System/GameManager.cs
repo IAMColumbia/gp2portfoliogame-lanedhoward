@@ -405,7 +405,7 @@ public class GameManager : MonoBehaviour
         player1Healthbar.SetMaterial(configManager.playerConfigs[0].Character.materials[configManager.playerConfigs[0].CharacterMaterialIndex]);
         player1StocksDisplay.InitializeStocksDisplay(player1);
         player1StocksDisplay.SetMaterial(configManager.playerConfigs[0].Character.materials[configManager.playerConfigs[0].CharacterMaterialIndex]);
-
+        player1.PausePressed += (sender, e) => PauseGame();
 
         player2.otherFighter = player1.gameObject;
         player2.otherFighterMain = player1;
@@ -414,6 +414,12 @@ public class GameManager : MonoBehaviour
         player2Healthbar.SetMaterial(configManager.playerConfigs[1].Character.materials[configManager.playerConfigs[1].CharacterMaterialIndex]);
         player2StocksDisplay.InitializeStocksDisplay(player2);
         player2StocksDisplay.SetMaterial(configManager.playerConfigs[1].Character.materials[configManager.playerConfigs[1].CharacterMaterialIndex]);
+        player2.PausePressed += (sender, e) => PauseGame();
+    }
 
+    public void PauseGame()
+    {
+        // pause not implemented, just go back to character select
+        ReturnToCharacterSelect();
     }
 }

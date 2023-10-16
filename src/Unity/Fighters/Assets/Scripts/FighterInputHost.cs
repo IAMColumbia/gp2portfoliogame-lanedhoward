@@ -17,6 +17,9 @@ public class FighterInputHost : IInputHost
     private InputAction attackD;
     private InputAction dashMacro;
 
+    private InputAction pause;
+    public event EventHandler PausePressed;
+
     public FighterInputHost(PlayerInput _playerInput)
     {
         playerInput = _playerInput;
@@ -34,10 +37,17 @@ public class FighterInputHost : IInputHost
         attackC = player.FindAction("AttackC");
         attackD = player.FindAction("AttackD");
         dashMacro = player.FindAction("DashMacro");
+
+        pause = player.FindAction("Pause");
     }
 
     public IHostPackage GetCurrentInputs()
     {
+        if (pause.triggered)
+        {
+            PausePressed?.Invoke(this, EventArgs.Empty);
+        }
+
         var v = move.ReadValue<Vector2>();
 
         var p = new HostPackage();

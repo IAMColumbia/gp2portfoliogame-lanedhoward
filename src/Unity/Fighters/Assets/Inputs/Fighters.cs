@@ -89,6 +89,15 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""5b93328c-87ba-45b6-8e8f-dbc46762a79b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -454,6 +463,28 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                     ""action"": ""AttackD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""da565c87-65d7-4d49-81cc-8de90bf3fde9"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""90482bd8-65f4-4a12-b34e-3787d1c8eca1"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -551,6 +582,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
         m_Fighter_AttackD = m_Fighter.FindAction("AttackD", throwIfNotFound: true);
         m_Fighter_DashMacro = m_Fighter.FindAction("DashMacro", throwIfNotFound: true);
         m_Fighter_Join = m_Fighter.FindAction("Join", throwIfNotFound: true);
+        m_Fighter_Pause = m_Fighter.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Submit = m_UI.FindAction("Submit", throwIfNotFound: true);
@@ -621,6 +653,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
     private readonly InputAction m_Fighter_AttackD;
     private readonly InputAction m_Fighter_DashMacro;
     private readonly InputAction m_Fighter_Join;
+    private readonly InputAction m_Fighter_Pause;
     public struct FighterActions
     {
         private @Fighters m_Wrapper;
@@ -632,6 +665,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
         public InputAction @AttackD => m_Wrapper.m_Fighter_AttackD;
         public InputAction @DashMacro => m_Wrapper.m_Fighter_DashMacro;
         public InputAction @Join => m_Wrapper.m_Fighter_Join;
+        public InputAction @Pause => m_Wrapper.m_Fighter_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Fighter; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -662,6 +696,9 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                 @Join.started -= m_Wrapper.m_FighterActionsCallbackInterface.OnJoin;
                 @Join.performed -= m_Wrapper.m_FighterActionsCallbackInterface.OnJoin;
                 @Join.canceled -= m_Wrapper.m_FighterActionsCallbackInterface.OnJoin;
+                @Pause.started -= m_Wrapper.m_FighterActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_FighterActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_FighterActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_FighterActionsCallbackInterface = instance;
             if (instance != null)
@@ -687,6 +724,9 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                 @Join.started += instance.OnJoin;
                 @Join.performed += instance.OnJoin;
                 @Join.canceled += instance.OnJoin;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -759,6 +799,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
         void OnAttackD(InputAction.CallbackContext context);
         void OnDashMacro(InputAction.CallbackContext context);
         void OnJoin(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

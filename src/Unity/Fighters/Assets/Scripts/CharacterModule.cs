@@ -60,6 +60,10 @@ public class CharacterModule : ScriptableObject
     public int startingStocks;
     public Sprite stocksIcon;
 
+    [Header("Moves List")]
+    [Multiline]
+    public string MovesList;
+
     public virtual List<GameAttack> GetGameAttacks()
     {
         throw new System.NotImplementedException();

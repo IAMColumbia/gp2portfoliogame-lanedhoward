@@ -44,3 +44,34 @@ MonoBehaviour:
   jumpVelocityVertical: 19
   jumpMomentumMultiplier: 0.8
   fireballPrefab: {fileID: 1780595657908455682, guid: 6922fc3d383af8d45a976e38e4431378, type: 3}
+  displayStocks: 0
+  startingStocks: 0
+  stocksIcon: {fileID: 0}
+  MovesList: '## Barnacle Bill Roddy
+
+    
+
+    Cannon Grab:  (Powerful command
+    grab)
+
+    236 + Grab
+
+    
+
+    Shark Call: (Shark anti-air)
+
+    623 +
+    Heavy
+
+    
+
+    Wave Call: (Reverse fireball)
+
+    214 + Medium
+
+    
+
+    Peg
+    Leg: (Forward advancing kick)
+
+    236 + Medium'

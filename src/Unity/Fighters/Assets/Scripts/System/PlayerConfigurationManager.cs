@@ -37,6 +37,7 @@ public class PlayerConfigurationManager : MonoBehaviour
         {
             pi.transform.SetParent(transform);
             //Debug.Log($"Player joined: Player {pi.playerIndex} with {pi.devices[0].name}");
+            pi.currentActionMap = pi.currentActionMap.Clone();
             playerConfigs.Add(new PlayerConfiguration(pi));
         }
     }
@@ -90,6 +91,13 @@ public class PlayerConfigurationManager : MonoBehaviour
         if (playerConfigs[index].Character == null) return null;
 
         return playerConfigs[index].Character;
+    }
+
+    public PlayerInput GetPlayerInput(int index)
+    {
+        if (playerConfigs[index].Input == null) return null;
+
+        return playerConfigs[index].Input;
     }
 
     public void ForceStart()

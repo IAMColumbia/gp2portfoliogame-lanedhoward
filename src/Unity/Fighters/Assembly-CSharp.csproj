@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\IReadPackage.cs" />
     <Compile Include="Assets\Scripts\SoundPlayer.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\Combo.cs" />
+    <Compile Include="Assets\Scripts\System\ControlRebinder.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\FormerKingAttacks.cs" />
     <Compile Include="Assets\Scripts\FighterStates\GetGrabbed.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttackCondition.cs" />
@@ -138,9 +139,8 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\HostPackageComparer.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttack.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
-    <Compile Include="Assets\Scripts\FighterInputHost.cs" />
     <Compile Include="Assets\Scripts\System\ControlsPanel.cs" />
-    <Compile Include="Assets\Scripts\System\ControlRebinder.cs" />
+    <Compile Include="Assets\Scripts\FighterInputHost.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -29,17 +29,20 @@ public class ControlRebinder : MonoBehaviour
         bindingText.text = "<Waiting...>";
 
         //action.GetBindingIndex()
-        var bindingIndex = action.GetBindingIndex(InputBinding.MaskByGroup(playerInput.currentControlScheme));
+        var bindingIndex = GetBindingIndex(action);
 
         action.PerformInteractiveRebinding(bindingIndex)
-            .OnApplyBinding((a,b) =>
-            {
-            })
             .OnComplete(operation => {
                 UpdateBindingText();
                 action.Enable();
                 operation.Dispose();
                 })
+            .OnCancel(operation =>
+            {
+                UpdateBindingText();
+                action.Enable();
+                operation.Dispose();
+            })
             .WithTimeout(5)
             .Start();
     }
@@ -47,9 +50,16 @@ public class ControlRebinder : MonoBehaviour
     public void UpdateBindingText()
     {
         InputAction action = playerInput.actions[ActionPath];
+        int bindingIndex = GetBindingIndex(action);
 
-        bindingText.text = action.bindings[action.GetBindingIndex(InputBinding.MaskByGroup(playerInput.currentControlScheme))].name;
+        bindingText.text = InputControlPath.ToHumanReadableString(action.bindings[bindingIndex].effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
+        //action.bindings[action.GetBindingIndex(InputBinding.MaskByGroup(playerInput.currentControlScheme))].name;
 
 
+    }
+
+    private int GetBindingIndex(InputAction action)
+    {
+        return action.GetBindingIndex(InputBinding.MaskByGroup(playerInput.currentControlScheme));
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,8 @@ public class PlayerConfigurationManager : MonoBehaviour
     public CharacterModule defaultCharacter;
 
     public static PlayerConfigurationManager Instance { get; private set; }
+
+    public static event EventHandler PlayerJoined;
 
     private void Awake()
     {
@@ -36,9 +39,10 @@ public class PlayerConfigurationManager : MonoBehaviour
         if(!playerConfigs.Any(p => p.PlayerIndex == pi.playerIndex))
         {
             pi.transform.SetParent(transform);
-            //Debug.Log($"Player joined: Player {pi.playerIndex} with {pi.devices[0].name}");
-            pi.currentActionMap = pi.currentActionMap.Clone();
             playerConfigs.Add(new PlayerConfiguration(pi));
+            PlayerJoined?.Invoke(this, EventArgs.Empty);
+            //Debug.Log($"Player joined: Player {pi.playerIndex} with {pi.devices[0].name}");
+            //pi.currentActionMap = pi.currentActionMap.Clone();
         }
     }
 

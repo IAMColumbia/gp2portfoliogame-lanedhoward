@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -18,6 +19,9 @@ public class PlayerSetupController : MonoBehaviour
 
     private int forceStart = 5;
 
+    [SerializeField]
+    private EventSystem eventSystem;
+
     public void SetPlayer(PlayerInput pi)
     {
         PlayerIndex = pi.playerIndex;
@@ -32,6 +36,36 @@ public class PlayerSetupController : MonoBehaviour
         {
             inputEnabled = true;
         }
+    }
+
+    private void OnEnable()
+    {
+        PlayerConfigurationManager.PlayerJoined += PlayerConfigurationManager_PlayerJoined;
+    }
+
+    private void OnDisable()
+    {
+        PlayerConfigurationManager.PlayerJoined -= PlayerConfigurationManager_PlayerJoined;
+    }
+
+    private void PlayerConfigurationManager_PlayerJoined(object sender, System.EventArgs e)
+    {
+        //eventSystem.enabled = false;
+        //eventSystem.enabled = true;
+        //eventSystem.gameObject.SetActive(false);
+        //eventSystem.gameObject.SetActive(true);
+        StartCoroutine(ResetEventSystem());
+    }
+
+    private IEnumerator ResetEventSystem()
+    {
+        //eventSystem.enabled = false;
+        eventSystem.gameObject.SetActive(false);
+
+        yield return new WaitForSecondsRealtime(0.1f);
+
+        //eventSystem.enabled = true;
+        eventSystem.gameObject.SetActive(true);
     }
 
     public void SetCharacter(CharacterModule character)

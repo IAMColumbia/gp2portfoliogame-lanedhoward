@@ -17,6 +17,9 @@ public class PlayerSetupController : MonoBehaviour
     public float ignoreInputTime = 0.25f;
     public bool inputEnabled;
 
+    public float eventSystemResetTime = 0f;
+    public float baseEventSystemResetTime = 0.1f;
+
     private int forceStart = 5;
 
     [SerializeField]
@@ -26,7 +29,7 @@ public class PlayerSetupController : MonoBehaviour
     {
         PlayerIndex = pi.playerIndex;
         titleText.SetText("Player " + (PlayerIndex + 1).ToString());
-        controllerText.SetText(pi.devices[0].displayName);
+        controllerText.SetText(pi.devices[0].name);
         ignoreInputTime = Time.time + ignoreInputTime;
     }
 
@@ -36,16 +39,24 @@ public class PlayerSetupController : MonoBehaviour
         {
             inputEnabled = true;
         }
+
+        if (eventSystem.gameObject.activeInHierarchy == false && Time.time > eventSystemResetTime)
+        {
+            eventSystem.gameObject.SetActive(true);
+        }
     }
 
     private void OnEnable()
     {
         PlayerConfigurationManager.PlayerJoined += PlayerConfigurationManager_PlayerJoined;
+        PlayerConfigurationManager.StartForced += PlayerConfigurationManager_StartForced;
     }
+
 
     private void OnDisable()
     {
         PlayerConfigurationManager.PlayerJoined -= PlayerConfigurationManager_PlayerJoined;
+        PlayerConfigurationManager.StartForced -= PlayerConfigurationManager_StartForced;
     }
 
     private void PlayerConfigurationManager_PlayerJoined(object sender, System.EventArgs e)
@@ -54,7 +65,14 @@ public class PlayerSetupController : MonoBehaviour
         //eventSystem.enabled = true;
         //eventSystem.gameObject.SetActive(false);
         //eventSystem.gameObject.SetActive(true);
-        StartCoroutine(ResetEventSystem());
+        //StartCoroutine(ResetEventSystem());
+
+        eventSystem.gameObject.SetActive(false);
+        eventSystemResetTime = Time.time + baseEventSystemResetTime;
+    }
+    private void PlayerConfigurationManager_StartForced(object sender, System.EventArgs e)
+    {
+        //StopAllCoroutines();
     }
 
     private IEnumerator ResetEventSystem()
@@ -65,7 +83,10 @@ public class PlayerSetupController : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.1f);
 
         //eventSystem.enabled = true;
-        eventSystem.gameObject.SetActive(true);
+        if (eventSystem.gameObject != null)
+        {
+            eventSystem.gameObject.SetActive(true);
+        }
     }
 
     public void SetCharacter(CharacterModule character)

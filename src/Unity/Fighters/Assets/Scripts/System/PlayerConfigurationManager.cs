@@ -19,6 +19,7 @@ public class PlayerConfigurationManager : MonoBehaviour
     public static PlayerConfigurationManager Instance { get; private set; }
 
     public static event EventHandler PlayerJoined;
+    public static event EventHandler StartForced;
 
     private void Awake()
     {
@@ -110,6 +111,9 @@ public class PlayerConfigurationManager : MonoBehaviour
         {
             var pi = PlayerInput.Instantiate(configPrefab);
             HandlePlayerJoin(pi);
+
+            StartForced?.Invoke(this, EventArgs.Empty);
+
             SetCharacter(1, defaultCharacter);
             SetReady(1);
         }

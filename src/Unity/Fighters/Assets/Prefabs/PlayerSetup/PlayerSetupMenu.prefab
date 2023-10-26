@@ -3341,6 +3341,8 @@ MonoBehaviour:
   previewImage: {fileID: 2388451151339235133}
   ignoreInputTime: 0.25
   inputEnabled: 0
+  eventSystemResetTime: 0
+  baseEventSystemResetTime: 0.1
   eventSystem: {fileID: 6117864902252046995}
 --- !u!1 &4987103255653669118
 GameObject:
@@ -4221,8 +4223,8 @@ MonoBehaviour:
   m_XRTrackingOrigin: {fileID: 0}
   m_ActionsAsset: {fileID: -944628639613478452, guid: da601ac19a5f4c048a2b1babdc50d84f, type: 3}
   m_PointAction: {fileID: 0}
-  m_MoveAction: {fileID: -3920979869540388377, guid: da601ac19a5f4c048a2b1babdc50d84f, type: 3}
-  m_SubmitAction: {fileID: 2517617852824072463, guid: da601ac19a5f4c048a2b1babdc50d84f, type: 3}
+  m_MoveAction: {fileID: -303397919709041442, guid: da601ac19a5f4c048a2b1babdc50d84f, type: 3}
+  m_SubmitAction: {fileID: 1595720054641778682, guid: da601ac19a5f4c048a2b1babdc50d84f, type: 3}
   m_CancelAction: {fileID: 0}
   m_LeftClickAction: {fileID: 0}
   m_MiddleClickAction: {fileID: 0}
@@ -4230,7 +4232,7 @@ MonoBehaviour:
   m_ScrollWheelAction: {fileID: 0}
   m_TrackedDevicePositionAction: {fileID: 0}
   m_TrackedDeviceOrientationAction: {fileID: 0}
-  m_DeselectOnBackgroundClick: 1
+  m_DeselectOnBackgroundClick: 0
   m_PointerBehavior: 0
 --- !u!1 &8119658610357007023
 GameObject:

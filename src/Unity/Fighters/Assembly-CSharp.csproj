@@ -120,6 +120,7 @@
     <Compile Include="Assets\Scripts\FighterInputReceiver.cs" />
     <Compile Include="Assets\Scripts\System\Healthbar.cs" />
     <Compile Include="Assets\Scripts\CharacterModules\FormerKingModule.cs" />
+    <Compile Include="Assets\Scripts\System\ControlsManager.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IInputReceiver.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IHostPackage.cs" />
     <Compile Include="Assets\Scripts\FighterMain.cs" />
@@ -141,7 +142,6 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\System\ControlsPanel.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\System\ControlsManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

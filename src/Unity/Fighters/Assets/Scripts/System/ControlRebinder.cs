@@ -49,7 +49,7 @@ public class ControlRebinder : MonoBehaviour
                 action.Enable();
                 ControlRebound?.Invoke(this, playerSetupController.PlayerIndex);
                 operation.Dispose();
-                })
+            })
             .OnCancel(operation =>
             {
                 UpdateBindingText();
@@ -57,6 +57,7 @@ public class ControlRebinder : MonoBehaviour
                 operation.Dispose();
             })
             .WithTimeout(5)
+            .OnMatchWaitForAnother(0.1f)
             .Start();
     }
 

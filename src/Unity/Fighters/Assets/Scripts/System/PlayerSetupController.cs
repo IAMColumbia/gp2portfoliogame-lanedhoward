@@ -17,9 +17,6 @@ public class PlayerSetupController : MonoBehaviour
     public float ignoreInputTime = 0.25f;
     public bool inputEnabled;
 
-    public float eventSystemResetTime = 0f;
-    public float baseEventSystemResetTime = 0.1f;
-
     private int forceStart = 5;
 
     [SerializeField]
@@ -43,54 +40,6 @@ public class PlayerSetupController : MonoBehaviour
         {
             inputEnabled = true;
             controlsManager.LoadControls();
-        }
-
-        if (eventSystem.gameObject.activeInHierarchy == false && Time.time > eventSystemResetTime)
-        {
-            eventSystem.gameObject.SetActive(true);
-        }
-    }
-
-    private void OnEnable()
-    {
-        PlayerConfigurationManager.PlayerJoined += PlayerConfigurationManager_PlayerJoined;
-        PlayerConfigurationManager.StartForced += PlayerConfigurationManager_StartForced;
-    }
-
-
-    private void OnDisable()
-    {
-        PlayerConfigurationManager.PlayerJoined -= PlayerConfigurationManager_PlayerJoined;
-        PlayerConfigurationManager.StartForced -= PlayerConfigurationManager_StartForced;
-    }
-
-    private void PlayerConfigurationManager_PlayerJoined(object sender, System.EventArgs e)
-    {
-        //eventSystem.enabled = false;
-        //eventSystem.enabled = true;
-        //eventSystem.gameObject.SetActive(false);
-        //eventSystem.gameObject.SetActive(true);
-        //StartCoroutine(ResetEventSystem());
-
-        //eventSystem.gameObject.SetActive(false);
-        //eventSystemResetTime = Time.time + baseEventSystemResetTime;
-    }
-    private void PlayerConfigurationManager_StartForced(object sender, System.EventArgs e)
-    {
-        //StopAllCoroutines();
-    }
-
-    private IEnumerator ResetEventSystem()
-    {
-        //eventSystem.enabled = false;
-        eventSystem.gameObject.SetActive(false);
-
-        yield return new WaitForSecondsRealtime(0.1f);
-
-        //eventSystem.enabled = true;
-        if (eventSystem.gameObject != null)
-        {
-            eventSystem.gameObject.SetActive(true);
         }
     }
 

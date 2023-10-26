@@ -48,7 +48,7 @@ public class CannonGrabWhiff : ThrowAttack
         conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
         conditions.Add(new ButtonCondition(this, new AttackD()));
         conditions.Add(new GroundedCondition(this, true));
-        conditions.Add(new NoGatlingCondition(this));
+        conditions.Add(new GatlingCondition(this));
 
         //whiffSound = fighter.whiffSounds[0];
         //hitSound = fighter.hitSounds[0];

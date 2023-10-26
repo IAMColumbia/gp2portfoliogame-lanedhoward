@@ -98,11 +98,20 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Submit"",
+                    ""type"": ""Button"",
+                    ""id"": ""4c51e568-560d-4b71-935f-d6f6aa13091a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": ""Keyboard"",
+                    ""name"": ""Keyboard-Space"",
                     ""id"": ""0991859d-1e38-471e-8a36-42ee8e388e1f"",
                     ""path"": ""2DVector(mode=1)"",
                     ""interactions"": """",
@@ -149,6 +158,116 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                     ""name"": ""right"",
                     ""id"": ""12c8ac60-9f57-4603-8921-e9ea08ec648d"",
                     ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard-W"",
+                    ""id"": ""2ac6a9bb-559d-4745-bf76-9e1be9fcfb96"",
+                    ""path"": ""2DVector(mode=1)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""8fb302c4-d4cb-40f0-ab18-2a043a43b5da"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""781c2fcb-6924-4e07-9938-6a164a1a7ff0"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""9a810275-a361-42f0-9b9a-c0dff645b321"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""dc246ced-1a95-46d8-90b1-cb80aaf0ef0c"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard-Arrows"",
+                    ""id"": ""fafd9287-8628-481f-b517-f7c4405773d2"",
+                    ""path"": ""2DVector(mode=1)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""0ef53d21-e76a-44f0-9a95-785713512fdd"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""bd61eefa-c3c7-40f6-8296-d90aa9178757"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""86479370-2e88-4e69-9ccf-a522164ce182"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""fe113fd0-823c-474a-94ef-1f6ce5c5778e"",
+                    ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
@@ -291,7 +410,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e86219e0-ff16-4150-b761-cee194efd0c1"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -313,7 +432,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""4ba85430-2e02-40f2-b678-d73d7e9ecb7e"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -335,7 +454,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6bfe7a24-517d-477e-9c89-ce891df30b9c"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -456,7 +575,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""639cd535-3906-44de-bdc8-401c5e33b27d"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -483,6 +602,39 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""029203b0-a854-45eb-b56c-a5cf540b5f3d"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""03c8c8f0-7c43-453a-9e6e-e5a775136908"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0fa6b0e0-2e2d-441f-8776-d3f38250fb72"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -807,6 +959,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
         m_Fighter_DashMacro = m_Fighter.FindAction("DashMacro", throwIfNotFound: true);
         m_Fighter_Join = m_Fighter.FindAction("Join", throwIfNotFound: true);
         m_Fighter_Pause = m_Fighter.FindAction("Pause", throwIfNotFound: true);
+        m_Fighter_Submit = m_Fighter.FindAction("Submit", throwIfNotFound: true);
         // FighterUI
         m_FighterUI = asset.FindActionMap("FighterUI", throwIfNotFound: true);
         m_FighterUI_Move = m_FighterUI.FindAction("Move", throwIfNotFound: true);
@@ -882,6 +1035,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
     private readonly InputAction m_Fighter_DashMacro;
     private readonly InputAction m_Fighter_Join;
     private readonly InputAction m_Fighter_Pause;
+    private readonly InputAction m_Fighter_Submit;
     public struct FighterActions
     {
         private @Fighters m_Wrapper;
@@ -894,6 +1048,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
         public InputAction @DashMacro => m_Wrapper.m_Fighter_DashMacro;
         public InputAction @Join => m_Wrapper.m_Fighter_Join;
         public InputAction @Pause => m_Wrapper.m_Fighter_Pause;
+        public InputAction @Submit => m_Wrapper.m_Fighter_Submit;
         public InputActionMap Get() { return m_Wrapper.m_Fighter; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -927,6 +1082,9 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_FighterActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_FighterActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_FighterActionsCallbackInterface.OnPause;
+                @Submit.started -= m_Wrapper.m_FighterActionsCallbackInterface.OnSubmit;
+                @Submit.performed -= m_Wrapper.m_FighterActionsCallbackInterface.OnSubmit;
+                @Submit.canceled -= m_Wrapper.m_FighterActionsCallbackInterface.OnSubmit;
             }
             m_Wrapper.m_FighterActionsCallbackInterface = instance;
             if (instance != null)
@@ -955,6 +1113,9 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Submit.started += instance.OnSubmit;
+                @Submit.performed += instance.OnSubmit;
+                @Submit.canceled += instance.OnSubmit;
             }
         }
     }
@@ -1069,6 +1230,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
         void OnDashMacro(InputAction.CallbackContext context);
         void OnJoin(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnSubmit(InputAction.CallbackContext context);
     }
     public interface IFighterUIActions
     {

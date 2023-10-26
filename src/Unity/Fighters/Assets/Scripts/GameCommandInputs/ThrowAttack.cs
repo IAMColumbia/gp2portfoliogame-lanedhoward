@@ -18,7 +18,7 @@ public class ThrowAttack : GameAttack
         canTech = true;
         canBeTeched = true;
 
-        properties.attackType = GameAttackProperties.AttackType.Throw;
+        properties.attackType = GameAttackProperties.AttackType.Special;
         properties.blockType = GameAttackProperties.BlockType.Throw;
     }
 

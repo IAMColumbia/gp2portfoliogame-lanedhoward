@@ -25,12 +25,16 @@ public class PlayerSetupController : MonoBehaviour
     [SerializeField]
     private EventSystem eventSystem;
 
+    [SerializeField]
+    private ControlsManager controlsManager;
+
     public void SetPlayer(PlayerInput pi)
     {
         PlayerIndex = pi.playerIndex;
         titleText.SetText("Player " + (PlayerIndex + 1).ToString());
         controllerText.SetText(pi.devices[0].name);
         ignoreInputTime = Time.time + ignoreInputTime;
+        
     }
 
     private void Update()
@@ -38,6 +42,7 @@ public class PlayerSetupController : MonoBehaviour
         if (inputEnabled == false && Time.time > ignoreInputTime)
         {
             inputEnabled = true;
+            controlsManager.LoadControls();
         }
 
         if (eventSystem.gameObject.activeInHierarchy == false && Time.time > eventSystemResetTime)

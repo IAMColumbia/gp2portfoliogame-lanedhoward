@@ -1510,7 +1510,7 @@ GameObject:
   - component: {fileID: 5118643099407293322}
   - component: {fileID: 2233976385443064510}
   m_Layer: 0
-  m_Name: SwapButton
+  m_Name: ResetButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1618,7 +1618,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5118643099407293322}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3100101885945298736}
+        m_TargetAssemblyTypeName: ControlsManager, Assembly-CSharp
+        m_MethodName: ResetAllBindings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2708963883419062171
 GameObject:
   m_ObjectHideFlags: 0
@@ -2323,7 +2335,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Swap Menu
+  m_text: Reset Controls
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -2404,6 +2416,7 @@ GameObject:
   - component: {fileID: 5962480851558830379}
   - component: {fileID: 2723774536731712722}
   - component: {fileID: 4432455234646869435}
+  - component: {fileID: 3100101885945298736}
   m_Layer: 0
   m_Name: ControlsPanel
   m_TagString: Untagged
@@ -2489,6 +2502,19 @@ MonoBehaviour:
   buttonToSelectOnOpen: {fileID: 2505815170611870489}
   buttonToSelectOnClose: {fileID: 9188520328564898154}
   eventSystem: {fileID: 6117864902252046995}
+--- !u!114 &3100101885945298736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3984069720275867907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e3d5ceeb896e20468ac61178ad985f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSetupController: {fileID: 4987103255364720729}
 --- !u!1 &4987103253590634658
 GameObject:
   m_ObjectHideFlags: 0
@@ -3344,6 +3370,7 @@ MonoBehaviour:
   eventSystemResetTime: 0
   baseEventSystemResetTime: 0.1
   eventSystem: {fileID: 6117864902252046995}
+  controlsManager: {fileID: 3100101885945298736}
 --- !u!1 &4987103255653669118
 GameObject:
   m_ObjectHideFlags: 0

@@ -67,8 +67,8 @@ public class PlayerSetupController : MonoBehaviour
         //eventSystem.gameObject.SetActive(true);
         //StartCoroutine(ResetEventSystem());
 
-        eventSystem.gameObject.SetActive(false);
-        eventSystemResetTime = Time.time + baseEventSystemResetTime;
+        //eventSystem.gameObject.SetActive(false);
+        //eventSystemResetTime = Time.time + baseEventSystemResetTime;
     }
     private void PlayerConfigurationManager_StartForced(object sender, System.EventArgs e)
     {

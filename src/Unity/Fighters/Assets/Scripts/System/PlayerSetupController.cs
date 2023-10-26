@@ -34,12 +34,17 @@ public class PlayerSetupController : MonoBehaviour
         
     }
 
+    private void Start()
+    {
+        controlsManager.LoadControls();
+        
+    }
+
     private void Update()
     {
         if (inputEnabled == false && Time.time > ignoreInputTime)
         {
             inputEnabled = true;
-            controlsManager.LoadControls();
         }
     }
 
@@ -62,15 +67,19 @@ public class PlayerSetupController : MonoBehaviour
 
     public void SetReady()
     {
-        PlayerConfigurationManager.Instance.SetReady(PlayerIndex);
+        if (!inputEnabled) return;
 
-        forceStart -= 1;
-        if (forceStart <= 0)
+        if (PlayerConfigurationManager.Instance.SetReady(PlayerIndex))
         {
-            PlayerConfigurationManager.Instance.ForceStart();
+            forceStart -= 1;
+            if (forceStart <= 0)
+            {
+                PlayerConfigurationManager.Instance.ForceStart();
+            }
+
+            UpdatePreviewImage();
         }
 
-        UpdatePreviewImage();
     }
 
     public void UpdatePreviewImage()

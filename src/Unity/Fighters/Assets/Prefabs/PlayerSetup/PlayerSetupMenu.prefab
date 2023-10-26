@@ -2103,7 +2103,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "<u><b><size=1.7em>System Mechanics</size></b></u>\n<size=0.3em>\u200B</size>\r\n<b><size=1.3em>Gatlings:</size></b>\r\nLight
-    > Medium > Heavy\r\nStanding > Crouching of same strength\r\n\r\n\r\n<b><size=1.3em>Movement</size></b>\r\nHop:
+    > Medium > Heavy\r\nStanding > Crouching of same strength\r\n\r\n<b><size=1.3em>Movement</size></b>\r\nHop:
     Standing + Dash\r\nWavedash: 1 or 3 + Dash\r\n\r\n<b><size=1.3em>Other</size></b>\r\nThrow:
     4 or 6 + Throw\r\nParry: 2 + Throw\r\n"
   m_isRightToLeft: 0
@@ -2196,7 +2196,6 @@ MonoBehaviour:
 
     Standing
     > Crouching of same strength
-
 
 
     #### Movement
@@ -3367,8 +3366,6 @@ MonoBehaviour:
   previewImage: {fileID: 2388451151339235133}
   ignoreInputTime: 0.25
   inputEnabled: 0
-  eventSystemResetTime: 0
-  baseEventSystemResetTime: 0.1
   eventSystem: {fileID: 6117864902252046995}
   controlsManager: {fileID: 3100101885945298736}
 --- !u!1 &4987103255653669118

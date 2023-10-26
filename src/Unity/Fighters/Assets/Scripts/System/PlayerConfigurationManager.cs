@@ -53,15 +53,16 @@ public class PlayerConfigurationManager : MonoBehaviour
         playerConfigs[index].CharacterMaterialIndex = 0;
     }
 
-    public void SetReady(int index)
+    public bool SetReady(int index)
     {
-        if (playerConfigs[index].Character == null) return;
+        if (playerConfigs[index].Character == null) return false;
 
         playerConfigs[index].IsReady = true;
         if (playerConfigs.Count >= MaxPlayers && playerConfigs.All(p => p.IsReady == true))
         {
             SceneManager.LoadScene("Fight");
         }
+        return true;
     }
 
     public void SetMaterialIndex(int index, int modifier)

@@ -49,29 +49,25 @@ MonoBehaviour:
   stocksIcon: {fileID: 0}
   MovesList: '## Barnacle Bill Roddy
 
-    
 
-    Cannon Grab:  (Powerful command
-    grab)
+    Cannon Grab:  (Powerful command grab)
 
-    236 + Grab
+    236
+    + Grab
 
-    
 
     Shark Call: (Shark anti-air)
 
-    623 +
-    Heavy
+    623 + Heavy
 
-    
 
-    Wave Call: (Reverse fireball)
+    Wave Call: (Reverse
+    fireball)
 
     214 + Medium
 
-    
 
-    Peg
-    Leg: (Forward advancing kick)
+    Peg Leg: (Forward advancing kick)
 
-    236 + Medium'
+    236
+    + Medium'

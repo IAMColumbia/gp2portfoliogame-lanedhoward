@@ -46,23 +46,21 @@ MonoBehaviour:
   stocksIcon: {fileID: 21300000, guid: 792e66fd7416e974db1be83c5c6d2657, type: 3}
   MovesList: '## Bullet Train
 
-    
 
     #### Draw Gun:
 
     236 + Heavy
 
-    
 
-    ####
-    > Gun Moves:
+    #### >
+    Gun Moves:
 
     5H: fast short-range shot
 
     2H: low launcher
 
-    4H:
-    anti-air shot
+    4H: anti-air
+    shot
 
     6H: long range sweet spot shot
 

@@ -45,22 +45,19 @@ MonoBehaviour:
   stocksIcon: {fileID: 0}
   MovesList: '## Former King (unfinished)
 
-    
 
     ### Scepter Rekka:
 
     Standing
     Heavy > Heavy > Heavy
 
-    
 
     ### Scepter Vault:
 
     [4] 6 + Light
 
-    
 
-    ###
-    > Vault Launch:
+    ### >
+    Vault Launch:
 
     (While vaulting) Light'

@@ -399,7 +399,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""349a256a-cef1-4268-a2e3-d5bab29b4578"",
-                    ""path"": ""<Keyboard>/j"",
+                    ""path"": ""<Keyboard>/u"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
@@ -421,7 +421,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a5478d64-2ebb-46b9-808a-2cc54adf6d84"",
-                    ""path"": ""<Keyboard>/k"",
+                    ""path"": ""<Keyboard>/i"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
@@ -443,7 +443,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""aa1f443e-3eb1-46d5-a2fd-0dd36929c9b6"",
-                    ""path"": ""<Keyboard>/l"",
+                    ""path"": ""<Keyboard>/k"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
@@ -498,7 +498,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""1fb0520f-8388-44e6-9b3c-b00a6eef6842"",
-                    ""path"": ""<Keyboard>/m"",
+                    ""path"": ""<Keyboard>/o"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
@@ -564,7 +564,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a84ce758-4da3-4c04-9f71-3c01dfc19ed1"",
-                    ""path"": ""<Keyboard>/semicolon"",
+                    ""path"": ""<Keyboard>/j"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
@@ -608,7 +608,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""029203b0-a854-45eb-b56c-a5cf540b5f3d"",
-                    ""path"": ""<Keyboard>/j"",
+                    ""path"": ""<Keyboard>/u"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",

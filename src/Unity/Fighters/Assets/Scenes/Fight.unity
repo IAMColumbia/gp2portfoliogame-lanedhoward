@@ -1280,7 +1280,7 @@ MonoBehaviour:
   m_ActionsAsset: {fileID: -944628639613478452, guid: da601ac19a5f4c048a2b1babdc50d84f, type: 3}
   m_PointAction: {fileID: 0}
   m_MoveAction: {fileID: -303397919709041442, guid: da601ac19a5f4c048a2b1babdc50d84f, type: 3}
-  m_SubmitAction: {fileID: 1595720054641778682, guid: da601ac19a5f4c048a2b1babdc50d84f, type: 3}
+  m_SubmitAction: {fileID: 6879468137727056079, guid: da601ac19a5f4c048a2b1babdc50d84f, type: 3}
   m_CancelAction: {fileID: 0}
   m_LeftClickAction: {fileID: 0}
   m_MiddleClickAction: {fileID: 0}

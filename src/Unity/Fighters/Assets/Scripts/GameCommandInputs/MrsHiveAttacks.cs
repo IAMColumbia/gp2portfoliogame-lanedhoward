@@ -52,6 +52,7 @@ public class Pogo : GameAttack
         conditions.Add(new GestureCondition(this, new DownDownGesture()));
         conditions.Add(new ButtonCondition(this, new AttackB()));
         conditions.Add(new GatlingCondition(this));
+        conditions.Add(new GroundedCondition(this, true));
 
         //whiffSound = fighter.whiffSounds[1];
         //hitSound = fighter.hitSounds[4];
@@ -81,7 +82,7 @@ public class Pogo : GameAttack
         properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
         properties.hitProperties.hardKD = false;
 
-        airdashVelocity = new Vector2(0, 17f);
+        airdashVelocity = new Vector2(0, 18.5f);
     }
 
     public override void OnStartup(FighterMain fighter)

@@ -13,44 +13,44 @@ public class CharacterModule : ScriptableObject
     public AudioClip song;
 
     [Header("Health Values")]
-    public float MaxHealth = 1000;
+    public float MaxHealth = 4000;
 
     [Header("Combo Values")]
     public float JuggleMomentumMultiplier = 0.2f;
 
     [Header("KD Values")]
-    public float softKnockdownTime = 0.25f;
-    public float hardKnockdownTime = 1.25f;
+    public float softKnockdownTime = 0.1f;
+    public float hardKnockdownTime = 0.5f;
 
     [Header("Movement Values")]
-    public float walkAccel;
-    public float walkMaxSpeed;
-    public float groundFriction;
-    public float velocityToStopMoveAnimation;
+    public float walkAccel = 100;
+    public float walkMaxSpeed = 5;
+    public float groundFriction = 50;
+    public float velocityToStopMoveAnimation = 1;
 
     [Header("Dashing Values")]
     public float forwardDashTime = 0.3f;
     public float forwardDashActionableDelay = 0.1f;
-    public Vector2 forwardDashVelocity;
+    public Vector2 forwardDashVelocity = new Vector2(6, 13);
 
     public float backDashTime = 0.3f;
     public float backDashActionableDelay = 0.1f;
-    public float backDashStrikeInvulnTime = 0.1f;
-    public Vector2 backDashVelocity;
+    public float backDashStrikeInvulnTime = 0f;
+    public Vector2 backDashVelocity = new Vector2(-6, 13);
     
     public float neutralDashTime = 0.3f;
     public float neutralDashActionableDelay = 0.1f;
-    public Vector2 neutralDashVelocity;
+    public Vector2 neutralDashVelocity = new Vector2(0, 13);
 
-    public float dashJumpCancelWindow = 0.1f;
-    public float dashMomentumMultiplier;
+    public float dashJumpCancelWindow = 0f;
+    public float dashMomentumMultiplier = 0.5f;
 
 
     [Header("Jump Values")]
-    public float jumpVelocityHorizontal;
-    public float jumpVelocityVertical;
+    public float jumpVelocityHorizontal = 5f;
+    public float jumpVelocityVertical = 19f;
     [Tooltip("Multiplier applied to current x velocity before the jump.")]
-    public float jumpMomentumMultiplier;
+    public float jumpMomentumMultiplier = 0.5f;
 
     [Header("Fireball")]
     public GameObject fireballPrefab;

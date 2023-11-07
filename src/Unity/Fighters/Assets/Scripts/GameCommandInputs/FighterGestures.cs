@@ -17,6 +17,8 @@ public static class FighterGestures
                 new DragonPunch(),
                 new BackForwardCharge(),
                 new DownUpCharge(),
+                new BackForwardGesture(),
+                new DownDownGesture(),
                 new CrouchGesture(),
                 new BackGesture(),
                 new ForwardGesture(),
@@ -266,6 +268,49 @@ public class DownBackGesture : SingleDirectionGesture
 {
     public DownBackGesture() : base(Direction.DownBack)
     {
+
+    }
+}
+
+public class DownDownGesture : ReadableGesture
+{
+    public DownDownGesture()
+    {
+        Priority = 125; // arbitrary
+    }
+
+    protected override void ResetRequiredInputs()
+    {
+        base.ResetRequiredInputs();
+
+        //requiredInputs.Push(new GestureComponent(Direction.Neutral, InputReader.TimeBetweenSequentialInputs));
+        requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenNonSequentialInputs));
+        requiredInputs.Push(new GestureComponent(Direction.Neutral, InputReader.TimeBetweenNonSequentialInputs));
+        requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenNonSequentialInputs));
+
+        disallowedInputs.Add(new GestureComponent(Direction.Forward, 0));
+        disallowedInputs.Add(new GestureComponent(Direction.DownForward, 0));
+        disallowedInputs.Add(new GestureComponent(Direction.UpForward, 0));
+
+        disallowedInputs.Add(new GestureComponent(Direction.Back, 0));
+        disallowedInputs.Add(new GestureComponent(Direction.DownBack, 0));
+        disallowedInputs.Add(new GestureComponent(Direction.UpBack, 0));
+    }
+}
+
+public class BackForwardGesture : ReadableGesture
+{
+    public BackForwardGesture()
+    {
+        Priority = 125; // arbitrary
+    }
+
+    protected override void ResetRequiredInputs()
+    {
+        base.ResetRequiredInputs();
+
+        requiredInputs.Push(new GestureComponent(Direction.Back, InputReader.TimeBetweenSequentialInputs));
+        requiredInputs.Push(new GestureComponent(Direction.Forward, InputReader.TimeBetweenNonSequentialInputs));
 
     }
 }

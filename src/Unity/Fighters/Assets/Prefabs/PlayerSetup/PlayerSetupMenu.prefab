@@ -1644,7 +1644,7 @@ GameObject:
   - component: {fileID: 1721200412585057933}
   - component: {fileID: 471021246082587756}
   m_Layer: 0
-  m_Name: FormerKingButton
+  m_Name: MrsHiveButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1758,7 +1758,7 @@ MonoBehaviour:
         m_MethodName: SetCharacter
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: b4d384b708538994fb16cef1da3ae45d, type: 2}
+          m_ObjectArgument: {fileID: 11400000, guid: 72dad53e91bb29b4198c503c5becd1f4, type: 2}
           m_ObjectArgumentAssemblyTypeName: CharacterModule, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -4107,7 +4107,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Former King
+  m_text: Mrs. Hive
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}

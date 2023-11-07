@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\System\PlayerSetupController.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IInputHost.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Neutraldashing.cs" />
+    <Compile Include="Assets\Scripts\System\TitleMenu.cs" />
     <Compile Include="Assets\Scripts\LaneLibrary\Swapper.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadablePackage.cs" />
     <Compile Include="Assets\Inputs\Fighters.cs" />
@@ -142,7 +143,8 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\System\ControlsPanel.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\System\TitleMenu.cs" />
+    <Compile Include="Assets\Scripts\GameCommandInputs\MrsHiveAttacks.cs" />
+    <Compile Include="Assets\Scripts\CharacterModules\MrsHiveModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

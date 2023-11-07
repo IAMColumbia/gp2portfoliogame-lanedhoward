@@ -442,14 +442,14 @@ public class JumpC : GameAttack
 
         properties.blockProperties.knockback.Set(-4f, 0);
         properties.blockProperties.airKnockback.Set(-4, 5f);
-        properties.blockProperties.selfKnockback.Set(-6f, 0);
+        properties.blockProperties.selfKnockback.Set(-3f, 0);
         properties.blockProperties.damage = 0f;
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
         properties.hitProperties.knockback.Set(-6f, 0);
         properties.hitProperties.airKnockback.Set(-2f, 11f);
-        properties.hitProperties.selfKnockback.Set(-5f, 0);
+        properties.hitProperties.selfKnockback.Set(-3f, 0);
         properties.hitProperties.damage = 450f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;

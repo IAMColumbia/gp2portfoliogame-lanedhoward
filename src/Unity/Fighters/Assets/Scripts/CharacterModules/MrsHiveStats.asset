@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b5fb352633f4a4682a517311fcb5ac, type: 3}
   m_Name: MrsHiveStats
   m_EditorClassIdentifier: 
-  CharacterName: Dr. Beesly / Mrs. Hive
+  CharacterName: Mrs. Hive
   materials:
   - {fileID: 2100000, guid: 6ce0e1adc47861a4a9cfc34a263fdb9f, type: 2}
   - {fileID: 2100000, guid: 9f784bbb6dc180147b4cfbe27cfce5ef, type: 2}
@@ -47,4 +47,23 @@ MonoBehaviour:
   MovesList: '### Dr. Beesly / Mrs. Hive
 
 
-    work in progress!!!!!'
+    work in progress!!!!!
+
+
+    #### Thrust
+
+    41236
+    + Medium
+
+
+    #### Pogo
+
+    22 + Medium
+
+
+    #### Fly
+
+    Dash in air
+
+
+'

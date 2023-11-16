@@ -46,24 +46,23 @@ MonoBehaviour:
   stocksIcon: {fileID: 978944902994628877, guid: 35ddbe873b8b5e94386b79d2e3faca55, type: 3}
   MovesList: '### Dr. Beesly / Mrs. Hive
 
-
     work in progress!!!!!
 
 
-    #### Thrust
+    #### Dr.
+    Beesly Moves
 
-    41236
-    + Medium
+    Thrust: 41236 + Medium
 
-
-    #### Pogo
-
-    22 + Medium
+    Pogo: 22 + Medium
 
 
-    #### Fly
+    #### Mrs.
+    Hive Moves
 
-    Dash in air
+    Beehive Summon: 236 + Light. Grants 3 Honey.
 
+    Beehive Teleport:
+    22 + Light. Costs 1 Honey.
 
-'
+    Fly: Dash in air. Costs 1 Honey'

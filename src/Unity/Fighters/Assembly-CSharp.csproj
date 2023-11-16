@@ -146,6 +146,7 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\System\ControlsPanel.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
+    <Compile Include="Assets\Scripts\System\CheckForUpdates.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -49,9 +49,9 @@ public static class BulletTrainAttacks
     }
 }
 
-public class HasAmmoCondition : GameAttackCondition
+public class HasStockCondition : GameAttackCondition
 {
-    public HasAmmoCondition(GameAttack _parent) : base(_parent)
+    public HasStockCondition(GameAttack _parent) : base(_parent)
     {
     }
 
@@ -180,7 +180,7 @@ public class Gun5Shot : GunStanceAttack
         conditions.Add(new LogicalOrCondition(this,
             new FollowUpCondition(this, typeof(GunStance)),
             new FollowUpCondition(this, typeof(GunStanceAttack))));
-        conditions.Add(new HasAmmoCondition(this));
+        conditions.Add(new HasStockCondition(this));
 
         whiffSoundIndex = 5;
         hitSoundIndex = 2;
@@ -232,7 +232,7 @@ public class Gun2Shot : GunStanceAttack
         conditions.Add(new LogicalOrCondition(this,
             new FollowUpCondition(this, typeof(GunStance)),
             new FollowUpCondition(this, typeof(GunStanceAttack))));
-        conditions.Add(new HasAmmoCondition(this));
+        conditions.Add(new HasStockCondition(this));
 
 
         whiffSoundIndex = 5;
@@ -285,7 +285,7 @@ public class Gun4Shot : GunStanceAttack
         conditions.Add(new LogicalOrCondition(this,
             new FollowUpCondition(this, typeof(GunStance)),
             new FollowUpCondition(this, typeof(GunStanceAttack))));
-        conditions.Add(new HasAmmoCondition(this));
+        conditions.Add(new HasStockCondition(this));
 
 
         whiffSoundIndex = 5;
@@ -338,7 +338,7 @@ public class Gun6Shot : GunStanceAttack
         conditions.Add(new LogicalOrCondition(this,
             new FollowUpCondition(this, typeof(GunStance)),
             new FollowUpCondition(this, typeof(GunStanceAttack))));
-        conditions.Add(new HasAmmoCondition(this));
+        conditions.Add(new HasStockCondition(this));
 
 
         whiffSoundIndex = 5;

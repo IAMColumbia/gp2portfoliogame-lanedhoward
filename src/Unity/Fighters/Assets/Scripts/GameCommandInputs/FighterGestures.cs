@@ -17,7 +17,7 @@ public static class FighterGestures
                 new DragonPunch(),
                 new BackForwardCharge(),
                 new DownUpCharge(),
-                new BackForwardGesture(),
+                new HalfCircleForward(),
                 new DownDownGesture(),
                 new CrouchGesture(),
                 new BackGesture(),

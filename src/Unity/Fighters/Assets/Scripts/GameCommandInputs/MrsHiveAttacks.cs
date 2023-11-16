@@ -25,6 +25,8 @@ public static class MrsHiveAttacks
                 new Pogo(),
                 new Thrust(),
                 new Fly(),
+                new HiveSummon(),
+                new Teleport(),
                 new BackThrowWhiff(new GrabSuccess()),
                 new GrabWhiff(new GrabSuccess()),
                 new AirBackThrowWhiff(new AirGrabSuccess()),
@@ -114,7 +116,7 @@ public class Thrust : GameAttack
 {
     public Thrust() : base()
     {
-        conditions.Add(new GestureCondition(this, new BackForwardGesture()));
+        conditions.Add(new GestureCondition(this, new HalfCircleForward()));
         conditions.Add(new ButtonCondition(this, new AttackB()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new GatlingCondition(this));
@@ -179,6 +181,7 @@ public class Fly : GameAttack
         conditions.Add(new ButtonCondition(this, new DashMacro()));
         conditions.Add(new GroundedCondition(this, false));
         conditions.Add(new GatlingCondition(this));
+        conditions.Add(new HasStockCondition(this));
 
         //whiffSound = fighter.whiffSounds[0];
         //hitSound = fighter.hitSounds[3];
@@ -231,6 +234,8 @@ public class Fly : GameAttack
         }
 
         fighter.OnVelocityImpulseRelativeToSelf(vel);
+
+        fighter.SetStocks(fighter.GetStocks() - 1);
     }
 
     public override void OnRecovery(FighterMain fighter)
@@ -256,5 +261,110 @@ public class Fly : GameAttack
     {
         upDown = fighter.inputReceiver.UpDown;
         leftRight = fighter.inputReceiver.LeftRight;
+    }
+}
+
+public class HiveSummon : GameAttack
+{
+    int honeyStocksAmount = 3;
+
+    public HiveSummon() : base()
+    {
+        conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
+        conditions.Add(new ButtonCondition(this, new AttackA()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new GatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[3];
+        whiffSoundIndex = 2;
+        hitSoundIndex = 3;
+
+        properties.AnimationName = "HiveSummon";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Standing;
+
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+
+        int forwardBack = fighter.inputReceiver.LeftRight;
+        if (fighter.facingDirection == CommandInputReaderLibrary.Directions.FacingDirection.LEFT)
+        {
+            forwardBack *= -1;
+        }
+        if (fighter.fireball is Beehive hive)
+        {
+            if (!hive.projectileActive)
+            {
+                hive.StartProjectile(forwardBack);
+            }
+            else
+            {
+                hive.EndProjectile();
+                hive.StartProjectile(forwardBack);
+            }
+            fighter.SetStocks(honeyStocksAmount);
+        }
+    }
+}
+
+public class Teleport : GameAttack
+{
+
+    public Teleport() : base()
+    {
+        conditions.Add(new GestureCondition(this, new DownDownGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackA()));
+        //conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new LogicalOrCondition(this,
+            new GatlingCondition(this),
+            new FollowUpCondition(this, typeof(Teleport))
+            ));
+        conditions.Add(new HasStockCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[3];
+        whiffSoundIndex = 2;
+        hitSoundIndex = 3;
+
+        properties.AnimationName = "Teleport";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Standing;
+
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        fighter.OnHaltVerticalVelocity();
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+
+
+        Vector2 startPos = fighter.transform.position;
+
+        fighter.transform.position = fighter.fireball.transform.position;
+
+        fighter.fireball.transform.position = startPos;
+
+        fighter.AutoTurnaround();
+
+        fighter.SetStocks(fighter.GetStocks() - 1);
+    }
+
+    public override void OnRecovery(FighterMain fighter)
+    {
+        base.OnRecovery(fighter);
+        fighter.canAct = true;
     }
 }

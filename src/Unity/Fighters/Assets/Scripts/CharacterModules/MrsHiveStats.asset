@@ -40,10 +40,10 @@ MonoBehaviour:
   jumpVelocityHorizontal: 6
   jumpVelocityVertical: 19
   jumpMomentumMultiplier: 0.3
-  fireballPrefab: {fileID: 6814210493323356101, guid: dd49196d4ed24cf45a73ac74811c8c32, type: 3}
-  displayStocks: 0
+  fireballPrefab: {fileID: 6814210493323356101, guid: 6225aaea65077584d91d90eb403fb4cf, type: 3}
+  displayStocks: 1
   startingStocks: 0
-  stocksIcon: {fileID: 0}
+  stocksIcon: {fileID: 978944902994628877, guid: 35ddbe873b8b5e94386b79d2e3faca55, type: 3}
   MovesList: '### Dr. Beesly / Mrs. Hive
 
 

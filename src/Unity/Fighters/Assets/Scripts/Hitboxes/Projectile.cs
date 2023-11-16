@@ -10,6 +10,8 @@ public class Projectile : SoundPlayer, IHitboxResponder
     public Transform originalParent;
     public Hitbox hitbox;
 
+    public ParticleSystem particles;
+
     public Vector2 velocity;
 
     public bool projectileActive;
@@ -122,6 +124,11 @@ public class Projectile : SoundPlayer, IHitboxResponder
         fighterParent.GotHit += OnFighterGotHit;
 
         timer = 0f;
+
+        if (particles != null)
+        {
+            particles.Play();
+        }
     }
 
     public virtual void EndProjectile()
@@ -134,6 +141,10 @@ public class Projectile : SoundPlayer, IHitboxResponder
 
         fighterParent.GotHit -= OnFighterGotHit;
 
+        if (particles != null)
+        {
+            particles.Stop();
+        }
     }
 
 
@@ -173,9 +184,19 @@ public class Projectile : SoundPlayer, IHitboxResponder
         }
     }
 
-    public void SetMaterial(Material mat)
+    public virtual void SetMaterial(Material mat)
     {
         this.GetComponent<SpriteRenderer>().material = mat;
+
+        if (particles != null)
+        {
+            var psrs = GetComponentsInChildren<ParticleSystemRenderer>();
+
+            foreach (var ps in psrs)
+            {
+                ps.material = mat;
+            }
+        }
     }
 
     private IEnumerator DelayEndProjectile(float delaySeconds)

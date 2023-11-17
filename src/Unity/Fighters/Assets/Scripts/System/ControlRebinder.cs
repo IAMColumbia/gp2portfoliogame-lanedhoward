@@ -40,7 +40,6 @@ public class ControlRebinder : MonoBehaviour
 
         bindingText.text = "<Waiting...>";
 
-        //action.GetBindingIndex()
         var bindingIndex = GetBindingIndex(action);
 
         action.PerformInteractiveRebinding(bindingIndex)
@@ -56,6 +55,7 @@ public class ControlRebinder : MonoBehaviour
                 action.Enable();
                 operation.Dispose();
             })
+            .WithMatchingEventsBeingSuppressed(true)
             .WithTimeout(5)
             .OnMatchWaitForAnother(0.1f)
             .Start();

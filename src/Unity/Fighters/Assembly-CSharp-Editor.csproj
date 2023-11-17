@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AsepriteAnimationWorkflow\Editor\Texture2DExtensions.cs" />
+    <Compile Include="Assets\Editor\UpdateVersionNumber.cs" />
     <Compile Include="Assets\AsepriteAnimationWorkflow\Editor\IndexedPalette.cs" />
     <Compile Include="Assets\AsepriteAnimationWorkflow\Editor\AsepriteLoader.cs" />
     <Compile Include="Assets\AsepriteAnimationWorkflow\Editor\ColorExtensions.cs" />
@@ -74,7 +75,6 @@
     <Compile Include="Assets\AsepriteAnimationWorkflow\Editor\BlendFunc.cs" />
     <Compile Include="Assets\AsepriteAnimationWorkflow\Editor\Aseprite.cs" />
     <Compile Include="Assets\AsepriteAnimationWorkflow\Editor\AsepriteImporterSettings.cs" />
-    <Compile Include="Assets\Editor\UpdateVersionNumber.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

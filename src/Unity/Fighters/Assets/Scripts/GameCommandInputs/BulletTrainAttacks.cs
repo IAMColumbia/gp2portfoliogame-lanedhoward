@@ -117,6 +117,7 @@ public class GunStance : GameAttack
         properties.attackStance = FighterStance.Standing;
 
         properties.landCancelStartup = false;
+        properties.landCancelActive = false;
     }
 
     public override void OnStartup(FighterMain fighter)
@@ -144,6 +145,7 @@ public class GunDraw : GunStanceAttack
         properties.attackStance = FighterStance.Standing;
 
         properties.landCancelStartup = false;
+        properties.landCancelActive = false;
     }
 }
 

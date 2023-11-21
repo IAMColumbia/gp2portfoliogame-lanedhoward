@@ -33,7 +33,7 @@ public class Beehive : Projectile
     {
         if (e <= 0)
         {
-            EndProjectile();
+            StartCoroutine(DelayEndProjectile(0.1f));
         }
     }
 

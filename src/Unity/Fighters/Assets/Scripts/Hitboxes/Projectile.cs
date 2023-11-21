@@ -22,6 +22,7 @@ public class Projectile : SoundPlayer, IHitboxResponder
     public bool breakOnWallContact = true;
     public bool selfDamage = false;
     public bool breakOnHit = true;
+    public bool breakOnCollision = true;
 
     public float maxHitDistance = 100f;
 
@@ -62,7 +63,10 @@ public class Projectile : SoundPlayer, IHitboxResponder
                     fighterParent.PlayBlockVFX(hitPosition, projectileProperties);
                 }
 
-                this.EndProjectile();
+                if (breakOnCollision)
+                {
+                    this.EndProjectile();
+                }
             }
 
             return successfulHit;
@@ -199,7 +203,7 @@ public class Projectile : SoundPlayer, IHitboxResponder
         }
     }
 
-    private IEnumerator DelayEndProjectile(float delaySeconds)
+    public IEnumerator DelayEndProjectile(float delaySeconds)
     {
         yield return new WaitForSeconds(delaySeconds);
         if (projectileActive)

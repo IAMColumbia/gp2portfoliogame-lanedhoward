@@ -41,7 +41,12 @@ public class AttackState : FighterState
         if (fighter.currentStance == FighterStance.Air)
         {
             wasEverAirborne = true;
-            if (stateTimer > 0.1f && (fighter.currentAttackState == CurrentAttackState.Recovery || fighter.currentAttack.properties.landCancelStartup))
+            if (stateTimer > 0.1f 
+                && ( 
+                    (fighter.currentAttackState == CurrentAttackState.Startup && fighter.currentAttack.properties.landCancelStartup)
+                    || (fighter.currentAttackState == CurrentAttackState.Active && fighter.currentAttack.properties.landCancelActive)
+                    || (fighter.currentAttackState == CurrentAttackState.Recovery && fighter.currentAttack.properties.landCancelRecovery)
+                ))
             {
                 AttackLanding();
                 //AllowLanding();
@@ -51,7 +56,12 @@ public class AttackState : FighterState
         {
             if (wasEverAirborne)
             {
-                if (stateTimer > 0.1f && (fighter.currentAttackState == CurrentAttackState.Recovery || fighter.currentAttack.properties.landCancelStartup))
+                if (stateTimer > 0.1f
+                    && (
+                        (fighter.currentAttackState == CurrentAttackState.Startup && fighter.currentAttack.properties.landCancelStartup)
+                        || (fighter.currentAttackState == CurrentAttackState.Active && fighter.currentAttack.properties.landCancelActive)
+                        || (fighter.currentAttackState == CurrentAttackState.Recovery && fighter.currentAttack.properties.landCancelRecovery)
+                    ))
                 {
                     AttackLanding();
                     //AllowLanding();

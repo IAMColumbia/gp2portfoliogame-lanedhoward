@@ -136,6 +136,8 @@ public class GameAttackProperties
     public FighterStance attackStance;
 
     public bool landCancelStartup;
+    public bool landCancelActive;
+    public bool landCancelRecovery;
 
     public float landingLagTime;
 
@@ -153,6 +155,8 @@ public class GameAttackProperties
         attackStance = FighterStance.Standing;
 
         landCancelStartup = true;
+        landCancelActive = true;
+        landCancelRecovery = true;
         landingLagTime = 0f;
         cancelIntoAnyAction = false;
 

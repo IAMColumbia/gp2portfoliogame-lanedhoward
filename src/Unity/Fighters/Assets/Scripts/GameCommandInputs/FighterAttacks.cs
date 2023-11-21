@@ -479,6 +479,7 @@ public class PeoplesUppercut : GameAttack
         properties.attackType = GameAttackProperties.AttackType.Special;
         properties.attackStance = FighterStance.Standing;
         properties.landCancelStartup = false;
+        properties.landCancelActive = false;
         properties.landingLagTime = baseLandingLagTime;
 
         properties.blockProperties.knockback.Set(-2f, 0);
@@ -594,6 +595,7 @@ public class StageDive : GameAttack
         properties.hitProperties.hardKD = false;
 
         properties.landCancelStartup = false;
+        properties.landCancelActive = false;
 
         airdashVelocity = new Vector2(7f, 6f);
     }
@@ -896,6 +898,7 @@ public class Parry : GameAttack
         properties.attackType = GameAttackProperties.AttackType.Special;
         properties.attackStance = FighterStance.Crouching;
         properties.landCancelStartup = false;
+        properties.landCancelActive = false;
         properties.landingLagTime = baseLandingLagTime;
     }
 

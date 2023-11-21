@@ -268,7 +268,7 @@ public class Fly : GameAttack
 
 public class HiveSummon : GameAttack
 {
-    int honeyStocksAmount = 3;
+    int honeyStocksAmount = 4;
 
     public HiveSummon() : base()
     {

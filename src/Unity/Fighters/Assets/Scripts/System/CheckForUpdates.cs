@@ -58,7 +58,7 @@ public class CheckForUpdates : MonoBehaviour
 
             int versionNumber;
 
-            if (int.TryParse(PlayerSettings.bundleVersion, out versionNumber))
+            if (int.TryParse(Application.version, out versionNumber))
             {
                 if (v.latest > versionNumber)
                 {

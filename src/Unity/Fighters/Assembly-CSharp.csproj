@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\FighterStates\AttackState.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\InputReader.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Gestures\GestureComponent.cs" />
+    <Compile Include="Assets\Scripts\System\WaitForControlsPanel.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadPackage.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\InputHost.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Dashing.cs" />
@@ -147,7 +148,6 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\System\ControlsPanel.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\System\WaitForControlsPanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

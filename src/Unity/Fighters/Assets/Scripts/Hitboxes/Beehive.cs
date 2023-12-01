@@ -13,6 +13,9 @@ public class Beehive : Projectile
     public Vector2 startVelocityForward;
     public Vector2 friction;
 
+    public AudioClip explosionSound;
+    public ParticleSystem explosionParticles;
+
     private void OnEnable()
     {
         if (fighterParent != null)
@@ -81,5 +84,12 @@ public class Beehive : Projectile
     {
         base.EndProjectile();
         fighterParent.SetStocks(0);
+    }
+
+    public void PlayExplosionFX()
+    {
+        ParticleSystem fx = Instantiate(explosionParticles, explosionParticles.transform.position, explosionParticles.transform.rotation);
+        fx.GetComponent<SoundPlayer>().PlaySound(explosionSound);
+        fx.Play();
     }
 }

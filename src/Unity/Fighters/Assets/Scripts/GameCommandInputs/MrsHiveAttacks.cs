@@ -372,6 +372,11 @@ public class HiveAttack : GameAttack
             fighter.fireball.hitbox.OpenForCollision = true;
             fighter.fireball.hitbox._state = ColliderState.Open;
             fighter.SetStocks(fighter.GetStocks() - 1);
+
+            if (fighter.fireball is Beehive hive)
+            {
+                hive.PlayExplosionFX();
+            }
         }
 
     }

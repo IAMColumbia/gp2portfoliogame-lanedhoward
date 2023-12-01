@@ -61,7 +61,7 @@ public class CharacterModule : ScriptableObject
     public Sprite stocksIcon;
 
     [Header("Moves List")]
-    [Multiline]
+    [TextArea(3,20)]
     public string MovesList;
 
     public virtual List<GameAttack> GetGameAttacks()

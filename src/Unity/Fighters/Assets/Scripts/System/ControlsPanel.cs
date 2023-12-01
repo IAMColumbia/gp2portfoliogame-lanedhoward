@@ -1,4 +1,5 @@
 using LogicUI.FancyTextRendering;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -17,18 +18,24 @@ public class ControlsPanel : MonoBehaviour
 
     public EventSystem eventSystem;
 
-    //public InputActionAsset inputActions;
+    /// <summary>
+    /// int: player index
+    /// </summary>
+    public static event EventHandler<int> ControlsOpened;
+    public static event EventHandler<int> ControlsClosed;
 
     private void OnEnable()
     {
         //inputActions.FindActionMap("Fighter").Disable();
         eventSystem.SetSelectedGameObject(buttonToSelectOnOpen.gameObject);
+        ControlsOpened?.Invoke(this, parent.PlayerIndex);
     }
 
     private void OnDisable()
     {
         //inputActions.FindActionMap("Fighter").Enable();
         eventSystem.SetSelectedGameObject(buttonToSelectOnClose.gameObject);
+        ControlsClosed?.Invoke(this, parent.PlayerIndex);
     }
 
     public void OnClose()

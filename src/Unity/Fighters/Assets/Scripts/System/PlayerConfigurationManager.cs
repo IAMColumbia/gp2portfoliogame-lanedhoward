@@ -32,6 +32,8 @@ public class PlayerConfigurationManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this);
             playerConfigs = new List<PlayerConfiguration>();
+            ControlsPanel.ControlsOpened += ControlsPanel_ControlsOpened;
+            ControlsPanel.ControlsClosed += ControlsPanel_ControlsClosed;
         }
     }
 
@@ -128,6 +130,33 @@ public class PlayerConfigurationManager : MonoBehaviour
             Destroy(pi.gameObject);
         }
         SceneManager.LoadScene("PlayerSetup");
+    }
+
+    private void ControlsPanel_ControlsOpened(object sender, int e)
+    {
+        if (playerConfigs.Count >= 2)
+        {
+            foreach (var config in playerConfigs)
+            {
+                if (config.PlayerIndex != e)
+                {
+                    InputSystem.DisableDevice(config.Input.devices[0]);
+                }
+            }
+        }
+    }
+    private void ControlsPanel_ControlsClosed(object sender, int e)
+    {
+        if (playerConfigs.Count >= 2)
+        {
+            foreach (var config in playerConfigs)
+            {
+                if (config.PlayerIndex != e)
+                {
+                    InputSystem.EnableDevice(config.Input.devices[0]);
+                }
+            }
+        }
     }
 }
 

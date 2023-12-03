@@ -347,15 +347,15 @@ public class HiveAttack : GameAttack
 
         fireballProperties.blockProperties.knockback.Set(-5f, 0);
         fireballProperties.blockProperties.airKnockback.Set(-3f, 6f);
-        fireballProperties.blockProperties.damage = 75f;
-        fireballProperties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
-        fireballProperties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
+        fireballProperties.blockProperties.damage = 100f;
+        fireballProperties.blockProperties.hitstopTime = FighterAttacks.attackLevel4_blockhitstop;
+        fireballProperties.blockProperties.stunTime = FighterAttacks.attackLevel4_blockstun;
 
         fireballProperties.hitProperties.knockback.Set(-6f, 0f);
-        fireballProperties.hitProperties.airKnockback.Set(-2f, 16f);
-        fireballProperties.hitProperties.damage = 200f;
-        fireballProperties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
-        fireballProperties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
+        fireballProperties.hitProperties.airKnockback.Set(-2f, 17f);
+        fireballProperties.hitProperties.damage = 350f;
+        fireballProperties.hitProperties.hitstopTime = FighterAttacks.attackLevel4_hithitstop;
+        fireballProperties.hitProperties.stunTime = FighterAttacks.attackLevel4_hitstun;
         fireballProperties.hitProperties.hardKD = false;
 
 

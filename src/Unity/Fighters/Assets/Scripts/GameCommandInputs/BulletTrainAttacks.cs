@@ -360,8 +360,8 @@ public class Gun6Shot : GunStanceAttack
         properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
         properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
-        properties.hitProperties.knockback.Set(-6f, 15f);
-        properties.hitProperties.airKnockback.Set(-6f, 13f);
+        properties.hitProperties.knockback.Set(-6f, 14f);
+        properties.hitProperties.airKnockback.Set(-6f, 12f);
         properties.hitProperties.selfKnockback.Set(-3f, 0);
         properties.hitProperties.damage = 350;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;

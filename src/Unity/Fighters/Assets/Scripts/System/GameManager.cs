@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using LaneLibrary;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
@@ -50,6 +51,8 @@ public class GameManager : MonoBehaviour
     public MusicPlayer musicPlayer;
 
     private bool gameActive;
+
+    public CinemachineTargetGroup targetGroup;
 
     public enum RoundEndTypes
     {
@@ -124,6 +127,9 @@ public class GameManager : MonoBehaviour
 
         player1Healthbar.UpdateHearts(player1lives);
         player2Healthbar.UpdateHearts(player2lives);
+
+        targetGroup.AddMember(player1.transform, 1, 1);
+        targetGroup.AddMember(player2.transform, 1, 1);
 
         //StartScreen.SetActive(true);
         Announcer.SetActive(false);
@@ -326,6 +332,9 @@ public class GameManager : MonoBehaviour
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         round += 1;
+
+        targetGroup.RemoveMember(player1.transform);
+        targetGroup.RemoveMember(player2.transform);
 
         Destroy(player1.gameObject);
         Destroy(player2.gameObject);

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Hitstun : FighterState, IStunState
@@ -10,10 +11,15 @@ public class Hitstun : FighterState, IStunState
     private bool wasEverAirborne;
     private bool hardKD;
     private bool wallBounce;
+    private bool groundBounce;
+
+    private Vector2 lastVelocity;
 
     public Hitstun(FighterMain fighterMain) : base(fighterMain)
     {
         jumpsEnabled = false;
+
+        lastVelocity = Vector2.zero;
 
         hitstun = 0.5f;
     }
@@ -30,6 +36,7 @@ public class Hitstun : FighterState, IStunState
         wasEverAirborne = false;
         hardKD = false;
         wallBounce = false;
+        groundBounce = false;
 
         UpdateStance();
 
@@ -57,14 +64,17 @@ public class Hitstun : FighterState, IStunState
 
         if (fighter.currentStance == FighterStance.Air)
         {
+            if (!fighter.fighterAnimator.GetAnimatorStateInfo().IsName("AirHit"))
+            {
+                fighter.fighterAnimator.StartAnimation("AirHit");
+            }
+
             wasEverAirborne = true;
             if (stateTimer > 0.1f)
             {
                 if (fighter.isGrounded)
                 {
-                    fighter.SwitchState(fighter.knockdown);
-                    float kdTime = hardKD ? fighter.hardKnockdownTime : fighter.softKnockdownTime;
-                    ((IStunState)fighter.currentState).SetStun(kdTime);
+                    HandleLanding();
                 }
             }
         }
@@ -76,9 +86,7 @@ public class Hitstun : FighterState, IStunState
                 {
                     if (fighter.isGrounded)
                     {
-                        fighter.SwitchState(fighter.knockdown);
-                        float kdTime = hardKD ? fighter.hardKnockdownTime : fighter.softKnockdownTime;
-                        ((IStunState)fighter.currentState).SetStun(kdTime);
+                        HandleLanding();   
                     }
                 }
             }
@@ -91,6 +99,12 @@ public class Hitstun : FighterState, IStunState
         {
             TimeTransitionToNextState(hitstun, NeutralOrAir());
         }
+
+        if (fighter.fighterRigidbody.velocity.y != 0)
+        {
+            lastVelocity = fighter.fighterRigidbody.velocity;
+        }
+
     }
 
     public override void ExitState()
@@ -99,6 +113,39 @@ public class Hitstun : FighterState, IStunState
         fighter.isThrowInvulnerable = false;
         fighter.ExitHitstun();
         
+    }
+
+    private void HandleLanding()
+    {
+        if (groundBounce)
+        {
+            //fighter.fighterRigidbody.velocity = new Vector2(fighter.fighterRigidbody.velocity.x, -fighter.fighterRigidbody.velocity.y);
+
+            Vector2 groundBounceVelocity = fighter.fighterRigidbody.velocity;
+            //if (Mathf.Abs(groundBounceVelocity.y) <= 1f)
+            {
+                groundBounceVelocity.y = lastVelocity.y;
+            }
+
+            groundBounceVelocity.y *= -1;
+
+
+            // use velocity from the frame before, because current velocity might already be 0 from colliding with ground
+            fighter.fighterRigidbody.velocity = lastVelocity * Vector2.down; //groundBounceVelocity;
+            groundBounce = false;
+            //stateTimer = 0f;
+        }
+        else
+        {
+            Land();
+        }
+    }
+
+    private void Land()
+    {
+        fighter.SwitchState(fighter.knockdown);
+        float kdTime = hardKD ? fighter.hardKnockdownTime : fighter.softKnockdownTime;
+        ((IStunState)fighter.currentState).SetStun(kdTime);
     }
 
     public void SetStun(float stun)
@@ -114,6 +161,11 @@ public class Hitstun : FighterState, IStunState
     public void SetWallBounce(bool _wallBounce)
     {
         wallBounce = _wallBounce;
+    }
+
+    public void SetGroundBounce(bool _groundBounce)
+    {
+        groundBounce = _groundBounce;
     }
 
     public void CheckForWallbounce()

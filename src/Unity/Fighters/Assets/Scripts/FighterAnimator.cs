@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class FighterAnimator
@@ -82,4 +83,6 @@ public class FighterAnimator
     {
         return (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1);
     }
+
+    public AnimatorStateInfo GetAnimatorStateInfo() => animator.GetCurrentAnimatorStateInfo(0);
 }

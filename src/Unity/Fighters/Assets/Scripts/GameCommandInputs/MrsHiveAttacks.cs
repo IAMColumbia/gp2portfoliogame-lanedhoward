@@ -499,6 +499,7 @@ public class Stinger : GameAttack
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
         properties.hitProperties.hardKD = true;
+        properties.hitProperties.groundBounceOnAirHit = true;
 
         properties.landCancelStartup = false;
         properties.landingLagTime = 0.1f;

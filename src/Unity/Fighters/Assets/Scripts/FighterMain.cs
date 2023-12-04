@@ -649,13 +649,16 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
         //knockback
         Vector2 kb;
+        bool groundBounce;
         if (isGrounded)
         {
             kb = pp.knockback;
+            groundBounce = pp.groundBounceOnGroundedHit;
         }
         else
         {
             kb = pp.airKnockback;
+            groundBounce = pp.groundBounceOnAirHit;
         }
 
         timeManager.DoHitStop(pp.hitstopTime);
@@ -701,7 +704,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         {
             hs.CheckForWallbounce();
         }
-
+        hs.SetGroundBounce(groundBounce);
         return HitReport.Hit;
     }
 

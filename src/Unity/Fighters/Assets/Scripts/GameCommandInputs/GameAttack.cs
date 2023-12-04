@@ -176,6 +176,8 @@ public class GameAttackPropertiesProperties
 
     public bool hardKD;
     public bool wallBounce;
+    public bool groundBounceOnAirHit;
+    public bool groundBounceOnGroundedHit;
 
     public GameAttackPropertiesProperties()
     {
@@ -187,6 +189,8 @@ public class GameAttackPropertiesProperties
         selfKnockback = Vector2.zero;
         hardKD = false;
         wallBounce = false;
+        groundBounceOnAirHit = false;
+        groundBounceOnGroundedHit = false;
     }
 }
 

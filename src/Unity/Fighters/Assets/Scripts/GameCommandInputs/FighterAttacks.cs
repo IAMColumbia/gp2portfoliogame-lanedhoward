@@ -284,6 +284,7 @@ public class TwoB : GameAttack
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
         properties.hitProperties.hardKD = true;
+        properties.hitProperties.groundBounceOnGroundedHit = true;
     }
 }
 
@@ -449,6 +450,10 @@ public class JumpC : GameAttack
 
         properties.hitProperties.knockback.Set(-6f, 0);
         properties.hitProperties.airKnockback.Set(-2f, 11f);
+        //properties.hitProperties.airKnockback.Set(-2f, -11f);
+        //properties.hitProperties.groundBounce = true;
+        //properties.hitProperties.selfKnockback.Set(-3f, 8f);
+
         properties.hitProperties.selfKnockback.Set(-3f, 0);
         properties.hitProperties.damage = 450f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
@@ -547,13 +552,13 @@ public class Overhead : GameAttack
         properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
 
         properties.hitProperties.knockback.Set(-1f, 15f);
-        properties.hitProperties.airKnockback.Set(-1f, 9f);
+        properties.hitProperties.airKnockback.Set(-1f, -7f);
         properties.hitProperties.selfKnockback.Set(-4f, 0);
         properties.hitProperties.damage = 300f;
         properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
         properties.hitProperties.hardKD = false;
-
+        properties.hitProperties.groundBounceOnAirHit = true;
         
     }
 }

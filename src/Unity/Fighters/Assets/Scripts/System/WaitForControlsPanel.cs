@@ -7,14 +7,19 @@ public class WaitForControlsPanel : MonoBehaviour
 {
     public PlayerSetupController parent;
     public GameObject panel;
-
-    // Start is called before the first frame update
-    void Awake()
+    
+    void OnEnable()
     {
         ControlsPanel.ControlsOpened += ControlsPanel_ControlsOpened;
         ControlsPanel.ControlsClosed += ControlsPanel_ControlsClosed;
     }
 
+    private void OnDisable()
+    {
+        ControlsPanel.ControlsOpened -= ControlsPanel_ControlsOpened;
+        ControlsPanel.ControlsClosed -= ControlsPanel_ControlsClosed;
+    }
+    
     private void ControlsPanel_ControlsOpened(object sender, int e)
     {
         if (parent.PlayerIndex != e)

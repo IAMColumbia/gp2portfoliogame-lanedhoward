@@ -582,7 +582,11 @@ public class FighterMain : SoundPlayer, IHitboxResponder
             {
                 GameAttackPropertiesProperties pp;
                 // allow for cancels on hit or block
-                canAct = true;
+                if ((currentState is not IStunState))
+                {
+                    canAct = true;
+
+                }
                 if (report == HitReport.Hit)
                 {
                     currentAttack.OnHit(this, hurtbox.fighterParent);

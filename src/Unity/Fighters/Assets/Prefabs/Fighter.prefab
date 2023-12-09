@@ -256,6 +256,7 @@ MonoBehaviour:
   MaxHealth: 4000
   CurrentHealth: 0
   JuggleMomentumMultiplier: 0.2
+  bounceHitstop: 0
   softKnockdownTime: 0.1
   hardKnockdownTime: 0.4
   throwTechWindow: 0.16666667
@@ -322,6 +323,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 470a5173824ac2a45931aee638948ab8, type: 3}
   throwTechSound: {fileID: 8300000, guid: 618cb72e0ed85ac47809de66811faf0a, type: 3}
   parrySound: {fileID: 8300000, guid: 05e268efd6852f249a62405fc1a5a322, type: 3}
+  bounceSound: {fileID: 8300000, guid: 82d1a30432fadc24ea72993ca9369d6a, type: 3}
   smallHitParticles: {fileID: 356044139189969360}
   midHitParticles: {fileID: 333986196007816026}
   heavyHitParticles: {fileID: 707240543187319496}

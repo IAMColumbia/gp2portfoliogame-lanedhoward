@@ -78,6 +78,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
     [Header("Combo Values")]
     public float JuggleMomentumMultiplier = 0.2f;
+    public float bounceHitstop = 0f / 60f;
 
     [Header("KD Values")]
     public float softKnockdownTime = 0.25f;
@@ -162,6 +163,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public AudioClip[] blockSounds;
     public AudioClip throwTechSound;
     public AudioClip parrySound;
+    public AudioClip bounceSound;
 
     [Header("Particles")]
     public ParticleSystem smallHitParticles;
@@ -804,8 +806,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
     public void DoWallBounce()
     {
-        //timeManager.DoHitStop(0.1f);
-        //PlaySound(hitSounds[0]);
+        timeManager.DoHitStop(bounceHitstop);
+        PlaySound(bounceSound);
         fighterRigidbody.velocity = new Vector2(-fighterRigidbody.velocity.x, fighterRigidbody.velocity.y);
     }
 
@@ -917,7 +919,10 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     {
         if (collision.CompareTag("WallTrigger"))
         {
-            isAtTheWall = false;
+            if (fighterRigidbody.simulated)
+            {
+                isAtTheWall = false;
+            }
         }
     }
 

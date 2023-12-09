@@ -224,3 +224,17 @@ public class LogicalOrCondition : GameAttackCondition
         return (condition1.CanExecute(moveInput, fighter) || condition2.CanExecute(moveInput, fighter));
     }
 }
+
+public class LogicalNotCondition : GameAttackCondition
+{
+    GameAttackCondition condition;
+    public LogicalNotCondition(GameAttack _parent, GameAttackCondition condition) : base(_parent)
+    {
+        this.condition = condition;
+    }
+
+    public override bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
+    {
+        return (!condition.CanExecute(moveInput, fighter));
+    }
+}

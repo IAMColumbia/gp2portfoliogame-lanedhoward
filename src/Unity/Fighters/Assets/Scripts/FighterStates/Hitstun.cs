@@ -133,6 +133,10 @@ public class Hitstun : FighterState, IStunState
             // use velocity from the frame before, because current velocity might already be 0 from colliding with ground
             fighter.fighterRigidbody.velocity = lastVelocity * Vector2.down; //groundBounceVelocity;
             groundBounce = false;
+
+            fighter.timeManager.DoHitStop(fighter.bounceHitstop);
+            fighter.PlaySound(fighter.bounceSound);
+
             //stateTimer = 0f;
         }
         else

@@ -58,6 +58,7 @@ public class Pogo : GameAttack
         conditions.Add(new ButtonCondition(this, new AttackB()));
         conditions.Add(new GatlingCondition(this));
         conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new LogicalNotCondition(this, new FollowUpCondition(this, typeof(Pogo))));
 
         //whiffSound = fighter.whiffSounds[1];
         //hitSound = fighter.hitSounds[4];

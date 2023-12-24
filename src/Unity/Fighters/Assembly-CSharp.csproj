@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\System\CheckForUpdates.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Neutral.cs" />
     <Compile Include="Assets\Scripts\Hitboxes\IHitboxResponder.cs" />
+    <Compile Include="Assets\Scripts\GameCommandInputs\SharedAttacks.cs" />
     <Compile Include="Assets\Scripts\System\Scroller.cs" />
     <Compile Include="Assets\Scripts\FighterStates\LandingLag.cs" />
     <Compile Include="Assets\Scripts\FighterButtons.cs" />

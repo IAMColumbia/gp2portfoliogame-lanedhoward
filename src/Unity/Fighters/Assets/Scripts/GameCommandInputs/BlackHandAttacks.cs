@@ -89,8 +89,8 @@ public class CannonGrabSuccess : ThrowAttackSuccess
         properties.hitProperties.knockback.Set(-20f, 11f);
         properties.hitProperties.selfKnockback.Set(0f, 0);
         properties.hitProperties.damage = 1300f;
-        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel4_hithitstop;
-        properties.hitProperties.stunTime = FighterAttacks.attackLevel4_hitstun;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel4_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel4_hitstun;
         properties.hitProperties.hardKD = true;
 
         properties.hitProperties.wallBounce = true;
@@ -121,15 +121,15 @@ public class SharkCall : GameAttack
         properties.blockProperties.airKnockback.Set(-2f, -4);
         properties.blockProperties.selfKnockback.Set(-7f, 0);
         properties.blockProperties.damage = 75f;
-        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
-        properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
+        properties.blockProperties.hitstopTime = AttackSettings.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = AttackSettings.attackLevel3_blockstun;
 
         properties.hitProperties.knockback.Set(-1f, 9f);
         properties.hitProperties.airKnockback.Set(-1f, 16f);
         properties.hitProperties.selfKnockback.Set(-4f, 0);
         properties.hitProperties.damage = 300f;
-        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
-        properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
         properties.hitProperties.hardKD = false;
     }
 }
@@ -165,14 +165,14 @@ public class WaveCall : GameAttack
         fireballProperties.blockProperties.knockback.Set(6f, 0);
         fireballProperties.blockProperties.airKnockback.Set(4f, 6f);
         fireballProperties.blockProperties.damage = 25f;
-        fireballProperties.blockProperties.hitstopTime = FighterAttacks.attackLevel1_blockhitstop;
-        fireballProperties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
+        fireballProperties.blockProperties.hitstopTime = AttackSettings.attackLevel1_blockhitstop;
+        fireballProperties.blockProperties.stunTime = AttackSettings.attackLevel2_blockstun;
 
         fireballProperties.hitProperties.knockback.Set(6f, 10f);
         fireballProperties.hitProperties.airKnockback.Set(6f, 10f);
         fireballProperties.hitProperties.damage = 100f;
-        fireballProperties.hitProperties.hitstopTime = FighterAttacks.attackLevel1_hithitstop;
-        fireballProperties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
+        fireballProperties.hitProperties.hitstopTime = AttackSettings.attackLevel1_hithitstop;
+        fireballProperties.hitProperties.stunTime = AttackSettings.attackLevel2_hitstun;
         fireballProperties.hitProperties.hardKD = false;
 
         spawnOffset = new Vector3(21, 0, 0);
@@ -215,15 +215,15 @@ public class Pegleg : GameAttack
         properties.blockProperties.airKnockback.Set(-6f, 5f);
         properties.blockProperties.selfKnockback.Set(-9f, 0);
         properties.blockProperties.damage = 75f;
-        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel2_blockhitstop;
-        properties.blockProperties.stunTime = FighterAttacks.attackLevel2_blockstun;
+        properties.blockProperties.hitstopTime = AttackSettings.attackLevel2_blockhitstop;
+        properties.blockProperties.stunTime = AttackSettings.attackLevel2_blockstun;
 
         properties.hitProperties.knockback.Set(-10f, 9f);
         properties.hitProperties.airKnockback.Set(-10f, 9f);
         properties.hitProperties.selfKnockback.Set(-3f, 0);
         properties.hitProperties.damage = 350f;
-        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel2_hithitstop;
-        properties.hitProperties.stunTime = FighterAttacks.attackLevel2_hitstun;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel2_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel2_hitstun;
         properties.hitProperties.hardKD = true;
     }
 }

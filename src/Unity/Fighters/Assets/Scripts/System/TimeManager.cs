@@ -34,7 +34,7 @@ public class TimeManager : MonoBehaviour
     public void DoHitStop(float hitstopDuration)
     {
         isInSlowmo = true;
-        realTimeUntilTimeScaleReset = hitstopDuration;
+        realTimeUntilTimeScaleReset += hitstopDuration;
         SetTimeScale(hitstopTimeScale);
     }
 

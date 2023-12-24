@@ -76,15 +76,15 @@ public class Pogo : GameAttack
         properties.blockProperties.airKnockback.Set(-2f, 7f);
         properties.blockProperties.selfKnockback.Set(-1f, 0);
         properties.blockProperties.damage = 50f;
-        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
-        properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
+        properties.blockProperties.hitstopTime = AttackSettings.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = AttackSettings.attackLevel3_blockstun;
 
         properties.hitProperties.knockback.Set(-3f, 16f);
         properties.hitProperties.airKnockback.Set(-3f, 15f);
         properties.hitProperties.selfKnockback.Set(-1f, 0);
         properties.hitProperties.damage = 300f;
-        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
-        properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
         properties.hitProperties.hardKD = false;
 
         airdashVelocity = new Vector2(0, 18.5f);
@@ -139,15 +139,15 @@ public class Thrust : GameAttack
         properties.blockProperties.airKnockback.Set(-3f, 5);
         properties.blockProperties.selfKnockback.Set(-6f, 0);
         properties.blockProperties.damage = 75f;
-        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
-        properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
+        properties.blockProperties.hitstopTime = AttackSettings.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = AttackSettings.attackLevel3_blockstun;
 
         properties.hitProperties.knockback.Set(-5f, 10f);
         properties.hitProperties.airKnockback.Set(-4f, 12f);
         properties.hitProperties.selfKnockback.Set(-3f, 0);
         properties.hitProperties.damage = 400f;
-        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
-        properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
     }
 
     public override void OnHit(FighterMain fighter, FighterMain otherFighter)
@@ -349,14 +349,14 @@ public class HiveAttack : GameAttack
         fireballProperties.blockProperties.knockback.Set(-5f, 0);
         fireballProperties.blockProperties.airKnockback.Set(-3f, 6f);
         fireballProperties.blockProperties.damage = 100f;
-        fireballProperties.blockProperties.hitstopTime = FighterAttacks.attackLevel4_blockhitstop;
-        fireballProperties.blockProperties.stunTime = FighterAttacks.attackLevel4_blockstun;
+        fireballProperties.blockProperties.hitstopTime = AttackSettings.attackLevel4_blockhitstop;
+        fireballProperties.blockProperties.stunTime = AttackSettings.attackLevel4_blockstun;
 
         fireballProperties.hitProperties.knockback.Set(-6f, 0f);
         fireballProperties.hitProperties.airKnockback.Set(-2f, 17f);
         fireballProperties.hitProperties.damage = 350f;
-        fireballProperties.hitProperties.hitstopTime = FighterAttacks.attackLevel4_hithitstop;
-        fireballProperties.hitProperties.stunTime = FighterAttacks.attackLevel4_hitstun;
+        fireballProperties.hitProperties.hitstopTime = AttackSettings.attackLevel4_hithitstop;
+        fireballProperties.hitProperties.stunTime = AttackSettings.attackLevel4_hitstun;
         fireballProperties.hitProperties.hardKD = false;
 
 
@@ -490,15 +490,15 @@ public class Stinger : GameAttack
         properties.blockProperties.airKnockback.Set(-3f, -3f);
         properties.blockProperties.selfKnockback.Set(-6f, 0);
         properties.blockProperties.damage = 50f;
-        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
-        properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
+        properties.blockProperties.hitstopTime = AttackSettings.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = AttackSettings.attackLevel3_blockstun;
 
         properties.hitProperties.knockback.Set(-5f, 0);
         properties.hitProperties.airKnockback.Set(-1.75f, -6f);
         properties.hitProperties.selfKnockback.Set(-5f, 0);
         properties.hitProperties.damage = 300f;
-        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
-        properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
         properties.hitProperties.hardKD = true;
         properties.hitProperties.groundBounceOnAirHit = true;
 

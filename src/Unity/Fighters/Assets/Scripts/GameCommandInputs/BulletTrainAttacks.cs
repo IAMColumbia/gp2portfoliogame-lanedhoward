@@ -198,15 +198,15 @@ public class Gun5Shot : GunStanceAttack
         properties.blockProperties.airKnockback.Set(-7f, 6f);
         properties.blockProperties.selfKnockback.Set(-9f, 0);
         properties.blockProperties.damage = 50;
-        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
-        properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
+        properties.blockProperties.hitstopTime = AttackSettings.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = AttackSettings.attackLevel3_blockstun;
 
         properties.hitProperties.knockback.Set(-9f, 9f);
         properties.hitProperties.airKnockback.Set(-8f, 9f);
         properties.hitProperties.selfKnockback.Set(-3f, 0);
         properties.hitProperties.damage = 350;
-        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
-        properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
 
     }
 
@@ -251,15 +251,15 @@ public class Gun2Shot : GunStanceAttack
         properties.blockProperties.airKnockback.Set(-5f, 6f);
         properties.blockProperties.selfKnockback.Set(-4f, 0);
         properties.blockProperties.damage = 50;
-        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
-        properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
+        properties.blockProperties.hitstopTime = AttackSettings.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = AttackSettings.attackLevel3_blockstun;
 
         properties.hitProperties.knockback.Set(-1.5f, 14f);
         properties.hitProperties.airKnockback.Set(-2f, 13f);
         properties.hitProperties.selfKnockback.Set(-3f, 0);
         properties.hitProperties.damage = 350;
-        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
-        properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
 
     }
 
@@ -304,15 +304,15 @@ public class Gun4Shot : GunStanceAttack
         properties.blockProperties.airKnockback.Set(-9f, 6f);
         properties.blockProperties.selfKnockback.Set(-6f, 0);
         properties.blockProperties.damage = 50;
-        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
-        properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
+        properties.blockProperties.hitstopTime = AttackSettings.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = AttackSettings.attackLevel3_blockstun;
 
         properties.hitProperties.knockback.Set(-10f, 0f);
         properties.hitProperties.airKnockback.Set(-6f, 10f);
         properties.hitProperties.selfKnockback.Set(-3f, 0);
         properties.hitProperties.damage = 350;
-        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
-        properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
 
     }
     public override void OnStartup(FighterMain fighter)
@@ -357,15 +357,15 @@ public class Gun6Shot : GunStanceAttack
         properties.blockProperties.airKnockback.Set(-7f, 6f);
         properties.blockProperties.selfKnockback.Set(-9f, 0);
         properties.blockProperties.damage = 50;
-        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
-        properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
+        properties.blockProperties.hitstopTime = AttackSettings.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = AttackSettings.attackLevel3_blockstun;
 
         properties.hitProperties.knockback.Set(-6f, 14f);
         properties.hitProperties.airKnockback.Set(-6f, 12f);
         properties.hitProperties.selfKnockback.Set(-3f, 0);
         properties.hitProperties.damage = 350;
-        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
-        properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
 
     }
 
@@ -565,15 +565,15 @@ public class GunWhip : GunStanceAttack
         properties.blockProperties.airKnockback.Set(-3f, -3f);
         properties.blockProperties.selfKnockback.Set(-8f, 0);
         properties.blockProperties.damage = 50f;
-        properties.blockProperties.hitstopTime = FighterAttacks.attackLevel3_blockhitstop;
-        properties.blockProperties.stunTime = FighterAttacks.attackLevel3_blockstun;
+        properties.blockProperties.hitstopTime = AttackSettings.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = AttackSettings.attackLevel3_blockstun;
 
         properties.hitProperties.knockback.Set(-1f, 9f);
         properties.hitProperties.airKnockback.Set(-1f, -3f);
         properties.hitProperties.selfKnockback.Set(-4f, 0);
         properties.hitProperties.damage = 300f;
-        properties.hitProperties.hitstopTime = FighterAttacks.attackLevel3_hithitstop;
-        properties.hitProperties.stunTime = FighterAttacks.attackLevel3_hitstun;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
         properties.hitProperties.hardKD = true;
 
     }

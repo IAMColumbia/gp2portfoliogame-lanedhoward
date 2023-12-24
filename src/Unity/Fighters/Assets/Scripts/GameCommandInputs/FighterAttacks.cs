@@ -25,6 +25,8 @@ public static class FighterAttacks
                 new Overhead(),
                 //new StageDive(),
                 new FireballStomp(),
+                new GriddyForward(),
+                new GriddyBack(),
                 new BackThrowWhiff(new GrabSuccess()),
                 new GrabWhiff(new GrabSuccess()),
                 new AirBackThrowWhiff(new AirGrabSuccess()),
@@ -262,3 +264,84 @@ public class FireballStomp : GameAttack
     }
 }
 
+public class GriddyAttack : GameAttack
+{
+    protected Vector2 velocity;
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        fighter.OnHaltHorizontalVelocity();
+        fighter.OnVelocityImpulseRelativeToSelf(velocity);
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+        fighter.canAct = true;
+    }
+}
+
+public class GriddyBack : GriddyAttack
+{
+    public GriddyBack() : base()
+    {
+        conditions.Add(new LogicalOrCondition(this, 
+            new GestureCondition(this, new QuarterCircleBack()),
+            new LogicalAndCondition(this,
+                new FollowUpCondition(this, typeof(GriddyForward)),
+                new GestureCondition(this, new BackGesture())
+                )
+            )
+            );
+        conditions.Add(new ButtonCondition(this, new AttackA()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new LogicalOrCondition(this, 
+            new GatlingCondition(this),
+            new FollowUpCondition(this, typeof(GriddyForward))
+            )
+            );
+
+        whiffSoundIndex = 2;
+
+        properties.AnimationName = "GriddyBack";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Standing;
+
+        velocity = new Vector2(-13f, 0f);
+    }
+}
+
+public class GriddyForward : GriddyAttack
+{
+    public GriddyForward() : base()
+    {
+        conditions.Add(new LogicalOrCondition(this,
+            new GestureCondition(this, new QuarterCircleForward()),
+            new LogicalAndCondition(this,
+                new FollowUpCondition(this, typeof(GriddyBack)),
+                new GestureCondition(this, new ForwardGesture())
+                )
+            )
+            );
+        conditions.Add(new ButtonCondition(this, new AttackA()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new LogicalOrCondition(this,
+            new GatlingCondition(this),
+            new FollowUpCondition(this, typeof(GriddyBack))
+            )
+            );
+
+        whiffSoundIndex = 2;
+
+        properties.AnimationName = "GriddyForward";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Standing;
+
+        velocity = new Vector2(13f, 0f);
+    }
+}

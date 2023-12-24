@@ -27,6 +27,9 @@ public static class FighterAttacks
                 new FireballStomp(),
                 new GriddyForward(),
                 new GriddyBack(),
+                new EnhancedPeoplesUppercut(),
+                new EnhancedOverhead(),
+                new EnhancedFireballStomp(),
                 new BackThrowWhiff(new GrabSuccess()),
                 new GrabWhiff(new GrabSuccess()),
                 new AirBackThrowWhiff(new AirGrabSuccess()),
@@ -196,7 +199,8 @@ public class StageDive : GameAttack
 
 public class FireballStomp : GameAttack
 {
-    GameAttackProperties fireballProperties;
+    protected GameAttackProperties fireballProperties;
+    protected Vector2 fireballVelocity;
     public FireballStomp() : base()
     {
         conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
@@ -249,6 +253,8 @@ public class FireballStomp : GameAttack
         fireballProperties.hitProperties.stunTime = AttackSettings.attackLevel2_hitstun;
         fireballProperties.hitProperties.hardKD = false;
 
+        fireballVelocity = new Vector2(5f, 0f);
+
     }
 
     public override void OnActive(FighterMain fighter)
@@ -258,6 +264,7 @@ public class FireballStomp : GameAttack
         if (!fighter.fireball.projectileActive)
         {
             fighter.fireball.projectileProperties = fireballProperties;
+            fighter.fireball.velocity = fireballVelocity;
             fighter.fireball.StartProjectile();
         }
 
@@ -343,5 +350,145 @@ public class GriddyForward : GriddyAttack
         properties.attackStance = FighterStance.Standing;
 
         velocity = new Vector2(13f, 0f);
+    }
+}
+
+public class EnhancedPeoplesUppercut : PeoplesUppercut
+{
+    private Vector2 velocity;
+    public EnhancedPeoplesUppercut() : base()
+    {
+        conditions.Clear();
+        conditions.Add(new LogicalOrCondition(this,
+            new GestureCondition(this, new DragonPunch()),
+            new GestureCondition(this, new ForwardGesture())
+            )
+            );
+        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new FollowUpCondition(this, typeof(GriddyAttack)));
+
+        properties.blockProperties.knockback.Set(-2f, 0);
+        properties.blockProperties.airKnockback.Set(-2f, 7f);
+        properties.blockProperties.selfKnockback.Set(-4f, 0);
+        properties.blockProperties.damage = 200f;
+        properties.blockProperties.hitstopTime = AttackSettings.attackLevel4_blockhitstop;
+        properties.blockProperties.stunTime = AttackSettings.attackLevel4_blockstun;
+
+        properties.hitProperties.knockback.Set(-4f, 18f);
+        properties.hitProperties.airKnockback.Set(-4f, 16f);
+        properties.hitProperties.selfKnockback.Set(-2f, 0);
+        properties.hitProperties.damage = 700f;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel4_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel4_hitstun;
+        properties.hitProperties.hardKD = true;
+
+        velocity = new Vector2(8f, 0);
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        fighter.PlayWavedashVFX();
+
+        fighter.OnVelocityImpulseRelativeToSelf(velocity);
+    }
+}
+
+public class EnhancedOverhead : Overhead
+{
+    private Vector2 velocity;
+
+    public EnhancedOverhead() : base()
+    {
+        conditions.Clear();
+        conditions.Add(new LogicalOrCondition(this,
+            new GestureCondition(this, new QuarterCircleBack()),
+            new GestureCondition(this, new BackGesture())
+            )
+            );
+        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new FollowUpCondition(this, typeof(GriddyAttack)));
+
+        properties.blockProperties.knockback.Set(-3f, 0);
+        properties.blockProperties.airKnockback.Set(-3f, 5f);
+        properties.blockProperties.selfKnockback.Set(-8f, 0);
+        properties.blockProperties.damage = 75f;
+        properties.blockProperties.hitstopTime = AttackSettings.attackLevel4_blockhitstop;
+        properties.blockProperties.stunTime = AttackSettings.attackLevel4_blockstun;
+
+        properties.hitProperties.knockback.Set(-1f, 17f);
+        properties.hitProperties.airKnockback.Set(-1f, -9f);
+        properties.hitProperties.selfKnockback.Set(-4f, 0);
+        properties.hitProperties.damage = 400f;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel4_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel4_hitstun;
+        properties.hitProperties.hardKD = false;
+        properties.hitProperties.groundBounceOnAirHit = true;
+
+        velocity = new Vector2(9f, 0);
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        fighter.PlayWavedashVFX();
+
+        fighter.OnVelocityImpulseRelativeToSelf(velocity);
+    }
+}
+
+public class EnhancedFireballStomp : FireballStomp
+{
+    private Vector2 velocity;
+    public EnhancedFireballStomp() : base()
+    {
+        conditions.Clear();
+        conditions.Add(new LogicalOrCondition(this,
+            new GestureCondition(this, new QuarterCircleForward()),
+            new GestureCondition(this, new ForwardGesture())
+            )
+            );
+        conditions.Add(new ButtonCondition(this, new AttackB()));
+        conditions.Add(new FollowUpCondition(this, typeof(GriddyAttack)));
+
+        properties.blockProperties.knockback.Set(-5f, 0);
+        properties.blockProperties.airKnockback.Set(-3f, 8f);
+        properties.blockProperties.selfKnockback.Set(-7f, 0);
+        properties.blockProperties.damage = 75f;
+        properties.blockProperties.hitstopTime = AttackSettings.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = AttackSettings.attackLevel3_blockstun;
+
+        properties.hitProperties.knockback.Set(-4f, 10f);
+        properties.hitProperties.airKnockback.Set(-4f, 10f);
+        properties.hitProperties.selfKnockback.Set(-4f, 0);
+        properties.hitProperties.damage = 200f;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
+        properties.hitProperties.hardKD = false;
+
+        fireballProperties.blockProperties.knockback.Set(-5f, 0);
+        fireballProperties.blockProperties.airKnockback.Set(-3f, 11f);
+        fireballProperties.blockProperties.damage = 75f;
+        fireballProperties.blockProperties.hitstopTime = AttackSettings.attackLevel2_blockhitstop;
+        fireballProperties.blockProperties.stunTime = AttackSettings.attackLevel3_blockstun;
+
+        fireballProperties.hitProperties.knockback.Set(-6f, 0f);
+        fireballProperties.hitProperties.airKnockback.Set(-2f, 15f);
+        fireballProperties.hitProperties.damage = 300f;
+        fireballProperties.hitProperties.hitstopTime = AttackSettings.attackLevel2_hithitstop;
+        fireballProperties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
+        fireballProperties.hitProperties.hardKD = false;
+
+        fireballVelocity = new Vector2(7f, 0f);
+
+        velocity = new Vector2(5f, 0);
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        fighter.PlayWavedashVFX();
+
+        fighter.OnVelocityImpulseRelativeToSelf(velocity);
     }
 }

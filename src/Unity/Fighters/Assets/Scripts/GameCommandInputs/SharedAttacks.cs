@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 public static class AttackSettings
 {
@@ -427,5 +428,379 @@ public class JumpC : GameAttack
         properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
 
         properties.landingLagTime = 4f / 60f;
+    }
+}
+
+public class GrabWhiff : ThrowAttack
+{
+    public GrabWhiff(ThrowAttackSuccess _success) : base(_success)
+    {
+        conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackD()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new NoGatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[0];
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
+
+        properties.AnimationName = "ThrowWhiff";
+    }
+}
+
+public class BackThrowWhiff : BackThrowAttack
+{
+    public BackThrowWhiff(ThrowAttackSuccess _success) : base(_success)
+    {
+        conditions.Add(new GestureCondition(this, new BackGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackD()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new NoGatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[0];
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
+
+        properties.AnimationName = "ThrowWhiff";
+    }
+
+
+}
+
+public class GrabSuccess : ThrowAttackSuccess
+{
+    public GrabSuccess() : base()
+    {
+        properties.AnimationName = "ThrowSuccess";
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[2];
+        whiffSoundIndex = -1;
+        hitSoundIndex = 2;
+
+        properties.hitProperties.knockback.Set(-5f, 10f);
+        properties.hitProperties.selfKnockback.Set(0f, 0);
+        properties.hitProperties.damage = 500f;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel2_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel2_hitstun;
+        properties.hitProperties.hardKD = true;
+    }
+}
+
+public class AirGrabWhiff : ThrowAttack
+{
+    public AirGrabWhiff(ThrowAttackSuccess _success) : base(_success)
+    {
+        conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackD()));
+        conditions.Add(new GroundedCondition(this, false));
+        conditions.Add(new StanceCondition(this, FighterStance.Air));
+        conditions.Add(new NoGatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[0];
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
+
+        properties.AnimationName = "ThrowWhiff";
+
+        properties.attackStance = FighterStance.Air;
+
+        properties.landingLagTime = 8f / 60f;
+
+
+    }
+}
+
+public class AirBackThrowWhiff : BackThrowAttack
+{
+    public AirBackThrowWhiff(ThrowAttackSuccess _success) : base(_success)
+    {
+        conditions.Add(new GestureCondition(this, new BackGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackD()));
+        conditions.Add(new GroundedCondition(this, false));
+        conditions.Add(new StanceCondition(this, FighterStance.Air));
+        conditions.Add(new NoGatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[0];
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
+
+        properties.AnimationName = "ThrowWhiff";
+
+        properties.attackStance = FighterStance.Air;
+
+        properties.landingLagTime = 8f / 60f;
+
+
+    }
+
+}
+
+public class AirGrabSuccess : ThrowAttackSuccess
+{
+    public AirGrabSuccess() : base()
+    {
+        properties.AnimationName = "ThrowSuccess";
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[2];
+        whiffSoundIndex = -1;
+        hitSoundIndex = 2;
+
+        properties.hitProperties.airKnockback.Set(-2f, 10f);
+        properties.hitProperties.selfKnockback.Set(0f, 0);
+        properties.hitProperties.damage = 500f;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel2_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel2_hitstun;
+        properties.hitProperties.hardKD = true;
+    }
+}
+
+public class BackHop : GameAttack
+{
+    public BackHop() : base()
+    {
+        conditions.Add(new GestureCondition(this, new BackGesture()));
+        conditions.Add(new ButtonCondition(this, new DashMacro()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new NoGatlingCondition(this));
+
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
+
+        properties.AnimationName = "Air_Rising";
+    }
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+
+        fighter.SwitchState(fighter.backdashing);
+
+    }
+}
+public class ForwardHop : GameAttack
+{
+    public ForwardHop() : base()
+    {
+        conditions.Add(new GestureCondition(this, new ForwardGesture()));
+        conditions.Add(new ButtonCondition(this, new DashMacro()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new NoGatlingCondition(this));
+
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
+
+        properties.AnimationName = "Air_Rising";
+    }
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+
+        fighter.SwitchState(fighter.dashing);
+
+    }
+}
+
+public class NeutralHop : GameAttack
+{
+    public NeutralHop() : base()
+    {
+        conditions.Add(new GestureCondition(this, new NeutralGesture()));
+        conditions.Add(new ButtonCondition(this, new DashMacro()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new NoGatlingCondition(this));
+
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
+
+        properties.AnimationName = "Air_Rising";
+    }
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+
+        fighter.SwitchState(fighter.neutraldashing);
+
+    }
+}
+
+public class Parry : GameAttack
+{
+    private float baseLandingLagTime = 0.25f;
+    private float onHitLandingLagTime = 0f;
+
+    private bool parriedDuringStartup;
+
+    public Parry() : base()
+    {
+        conditions.Add(new GestureCondition(this, new CrouchGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackD()));
+        conditions.Add(new NoGatlingCondition(this));
+        //conditions.Add(new GroundedCondition(this, true));
+
+        whiffSoundIndex = 0;
+
+        properties.AnimationName = "Parry";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Crouching;
+        properties.landCancelStartup = false;
+        properties.landCancelActive = false;
+        properties.landingLagTime = baseLandingLagTime;
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        properties.landingLagTime = baseLandingLagTime;
+        properties.cancelIntoAnyAction = false;
+        parriedDuringStartup = false;
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+        // if caught an attack during startup, do the parry now
+        if (parriedDuringStartup)
+        {
+            DoParry(fighter);
+        }
+    }
+
+    public override HitReport? OnGetHitDuring(FighterMain fighter, GameAttackProperties properties)
+    {
+        // we already know its not a throw
+
+        switch (fighter.currentAttackState)
+        {
+            case CurrentAttackState.Startup:
+                {
+                    parriedDuringStartup = true;
+
+                    return HitReport.Parried;
+                }
+            case CurrentAttackState.Active:
+                {
+                    DoParry(fighter);
+
+                    return HitReport.Parried;
+                }
+            default:
+            case CurrentAttackState.Recovery:
+                {
+                    return null;
+                }
+        }
+    }
+
+    public override void OnRecovery(FighterMain fighter)
+    {
+        base.OnRecovery(fighter);
+    }
+
+    private void DoParry(FighterMain fighter)
+    {
+        properties.cancelIntoAnyAction = true;
+        properties.landingLagTime = onHitLandingLagTime;
+
+        fighter.DoParry();
+    }
+}
+
+public class ForwardWavedash : GameAttack
+{
+    Vector2 wavedashVelocity;
+    public ForwardWavedash() : base()
+    {
+        conditions.Add(new GestureCondition(this, new DownForwardGesture()));
+        conditions.Add(new ButtonCondition(this, new DashMacro()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new NoGatlingCondition(this));
+
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
+
+        wavedashVelocity = new Vector2(14f, 0f);
+
+        properties.AnimationName = "WavedashForward";
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        properties.cancelIntoAnyAction = false;
+
+        fighter.PlayWavedashVFX();
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+
+        fighter.OnHaltAllVelocity();
+        fighter.OnVelocityImpulseRelativeToSelf(wavedashVelocity);
+    }
+
+    public override void OnRecovery(FighterMain fighter)
+    {
+        base.OnRecovery(fighter);
+
+        fighter.canAct = true;
+        properties.cancelIntoAnyAction = true;
+        if (fighter.currentState is AttackState a)
+        {
+            a.allowJumping = true;
+        }
+
+    }
+}
+
+public class BackWavedash : GameAttack
+{
+    Vector2 wavedashVelocity;
+    public BackWavedash() : base()
+    {
+        conditions.Add(new GestureCondition(this, new DownBackGesture()));
+        conditions.Add(new ButtonCondition(this, new DashMacro()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new NoGatlingCondition(this));
+
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
+
+        wavedashVelocity = new Vector2(-14f, 0f);
+
+        properties.AnimationName = "WavedashBack";
+    }
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        properties.cancelIntoAnyAction = false;
+
+        fighter.PlayWavedashVFX();
+    }
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+
+        fighter.OnHaltAllVelocity();
+        fighter.OnVelocityImpulseRelativeToSelf(wavedashVelocity);
+
+    }
+    public override void OnRecovery(FighterMain fighter)
+    {
+        base.OnRecovery(fighter);
+
+        fighter.canAct = true;
+        properties.cancelIntoAnyAction = true;
+        if (fighter.currentState is AttackState a)
+        {
+            a.allowJumping = true;
+        }
     }
 }

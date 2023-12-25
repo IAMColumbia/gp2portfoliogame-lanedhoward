@@ -51,14 +51,14 @@ public static class AttackSettings
 
 }
 
-public class FiveA : GameAttack
+public class Jab : GameAttack
 {
-    public FiveA() : base()
+    public Jab() : base()
     {
         conditions.Add(new GestureCondition(this, new NoGesture()));
         conditions.Add(new ButtonCondition(this, new AttackA()));
         conditions.Add(new GroundedCondition(this, true));
-        conditions.Add(new StanceCondition(this, FighterStance.Standing));
+        //conditions.Add(new StanceCondition(this, FighterStance.Standing));
         conditions.Add(new GatlingCondition(this));
 
         whiffSoundIndex = 0;
@@ -86,9 +86,9 @@ public class FiveA : GameAttack
     }
 }
 
-public class TwoA : GameAttack
+public class CrouchJab : GameAttack
 {
-    public TwoA() : base()
+    public CrouchJab() : base()
     {
         //conditions.Add(new GestureCondition(this, new NoGesture()));
         conditions.Add(new GestureCondition(this, new CrouchGesture()));
@@ -124,14 +124,14 @@ public class TwoA : GameAttack
     }
 }
 
-public class JumpA : GameAttack
+public class JumpKnee : GameAttack
 {
-    public JumpA() : base()
+    public JumpKnee() : base()
     {
         conditions.Add(new GestureCondition(this, new NoGesture()));
         conditions.Add(new ButtonCondition(this, new AttackA()));
         conditions.Add(new GroundedCondition(this, false));
-        conditions.Add(new StanceCondition(this, FighterStance.Air));
+        //conditions.Add(new StanceCondition(this, FighterStance.Air));
         conditions.Add(new GatlingCondition(this));
 
         //whiffSound = fighter.whiffSounds[0];
@@ -161,14 +161,14 @@ public class JumpA : GameAttack
     }
 }
 
-public class FiveB : GameAttack
+public class FullPunch : GameAttack
 {
-    public FiveB() : base()
+    public FullPunch() : base()
     {
         conditions.Add(new GestureCondition(this, new NoGesture()));
         conditions.Add(new ButtonCondition(this, new AttackB()));
         conditions.Add(new GroundedCondition(this, true));
-        conditions.Add(new StanceCondition(this, FighterStance.Standing));
+        //conditions.Add(new StanceCondition(this, FighterStance.Standing));
         conditions.Add(new GatlingCondition(this));
 
         //whiffSound = fighter.whiffSounds[0];
@@ -217,9 +217,9 @@ public class FiveB : GameAttack
     }
 }
 
-public class TwoB : GameAttack
+public class CrouchKick : GameAttack
 {
-    public TwoB() : base()
+    public CrouchKick() : base()
     {
         //conditions.Add(new GestureCondition(this, new NoGesture()));
         conditions.Add(new GestureCondition(this, new CrouchGesture()));
@@ -252,18 +252,18 @@ public class TwoB : GameAttack
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel2_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel2_hitstun;
         properties.hitProperties.hardKD = true;
-        properties.hitProperties.groundBounceOnGroundedHit = true;
+        properties.hitProperties.groundBounceOnGroundedHit = false;
     }
 }
 
-public class JumpB : GameAttack
+public class JumpDust : GameAttack
 {
-    public JumpB() : base()
+    public JumpDust() : base()
     {
         conditions.Add(new GestureCondition(this, new NoGesture()));
         conditions.Add(new ButtonCondition(this, new AttackB()));
         conditions.Add(new GroundedCondition(this, false));
-        conditions.Add(new StanceCondition(this, FighterStance.Air));
+        //conditions.Add(new StanceCondition(this, FighterStance.Air));
         conditions.Add(new GatlingCondition(this));
 
         //whiffSound = fighter.whiffSounds[0];
@@ -294,14 +294,14 @@ public class JumpB : GameAttack
     }
 }
 
-public class FiveC : GameAttack
+public class ShoulderBash : GameAttack
 {
-    public FiveC() : base()
+    public ShoulderBash() : base()
     {
         conditions.Add(new GestureCondition(this, new NoGesture()));
         conditions.Add(new ButtonCondition(this, new AttackC()));
         conditions.Add(new GroundedCondition(this, true));
-        conditions.Add(new StanceCondition(this, FighterStance.Standing));
+        //conditions.Add(new StanceCondition(this, FighterStance.Standing));
         conditions.Add(new GatlingCondition(this));
 
         //whiffSound = fighter.whiffSounds[0];
@@ -332,9 +332,9 @@ public class FiveC : GameAttack
     }
 }
 
-public class TwoC : GameAttack
+public class Launcher : GameAttack
 {
-    public TwoC() : base()
+    public Launcher() : base()
     {
         //conditions.Add(new GestureCondition(this, new NoGesture()));
         conditions.Add(new GestureCondition(this, new CrouchGesture()));
@@ -388,14 +388,14 @@ public class TwoC : GameAttack
     }
 }
 
-public class JumpC : GameAttack
+public class JumpSlice : GameAttack
 {
-    public JumpC() : base()
+    public JumpSlice() : base()
     {
         conditions.Add(new GestureCondition(this, new NoGesture()));
         conditions.Add(new ButtonCondition(this, new AttackC()));
         conditions.Add(new GroundedCondition(this, false));
-        conditions.Add(new StanceCondition(this, FighterStance.Air));
+        //conditions.Add(new StanceCondition(this, FighterStance.Air));
         conditions.Add(new GatlingCondition(this));
 
         //whiffSound = fighter.whiffSounds[0];
@@ -496,7 +496,7 @@ public class AirGrabWhiff : ThrowAttack
         conditions.Add(new GestureCondition(this, new NoGesture()));
         conditions.Add(new ButtonCondition(this, new AttackD()));
         conditions.Add(new GroundedCondition(this, false));
-        conditions.Add(new StanceCondition(this, FighterStance.Air));
+        //conditions.Add(new StanceCondition(this, FighterStance.Air));
         conditions.Add(new NoGatlingCondition(this));
 
         //whiffSound = fighter.whiffSounds[0];
@@ -522,7 +522,7 @@ public class AirBackThrowWhiff : BackThrowAttack
         conditions.Add(new GestureCondition(this, new BackGesture()));
         conditions.Add(new ButtonCondition(this, new AttackD()));
         conditions.Add(new GroundedCondition(this, false));
-        conditions.Add(new StanceCondition(this, FighterStance.Air));
+        //conditions.Add(new StanceCondition(this, FighterStance.Air));
         conditions.Add(new NoGatlingCondition(this));
 
         //whiffSound = fighter.whiffSounds[0];
@@ -804,5 +804,140 @@ public class BackWavedash : GameAttack
         {
             a.allowJumping = true;
         }
+    }
+}
+
+// second normals
+
+public class Roundhouse : GameAttackStartupVelocity
+{
+    public Roundhouse() : base()
+    {
+        conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new GroundedCondition(this, true));
+        //conditions.Add(new StanceCondition(this, FighterStance.Standing));
+        conditions.Add(new GatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
+        // hitSound = fighter.hitSounds[2];
+        whiffSoundIndex = 1;
+        hitSoundIndex = 2;
+
+        properties.AnimationName = "Roundhouse";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Heavy;
+        properties.attackStance = FighterStance.Standing;
+
+        properties.blockProperties.knockback.Set(-5f, 0);
+        properties.blockProperties.airKnockback.Set(-5f, 5f);
+        properties.blockProperties.selfKnockback.Set(-8f, 0);
+        properties.blockProperties.damage = 0;
+        properties.blockProperties.hitstopTime = AttackSettings.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = AttackSettings.attackLevel3_blockstun;
+
+        properties.hitProperties.knockback.Set(-7f, 9f);
+        properties.hitProperties.airKnockback.Set(-7f, 8f);
+        properties.hitProperties.selfKnockback.Set(-6f, 0);
+        properties.hitProperties.damage = 400f;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
+        properties.hitProperties.wallBounce = true;
+
+        velocity = new Vector2(10.5f, 0f);
+    }
+}
+
+public class CrouchSweep : GameAttackStartupVelocity
+{
+    public CrouchSweep() : base()
+    {
+        //conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new GestureCondition(this, new CrouchGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new GatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[3];
+        whiffSoundIndex = 2;
+        hitSoundIndex = 3;
+
+        properties.AnimationName = "Sweep";
+
+        properties.blockType = GameAttackProperties.BlockType.Low;
+        properties.attackType = GameAttackProperties.AttackType.Heavy;
+        properties.attackStance = FighterStance.Crouching;
+
+        properties.blockProperties.knockback.Set(-5f, 0);
+        properties.blockProperties.airKnockback.Set(-5, 8f);
+        properties.blockProperties.selfKnockback.Set(-8f, 0);
+        properties.blockProperties.damage = 0f;
+        properties.blockProperties.hitstopTime = AttackSettings.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = AttackSettings.attackLevel3_blockstun;
+
+        properties.hitProperties.knockback.Set(-6f, 10f);
+        properties.hitProperties.airKnockback.Set(-3.5f, 11f);
+        properties.hitProperties.selfKnockback.Set(-4f, 0);
+        properties.hitProperties.damage = 400f;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
+        properties.hitProperties.hardKD = true;
+        properties.hitProperties.groundBounceOnGroundedHit = false;
+
+        velocity = new Vector2(11f, 0f);
+    }
+}
+
+public class JumpStomp : GameAttack
+{
+    public JumpStomp() : base()
+    {
+        conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new GroundedCondition(this, false));
+        //Add(new StanceCondition(this, FighterStance.Air));
+        conditions.Add(new GatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[3];
+        whiffSoundIndex = 2;
+        hitSoundIndex = 3;
+
+        properties.AnimationName = "Stomp";
+
+        properties.blockType = GameAttackProperties.BlockType.High;
+        properties.attackType = GameAttackProperties.AttackType.Heavy;
+        properties.attackStance = FighterStance.Air;
+
+        properties.blockProperties.knockback.Set(-4f, 0);
+        properties.blockProperties.airKnockback.Set(-4, 5f);
+        properties.blockProperties.selfKnockback.Set(-3f, 0);
+        properties.blockProperties.damage = 0f;
+        properties.blockProperties.hitstopTime = AttackSettings.attackLevel4_blockhitstop;
+        properties.blockProperties.stunTime = AttackSettings.attackLevel4_blockstun;
+
+        properties.hitProperties.knockback.Set(-3f, 14f);
+        //properties.hitProperties.airKnockback.Set(-2f, 11f);
+        properties.hitProperties.airKnockback.Set(-2f, -11f);
+        properties.hitProperties.groundBounceOnAirHit = true;
+        properties.hitProperties.selfKnockback.Set(0f, 0f);
+
+        //properties.hitProperties.selfKnockback.Set(-3f, 0);
+        properties.hitProperties.damage = 450f;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel4_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel4_hitstun;
+
+        properties.landingLagTime = 6f / 60f;
+
+        properties.landCancelActive = false;
+    }
+
+    public override void OnHit(FighterMain fighter, FighterMain otherFighter)
+    {
+        base.OnHit(fighter, otherFighter);
+        fighter.OnHaltVerticalVelocity();
+        fighter.OnVelocityImpulseRelativeToSelf(new Vector2(0, 12));
     }
 }

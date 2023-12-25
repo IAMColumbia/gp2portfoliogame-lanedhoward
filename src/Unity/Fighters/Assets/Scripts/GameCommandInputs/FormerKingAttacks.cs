@@ -12,17 +12,17 @@ public static class FormerKingAttacks
     {
         List<GameAttack> attacks = new List<GameAttack>()
             {
-                new TwoA(),
-                new FiveA(),
-                new JumpA(),
-                new TwoB(),
-                new FiveB(),
-                new JumpB(),
-                new TwoC(),
+                new CrouchJab(),
+                new Jab(),
+                new JumpKnee(),
+                new CrouchKick(),
+                new FullPunch(),
+                new JumpDust(),
+                new Launcher(),
                 new Scepter1(),
                 new Scepter2(),
                 new Scepter3(),
-                new JumpC(),
+                new JumpSlice(),
                 new Vault(),
                 new VaultKick(),
                 new BackThrowWhiff(new GrabSuccess()),
@@ -48,7 +48,7 @@ public class Scepter1 : GameAttack
         conditions.Add(new GestureCondition(this, new NoGesture()));
         conditions.Add(new ButtonCondition(this, new AttackC()));
         conditions.Add(new GroundedCondition(this, true));
-        conditions.Add(new StanceCondition(this, FighterStance.Standing));
+        //conditions.Add(new StanceCondition(this, FighterStance.Standing));
         conditions.Add(new GatlingCondition(this));
 
         //whiffSound = fighter.whiffSounds[0];
@@ -85,7 +85,7 @@ public class Scepter2 : GameAttack
         conditions.Add(new GestureCondition(this, new NoGesture()));
         conditions.Add(new ButtonCondition(this, new AttackC()));
         conditions.Add(new GroundedCondition(this, true));
-        conditions.Add(new StanceCondition(this, FighterStance.Standing));
+        //conditions.Add(new StanceCondition(this, FighterStance.Standing));
         conditions.Add(new FollowUpCondition(this, typeof(Scepter1)));
 
         //whiffSound = fighter.whiffSounds[0];
@@ -122,7 +122,7 @@ public class Scepter3 : GameAttack
         conditions.Add(new GestureCondition(this, new NoGesture()));
         conditions.Add(new ButtonCondition(this, new AttackC()));
         conditions.Add(new GroundedCondition(this, true));
-        conditions.Add(new StanceCondition(this, FighterStance.Standing));
+        //conditions.Add(new StanceCondition(this, FighterStance.Standing));
         conditions.Add(new FollowUpCondition(this, typeof(Scepter2)));
 
         //whiffSound = fighter.whiffSounds[0];
@@ -199,7 +199,7 @@ public class VaultKick : GameAttack
         conditions.Add(new GestureCondition(this, new NoGesture()));
         conditions.Add(new ButtonCondition(this, new AttackA()));
         conditions.Add(new GroundedCondition(this, true));
-        conditions.Add(new StanceCondition(this, FighterStance.Standing));
+        //conditions.Add(new StanceCondition(this, FighterStance.Standing));
         conditions.Add(new FollowUpCondition(this, typeof(Vault)));
 
         //whiffSound = fighter.whiffSounds[0];

@@ -106,6 +106,17 @@ public class GameAttack
     }
 }
 
+public class GameAttackStartupVelocity : GameAttack
+{
+    protected Vector2 velocity;
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        fighter.OnVelocityImpulseRelativeToSelf(velocity, 0.5f);
+    }
+}
+
 public class GameAttackProperties
 {
     public enum AttackType

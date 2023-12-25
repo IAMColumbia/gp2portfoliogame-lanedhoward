@@ -32,7 +32,7 @@ public class Dashing : FighterState
 
         fighter.isStrikeInvulnerable = true;
 
-        fighter.OnVelocityImpulse(dashVelocity, fighter.dashMomentumMultiplier);
+        fighter.OnVelocityImpulseRelativeToSelf(dashVelocity, fighter.dashMomentumMultiplier);
 
         bool isFalling = UpdateFallingAnimationBool();
 

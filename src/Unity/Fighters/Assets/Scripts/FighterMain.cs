@@ -511,7 +511,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         fighterRigidbody.velocity = new Vector2(fighterRigidbody.velocity.x + v.x, fighterRigidbody.velocity.y + v.y);
     }
 
-    public void OnVelocityImpulse(Vector2 v, float momentumMultiplier)
+    public void OnVelocityImpulseRelativeToSelf(Vector2 v, float momentumMultiplier)
     {
         if (facingDirection == Directions.FacingDirection.LEFT)
         {

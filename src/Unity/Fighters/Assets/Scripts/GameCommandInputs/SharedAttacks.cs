@@ -507,6 +507,7 @@ public class AirGrabWhiff : ThrowAttack
         properties.AnimationName = "ThrowWhiff";
 
         properties.attackStance = FighterStance.Air;
+        properties.stanceToBeGrabbed = FighterStance.Air;
 
         properties.landingLagTime = 8f / 60f;
 
@@ -532,6 +533,7 @@ public class AirBackThrowWhiff : BackThrowAttack
         properties.AnimationName = "ThrowWhiff";
 
         properties.attackStance = FighterStance.Air;
+        properties.stanceToBeGrabbed = FighterStance.Air;
 
         properties.landingLagTime = 8f / 60f;
 

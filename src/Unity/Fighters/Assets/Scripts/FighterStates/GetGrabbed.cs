@@ -19,6 +19,8 @@ public class GetGrabbed : FighterState
 
         fighter.canAct = false;
         fighter.canBlock = false;
+        
+        fighter.isGettingGrabbed = false;
 
         canTech = true;
 

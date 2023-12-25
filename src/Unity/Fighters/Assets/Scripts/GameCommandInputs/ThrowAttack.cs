@@ -11,6 +11,7 @@ public class ThrowAttack : GameAttack
     public bool canBeTeched;
     public ThrowAttackSuccess success;
 
+
     public ThrowAttack(ThrowAttackSuccess _success) : base()
     {
         success = _success;
@@ -54,6 +55,7 @@ public class ThrowAttackSuccess : GameAttack
             && !fighter.otherFighterMain.isCurrentlyAttacking 
             && canBeTeched;
 
+        fighter.otherFighterMain.isGettingGrabbed = true;
         fighter.otherFighterMain.SwitchState(fighter.otherFighterMain.getGrabbed);
 
         if (!otherFighterCanTech)

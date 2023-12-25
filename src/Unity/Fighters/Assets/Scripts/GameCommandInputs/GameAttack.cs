@@ -135,6 +135,10 @@ public class GameAttackProperties
     public AttackType attackType;
     public FighterStance attackStance;
 
+    // grab-specific properties
+    public FighterStance stanceToBeGrabbed;
+    public bool canGrabHitstun;
+
     public bool landCancelStartup;
     public bool landCancelActive;
     public bool landCancelRecovery;
@@ -153,6 +157,9 @@ public class GameAttackProperties
         blockType = BlockType.Mid;
         attackType = AttackType.Light;
         attackStance = FighterStance.Standing;
+
+        stanceToBeGrabbed = FighterStance.Standing;
+        canGrabHitstun = false;
 
         landCancelStartup = true;
         landCancelActive = true;

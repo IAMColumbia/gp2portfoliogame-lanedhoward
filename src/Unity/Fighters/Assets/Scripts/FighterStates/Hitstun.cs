@@ -31,7 +31,7 @@ public class Hitstun : FighterState, IStunState
         fighter.canAct = false;
         fighter.canBlock = false;
 
-        fighter.isThrowInvulnerable = true;
+        //fighter.isThrowInvulnerable = true;
 
         wasEverAirborne = false;
         hardKD = false;
@@ -110,8 +110,11 @@ public class Hitstun : FighterState, IStunState
     public override void ExitState()
     {
         base.ExitState();
-        fighter.isThrowInvulnerable = false;
-        fighter.ExitHitstun();
+        //fighter.isThrowInvulnerable = false;
+        if (!fighter.isGettingGrabbed)
+        {
+            fighter.ExitHitstun();
+        }
         
     }
 

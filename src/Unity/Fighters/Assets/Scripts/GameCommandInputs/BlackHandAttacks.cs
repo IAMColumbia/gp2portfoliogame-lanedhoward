@@ -25,6 +25,7 @@ public static class BlackhandAttacks
                 new WaveCall(),
                 new Pegleg(),
                 new CannonGrabWhiff(new CannonGrabSuccess()),
+                new FishingGrabWhiff(new FishingAirSuccess()),
                 new BackThrowWhiff(new GrabSuccess()),
                 new GrabWhiff(new GrabSuccess()),
                 new AirBackThrowWhiff(new AirGrabSuccess()),
@@ -225,5 +226,62 @@ public class Pegleg : GameAttack
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel2_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel2_hitstun;
         properties.hitProperties.hardKD = true;
+    }
+}
+
+public class FishingGrabWhiff : ThrowAttack
+{
+    public FishingGrabWhiff(ThrowAttackSuccess _success) : base(_success)
+    {
+        conditions.Add(new GestureCondition(this, new QuarterCircleBack()));
+        conditions.Add(new ButtonCondition(this, new AttackD()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new GatlingCondition(this));
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[0];
+        whiffSoundIndex = 5;
+        hitSoundIndex = 1;
+
+        properties.AnimationName = "FishingGrab";
+
+        properties.stanceToBeGrabbed = FighterStance.Air;
+        properties.canGrabHitstun = true;
+
+        canBeTeched = false;
+        canTech = false;
+
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+    }
+}
+
+public class FishingAirSuccess : ThrowAttackSuccess
+{
+    public FishingAirSuccess() : base()
+    {
+        properties.AnimationName = "FishingAirSuccess";
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[2];
+        whiffSoundIndex = 1;
+        hitSoundIndex = 3;
+
+        properties.hitProperties.airKnockback.Set(-6f, -11f);
+        properties.hitProperties.selfKnockback.Set(0f, 0);
+        properties.hitProperties.damage = 500f;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
+        properties.hitProperties.hardKD = false;
+        properties.hitProperties.groundBounceOnAirHit = true;
+
     }
 }

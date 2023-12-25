@@ -142,6 +142,11 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public Combo currentCombo;
     public Transform fireballSpawnpoint;
     public Projectile fireball;
+    /// <summary>
+    /// Hack! set just before the state transition to GetGrabbed, so the current state knows they are getting grabbed
+    /// used to keep a combo going instead of "exiting hitstun" on comboable grabs
+    /// </summary>
+    public bool isGettingGrabbed;
 
     [Header("Wall Values")]
     public bool isAtTheWall = false;
@@ -717,8 +722,9 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     private HitReport GetThrownWith(GameAttackProperties properties)
     {
         if (isThrowInvulnerable) return HitReport.Whiff;
+        if (currentState is Hitstun && properties.canGrabHitstun == false) return HitReport.Whiff;
         if (isGrounded && currentState.jumpsEnabled && hasJumpInput) return HitReport.Whiff; 
-        if ((properties.attackStance == FighterStance.Air) != (currentStance == FighterStance.Air)) return HitReport.Whiff;
+        if ((properties.stanceToBeGrabbed == FighterStance.Air) != (currentStance == FighterStance.Air)) return HitReport.Whiff;
 
         if (isCurrentlyAttacking && currentAttack is ThrowAttack currentThrow)
         {

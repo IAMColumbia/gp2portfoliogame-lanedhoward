@@ -622,7 +622,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
                 
                 if (hurtbox.fighterParent.isAtTheWall)
                 {
-                    kb.x += pp.knockback.x / 3;
+                    kb.x += pp.knockback.x / 1.5f;
                 }
 
                 OnVelocityImpulseRelativeToOtherFighter(kb);

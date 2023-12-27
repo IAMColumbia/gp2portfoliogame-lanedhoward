@@ -845,7 +845,7 @@ public class Roundhouse : GameAttackStartupVelocity
         properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
         properties.hitProperties.wallBounce = true;
 
-        velocity = new Vector2(10.5f, 0f);
+        velocity = new Vector2(8.5f, 0f);
     }
 }
 
@@ -886,7 +886,7 @@ public class CrouchSweep : GameAttackStartupVelocity
         properties.hitProperties.hardKD = true;
         properties.hitProperties.groundBounceOnGroundedHit = false;
 
-        velocity = new Vector2(11f, 0f);
+        velocity = new Vector2(9f, 0f);
     }
 }
 

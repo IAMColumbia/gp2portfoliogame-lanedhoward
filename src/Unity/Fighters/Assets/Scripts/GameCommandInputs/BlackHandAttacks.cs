@@ -276,8 +276,8 @@ public class FishingAirSuccess : ThrowAttackSuccess
         hitSoundIndex = 3;
 
         properties.hitProperties.airKnockback.Set(-6f, -11f);
-        properties.hitProperties.selfKnockback.Set(0f, 0);
-        properties.hitProperties.damage = 500f;
+        properties.hitProperties.selfKnockback.Set(-5f, 0);
+        properties.hitProperties.damage = 250f;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
         properties.hitProperties.hardKD = false;

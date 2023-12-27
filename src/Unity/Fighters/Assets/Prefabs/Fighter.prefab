@@ -299,10 +299,14 @@ MonoBehaviour:
   timeManager: {fileID: 0}
   fireballSpawnpoint: {fileID: 8825922811738063820}
   fireball: {fileID: 0}
+  isGettingGrabbed: 0
+  isDead: 0
   isAtTheWall: 0
   wallDirection: 0
   wallKeepoutKnockback: {x: -5, y: 0}
   wallKeepoutMaxHeight: 3
+  maxDistanceFromWall: 3.5
+  Walls: []
   displayStocks: 0
   blockEverything: 0
   whiffSounds:

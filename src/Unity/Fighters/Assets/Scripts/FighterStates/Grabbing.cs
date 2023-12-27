@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Grabbing : FighterState
+public class Grabbing : FighterState, IAnimationEndState
 {
     public bool grabbing;
     public Grabbing(FighterMain fighterMain) : base(fighterMain)
@@ -46,4 +47,8 @@ public class Grabbing : FighterState
         fighter.isCurrentlyAttacking = false;
     }
 
+    public void OnForceAnimationEnded()
+    {
+        fighter.SwitchState(NeutralOrAir());
+    }
 }

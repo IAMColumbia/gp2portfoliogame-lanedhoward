@@ -257,6 +257,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -344}
   m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &177127792 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6446215207683566577, guid: 6d93ef2357f87de4bb5c39c7c086c54e, type: 3}
+  m_PrefabInstance: {fileID: 894274754}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &276978363
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,6 +1076,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &882806211 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6446215207683566577, guid: 6d93ef2357f87de4bb5c39c7c086c54e, type: 3}
+  m_PrefabInstance: {fileID: 6446215207165015296}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &894274754
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2050,6 +2060,9 @@ MonoBehaviour:
   - {fileID: 7786603277603833846}
   - {fileID: 4635153623004487647}
   - {fileID: 70767246696955406}
+  Walls:
+  - {fileID: 882806211}
+  - {fileID: 177127792}
   player1spawn: {fileID: 1462191732}
   player1: {fileID: 0}
   player1Healthbar: {fileID: 1184261825}

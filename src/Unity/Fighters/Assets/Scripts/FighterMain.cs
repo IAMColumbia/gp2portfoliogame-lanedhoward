@@ -147,12 +147,21 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     /// used to keep a combo going instead of "exiting hitstun" on comboable grabs
     /// </summary>
     public bool isGettingGrabbed;
+    public bool isDead;
 
     [Header("Wall Values")]
     public bool isAtTheWall = false;
     public Directions.FacingDirection wallDirection = Directions.FacingDirection.RIGHT;
     public Vector2 wallKeepoutKnockback;
     public float wallKeepoutMaxHeight;
+    /// <summary>
+    /// max distance from walls to still be counted as isAtTheWall;
+    /// </summary>
+    public float maxDistanceFromWall;
+    /// <summary>
+    /// Array of walls. set by gamemanager
+    /// </summary>
+    public GameObject[] Walls;
 
     [Header("Stocks")]
     public bool displayStocks = false;
@@ -188,10 +197,10 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         base.Awake();
 
         timeManager = FindObjectOfType<TimeManager>();
-        
+
         //PlayerInput pi = GetComponent<PlayerInput>();
 
-        
+        isDead = false;
 
         fighterRigidbody = GetComponent<Rigidbody2D>();
         fighterCollider = GetComponent<Collider2D>();
@@ -207,6 +216,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         fighterAnimationEvents.FighterAnimationVelocityImpulse += OnVelocityImpulseRelativeToSelf;
         fighterAnimationEvents.FighterAttackActiveStarted += OnAttackActive;
         fighterAnimationEvents.FighterAttackRecoveryStarted += OnAttackRecovery;
+        fighterAnimationEvents.FighterForceAnimationEnded += OnForceAnimationEnded;
 
         groundMask = LayerMask.GetMask("Ground");
 
@@ -356,6 +366,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     {
         CheckForGroundedness();
 
+        CheckForWalledness();
+
         HandleInputs();
 
         DoCurrentState();
@@ -429,6 +441,38 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         
     }
 
+    public void CheckForWalledness()
+    {
+        foreach (GameObject wall in Walls)
+        {
+            if (Mathf.Abs(wall.transform.position.x - transform.position.x) <= maxDistanceFromWall)
+            {
+                if (isAtTheWall == false)
+                {
+                    isAtTheWall = true;
+
+                    if (wall.transform.position.x > transform.position.x)
+                    {
+                        wallDirection = Directions.FacingDirection.RIGHT;
+                    }
+                    else
+                    {
+                        wallDirection = Directions.FacingDirection.LEFT;
+                    }
+
+                    if (currentState is Hitstun h)
+                    {
+                        h.CheckForWallbounce();
+                    }
+                }
+            }
+            else
+            {
+                isAtTheWall = false;
+            }
+        }
+    }
+
     public void SwitchState(FighterState newState)
     {
         if (currentState != null && newState.GetType() != currentState.GetType())
@@ -499,6 +543,14 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         {
             currentAttackState = CurrentAttackState.Recovery;
             currentAttack.OnRecovery(this);
+        }
+    }
+
+    protected void OnForceAnimationEnded()
+    {
+        if (currentState is IAnimationEndState state)
+        {
+            state.OnForceAnimationEnded();
         }
     }
 
@@ -713,7 +765,9 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         hs.SetWallBounce(pp.wallBounce);
         if (pp.wallBounce && isAtTheWall)
         {
-            hs.CheckForWallbounce();
+            CheckForWalledness(); // this will check for wallbounce if this is the first frame they are walled
+
+            hs.CheckForWallbounce(); // this will check for wallbounce if theyve been walled. but won't wallbounce if the first one did
         }
         hs.SetGroundBounce(groundBounce);
         return HitReport.Hit;
@@ -899,6 +953,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         }
     }
 
+    /*
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("WallTrigger"))
@@ -925,13 +980,13 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     {
         if (collision.CompareTag("WallTrigger"))
         {
-            if (fighterRigidbody.simulated)
+            //if (fighterRigidbody.simulated)
             {
                 isAtTheWall = false;
             }
         }
     }
-
+    */
     private void SetGravity()
     {
         if (currentCombo != null)

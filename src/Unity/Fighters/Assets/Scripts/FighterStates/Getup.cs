@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Getup : FighterState
+public class Getup : FighterState, IAnimationEndState
 {
 
 
@@ -41,5 +41,10 @@ public class Getup : FighterState
 
         fighter.isStrikeInvulnerable = false;
         fighter.isThrowInvulnerable = false;
+    }
+
+    public void OnForceAnimationEnded()
+    {
+        fighter.SwitchState(fighter.neutral);
     }
 }

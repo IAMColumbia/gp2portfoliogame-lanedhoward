@@ -152,6 +152,12 @@ public class Hitstun : FighterState, IStunState
     {
         fighter.SwitchState(fighter.knockdown);
         float kdTime = hardKD ? fighter.hardKnockdownTime : fighter.softKnockdownTime;
+
+        if (fighter.isDead)
+        {
+            kdTime = 500000000f;
+        }
+
         ((IStunState)fighter.currentState).SetStun(kdTime);
     }
 

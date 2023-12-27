@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\LaneLibrary\RandomMethods.cs" />
     <Compile Include="Assets\Scripts\CharacterModules\BulletTrainModule.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Knockdown.cs" />
+    <Compile Include="Assets\Scripts\FighterStates\IAnimationEndState.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Grabbing.cs" />
     <Compile Include="Assets\Scripts\System\CheckForUpdates.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Neutral.cs" />

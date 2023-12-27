@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackState : FighterState
+public class AttackState : FighterState, IAnimationEndState
 {
     private bool wasEverAirborne;
 
@@ -109,5 +109,11 @@ public class AttackState : FighterState
         {
             AllowLanding();
         }
+    }
+
+    public void OnForceAnimationEnded()
+    {
+        fighter.SwitchState(NeutralOrAir());
+        fighter.currentAttack.OnAnimationEnd(fighter);
     }
 }

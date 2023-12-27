@@ -204,7 +204,7 @@ public class Gun5Shot : GunStanceAttack
         properties.hitProperties.knockback.Set(-9f, 9f);
         properties.hitProperties.airKnockback.Set(-8f, 9f);
         properties.hitProperties.selfKnockback.Set(-3f, 0);
-        properties.hitProperties.damage = 350;
+        properties.hitProperties.damage = 325;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
 
@@ -257,7 +257,7 @@ public class Gun2Shot : GunStanceAttack
         properties.hitProperties.knockback.Set(-1.5f, 14f);
         properties.hitProperties.airKnockback.Set(-2f, 13f);
         properties.hitProperties.selfKnockback.Set(-3f, 0);
-        properties.hitProperties.damage = 350;
+        properties.hitProperties.damage = 325;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
 
@@ -310,7 +310,7 @@ public class Gun4Shot : GunStanceAttack
         properties.hitProperties.knockback.Set(-10f, 0f);
         properties.hitProperties.airKnockback.Set(-6f, 10f);
         properties.hitProperties.selfKnockback.Set(-3f, 0);
-        properties.hitProperties.damage = 350;
+        properties.hitProperties.damage = 325;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
 
@@ -363,7 +363,7 @@ public class Gun6Shot : GunStanceAttack
         properties.hitProperties.knockback.Set(-6f, 14f);
         properties.hitProperties.airKnockback.Set(-6f, 12f);
         properties.hitProperties.selfKnockback.Set(-3f, 0);
-        properties.hitProperties.damage = 350;
+        properties.hitProperties.damage = 325;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
 

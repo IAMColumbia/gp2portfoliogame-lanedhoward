@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] stages;
 
+    public GameObject[] Walls;
+
     [Header("Player 1")]
     public Transform player1spawn;
     public FighterMain player1;
@@ -252,9 +254,10 @@ public class GameManager : MonoBehaviour
 
     private void DeathEffect(FighterMain deadFighter)
     {
-        deadFighter.SwitchState(deadFighter.knockdown);
-        var hs = (Knockdown)deadFighter.currentState;
-        hs.SetStun(50000);
+        deadFighter.isDead = true;
+        //deadFighter.SwitchState(deadFighter.knockdown);
+        //var hs = (Knockdown)deadFighter.currentState;
+        //hs.SetStun(50000);
 
         gameActive = false;
 
@@ -415,6 +418,7 @@ public class GameManager : MonoBehaviour
         player1StocksDisplay.InitializeStocksDisplay(player1);
         player1StocksDisplay.SetMaterial(configManager.playerConfigs[0].Character.materials[configManager.playerConfigs[0].CharacterMaterialIndex]);
         player1.PausePressed += (sender, e) => PauseGame();
+        player1.Walls = Walls;
 
         player2.otherFighter = player1.gameObject;
         player2.otherFighterMain = player1;
@@ -424,6 +428,7 @@ public class GameManager : MonoBehaviour
         player2StocksDisplay.InitializeStocksDisplay(player2);
         player2StocksDisplay.SetMaterial(configManager.playerConfigs[1].Character.materials[configManager.playerConfigs[1].CharacterMaterialIndex]);
         player2.PausePressed += (sender, e) => PauseGame();
+        player2.Walls = Walls;
     }
 
     public void PauseGame()

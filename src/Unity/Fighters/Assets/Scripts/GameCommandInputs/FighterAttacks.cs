@@ -382,7 +382,7 @@ public class EnhancedPeoplesUppercut : PeoplesUppercut
         properties.hitProperties.stunTime = AttackSettings.attackLevel4_hitstun;
         properties.hitProperties.hardKD = true;
 
-        velocity = new Vector2(8f, 0);
+        velocity = new Vector2(6f, 0);
     }
 
     public override void OnStartup(FighterMain fighter)

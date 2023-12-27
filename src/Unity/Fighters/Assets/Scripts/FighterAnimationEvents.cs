@@ -10,6 +10,7 @@ public class FighterAnimationEvents : MonoBehaviour
     public Action<Vector2> FighterAnimationVelocityImpulse;
     public Action FighterAnimationHaltVerticalVelocity;
     public Action FighterAnimationHaltHorizontalVelocity;
+    public Action FighterForceAnimationEnded;
 
 
     public void CallAttackActiveEvent()
@@ -45,5 +46,10 @@ public class FighterAnimationEvents : MonoBehaviour
     public void HaltHorizontalVelocity()
     {
         FighterAnimationHaltHorizontalVelocity?.Invoke();
+    }
+
+    public void CallAnimationEnded()
+    {
+        FighterForceAnimationEnded?.Invoke();
     }
 }

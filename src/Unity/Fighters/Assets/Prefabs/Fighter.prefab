@@ -305,7 +305,7 @@ MonoBehaviour:
   wallDirection: 0
   wallKeepoutKnockback: {x: -5, y: 0}
   wallKeepoutMaxHeight: 3
-  maxDistanceFromWall: 3.5
+  maxDistanceFromWall: 3.55
   Walls: []
   displayStocks: 0
   blockEverything: 0

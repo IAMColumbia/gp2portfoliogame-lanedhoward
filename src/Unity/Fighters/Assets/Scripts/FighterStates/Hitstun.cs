@@ -97,7 +97,17 @@ public class Hitstun : FighterState, IStunState
 
         if (!wasEverAirborne)
         {
-            TimeTransitionToNextState(hitstun, NeutralOrAir());
+            if (TimeTransitionToNextState(hitstun, NeutralOrAir()))
+            {
+                if (fighter.isDead)
+                {
+                    // go to knockdown if you are killed by a hit that leaves you in grounded hitstun
+                    fighter.SwitchState(fighter.knockdown);
+                    float kdTime = 500000000f;
+
+                    ((IStunState)fighter.currentState).SetStun(kdTime);
+                }
+            }
         }
 
         if (fighter.fighterRigidbody.velocity.y != 0)

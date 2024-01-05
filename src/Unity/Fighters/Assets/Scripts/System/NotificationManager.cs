@@ -5,11 +5,15 @@ using UnityEngine;
 public class NotificationManager : MonoBehaviour
 {
 
+    public Color32 activeColor;
+    public Color32 exitColor;
+
     public float notificationTimeMax = 2f;
+    public float fadeTime = 1f;
 
     public void SetupNotificationManager(FighterMain fighter)
     {
-        fighter.SendNotification += Fighter_SendNotification;
+        fighter.SentNotification += Fighter_SendNotification;
     }
 
     private void Fighter_SendNotification(object sender, string e)
@@ -18,7 +22,7 @@ public class NotificationManager : MonoBehaviour
         Notification notification = lastChild.GetComponent<Notification>();
         if (notification != null)
         {
-            notification.EnableText(e, notificationTimeMax);
+            notification.EnableText(e, notificationTimeMax, activeColor, exitColor, fadeTime);
         }
     }
 }

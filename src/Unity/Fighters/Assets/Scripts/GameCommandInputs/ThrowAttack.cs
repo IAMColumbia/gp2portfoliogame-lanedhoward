@@ -55,6 +55,13 @@ public class ThrowAttackSuccess : GameAttack
             && !fighter.otherFighterMain.isCurrentlyAttacking 
             && canBeTeched;
 
+        bool chicagoPunish = false;
+
+        if (fighter.otherFighterMain.isCurrentlyAttacking && fighter.otherFighterMain.currentAttackState == CurrentAttackState.Recovery)
+        {
+            chicagoPunish = true;
+        }
+
         fighter.otherFighterMain.isGettingGrabbed = true;
         fighter.otherFighterMain.SwitchState(fighter.otherFighterMain.getGrabbed);
 
@@ -63,6 +70,19 @@ public class ThrowAttackSuccess : GameAttack
             if (fighter.otherFighterMain.currentState is GetGrabbed gg)
             {
                 gg.canTech = false;
+
+                if (canBeTeched)
+                {
+                    // if the throw was techable but they can't tech now, it is a punish
+                    if (chicagoPunish)
+                    {
+                        fighter.SendNotification("Chicago Punish!!!!");
+                    }
+                    else
+                    {
+                        fighter.SendNotification("Punish!!");
+                    }
+                }
             }
         }
     }

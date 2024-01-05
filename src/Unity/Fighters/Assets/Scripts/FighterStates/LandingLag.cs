@@ -24,6 +24,14 @@ public class LandingLag : FighterState, IStunState
 
         fighter.fighterAnimator.StartAnimation("LandingLag");
 
+        fighter.isCurrentlyAttacking = true;
+        fighter.currentAttackState = CurrentAttackState.Recovery;
+    }
+
+    public override void ExitState()
+    {
+        base.ExitState();
+        fighter.isCurrentlyAttacking = false;
     }
 
     public override void DoState()

@@ -191,7 +191,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public event EventHandler LeftHitstun;
     public event EventHandler<int> StocksUpdated;
     public event EventHandler PausePressed;
-    public event EventHandler<string> SendNotification;
+    public event EventHandler<string> SentNotification;
 
     public override void Awake()
     {
@@ -435,7 +435,6 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         SwitchState(attacking);
         currentAttack.OnStartup(this);
 
-        SendNotification?.Invoke(this, $"{currentAttack.properties.AnimationName}!!");
     }
 
     public void CheckForGroundedness()
@@ -446,13 +445,16 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
     public void CheckForWalledness()
     {
+        bool shouldBeWalled = false;
         foreach (GameObject wall in Walls)
         {
             if (Mathf.Abs(wall.transform.position.x - transform.position.x) <= maxDistanceFromWall)
             {
+                shouldBeWalled = true;
+                
                 if (isAtTheWall == false)
                 {
-                    isAtTheWall = true;
+                    // first frame of being walled
 
                     if (wall.transform.position.x > transform.position.x)
                     {
@@ -471,9 +473,11 @@ public class FighterMain : SoundPlayer, IHitboxResponder
             }
             else
             {
-                isAtTheWall = false;
+                //isAtTheWall = false;
             }
         }
+
+        isAtTheWall = shouldBeWalled;
     }
 
     public void SwitchState(FighterState newState)
@@ -704,6 +708,15 @@ public class FighterMain : SoundPlayer, IHitboxResponder
                     return (HitReport)attackReport;
                 }
             }
+
+            if (currentAttackState == CurrentAttackState.Recovery)
+            {
+                otherFighterMain.SendNotification("Punish!!");
+            }
+            else
+            {
+                otherFighterMain.SendNotification("Counter Hit!!!");
+            }
         }
 
         AutoTurnaround();
@@ -796,7 +809,6 @@ public class FighterMain : SoundPlayer, IHitboxResponder
                     }
                 }
             }
-
         }
 
         return HitReport.Hit;
@@ -924,6 +936,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         Hitstun hs = (Hitstun)currentState;
         hs.SetStun(throwTechHitstun);
         OnVelocityImpulseRelativeToOtherFighter(throwTechKnockback);
+        SendNotification("Throw Tech!!");
     }
 
     public void ThrowFlipPlayers()
@@ -941,6 +954,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         timeManager.DoHitStop(parryHitstop);
         PlaySound(parrySound);
         PlayParryVFX();
+        SendNotification("Parry!!!");
     }
 
     private void PushAwayFromWall()
@@ -1074,5 +1088,10 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     {
         currentStocks = newStocks;
         StocksUpdated?.Invoke(this, newStocks);
+    }
+
+    public void SendNotification(string notification)
+    {
+        SentNotification?.Invoke(this, notification);
     }
 }

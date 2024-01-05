@@ -913,12 +913,12 @@ public class JumpStomp : GameAttack
 
         properties.blockProperties.knockback.Set(-4f, 0);
         properties.blockProperties.airKnockback.Set(-4, 5f);
-        properties.blockProperties.selfKnockback.Set(-3f, 0);
+        properties.blockProperties.selfKnockback.Set(0, 0);
         properties.blockProperties.damage = 0f;
         properties.blockProperties.hitstopTime = AttackSettings.attackLevel4_blockhitstop;
         properties.blockProperties.stunTime = AttackSettings.attackLevel4_blockstun;
 
-        properties.hitProperties.knockback.Set(-3f, 14f);
+        properties.hitProperties.knockback.Set(-3f, 15f);
         //properties.hitProperties.airKnockback.Set(-2f, 11f);
         properties.hitProperties.airKnockback.Set(-2f, -11f);
         properties.hitProperties.groundBounceOnAirHit = true;
@@ -937,6 +937,13 @@ public class JumpStomp : GameAttack
     public override void OnHit(FighterMain fighter, FighterMain otherFighter)
     {
         base.OnHit(fighter, otherFighter);
+        fighter.OnHaltVerticalVelocity();
+        fighter.OnVelocityImpulseRelativeToSelf(new Vector2(0, 12));
+    }
+
+    public override void OnBlock(FighterMain fighter, FighterMain otherFighter)
+    {
+        base.OnBlock(fighter, otherFighter);
         fighter.OnHaltVerticalVelocity();
         fighter.OnVelocityImpulseRelativeToSelf(new Vector2(0, 12));
     }

@@ -44,7 +44,7 @@ public class ControlsManager : MonoBehaviour
 
     public string GetRebindsKey()
     {
-        return $"Rebinds-{playerSetupController.PlayerIndex}-{playerInput.devices[0].name}";
+        return $"Rebinds-{playerInput.devices[0].name}";
     }
 
     public void LoadControls()

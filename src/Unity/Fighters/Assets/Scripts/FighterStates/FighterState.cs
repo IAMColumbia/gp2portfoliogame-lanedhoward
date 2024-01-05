@@ -169,12 +169,14 @@ public abstract class FighterState
         return false;
     }
 
-    protected void TimeTransitionToNextState(float stateTimerMax, FighterState nextState)
+    protected bool TimeTransitionToNextState(float stateTimerMax, FighterState nextState)
     {
         if (CheckStateTimer(stateTimerMax))
         {
             fighter.SwitchState(nextState);
+            return true;
         }
+        return false;
     }
 
     protected bool CheckStateTimer(float stateTimerMax)

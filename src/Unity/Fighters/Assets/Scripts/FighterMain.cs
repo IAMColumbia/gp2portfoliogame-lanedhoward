@@ -191,6 +191,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public event EventHandler LeftHitstun;
     public event EventHandler<int> StocksUpdated;
     public event EventHandler PausePressed;
+    public event EventHandler<string> SendNotification;
 
     public override void Awake()
     {
@@ -433,6 +434,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         currentAttackState = CurrentAttackState.Startup;
         SwitchState(attacking);
         currentAttack.OnStartup(this);
+
+        SendNotification?.Invoke(this, $"{currentAttack.properties.AnimationName}!!");
     }
 
     public void CheckForGroundedness()

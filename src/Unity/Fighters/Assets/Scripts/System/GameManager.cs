@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public Healthbar player1Healthbar;
     public ComboUI player1ComboUI;
     public StocksDisplay player1StocksDisplay;
+    public NotificationManager player1NotificationManager;
     public int player1lives;
     public int player1GameWins;
 
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
     public Healthbar player2Healthbar;
     public ComboUI player2ComboUI;
     public StocksDisplay player2StocksDisplay;
+    public NotificationManager player2NotificationManager;
     public int player2lives;
     public int player2GameWins;
 
@@ -419,6 +421,7 @@ public class GameManager : MonoBehaviour
         player1StocksDisplay.SetMaterial(configManager.playerConfigs[0].Character.materials[configManager.playerConfigs[0].CharacterMaterialIndex]);
         player1.PausePressed += (sender, e) => PauseGame();
         player1.Walls = Walls;
+        player1NotificationManager.SetupNotificationManager(player1);
 
         player2.otherFighter = player1.gameObject;
         player2.otherFighterMain = player1;
@@ -429,6 +432,7 @@ public class GameManager : MonoBehaviour
         player2StocksDisplay.SetMaterial(configManager.playerConfigs[1].Character.materials[configManager.playerConfigs[1].CharacterMaterialIndex]);
         player2.PausePressed += (sender, e) => PauseGame();
         player2.Walls = Walls;
+        player2NotificationManager.SetupNotificationManager(player2);
     }
 
     public void PauseGame()

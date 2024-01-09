@@ -87,6 +87,8 @@ public class CannonGrabSuccess : ThrowAttackSuccess
         whiffSoundIndex = -1;
         hitSoundIndex = 3;
 
+        properties.attackType = GameAttackProperties.AttackType.Special;
+
         properties.hitProperties.knockback.Set(-20f, 11f);
         properties.hitProperties.selfKnockback.Set(0f, 0);
         properties.hitProperties.damage = 1300f;
@@ -274,6 +276,8 @@ public class FishingAirSuccess : ThrowAttackSuccess
         //hitSound = fighter.hitSounds[2];
         whiffSoundIndex = 1;
         hitSoundIndex = 3;
+
+        properties.attackType = GameAttackProperties.AttackType.Heavy;
 
         properties.hitProperties.airKnockback.Set(-6f, -11f);
         properties.hitProperties.selfKnockback.Set(-5f, 0);

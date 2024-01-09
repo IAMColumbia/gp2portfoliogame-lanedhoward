@@ -480,6 +480,8 @@ public class GrabSuccess : ThrowAttackSuccess
         whiffSoundIndex = -1;
         hitSoundIndex = 2;
 
+        properties.attackType = GameAttackProperties.AttackType.Heavy;
+
         properties.hitProperties.knockback.Set(-5f, 10f);
         properties.hitProperties.selfKnockback.Set(0f, 0);
         properties.hitProperties.damage = 500f;
@@ -532,6 +534,8 @@ public class AirBackThrowWhiff : BackThrowAttack
 
         properties.AnimationName = "ThrowWhiff";
 
+        
+
         properties.attackStance = FighterStance.Air;
         properties.stanceToBeGrabbed = FighterStance.Air;
 
@@ -552,6 +556,8 @@ public class AirGrabSuccess : ThrowAttackSuccess
         //hitSound = fighter.hitSounds[2];
         whiffSoundIndex = -1;
         hitSoundIndex = 2;
+
+        properties.attackType = GameAttackProperties.AttackType.Heavy;
 
         properties.hitProperties.airKnockback.Set(-2f, 10f);
         properties.hitProperties.selfKnockback.Set(0f, 0);
@@ -722,7 +728,7 @@ public class ForwardWavedash : GameAttack
         conditions.Add(new GestureCondition(this, new DownForwardGesture()));
         conditions.Add(new ButtonCondition(this, new DashMacro()));
         conditions.Add(new GroundedCondition(this, true));
-        conditions.Add(new NoGatlingCondition(this));
+        conditions.Add(new GatlingCondition(this));
 
         whiffSoundIndex = 0;
         hitSoundIndex = 0;
@@ -730,6 +736,8 @@ public class ForwardWavedash : GameAttack
         wavedashVelocity = new Vector2(14f, 0f);
 
         properties.AnimationName = "WavedashForward";
+
+        properties.attackType = GameAttackProperties.AttackType.Special;
     }
 
     public override void OnStartup(FighterMain fighter)
@@ -770,7 +778,7 @@ public class BackWavedash : GameAttack
         conditions.Add(new GestureCondition(this, new DownBackGesture()));
         conditions.Add(new ButtonCondition(this, new DashMacro()));
         conditions.Add(new GroundedCondition(this, true));
-        conditions.Add(new NoGatlingCondition(this));
+        conditions.Add(new GatlingCondition(this));
 
         whiffSoundIndex = 0;
         hitSoundIndex = 0;
@@ -778,6 +786,7 @@ public class BackWavedash : GameAttack
         wavedashVelocity = new Vector2(-14f, 0f);
 
         properties.AnimationName = "WavedashBack";
+        properties.attackType = GameAttackProperties.AttackType.Special;
     }
     public override void OnStartup(FighterMain fighter)
     {

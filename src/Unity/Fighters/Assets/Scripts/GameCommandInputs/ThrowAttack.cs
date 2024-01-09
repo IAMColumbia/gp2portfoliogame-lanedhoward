@@ -103,6 +103,7 @@ public class ThrowAttackSuccess : GameAttack
         }
 
         fighter.otherFighterMain.GetHitWith(this.properties);
+        fighter.PlayHitVFX(fighter.otherFighter.transform.position + (Vector3)fighter.otherFighterMain.centerOffset, properties);
     }
 
     public virtual void OnThrowTeched(FighterMain fighter, FighterMain otherFighter)

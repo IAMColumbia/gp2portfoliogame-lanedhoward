@@ -53,6 +53,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public float groundCheckXDistance;
     public float groundCheckYDistance;
 
+    public Vector2 centerOffset;
+
     public List<GameAttack> fighterAttacks;
 
     public FighterState currentState;
@@ -186,6 +188,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public ParticleSystem blockParticles;
     public ParticleSystem parryParticles;
     public ParticleSystem wavedashParticles;
+    public ParticleSystem grabHitParticles;
+    public ParticleSystem throwTechParticles;
 
     public event EventHandler GotHit;
     public event EventHandler LeftHitstun;
@@ -655,13 +659,13 @@ public class FighterMain : SoundPlayer, IHitboxResponder
                 }
                 if (report == HitReport.Hit)
                 {
-                    currentAttack.OnHit(this, hurtbox.fighterParent);
                     pp = currentAttack.properties.hitProperties;
 
                     if (hitPosition != null)
                     {
                         PlayHitVFX(hitPosition, currentAttack.properties);
                     }
+                    currentAttack.OnHit(this, hurtbox.fighterParent);
 
                 }
                 else
@@ -937,6 +941,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         hs.SetStun(throwTechHitstun);
         OnVelocityImpulseRelativeToOtherFighter(throwTechKnockback);
         SendNotification("Throw Tech!!");
+        throwTechParticles.Play();
     }
 
     public void ThrowFlipPlayers()
@@ -1053,6 +1058,11 @@ public class FighterMain : SoundPlayer, IHitboxResponder
             case GameAttackProperties.AttackType.Super:
                 particles = heavyHitParticles;
                 break;
+        }
+
+        if (attackProperties.blockType == GameAttackProperties.BlockType.Throw)
+        {
+            particles = grabHitParticles;
         }
 
         particles.transform.position = hitLocation;

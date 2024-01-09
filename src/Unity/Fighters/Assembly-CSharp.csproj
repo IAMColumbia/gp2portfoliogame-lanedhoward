@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CharacterModules\BlackhandModule.cs" />
     <Compile Include="Assets\Scripts\CharacterModules\FighterModule.cs" />
+    <Compile Include="Assets\Scripts\System\Notification.cs" />
     <Compile Include="Assets\Scripts\LaneLibrary\RandomMethods.cs" />
     <Compile Include="Assets\Scripts\CharacterModules\BulletTrainModule.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Knockdown.cs" />
@@ -148,10 +149,9 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\HostPackageComparer.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttack.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
+    <Compile Include="Assets\Scripts\System\NotificationManager.cs" />
     <Compile Include="Assets\Scripts\System\ControlsPanel.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\System\NotificationManager.cs" />
-    <Compile Include="Assets\Scripts\System\Notification.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

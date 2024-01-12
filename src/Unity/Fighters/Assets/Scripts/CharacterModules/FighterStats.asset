@@ -50,24 +50,26 @@ MonoBehaviour:
   MovesList: '## The People''s Champ!!
 
 
-    #### The Red Wave:
-
-    Fireball
+    #### The Red Wave (Fireball)
 
     236
     + Medium
 
+    #### The People''s Uppercut (Reversal)
 
-    #### The People''s Uppercut:
+    623 + Heavy
 
-    Reversal uppercut
+    ####
+    The Heartland Hammer (Overhead)
 
-    623 +
-    Heavy
+    214 + Medium
 
+    #### The Griddy
 
-    #### The Heartland Hammer:
+    214
+    + Light OR 236 + Light
 
-    Overhead
+    Cancels into itself, or other specials for enhanced
+    properties.
 
-    214 + Medium'
+    (Simple inputs allowed for cancels)'

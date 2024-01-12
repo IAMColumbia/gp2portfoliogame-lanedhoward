@@ -44,23 +44,15 @@ MonoBehaviour:
   displayStocks: 1
   startingStocks: 0
   stocksIcon: {fileID: 21300000, guid: 3fda01695e8cfcc4cb1d24b2cd40e780, type: 3}
-  MovesList: '### Dr. Beesly / Mrs. Hive
+  MovesList: '### Mrs. Hive
 
-    work in progress!!!!!
+    Syringe Thrust: 41236 + Medium
 
-
-    #### Dr.
-    Beesly Moves
-
-    Thrust: 41236 + Medium
-
-    Pogo: 22 + Medium
+    Syringe Pogo:
+    22 + Medium
 
 
-    #### Mrs.
-    Hive Moves
-
-    Beehive Summon: 236 + Light. Grants 3 Honey.
+    Beehive Summon: 236 + Light. Grants 4 Honey.
 
     Beehive Detonate:
     214 + Light. Resets Honey.

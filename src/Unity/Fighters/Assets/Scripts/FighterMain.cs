@@ -190,6 +190,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public ParticleSystem wavedashParticles;
     public ParticleSystem grabHitParticles;
     public ParticleSystem throwTechParticles;
+    public ParticleSystem griddyParticles;
 
     public event EventHandler GotHit;
     public event EventHandler LeftHitstun;
@@ -358,6 +359,11 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         if (fireball != null)
         {
             fireball.SetMaterial(mat);
+        }
+
+        if (griddyParticles != null)
+        {
+            griddyParticles.GetComponent<ParticleSystemRenderer>().material = mat;
         }
         
     }
@@ -1086,6 +1092,12 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
     public void PlayWavedashVFX()
     {
+        wavedashParticles.Play();
+    }
+
+    public void PlayGriddyVFX()
+    {
+        griddyParticles.Play();
         wavedashParticles.Play();
     }
 

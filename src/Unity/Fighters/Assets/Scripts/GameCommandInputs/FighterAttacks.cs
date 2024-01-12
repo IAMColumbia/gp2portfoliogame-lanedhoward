@@ -388,7 +388,7 @@ public class EnhancedPeoplesUppercut : PeoplesUppercut
     public override void OnStartup(FighterMain fighter)
     {
         base.OnStartup(fighter);
-        fighter.PlayWavedashVFX();
+        fighter.PlayGriddyVFX();
 
         fighter.OnVelocityImpulseRelativeToSelf(velocity);
     }
@@ -431,7 +431,7 @@ public class EnhancedOverhead : Overhead
     public override void OnStartup(FighterMain fighter)
     {
         base.OnStartup(fighter);
-        fighter.PlayWavedashVFX();
+        fighter.PlayGriddyVFX();
 
         fighter.OnVelocityImpulseRelativeToSelf(velocity);
     }
@@ -487,7 +487,7 @@ public class EnhancedFireballStomp : FireballStomp
     public override void OnStartup(FighterMain fighter)
     {
         base.OnStartup(fighter);
-        fighter.PlayWavedashVFX();
+        fighter.PlayGriddyVFX();
 
         fighter.OnVelocityImpulseRelativeToSelf(velocity);
     }

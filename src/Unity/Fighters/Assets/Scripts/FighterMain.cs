@@ -804,6 +804,10 @@ public class FighterMain : SoundPlayer, IHitboxResponder
             hs.CheckForWallbounce(); // this will check for wallbounce if theyve been walled. but won't wallbounce if the first one did
         }
         hs.SetGroundBounce(groundBounce);
+        if (pp.playGroundBounceParticlesOnGroundedHit && isGrounded)
+        {
+            DoGroundBounceFX();
+        }
         return HitReport.Hit;
     }
 
@@ -905,8 +909,13 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         WallBounced?.Invoke(this, new WallBounceEventArgs() { position = (Vector2)transform.position + centerOffset, wallDirection = this.wallDirection });
     }
 
-    public void InvokeGroundBounceEvent()
+    /// <summary>
+    /// Hit stop, sound, and particles of ground bouce. actual bounce logic is in Hitstun
+    /// </summary>
+    public void DoGroundBounceFX()
     {
+        timeManager.DoHitStop(bounceHitstop);
+        PlaySound(bounceSound);
         GroundBounced?.Invoke(this, transform.position);
     }
 

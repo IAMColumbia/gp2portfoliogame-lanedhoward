@@ -931,6 +931,7 @@ public class JumpStomp : GameAttack
         //properties.hitProperties.airKnockback.Set(-2f, 11f);
         properties.hitProperties.airKnockback.Set(-2f, -11f);
         properties.hitProperties.groundBounceOnAirHit = true;
+        properties.hitProperties.playGroundBounceParticlesOnGroundedHit = true;
         properties.hitProperties.selfKnockback.Set(0f, 0f);
 
         //properties.hitProperties.selfKnockback.Set(-3f, 0);

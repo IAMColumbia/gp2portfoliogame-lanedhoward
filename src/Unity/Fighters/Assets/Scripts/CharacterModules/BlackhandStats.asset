@@ -55,9 +55,9 @@ MonoBehaviour:
     236
     + Grab
 
-    #### Rope Grab:  (Anti-air grab)
+    #### Harpoon Grab:  (Anti-air grab)
 
-    236 + Grab
+    214 + Grab
 
     #### Shark
     Call: (Shark anti-air)

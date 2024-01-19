@@ -142,7 +142,8 @@ public class Overhead : GameAttack
         properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
         properties.hitProperties.hardKD = false;
         properties.hitProperties.groundBounceOnAirHit = true;
-        
+        properties.hitProperties.playGroundBounceParticlesOnGroundedHit = true;
+
     }
 }
 
@@ -424,6 +425,7 @@ public class EnhancedOverhead : Overhead
         properties.hitProperties.stunTime = AttackSettings.attackLevel4_hitstun;
         properties.hitProperties.hardKD = false;
         properties.hitProperties.groundBounceOnAirHit = true;
+        properties.hitProperties.playGroundBounceParticlesOnGroundedHit = true;
 
         velocity = new Vector2(9f, 0);
     }

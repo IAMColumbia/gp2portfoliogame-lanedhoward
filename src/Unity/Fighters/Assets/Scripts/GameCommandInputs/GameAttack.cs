@@ -196,6 +196,7 @@ public class GameAttackPropertiesProperties
     public bool wallBounce;
     public bool groundBounceOnAirHit;
     public bool groundBounceOnGroundedHit;
+    public bool playGroundBounceParticlesOnGroundedHit;
 
     public GameAttackPropertiesProperties()
     {
@@ -209,6 +210,7 @@ public class GameAttackPropertiesProperties
         wallBounce = false;
         groundBounceOnAirHit = false;
         groundBounceOnGroundedHit = false;
+        playGroundBounceParticlesOnGroundedHit = false;
     }
 }
 

@@ -260,7 +260,7 @@ MonoBehaviour:
   MaxHealth: 4000
   CurrentHealth: 0
   JuggleMomentumMultiplier: 0.2
-  bounceHitstop: 0
+  bounceHitstop: 0.07
   softKnockdownTime: 0.1
   hardKnockdownTime: 0.4
   throwTechWindow: 0.16666667

@@ -198,6 +198,14 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public event EventHandler PausePressed;
     public event EventHandler<string> SentNotification;
 
+    public static event EventHandler<Vector2> GroundBounced;
+    public class WallBounceEventArgs : EventArgs
+    {
+        public Vector2 position;
+        public Directions.FacingDirection wallDirection;
+    }
+    public static event EventHandler<WallBounceEventArgs> WallBounced;
+
     public override void Awake()
     {
         base.Awake();
@@ -894,6 +902,12 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         timeManager.DoHitStop(bounceHitstop);
         PlaySound(bounceSound);
         fighterRigidbody.velocity = new Vector2(-fighterRigidbody.velocity.x, fighterRigidbody.velocity.y);
+        WallBounced?.Invoke(this, new WallBounceEventArgs() { position = (Vector2)transform.position + centerOffset, wallDirection = this.wallDirection });
+    }
+
+    public void InvokeGroundBounceEvent()
+    {
+        GroundBounced?.Invoke(this, transform.position);
     }
 
     public void ExitHitstun()

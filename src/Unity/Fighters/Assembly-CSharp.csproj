@@ -152,6 +152,8 @@
     <Compile Include="Assets\Scripts\System\NotificationManager.cs" />
     <Compile Include="Assets\Scripts\System\ControlsPanel.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
+    <Compile Include="Assets\Scripts\WallBounceReceiver.cs" />
+    <Compile Include="Assets\Scripts\GroundBounceReceiver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

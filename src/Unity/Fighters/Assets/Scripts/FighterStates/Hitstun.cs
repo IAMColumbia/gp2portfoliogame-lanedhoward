@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static FighterMain;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Hitstun : FighterState, IStunState
 {
@@ -134,13 +136,13 @@ public class Hitstun : FighterState, IStunState
         {
             //fighter.fighterRigidbody.velocity = new Vector2(fighter.fighterRigidbody.velocity.x, -fighter.fighterRigidbody.velocity.y);
 
-            Vector2 groundBounceVelocity = fighter.fighterRigidbody.velocity;
-            //if (Mathf.Abs(groundBounceVelocity.y) <= 1f)
-            {
-                groundBounceVelocity.y = lastVelocity.y;
-            }
+            //Vector2 groundBounceVelocity = fighter.fighterRigidbody.velocity;
+            ////if (Mathf.Abs(groundBounceVelocity.y) <= 1f)
+            //{
+            //    groundBounceVelocity.y = lastVelocity.y;
+            //}
 
-            groundBounceVelocity.y *= -1;
+            //groundBounceVelocity.y *= -1;
 
 
             // use velocity from the frame before, because current velocity might already be 0 from colliding with ground
@@ -149,6 +151,8 @@ public class Hitstun : FighterState, IStunState
 
             fighter.timeManager.DoHitStop(fighter.bounceHitstop);
             fighter.PlaySound(fighter.bounceSound);
+
+            fighter.InvokeGroundBounceEvent();
 
             //stateTimer = 0f;
         }

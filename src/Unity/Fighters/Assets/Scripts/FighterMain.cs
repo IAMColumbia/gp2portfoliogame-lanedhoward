@@ -741,6 +741,15 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
         // decide if we blocked
         bool blocked = DidWeBlock(properties);
+        
+        if (blocked)
+        {
+            if (properties.blockProperties.damage >= CurrentHealth)
+            {
+                //die to chip damage
+                blocked = false;
+            }
+        }
 
         GameAttackPropertiesProperties pp = blocked ? properties.blockProperties : properties.hitProperties;
 

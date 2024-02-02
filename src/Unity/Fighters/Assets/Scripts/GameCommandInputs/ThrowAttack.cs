@@ -101,9 +101,16 @@ public class ThrowAttackSuccess : GameAttack
         {
             grabbing.grabbing = false;
         }
-
+        float enemyStartHp = fighter.otherFighterMain.CurrentHealth;
         fighter.otherFighterMain.GetHitWith(this.properties);
-        fighter.PlayHitVFX(fighter.otherFighter.transform.position + (Vector3)fighter.otherFighterMain.centerOffset, properties);
+        
+        Vector3 hitlocation = fighter.otherFighter.transform.position + (Vector3)fighter.otherFighterMain.centerOffset;
+        fighter.PlayHitVFX(hitlocation, properties);
+
+        if (enemyStartHp > 0 && fighter.otherFighterMain.CurrentHealth <= 0)
+        {
+            fighter.PlayKillHitVFX(hitlocation, properties);
+        }
     }
 
     public virtual void OnThrowTeched(FighterMain fighter, FighterMain otherFighter)

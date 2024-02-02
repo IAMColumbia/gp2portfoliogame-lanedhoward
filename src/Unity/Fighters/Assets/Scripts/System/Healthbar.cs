@@ -8,13 +8,18 @@ public class Healthbar : MonoBehaviour
 {
     public float percent;
     public Image healthbar;
+    public Image drainbar;
     public float minPercent;
     public float gutsPower;
+    public float drainRate;
+
+    private bool draining;
 
     public TextMeshProUGUI nametag;
     public Image portrait;
 
     public Image[] hearts;
+
 
     // Update is called once per frame
     void Update()
@@ -22,6 +27,21 @@ public class Healthbar : MonoBehaviour
         if (healthbar != null)
         {
             healthbar.fillAmount = percent;
+            
+            if (drainbar != null)
+            {
+                if (draining)
+                {
+                    if (drainbar.fillAmount > percent)
+                    {
+                        drainbar.fillAmount -= drainRate * Time.deltaTime;
+                        if (drainbar.fillAmount < percent)
+                        {
+                            drainbar.fillAmount = percent;
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -66,5 +86,25 @@ public class Healthbar : MonoBehaviour
         {
             hearts[0].gameObject.SetActive(false);
         }
+    }
+
+    public void InitializeEvents(FighterMain fighter)
+    {
+        healthbar.fillAmount = 1;
+        drainbar.fillAmount = 1;
+
+        fighter.GotHit += Fighter_GotHit;
+        fighter.LeftHitstun += Fighter_LeftHitstun;
+    }
+
+    private void Fighter_LeftHitstun(object sender, System.EventArgs e)
+    {
+        // might need a cooldown
+        draining = true;
+    }
+
+    private void Fighter_GotHit(object sender, System.EventArgs e)
+    {
+        draining = false;
     }
 }

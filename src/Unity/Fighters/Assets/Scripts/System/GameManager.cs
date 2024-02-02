@@ -132,6 +132,9 @@ public class GameManager : MonoBehaviour
         player1Healthbar.UpdateHearts(player1lives);
         player2Healthbar.UpdateHearts(player2lives);
 
+        player1Healthbar.InitializeEvents(player1);
+        player2Healthbar.InitializeEvents(player2);
+
         targetGroup.AddMember(player1.transform, 1, 1);
         targetGroup.AddMember(player2.transform, 1, 1);
 

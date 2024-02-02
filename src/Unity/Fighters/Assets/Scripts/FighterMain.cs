@@ -191,6 +191,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public ParticleSystem grabHitParticles;
     public ParticleSystem throwTechParticles;
     public ParticleSystem griddyParticles;
+    public ParticleSystem deathHitParticles;
 
     public event EventHandler GotHit;
     public event EventHandler LeftHitstun;
@@ -650,6 +651,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         {
             if (hurtbox.fighterParent == this) return false;
 
+            float enemyStartHealth = hurtbox.fighterParent.CurrentHealth;
+
             HitReport report = hurtbox.fighterParent.GetHitWith(currentAttack.properties);
 
             //react to the hit report ???????
@@ -678,6 +681,11 @@ public class FighterMain : SoundPlayer, IHitboxResponder
                     if (hitPosition != null)
                     {
                         PlayHitVFX(hitPosition, currentAttack.properties);
+                        if (hurtbox.fighterParent.CurrentHealth <= 0 && enemyStartHealth > 0)
+                        {
+                            // died from this attack
+                            PlayKillHitVFX(hitPosition, currentAttack.properties);
+                        }
                     }
                     currentAttack.OnHit(this, hurtbox.fighterParent);
 
@@ -1112,6 +1120,16 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         ParticleSystem particles;
 
         particles = blockParticles;
+
+        particles.transform.position = hitLocation;
+        particles.Play();
+    }
+
+    public void PlayKillHitVFX(Vector3 hitLocation, GameAttackProperties attackProperties)
+    {
+        ParticleSystem particles;
+
+        particles = deathHitParticles;
 
         particles.transform.position = hitLocation;
         particles.Play();

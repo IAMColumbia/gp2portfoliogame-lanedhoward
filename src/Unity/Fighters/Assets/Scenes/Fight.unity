@@ -3995,6 +3995,10 @@ PrefabInstance:
       propertyPath: m_FillOrigin
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4942292171499250280, guid: 98317d97a5d38934099afb97336c77db, type: 3}
+      propertyPath: m_FillOrigin
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5757377330217133233, guid: 98317d97a5d38934099afb97336c77db, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 5

@@ -10,6 +10,7 @@ public class ThrowAttack : GameAttack
     public bool canTech;
     public bool canBeTeched;
     public ThrowAttackSuccess success;
+    public bool canChicagoPunish;
 
 
     public ThrowAttack(ThrowAttackSuccess _success) : base()
@@ -18,6 +19,7 @@ public class ThrowAttack : GameAttack
 
         canTech = true;
         canBeTeched = true;
+        canChicagoPunish = true;
 
         properties.attackType = GameAttackProperties.AttackType.Special;
         properties.blockType = GameAttackProperties.BlockType.Throw;
@@ -28,6 +30,7 @@ public class ThrowAttack : GameAttack
         base.OnHit(fighter, otherFighter);
 
         success.canBeTeched = canBeTeched;
+        success.canChicagoPunish = canChicagoPunish;
         fighter.SetCurrentAttack(success);
 
 
@@ -38,11 +41,13 @@ public class ThrowAttackSuccess : GameAttack
 {
     public bool flipOnTech;
     public bool canBeTeched;
+    public bool canChicagoPunish;
 
     public ThrowAttackSuccess()
     {
         flipOnTech = false;
         canBeTeched = false;
+        canChicagoPunish = false;
     }
 
     public override void OnStartup(FighterMain fighter)
@@ -57,9 +62,12 @@ public class ThrowAttackSuccess : GameAttack
 
         bool chicagoPunish = false;
 
-        if (fighter.otherFighterMain.isCurrentlyAttacking && fighter.otherFighterMain.currentAttackState == CurrentAttackState.Recovery)
+        if (canChicagoPunish)
         {
-            chicagoPunish = true;
+            if (fighter.otherFighterMain.isCurrentlyAttacking && fighter.otherFighterMain.currentAttackState == CurrentAttackState.Recovery)
+            {
+                chicagoPunish = true;
+            }
         }
 
         fighter.otherFighterMain.isGettingGrabbed = true;

@@ -446,6 +446,8 @@ public class GrabWhiff : ThrowAttack
         hitSoundIndex = 0;
 
         properties.AnimationName = "ThrowWhiff";
+
+        canChicagoPunish = true;
     }
 }
 
@@ -464,6 +466,8 @@ public class BackThrowWhiff : BackThrowAttack
         hitSoundIndex = 0;
 
         properties.AnimationName = "ThrowWhiff";
+
+        canChicagoPunish = true;
     }
 
 

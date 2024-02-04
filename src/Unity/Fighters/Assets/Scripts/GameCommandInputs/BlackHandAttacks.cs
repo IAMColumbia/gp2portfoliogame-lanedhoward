@@ -60,7 +60,7 @@ public class CannonGrabWhiff : ThrowAttack
 
         canBeTeched = false;
         canTech = false;
-
+        canChicagoPunish = false;
     }
 
     public override void OnStartup(FighterMain fighter)
@@ -252,7 +252,7 @@ public class FishingGrabWhiff : ThrowAttack
 
         canBeTeched = false;
         canTech = false;
-
+        canChicagoPunish = false;
     }
 
     public override void OnStartup(FighterMain fighter)

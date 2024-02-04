@@ -416,7 +416,7 @@ public class GameManager : MonoBehaviour
                         // todo
                         break;
                     case GameMode.AIvsAI:
-                        // todo
+                        fm.InjectInputReceiver(new CpuInputReceiver(fm, null, null));
                         break;
                 }
 

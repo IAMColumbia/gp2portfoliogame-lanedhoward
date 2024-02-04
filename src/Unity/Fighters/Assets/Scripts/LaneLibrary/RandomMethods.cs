@@ -19,6 +19,14 @@ namespace LaneLibrary
 
         }
 
+        public static T Choose<T>(List<T> choices)
+        {
+            int max = choices.Count;
+            int rand = RANDOM.Next(max); //get a random index
+            return choices[rand];
+
+        }
+
         public static T ChooseWeighted<T>(Dictionary<T, int> choices)
         {
             /// Pass in a dictionary with Keys: choices and Values: weights

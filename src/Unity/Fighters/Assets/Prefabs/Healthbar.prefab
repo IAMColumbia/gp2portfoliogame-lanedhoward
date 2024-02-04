@@ -749,7 +749,7 @@ MonoBehaviour:
   drainbar: {fileID: 4942292171499250280}
   minPercent: 0.005
   gutsPower: 1.1
-  drainRate: 0.1
+  drainRate: 0.3
   nametag: {fileID: 6479479014584800117}
   portrait: {fileID: 3683277647646659919}
   hearts:

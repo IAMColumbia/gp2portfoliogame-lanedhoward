@@ -7,6 +7,14 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.TextCore.Text;
 
+public enum GameMode
+{
+    TwoPlayer,
+    Training,
+    SinglePlayer,
+    AIvsAI
+}
+
 public class PlayerConfigurationManager : MonoBehaviour
 {
     public List<PlayerConfiguration> playerConfigs;
@@ -15,6 +23,8 @@ public class PlayerConfigurationManager : MonoBehaviour
 
     public GameObject configPrefab;
     public CharacterModule defaultCharacter;
+
+    public GameMode gameMode;
 
     public static PlayerConfigurationManager Instance { get; private set; }
 
@@ -34,6 +44,7 @@ public class PlayerConfigurationManager : MonoBehaviour
             playerConfigs = new List<PlayerConfiguration>();
             ControlsPanel.ControlsOpened += ControlsPanel_ControlsOpened;
             ControlsPanel.ControlsClosed += ControlsPanel_ControlsClosed;
+            gameMode = GameMode.TwoPlayer;
         }
     }
 
@@ -119,6 +130,7 @@ public class PlayerConfigurationManager : MonoBehaviour
 
             SetCharacter(1, defaultCharacter);
             SetReady(1);
+            gameMode = GameMode.Training;
         }
     }
 
@@ -129,6 +141,7 @@ public class PlayerConfigurationManager : MonoBehaviour
         {
             Destroy(pi.gameObject);
         }
+        gameMode = GameMode.TwoPlayer;
         SceneManager.LoadScene("PlayerSetup");
     }
 

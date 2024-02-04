@@ -397,7 +397,28 @@ public class GameManager : MonoBehaviour
 
                 var fm = fighter.GetComponent<FighterMain>();
 
-                fm.InitializePlayerInput(configManager.playerConfigs[i].Input);
+                switch (configManager.gameMode)
+                {
+                    case GameMode.TwoPlayer:
+                        fm.InitializePlayerInput(configManager.playerConfigs[i].Input);
+                        break;
+                    case GameMode.Training:
+                        if (i == 0)
+                        {
+                            fm.InitializePlayerInput(configManager.playerConfigs[i].Input);
+                        }
+                        else
+                        {
+                            fm.InjectInputReceiver(new TrainingInputReceiver(fm, null, null));
+                        }
+                        break;
+                    case GameMode.SinglePlayer:
+                        // todo
+                        break;
+                    case GameMode.AIvsAI:
+                        // todo
+                        break;
+                }
 
                 fm.characterModule = configManager.playerConfigs[i].Character;
                 fm.InitializeCharacterModule();

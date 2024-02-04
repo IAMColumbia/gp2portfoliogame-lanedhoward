@@ -353,6 +353,11 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         inputHost.PausePressed += InputHost_PausePressed;
     }
 
+    public void InjectInputReceiver(FighterInputReceiver receiver)
+    {
+        inputReceiver = receiver;
+    }
+
     private void InputHost_PausePressed(object sender, EventArgs e)
     {
         PausePressed?.Invoke(this, e);

@@ -39,12 +39,12 @@ public class FighterInputReceiver : IInputReceiver
         bufferedAttackTimeMax = 0.2f; // TODO: Convert this into "frames" like the input reader uses
     }
 
-    public void SetPossibleGestures(List<IReadableGesture> possibleGestures)
+    public virtual void SetPossibleGestures(List<IReadableGesture> possibleGestures)
     {
         inputReader.SetPossibleGestures(possibleGestures);
     }
 
-    public bool CheckForInputs()
+    public virtual bool CheckForInputs()
     {
         ManageBuffer();
 
@@ -60,8 +60,8 @@ public class FighterInputReceiver : IInputReceiver
         
         // then we'll handle gestures and buttons and such
 
-        if (package.buttons.Count == 0)
-        {
+        //if (package.buttons.Count == 0)
+        //{
             // no buttons currently pressed, so we check if there were any buttons pressed in the buffered input
             // we do this so that you can press your button a little bit before completing a gesture
             // and have it register still
@@ -81,7 +81,7 @@ public class FighterInputReceiver : IInputReceiver
             }
             */
             
-        }
+        //}
 
 
         if (package.buttons.Count > 0 || package.gestures.Any(g => g is IStandaloneGesture))
@@ -145,7 +145,7 @@ public class FighterInputReceiver : IInputReceiver
         return null;
     }
 
-    private GameAttack ParseAttackStandalone(IReadPackage package)
+    protected GameAttack ParseAttackStandalone(IReadPackage package)
     {
         List<IStandaloneGesture> standalones = package.gestures.Where(g => g is IStandaloneGesture).Cast<IStandaloneGesture>().ToList();
 
@@ -186,12 +186,12 @@ public class FighterInputReceiver : IInputReceiver
         return null;
     }
 
-    public void UpdateFacingDirection()
+    public virtual void UpdateFacingDirection()
     {
         inputReader.ChangeFacingDirection(fighter.facingDirection);
     }
 
-    public Directions.Direction GetDirection()
+    public virtual Directions.Direction GetDirection()
     {
         return Directions.GetDirectionFacingForward(this.UpDown, this.LeftRight, fighter.facingDirection);
     }

@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CharacterModules\BlackhandModule.cs" />
     <Compile Include="Assets\Scripts\CharacterModules\FighterModule.cs" />
+    <Compile Include="Assets\Scripts\CpuInputReceiver.cs" />
     <Compile Include="Assets\Scripts\System\Notification.cs" />
     <Compile Include="Assets\Scripts\LaneLibrary\RandomMethods.cs" />
     <Compile Include="Assets\Scripts\CharacterModules\BulletTrainModule.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Assets\Scripts\FighterStates\Hitstun.cs" />
     <Compile Include="Assets\Scripts\System\PlayerConfigurationManager.cs" />
     <Compile Include="Assets\Scripts\System\PlayerSetupController.cs" />
+    <Compile Include="Assets\Scripts\TrainingInputReceiver.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IInputHost.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Neutraldashing.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\MrsHiveAttacks.cs" />
@@ -154,8 +156,6 @@
     <Compile Include="Assets\Scripts\System\ControlsPanel.cs" />
     <Compile Include="Assets\Scripts\WallBounceReceiver.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\TrainingInputReceiver.cs" />
-    <Compile Include="Assets\Scripts\CpuInputReceiver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

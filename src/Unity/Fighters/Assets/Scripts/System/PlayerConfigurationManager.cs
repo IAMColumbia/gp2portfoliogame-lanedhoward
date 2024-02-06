@@ -125,6 +125,7 @@ public class PlayerConfigurationManager : MonoBehaviour
         {
             var pi = PlayerInput.Instantiate(configPrefab);
             HandlePlayerJoin(pi);
+            playerConfigs[1].IsRealPlayer = false;
 
             StartForced?.Invoke(this, EventArgs.Empty);
 
@@ -187,10 +188,13 @@ public class PlayerConfiguration
 
     public int GameWins;
 
+    public bool IsRealPlayer;
+
     public PlayerConfiguration(PlayerInput pi)
     {
         PlayerIndex = pi.playerIndex;
         Input = pi;
         CharacterMaterialIndex = PlayerIndex;
+        IsRealPlayer = true;
     }
 }

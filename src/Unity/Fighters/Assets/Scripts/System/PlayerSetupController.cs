@@ -29,7 +29,10 @@ public class PlayerSetupController : MonoBehaviour
     {
         PlayerIndex = pi.playerIndex;
         titleText.SetText("Player " + (PlayerIndex + 1).ToString());
-        controllerText.SetText(pi.devices[0].name);
+        if (pi.devices.Count >= 1)
+        {
+            controllerText.SetText(pi.devices[0].name);
+        }
         ignoreInputTime = Time.time + ignoreInputTime;
         
     }

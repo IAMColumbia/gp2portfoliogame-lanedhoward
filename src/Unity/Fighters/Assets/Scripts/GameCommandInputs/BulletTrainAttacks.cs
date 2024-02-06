@@ -176,7 +176,7 @@ public class Gun5Shot : GunStanceAttack
 {
     public Gun5Shot(GameAttack stance) : base(stance)
     {
-        conditions.Add(new GestureCondition(this, new NeutralGesture()));
+        conditions.Add(new GestureCondition(this, new NoGesture()));
         conditions.Add(new ButtonCondition(this, new AttackC()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new LogicalOrCondition(this,

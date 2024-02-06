@@ -44,12 +44,18 @@ public class ControlsManager : MonoBehaviour
 
     public string GetRebindsKey()
     {
+        if (playerInput.devices.Count < 1)
+        {
+            return null;
+        }
         return $"Rebinds-{playerInput.devices[0].name}";
     }
 
     public void LoadControls()
     {
+        if (PlayerConfigurationManager.Instance.playerConfigs[playerSetupController.PlayerIndex].IsRealPlayer == false) return;
         playerInput = PlayerConfigurationManager.Instance.GetPlayerInput(playerSetupController.PlayerIndex);
+        if (playerInput == null) return;
         ResetAllBindings();
         string rebinds = PlayerPrefs.GetString(GetRebindsKey());
         if (!string.IsNullOrEmpty(rebinds))
@@ -61,6 +67,7 @@ public class ControlsManager : MonoBehaviour
 
     public void SaveControls()
     {
+        if (playerInput == null) return;
         string rebinds = playerInput.actions.SaveBindingOverridesAsJson();
         PlayerPrefs.SetString(GetRebindsKey(), rebinds);
     }

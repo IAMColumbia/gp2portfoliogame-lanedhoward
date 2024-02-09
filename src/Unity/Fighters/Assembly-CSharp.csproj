@@ -102,6 +102,7 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\IReadPackage.cs" />
     <Compile Include="Assets\Scripts\SoundPlayer.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\Combo.cs" />
+    <Compile Include="Assets\Scripts\System\Cursor.cs" />
     <Compile Include="Assets\Scripts\System\ControlRebinder.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\FormerKingAttacks.cs" />
     <Compile Include="Assets\Scripts\Hitboxes\Beehive.cs" />
@@ -156,7 +157,6 @@
     <Compile Include="Assets\Scripts\System\ControlsPanel.cs" />
     <Compile Include="Assets\Scripts\WallBounceReceiver.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\System\Cursor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

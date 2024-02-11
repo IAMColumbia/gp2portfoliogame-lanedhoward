@@ -12,7 +12,7 @@ public class SpawnPlayerSetupMenu : MonoBehaviour
     public GameObject cursorPrefab;
     private void Awake()
     {
-        /*
+        //*
         var rootMenu = GameObject.Find("Menus");
         if (rootMenu != null)
         {
@@ -20,7 +20,7 @@ public class SpawnPlayerSetupMenu : MonoBehaviour
             input.uiInputModule = menu.GetComponentInChildren<InputSystemUIInputModule>();
             menu.GetComponent<PlayerSetupController>().SetPlayer(input);
         }
-        */
+        /*/
 
         var rootMenu = GameObject.Find("UICanvas");
         if (rootMenu != null)
@@ -30,5 +30,6 @@ public class SpawnPlayerSetupMenu : MonoBehaviour
             cursor.GetComponent<Cursor>().SetPlayerInput(input);
             
         }
+        //*/
     }
 }

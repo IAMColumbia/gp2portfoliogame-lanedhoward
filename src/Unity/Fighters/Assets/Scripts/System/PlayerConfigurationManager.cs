@@ -131,7 +131,7 @@ public class PlayerConfigurationManager : MonoBehaviour
 
             SetCharacter(1, defaultCharacter);
             SetReady(1);
-            gameMode = GameMode.AIvsAI;
+            gameMode = GameMode.Training;
         }
     }
 

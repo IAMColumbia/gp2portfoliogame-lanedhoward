@@ -77,4 +77,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSetupMenuPrefab: {fileID: 4987103255364720731, guid: f7831122ce5327d44bfa7888b8ccbed2, type: 3}
   input: {fileID: 1999572197476824916}
-  cursorPrefab: {fileID: 6296219954891676319, guid: b0bbc0eec8c5f784987e279af7349e33, type: 3}
+  cursorPrefab: {fileID: 30630842635748416, guid: b0bbc0eec8c5f784987e279af7349e33, type: 3}

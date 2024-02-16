@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -11,10 +12,10 @@ public class Cursor : MonoBehaviour
 
     public float moveSpeed = 10f;
 
+    public TextMeshPro PlayerText;
+
     private GraphicRaycaster raycaster;
     private PointerEventData pointerEventData;
-
-    private RectTransform canvasTransform;
 
     public void SetGraphicRaycaster(GraphicRaycaster raycaster)
     {
@@ -24,12 +25,11 @@ public class Cursor : MonoBehaviour
     public void SetPlayerInput(PlayerInput pi)
     {
         playerInput = pi;
+        PlayerText.text = $"P{playerInput.playerIndex + 1}";
     }
 
     private void Awake()
     {
-        //raycaster = GetComponentInParent<GraphicRaycaster>();
-        //canvasTransform = transform.parent.GetComponent<RectTransform>();
         pointerEventData = new PointerEventData(null);
     }
 
@@ -47,17 +47,26 @@ public class Cursor : MonoBehaviour
                 transform.position += move * moveSpeed * Time.deltaTime;
             }
 
-            //pointerEventData.position = WorldToScreenSpace(transform.position, Camera.main, canvasTransform);//Camera.main.WorldToScreenPoint(transform.position);
-            pointerEventData.position = Camera.main.WorldToScreenPoint(transform.position);
 
-            //pointerEventData.position = Vector2.zero;
-            List<RaycastResult> results = new();
-            raycaster.Raycast(pointerEventData, results);
-
-            if (results.Count > 0)
+            if (playerInput.actions["AttackA"].WasPressedThisFrame())
             {
-                Debug.Log(results[0].gameObject.name);
+                //pointerEventData.position = WorldToScreenSpace(transform.position, Camera.main, canvasTransform);//Camera.main.WorldToScreenPoint(transform.position);
+                pointerEventData.position = Camera.main.WorldToScreenPoint(transform.position);
+
+                //pointerEventData.position = Vector2.zero;
+                List<RaycastResult> results = new();
+                raycaster.Raycast(pointerEventData, results);
+
+                if (results.Count > 0)
+                {
+                    foreach (var r in results)
+                    {
+                        CursorButton button = r.gameObject.GetComponent<CursorButton>();
+                        if (button != null) button.Interact(this);
+                    }
+                }
             }
+
         }
     }
 

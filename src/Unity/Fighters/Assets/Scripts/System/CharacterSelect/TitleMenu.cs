@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Show the title screen timeline, hide the title once a player joins, show "P2 press button to join" until p2 joins
+/// </summary>
 public class TitleMenu : MonoBehaviour
 {
     public GameObject titles;

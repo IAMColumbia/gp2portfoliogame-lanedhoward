@@ -9,10 +9,10 @@ public class SpawnPlayerSetupMenu : MonoBehaviour
 {
     public GameObject playerSetupMenuPrefab;
     public PlayerInput input;
-    public GameObject cursorPrefab;
+    public Cursor cursorPrefab;
     private void Awake()
     {
-        //*
+        /*
         var rootMenu = GameObject.Find("Menus");
         if (rootMenu != null)
         {
@@ -25,9 +25,9 @@ public class SpawnPlayerSetupMenu : MonoBehaviour
         var rootMenu = GameObject.Find("UICanvas");
         if (rootMenu != null)
         {
-            var cursor = Instantiate(cursorPrefab, Vector3.zero, Quaternion.identity);
-            cursor.GetComponent<Cursor>().SetGraphicRaycaster(rootMenu.GetComponent<GraphicRaycaster>());
-            cursor.GetComponent<Cursor>().SetPlayerInput(input);
+            Cursor cursor = Instantiate<Cursor>(cursorPrefab, Vector3.zero, Quaternion.identity);
+            cursor.SetGraphicRaycaster(rootMenu.GetComponent<GraphicRaycaster>());
+            cursor.SetPlayerInput(input);
             
         }
         //*/

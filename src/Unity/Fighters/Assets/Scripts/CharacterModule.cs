@@ -9,6 +9,8 @@ public class CharacterModule : ScriptableObject
 {
     [Header("Cosmetics")]
     public string CharacterName;
+    public string CharacterDescription;
+    public Sprite Portrait;
     public Material[] materials;
     public AudioClip song;
 

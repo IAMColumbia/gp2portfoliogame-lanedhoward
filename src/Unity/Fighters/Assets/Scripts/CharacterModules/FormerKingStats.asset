@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: FormerKingStats
   m_EditorClassIdentifier: 
   CharacterName: Former King
+  CharacterDescription: END OF HIS REIGN
+  Portrait: {fileID: 21300000, guid: 398ae98fa2496c44cb7ad3fcf75a4d6b, type: 3}
   materials:
   - {fileID: 2100000, guid: a8fe130ad622eff45859d2b1ad830bc9, type: 2}
   song: {fileID: 8300000, guid: c5e9ac1d8bf6993469052b8d9e616281, type: 3}

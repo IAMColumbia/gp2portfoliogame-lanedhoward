@@ -28,4 +28,20 @@ public class CharacterButton : MonoBehaviour
         }
     }
 
+    public void PressCharacterButton(Cursor cursor)
+    {
+        if (cursor.token == null) return;
+
+        CharacterModule c = character;
+
+        if (IsRandom)
+        {
+            c = LaneLibrary.RandomMethods.Choose(allCharacters);
+        }
+
+        cursor.token.slot.SetCharacter(c);
+
+    }
+
+
 }

@@ -29,6 +29,8 @@ public class Cursor : MonoBehaviour
 
     public Canvas canvas;
 
+    public SpriteRenderer tokenSprite;
+
     public void SetGraphicRaycaster(GraphicRaycaster raycaster)
     {
         this.raycaster = raycaster;
@@ -46,9 +48,11 @@ public class Cursor : MonoBehaviour
 
     private void Start()
     {
-        //Hopefully the GamePlayerManager should know about the PI by now, so we should be able to set our HumanPlayerConfig
+        //GamePlayerManager should know about the PI by now, so we should be able to set our HumanPlayerConfig
         GamePlayerManager.Instance.SetUpCursor(this);
         uiManager.SetUpCursor(this);
+
+        PickUpToken(gamePlayerSlot.token);
 
         if (PlayerText != null)
         {
@@ -108,12 +112,13 @@ public class Cursor : MonoBehaviour
         }
     }
 
-    public void SetToken(Token t)
+    public void PickUpToken(Token t)
     {
         if (token != null) return;
         token = t;
         token.gameObject.SetActive(false);
-        // tokenSprite.SetActive(true);
+        tokenSprite.color = t.color;
+        tokenSprite.gameObject.SetActive(true);
 
     }
 
@@ -122,5 +127,6 @@ public class Cursor : MonoBehaviour
         token.rect.anchoredPosition = canvas.WorldToCanvasPosition(transform.position);
         token.gameObject.SetActive(true);
         token = null;
+        tokenSprite.gameObject.SetActive(false);
     }
 }

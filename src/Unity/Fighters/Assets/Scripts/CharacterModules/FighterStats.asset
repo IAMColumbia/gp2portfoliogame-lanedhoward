@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: FighterStats
   m_EditorClassIdentifier: 
   CharacterName: The People's Champ!!
+  CharacterDescription: HOMETOWN HERO
+  Portrait: {fileID: 21300000, guid: 398ae98fa2496c44cb7ad3fcf75a4d6b, type: 3}
   materials:
   - {fileID: 2100000, guid: 6a17db4d6a8b85b41ad8c5ff2dbdad69, type: 2}
   - {fileID: 2100000, guid: e5408ccd2d0d01b4face6752dc82e411, type: 2}

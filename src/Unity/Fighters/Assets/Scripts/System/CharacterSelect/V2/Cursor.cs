@@ -1,5 +1,7 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -23,6 +25,10 @@ public class Cursor : MonoBehaviour
 
     public CharacterSelectUIManager uiManager;
 
+    public Token token;
+
+    public Canvas canvas;
+
     public void SetGraphicRaycaster(GraphicRaycaster raycaster)
     {
         this.raycaster = raycaster;
@@ -44,7 +50,10 @@ public class Cursor : MonoBehaviour
         GamePlayerManager.Instance.SetUpCursor(this);
         uiManager.SetUpCursor(this);
 
-        PlayerText.text = $"P{gamePlayerSlot.PlayerSlotIndex + 1}";
+        if (PlayerText != null)
+        {
+            PlayerText.text = $"P{gamePlayerSlot.PlayerSlotIndex + 1}";
+        }
     }
 
     // Update is called once per frame
@@ -58,27 +67,60 @@ public class Cursor : MonoBehaviour
 
             if (move != Vector3.zero)
             {
-                transform.position += move * moveSpeed * Time.deltaTime;
+                transform.position += moveSpeed * Time.deltaTime * move;
             }
 
 
-            if (playerInput.actions["AttackA"].WasPressedThisFrame())
+            if (playerInput.actions["Submit"].WasPressedThisFrame())
             {
+                bool dropToken = true;
+
                 pointerEventData.position = Camera.main.WorldToScreenPoint(transform.position);
 
                 List<RaycastResult> results = new();
                 raycaster.Raycast(pointerEventData, results);
 
+
                 if (results.Count > 0)
                 {
+                    List<CursorButton> buttons = new List<CursorButton>();
+                    
                     foreach (var r in results)
                     {
                         CursorButton button = r.gameObject.GetComponent<CursorButton>();
-                        if (button != null) button.Interact(this);
+                        if (button != null) buttons.Add(button);
+                        //if (button != null) button.Interact(this);
+                    }
+
+                    if (buttons.Count > 0)
+                    {
+                        dropToken = buttons.OrderByDescending(b => b.Priority).First().Interact(this);
                     }
                 }
+
+                if (token != null && dropToken == true)
+                {
+                    DropToken();
+                }
+
             }
 
         }
+    }
+
+    public void SetToken(Token t)
+    {
+        if (token != null) return;
+        token = t;
+        token.gameObject.SetActive(false);
+        // tokenSprite.SetActive(true);
+
+    }
+
+    public void DropToken()
+    {
+        token.rect.anchoredPosition = canvas.WorldToCanvasPosition(transform.position);
+        token.gameObject.SetActive(true);
+        token = null;
     }
 }

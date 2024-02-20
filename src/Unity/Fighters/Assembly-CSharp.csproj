@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\System\CheckForUpdates.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Neutral.cs" />
     <Compile Include="Assets\Scripts\Hitboxes\IHitboxResponder.cs" />
+    <Compile Include="Assets\Scripts\System\CharacterSelect\V2\GamePlayerManager.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\SharedAttacks.cs" />
     <Compile Include="Assets\Scripts\System\Scroller.cs" />
     <Compile Include="Assets\Scripts\FighterStates\LandingLag.cs" />
@@ -86,7 +87,7 @@
     <Compile Include="Assets\Scripts\Hitboxes\Hitbox.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Gesture.cs" />
     <Compile Include="Assets\Scripts\System\WinScreen.cs" />
-    <Compile Include="Assets\Scripts\System\CharacterSelect\CharacterButton.cs" />
+    <Compile Include="Assets\Scripts\System\CharacterSelect\V2\CharacterButton.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\HostPackage.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IButton.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Hitstun.cs" />
@@ -101,10 +102,10 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadablePackage.cs" />
     <Compile Include="Assets\Inputs\Fighters.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IReadPackage.cs" />
-    <Compile Include="Assets\Scripts\System\CharacterSelect\CursorButton.cs" />
+    <Compile Include="Assets\Scripts\System\CharacterSelect\V2\CursorButton.cs" />
     <Compile Include="Assets\Scripts\SoundPlayer.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\Combo.cs" />
-    <Compile Include="Assets\Scripts\System\CharacterSelect\Cursor.cs" />
+    <Compile Include="Assets\Scripts\System\CharacterSelect\V2\Cursor.cs" />
     <Compile Include="Assets\Scripts\System\CharacterSelect\ControlRebinder.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\FormerKingAttacks.cs" />
     <Compile Include="Assets\Scripts\Hitboxes\Beehive.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="Assets\Scripts\GameCommandInputs\FighterAttacks.cs" />
     <Compile Include="Assets\Scripts\FighterAnimationEvents.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Air.cs" />
+    <Compile Include="Assets\Scripts\System\CharacterSelect\V2\CharacterSelectUIManager.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Getup.cs" />
     <Compile Include="Assets\Scripts\CharacterModule.cs" />
     <Compile Include="Assets\Scripts\System\CharacterSelect\SpawnPlayerSetupMenu.cs" />
@@ -150,6 +152,7 @@
     <Compile Include="Assets\Scripts\FighterAnimator.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Blockstun.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Gestures\DefaultGestures.cs" />
+    <Compile Include="Assets\Scripts\System\CharacterSelect\V2\GamePlayerSlot.cs" />
     <Compile Include="Assets\Scripts\PriorityQueue.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Backdashing.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\HostPackageComparer.cs" />
@@ -159,9 +162,8 @@
     <Compile Include="Assets\Scripts\System\CharacterSelect\ControlsPanel.cs" />
     <Compile Include="Assets\Scripts\WallBounceReceiver.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\System\CharacterSelect\V2\GamePlayerManager.cs" />
-    <Compile Include="Assets\Scripts\System\CharacterSelect\V2\GamePlayerSlot.cs" />
-    <Compile Include="Assets\Scripts\System\CharacterSelect\V2\CharacterSelectUIManager.cs" />
+    <Compile Include="Assets\Scripts\System\CharacterSelect\V2\Token.cs" />
+    <Compile Include="Assets\Scripts\System\CharacterSelect\V2\CanvasPositioningExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

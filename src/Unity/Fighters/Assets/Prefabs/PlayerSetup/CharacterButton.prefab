@@ -380,6 +380,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f07edc0b5bb06747979aa0a3c1af347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Priority: 0
+  DropToken: 1
   OnInteract:
     m_PersistentCalls:
       m_Calls: []

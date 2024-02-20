@@ -86,6 +86,7 @@
     <Compile Include="Assets\Scripts\Hitboxes\Hitbox.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Gesture.cs" />
     <Compile Include="Assets\Scripts\System\WinScreen.cs" />
+    <Compile Include="Assets\Scripts\System\CharacterSelect\CharacterButton.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\HostPackage.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IButton.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Hitstun.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadablePackage.cs" />
     <Compile Include="Assets\Inputs\Fighters.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IReadPackage.cs" />
+    <Compile Include="Assets\Scripts\System\CharacterSelect\CursorButton.cs" />
     <Compile Include="Assets\Scripts\SoundPlayer.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\Combo.cs" />
     <Compile Include="Assets\Scripts\System\CharacterSelect\Cursor.cs" />
@@ -157,8 +159,9 @@
     <Compile Include="Assets\Scripts\System\CharacterSelect\ControlsPanel.cs" />
     <Compile Include="Assets\Scripts\WallBounceReceiver.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\System\CharacterSelect\CursorButton.cs" />
-    <Compile Include="Assets\Scripts\System\CharacterSelect\CharacterButton.cs" />
+    <Compile Include="Assets\Scripts\System\CharacterSelect\V2\GamePlayerManager.cs" />
+    <Compile Include="Assets\Scripts\System\CharacterSelect\V2\GamePlayerSlot.cs" />
+    <Compile Include="Assets\Scripts\System\CharacterSelect\V2\CharacterSelectUIManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

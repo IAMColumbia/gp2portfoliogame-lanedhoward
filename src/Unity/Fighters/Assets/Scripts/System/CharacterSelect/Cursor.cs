@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class Cursor : MonoBehaviour
 {
-    PlayerInput playerInput;
+    public PlayerInput playerInput;
 
     public float moveSpeed = 10f;
 
@@ -16,6 +16,12 @@ public class Cursor : MonoBehaviour
 
     private GraphicRaycaster raycaster;
     private PointerEventData pointerEventData;
+
+    public HumanPlayerConfig humanPlayerConfig;
+
+    public GamePlayerSlot gamePlayerSlot;
+
+    public CharacterSelectUIManager uiManager;
 
     public void SetGraphicRaycaster(GraphicRaycaster raycaster)
     {
@@ -25,12 +31,20 @@ public class Cursor : MonoBehaviour
     public void SetPlayerInput(PlayerInput pi)
     {
         playerInput = pi;
-        PlayerText.text = $"P{playerInput.playerIndex + 1}";
     }
 
     private void Awake()
     {
         pointerEventData = new PointerEventData(null);
+    }
+
+    private void Start()
+    {
+        //Hopefully the GamePlayerManager should know about the PI by now, so we should be able to set our HumanPlayerConfig
+        GamePlayerManager.Instance.SetUpCursor(this);
+        uiManager.SetUpCursor(this);
+
+        PlayerText.text = $"P{gamePlayerSlot.PlayerSlotIndex + 1}";
     }
 
     // Update is called once per frame
@@ -50,10 +64,8 @@ public class Cursor : MonoBehaviour
 
             if (playerInput.actions["AttackA"].WasPressedThisFrame())
             {
-                //pointerEventData.position = WorldToScreenSpace(transform.position, Camera.main, canvasTransform);//Camera.main.WorldToScreenPoint(transform.position);
                 pointerEventData.position = Camera.main.WorldToScreenPoint(transform.position);
 
-                //pointerEventData.position = Vector2.zero;
                 List<RaycastResult> results = new();
                 raycaster.Raycast(pointerEventData, results);
 
@@ -68,19 +80,5 @@ public class Cursor : MonoBehaviour
             }
 
         }
-    }
-
-    public static Vector3 WorldToScreenSpace(Vector3 worldPos, Camera cam, RectTransform area)
-    {
-        Vector3 screenPoint = cam.WorldToScreenPoint(worldPos);
-        screenPoint.z = 0;
-
-        Vector2 screenPos;
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(area, screenPoint, cam, out screenPos))
-        {
-            return screenPos;
-        }
-
-        return screenPoint;
     }
 }

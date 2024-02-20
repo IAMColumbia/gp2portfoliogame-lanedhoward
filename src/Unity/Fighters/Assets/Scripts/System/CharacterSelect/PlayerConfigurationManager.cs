@@ -15,6 +15,9 @@ public enum GameMode
     AIvsAI
 }
 
+/// <summary>
+/// Old player configuration manager
+/// </summary>
 public class PlayerConfigurationManager : MonoBehaviour
 {
     public List<PlayerConfiguration> playerConfigs;
@@ -48,6 +51,10 @@ public class PlayerConfigurationManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called by unity event from PlayerInputManager
+    /// </summary>
+    /// <param name="pi"></param>
     public void HandlePlayerJoin(PlayerInput pi)
     {
         if(!playerConfigs.Any(p => p.PlayerIndex == pi.playerIndex))

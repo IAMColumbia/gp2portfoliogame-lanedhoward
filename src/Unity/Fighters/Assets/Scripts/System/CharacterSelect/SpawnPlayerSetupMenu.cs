@@ -28,6 +28,7 @@ public class SpawnPlayerSetupMenu : MonoBehaviour
             Cursor cursor = Instantiate<Cursor>(cursorPrefab, Vector3.zero, Quaternion.identity);
             cursor.SetGraphicRaycaster(rootMenu.GetComponent<GraphicRaycaster>());
             cursor.SetPlayerInput(input);
+            cursor.uiManager = rootMenu.GetComponent<CharacterSelectUIManager>();
             
         }
         //*/

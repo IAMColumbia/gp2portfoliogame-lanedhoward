@@ -52,6 +52,8 @@ public class Cursor : MonoBehaviour
         GamePlayerManager.Instance.SetUpCursor(this);
         uiManager.SetUpCursor(this);
 
+        gamePlayerSlot.SetHumanPlayerConfig(humanPlayerConfig);
+
         PickUpToken(gamePlayerSlot.token);
 
         if (PlayerText != null)
@@ -119,6 +121,8 @@ public class Cursor : MonoBehaviour
         token.gameObject.SetActive(false);
         tokenSprite.color = t.color;
         tokenSprite.gameObject.SetActive(true);
+
+        token.slot.ClearCharacter();
 
     }
 

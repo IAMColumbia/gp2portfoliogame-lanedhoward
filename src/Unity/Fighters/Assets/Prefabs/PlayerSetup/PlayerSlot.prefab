@@ -59,6 +59,7 @@ MonoBehaviour:
   portraitImage: {fileID: 8084398475504750808}
   nameText: {fileID: 5203876112385770714}
   descText: {fileID: 1782205939493480318}
+  controllerText: {fileID: 5240467626654828509}
 --- !u!1 &4951395949519206985
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,6 +448,14 @@ PrefabInstance:
       propertyPath: m_text
       value: 'P1: XInput Gamepad'
       objectReference: {fileID: 0}
+    - target: {fileID: 1171521918910348728, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
+      propertyPath: m_overflowMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1171521918910348728, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6587722934254863702, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -535,6 +544,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: ControllerButton
       objectReference: {fileID: 0}
+    - target: {fileID: 7320309387459375392, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320309387459375392, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320309387459375392, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2702478074433246935}
+    - target: {fileID: 7320309387459375392, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320309387459375392, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CycleControllerSetting
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320309387459375392, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GamePlayerSlot, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320309387459375392, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
 --- !u!224 &258884866584264499 stripped
@@ -542,3 +579,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6587722934254863702, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
   m_PrefabInstance: {fileID: 6411988359644592741}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5240467626654828509 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1171521918910348728, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
+  m_PrefabInstance: {fileID: 6411988359644592741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

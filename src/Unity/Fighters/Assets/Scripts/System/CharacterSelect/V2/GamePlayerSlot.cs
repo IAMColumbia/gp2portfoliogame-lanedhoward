@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -30,6 +31,10 @@ public class GamePlayerSlot : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI descText;
 
+    public TextMeshProUGUI controllerText;
+
+    public static event EventHandler GamePlayerUpdated;
+
     private void Awake()
     {
         token = Instantiate(tokenPrefab, transform.position, Quaternion.identity, transform.parent);
@@ -42,6 +47,7 @@ public class GamePlayerSlot : MonoBehaviour
     void Start()
     {
         gamePlayerConfig = GamePlayerManager.Instance.gamePlayerConfigs[PlayerSlotIndex];
+        SetControllerSetting(PlayerType.CPU);
     }
 
     public void SetHumanPlayerConfig(HumanPlayerConfig human)
@@ -51,8 +57,13 @@ public class GamePlayerSlot : MonoBehaviour
         if (human == null)
         {
             // need to set the control type to CPU probably
+            SetControllerSetting(PlayerType.CPU);
         }
-        // set controller label
+        else
+        {
+            // set controller label
+            SetControllerSetting(PlayerType.Human);
+        }
     }
 
     public void SetCharacter(CharacterModule characterModule)
@@ -67,6 +78,19 @@ public class GamePlayerSlot : MonoBehaviour
         nameText.text = characterModule.CharacterName;
         descText.text = characterModule.CharacterDescription;
         nameText.gameObject.SetActive(true);
+
+        GamePlayerUpdated?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void ClearCharacter()
+    {
+        gamePlayerConfig.Character = null;
+
+        portraitImage.gameObject.SetActive(false);
+
+        nameText.gameObject.SetActive(false);
+
+        GamePlayerUpdated?.Invoke(this, EventArgs.Empty);
     }
 
 
@@ -82,5 +106,51 @@ public class GamePlayerSlot : MonoBehaviour
 
             portraitImage.material = gamePlayerConfig.Character.materials[gamePlayerConfig.CharacterMaterialIndex];
         }
+    }
+
+    public void CycleControllerSetting()
+    {
+        switch (gamePlayerConfig.playerType)
+        {
+            case PlayerType.Human:
+                SetControllerSetting(PlayerType.CPU);
+                break;
+            case PlayerType.CPU:
+                SetControllerSetting(PlayerType.Training);
+                break;
+            case PlayerType.Training:
+                SetControllerSetting(PlayerType.Human);
+                break;
+        }
+        GamePlayerUpdated?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void SetControllerSetting(PlayerType playerType)
+    {
+        gamePlayerConfig.playerType = playerType;
+
+        string text = $"P{PlayerSlotIndex + 1}: ";
+
+        switch (playerType)
+        {
+            case PlayerType.Human:
+                if (humanPlayerConfig != null)
+                {
+                    text += humanPlayerConfig.Input.devices[0].name;
+                }
+                else
+                {
+                    text += "NO CONTROLLER";
+                }
+                break;
+            case PlayerType.CPU:
+                text += "CPU";
+                break;
+            case PlayerType.Training:
+                text += "Training Dummy";
+                break;
+        }
+
+        controllerText.text = text;
     }
 }

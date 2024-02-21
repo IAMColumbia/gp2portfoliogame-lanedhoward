@@ -67,10 +67,17 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        
+        /*
         if (PlayerConfigurationManager.Instance == null)
         {
             SceneManager.LoadScene("PlayerSetup");
+            return;
+        }
+        */
+
+        if (GamePlayerManager.Instance == null)
+        {
+            SceneManager.LoadScene("PlayerSetupVersion2");
             return;
         }
 
@@ -330,7 +337,8 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToCharacterSelect()
     {
-        PlayerConfigurationManager.Instance.BackToCharacterSelect();
+        //PlayerConfigurationManager.Instance.BackToCharacterSelect();
+        GamePlayerManager.Instance.BackToCharacterSelect();
     }
 
 
@@ -380,6 +388,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlayers()
     {
+        /*
         var configManager = PlayerConfigurationManager.Instance;
 
         for (int i = 0; i < 2; i++)
@@ -435,14 +444,60 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+        */
+
+        var configManager = GamePlayerManager.Instance;
+
+        for (int i = 0; i < 2; i++)
+        {
+            if (configManager.gamePlayerConfigs[i] != null)
+            {
+                GamePlayerConfig config = configManager.gamePlayerConfigs[i];
+
+                Transform t = i == 0 ? player1spawn : player2spawn;
+
+                GameObject fighter = Instantiate(fighterPrefab);
+
+                fighter.transform.position = t.position;
+
+                var fm = fighter.GetComponent<FighterMain>();
+
+                switch (config.playerType)
+                {
+                    case PlayerType.Human:
+                        fm.InitializePlayerInput(config.humanPlayerConfig.Input);
+                        break;
+                    case PlayerType.CPU:
+                        fm.InjectInputReceiver(new CpuInputReceiver(fm, null, null));
+                        break;
+                    case PlayerType.Training:
+                        fm.InjectInputReceiver(new TrainingInputReceiver(fm, null, null));
+                        break;
+                }
+
+                fm.characterModule = config.Character;
+                fm.InitializeCharacterModule();
+
+                fm.SetMaterial(config.Character.materials[config.CharacterMaterialIndex]);
+
+                if (i == 0)
+                {
+                    player1 = fm;
+                }
+                else
+                {
+                    player2 = fm;
+                }
+            }
+        }
 
         player1.otherFighter = player2.gameObject;
         player1.otherFighterMain = player2;
         player1.AutoTurnaround();
         player1Healthbar.SetNametag(player1.characterModule.CharacterName);
-        player1Healthbar.SetMaterial(configManager.playerConfigs[0].Character.materials[configManager.playerConfigs[0].CharacterMaterialIndex]);
+        player1Healthbar.SetMaterial(configManager.gamePlayerConfigs[0].Character.materials[configManager.gamePlayerConfigs[0].CharacterMaterialIndex]);
         player1StocksDisplay.InitializeStocksDisplay(player1);
-        player1StocksDisplay.SetMaterial(configManager.playerConfigs[0].Character.materials[configManager.playerConfigs[0].CharacterMaterialIndex]);
+        player1StocksDisplay.SetMaterial(configManager.gamePlayerConfigs[0].Character.materials[configManager.gamePlayerConfigs[0].CharacterMaterialIndex]);
         player1.PausePressed += (sender, e) => PauseGame();
         player1.Walls = Walls;
         player1NotificationManager.SetupNotificationManager(player1);
@@ -451,9 +506,9 @@ public class GameManager : MonoBehaviour
         player2.otherFighterMain = player1;
         player2.AutoTurnaround();
         player2Healthbar.SetNametag(player2.characterModule.CharacterName);
-        player2Healthbar.SetMaterial(configManager.playerConfigs[1].Character.materials[configManager.playerConfigs[1].CharacterMaterialIndex]);
+        player2Healthbar.SetMaterial(configManager.gamePlayerConfigs[1].Character.materials[configManager.gamePlayerConfigs[1].CharacterMaterialIndex]);
         player2StocksDisplay.InitializeStocksDisplay(player2);
-        player2StocksDisplay.SetMaterial(configManager.playerConfigs[1].Character.materials[configManager.playerConfigs[1].CharacterMaterialIndex]);
+        player2StocksDisplay.SetMaterial(configManager.gamePlayerConfigs[1].Character.materials[configManager.gamePlayerConfigs[1].CharacterMaterialIndex]);
         player2.PausePressed += (sender, e) => PauseGame();
         player2.Walls = Walls;
         player2NotificationManager.SetupNotificationManager(player2);
@@ -464,4 +519,5 @@ public class GameManager : MonoBehaviour
         // pause not implemented, just go back to character select
         ReturnToCharacterSelect();
     }
+
 }

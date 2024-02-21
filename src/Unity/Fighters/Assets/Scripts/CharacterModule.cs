@@ -13,6 +13,7 @@ public class CharacterModule : ScriptableObject
     public Sprite Portrait;
     public Material[] materials;
     public AudioClip song;
+    public AudioClip nameAnnouncement;
 
     [Header("Health Values")]
     public float MaxHealth = 4000;

@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GamePlayerSlot : MonoBehaviour
+public class GamePlayerSlot : SoundPlayer
 {
     [Tooltip("Set in insepctor (0 or 1) for which player side this slot is for")]
     public int PlayerSlotIndex;
@@ -35,8 +35,9 @@ public class GamePlayerSlot : MonoBehaviour
 
     public static event EventHandler GamePlayerUpdated;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         token = Instantiate(tokenPrefab, transform.position, Quaternion.identity, transform.parent);
         token.SetUpToken(this);
         portraitImage.gameObject.SetActive(false);
@@ -78,6 +79,11 @@ public class GamePlayerSlot : MonoBehaviour
         nameText.text = characterModule.CharacterName;
         descText.text = characterModule.CharacterDescription;
         nameText.gameObject.SetActive(true);
+
+        if (characterModule.nameAnnouncement != null)
+        {
+            PlaySound(characterModule.nameAnnouncement);
+        }
 
         GamePlayerUpdated?.Invoke(this, EventArgs.Empty);
     }

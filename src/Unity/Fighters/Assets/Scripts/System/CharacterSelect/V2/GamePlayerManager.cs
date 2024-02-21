@@ -115,10 +115,12 @@ public class GamePlayerManager : MonoBehaviour
     public void BackToCharacterSelect()
     {
         humanPlayerConfigs.Clear();
+        gamePlayerConfigs.Clear();
         foreach (PlayerInput pi in GetComponentsInChildren<PlayerInput>())
         {
             Destroy(pi.gameObject);
         }
+        Initialize();
         SceneManager.LoadScene("PlayerSetupVersion2");
     }
 }

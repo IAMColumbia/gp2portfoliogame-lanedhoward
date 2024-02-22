@@ -40,3 +40,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b77f2c228ec68e949aeb868078c99e6a, type: 3}
   - {fileID: 8300000, guid: e3607406e7658824d95b1150714df24c, type: 3}
   DoubleKO: {fileID: 8300000, guid: 6caa6086ffedb9942af86690fef09b7b, type: 3}
+  TrainWhistles:
+  - {fileID: 8300000, guid: 119cd3b3d0332b84eaaf33d847bb0e8f, type: 3}
+  - {fileID: 8300000, guid: acbacb3be9b547a438eb533a822f28bd, type: 3}
+  - {fileID: 8300000, guid: 86eb7c7a70505f44a8a0460177a4ceaa, type: 3}

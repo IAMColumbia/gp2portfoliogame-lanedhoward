@@ -10,4 +10,5 @@ public class AnnouncerSO : ScriptableObject
     public AudioClip[] RoundEnd;
     public AudioClip[] Perfect;
     public AudioClip DoubleKO;
+    public AudioClip[] TrainWhistles;
 }

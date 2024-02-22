@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 using LaneLibrary;
 using Cinemachine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : SoundPlayer
 {
     public GameObject fighterPrefab;
 
@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour
     public EventSystem eventSystem;
 
     public PlayableDirector introTimeline;
+
+    public AnnouncerSO announcerVoiceLines;
 
     public MusicPlayer musicPlayer;
 
@@ -278,7 +280,12 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RoundEndCoroutine(RoundEndTypes endType)
     {
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.25f);
+
+        PlaySound(RandomMethods.Choose(announcerVoiceLines.TrainWhistles));
+        
+        yield return new WaitForSecondsRealtime(0.25f);
+
         Announcer.SetActive(true);
         switch (endType)
         {
@@ -292,9 +299,24 @@ public class GameManager : MonoBehaviour
                 AnnouncerText.text = $"END OF THE LINE!";
                 break;
         }
-        
+
+
         yield return new WaitForSecondsRealtime(0.5f);
         yield return new WaitForSeconds(1.5f);
+
+        switch (endType)
+        {
+            case RoundEndTypes.DoubleKO:
+                PlaySound(announcerVoiceLines.DoubleKO);
+                break;
+            case RoundEndTypes.Perfect:
+                PlaySound(RandomMethods.Choose(announcerVoiceLines.Perfect));
+                break;
+            default:
+                PlaySound(RandomMethods.Choose(announcerVoiceLines.RoundEnd));
+                break;
+        }
+
         Announcer.SetActive(false);
 
         yield return new WaitForSeconds(2.5f);
@@ -365,19 +387,32 @@ public class GameManager : MonoBehaviour
         {
             introTimeline.Play();
         }
+        
+        PlaySound(RandomMethods.Choose(announcerVoiceLines.RoundIntro));
+        
         yield return new WaitForSeconds(2f);
+        
         Announcer.SetActive(true);
         AnnouncerText.text = $"Round {round}-";
+        
         yield return new WaitForSeconds(1f);
+        
         Announcer.SetActive(false);
+        
         yield return new WaitForSeconds(0.25f);
+        
+        PlaySound(RandomMethods.Choose(announcerVoiceLines.RoundStart));
+        
         Announcer.SetActive(true);
         AnnouncerText.text = "All aboard!!!";
+        
+        yield return new WaitForSeconds(0.5f);
+        
+        Announcer.SetActive(false);
+
         player1.enabled = true;
         player2.enabled = true;
         gameActive = true;
-        yield return new WaitForSeconds(1f);
-        Announcer.SetActive(false);
     }
 
     public void StartGameButton()

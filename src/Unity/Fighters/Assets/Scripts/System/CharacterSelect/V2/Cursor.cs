@@ -14,6 +14,9 @@ public class Cursor : MonoBehaviour
 
     public float moveSpeed = 10f;
 
+    private Vector2 screenBounds;
+    private Vector2 spriteSize;
+
     public TextMeshPro PlayerText;
 
     private GraphicRaycaster raycaster;
@@ -30,6 +33,7 @@ public class Cursor : MonoBehaviour
     public Canvas canvas;
 
     public SpriteRenderer tokenSprite;
+
 
     public void SetGraphicRaycaster(GraphicRaycaster raycaster)
     {
@@ -60,6 +64,10 @@ public class Cursor : MonoBehaviour
         {
             PlayerText.text = $"P{gamePlayerSlot.PlayerSlotIndex + 1}";
         }
+
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        var sprite = GetComponent<SpriteRenderer>();
+        spriteSize = new Vector2(sprite.bounds.size.x / 2, sprite.bounds.size.y / 2);
     }
 
     // Update is called once per frame
@@ -113,6 +121,16 @@ public class Cursor : MonoBehaviour
 
         }
     }
+
+    private void LateUpdate()
+    {
+        // keep cursor on screen
+        Vector3 viewPos = transform.position;
+        viewPos.x = Mathf.Clamp(viewPos.x, -screenBounds.x + spriteSize.x, screenBounds.x - spriteSize.x);
+        viewPos.y = Mathf.Clamp(viewPos.y, -screenBounds.y + spriteSize.y, screenBounds.y - spriteSize.y);
+        transform.position = viewPos;
+    }
+
 
     public void PickUpToken(Token t)
     {

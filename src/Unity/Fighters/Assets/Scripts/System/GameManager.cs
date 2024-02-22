@@ -387,10 +387,12 @@ public class GameManager : SoundPlayer
         {
             introTimeline.Play();
         }
-        
+
+        yield return new WaitForSeconds(.25f);
+
         PlaySound(RandomMethods.Choose(announcerVoiceLines.RoundIntro));
         
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.75f);
         
         Announcer.SetActive(true);
         AnnouncerText.text = $"Round {round}-";

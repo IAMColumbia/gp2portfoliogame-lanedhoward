@@ -840,7 +840,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         if (isGrounded && currentState.jumpsEnabled && hasJumpInput) return HitReport.Whiff; 
         if ((properties.stanceToBeGrabbed == FighterStance.Air) != (currentStance == FighterStance.Air)) return HitReport.Whiff;
 
-        if (isCurrentlyAttacking && currentAttack is ThrowAttack currentThrow)
+        if (isCurrentlyAttacking && currentAttack is ThrowAttack currentThrow && currentAttackState != CurrentAttackState.Recovery)
         {
             if (currentThrow.canTech)
             {

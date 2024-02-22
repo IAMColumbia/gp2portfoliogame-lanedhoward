@@ -121,6 +121,7 @@
     <Compile Include="Assets\Scripts\System\TimeManager.cs" />
     <Compile Include="Assets\Scripts\LaneLibrary\ConsoleUtils.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\ThrowAttack.cs" />
+    <Compile Include="Assets\Scripts\Announcer\AnnouncerSO.cs" />
     <Compile Include="Assets\Scripts\FighterStates\FighterState.cs" />
     <Compile Include="Assets\Scripts\Hitboxes\Hurtbox.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\FighterGestures.cs" />
@@ -164,7 +165,7 @@
     <Compile Include="Assets\Scripts\System\CharacterSelect\ControlsPanel.cs" />
     <Compile Include="Assets\Scripts\WallBounceReceiver.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\Announcer\AnnouncerSO.cs" />
+    <Compile Include="Assets\Scripts\System\CharacterSelect\V2\StartGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

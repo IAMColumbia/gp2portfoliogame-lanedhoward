@@ -20,6 +20,8 @@ public class MenuPanels : MonoBehaviour
     {
         controlsManager.human = cursor.humanPlayerConfig;
 
+        controlsManager.LoadControls();
+
         // original version of the actions asset
         // gotta save this, because player 2's actions asset will be a copy of this one
         // and when the uiInputModule sets to player 2's asset, it will disable the controls of the original

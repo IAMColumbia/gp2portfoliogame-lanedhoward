@@ -103,6 +103,7 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadablePackage.cs" />
     <Compile Include="Assets\Inputs\Fighters.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IReadPackage.cs" />
+    <Compile Include="Assets\Scripts\System\CharacterSelect\V2\StartGame.cs" />
     <Compile Include="Assets\Scripts\System\CharacterSelect\V2\CursorButton.cs" />
     <Compile Include="Assets\Scripts\SoundPlayer.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\Combo.cs" />
@@ -165,7 +166,7 @@
     <Compile Include="Assets\Scripts\System\CharacterSelect\ControlsPanel.cs" />
     <Compile Include="Assets\Scripts\WallBounceReceiver.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\System\CharacterSelect\V2\StartGame.cs" />
+    <Compile Include="Assets\Scripts\System\CharacterSelect\V2\MenuPanels.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

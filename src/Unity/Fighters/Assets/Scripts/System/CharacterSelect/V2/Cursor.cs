@@ -26,6 +26,8 @@ public class Cursor : MonoBehaviour
 
     public GamePlayerSlot gamePlayerSlot;
 
+    public MenuPanels panels;
+
     public CharacterSelectUIManager uiManager;
 
     public Token token;

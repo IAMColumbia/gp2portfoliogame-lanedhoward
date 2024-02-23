@@ -11,7 +11,7 @@ using UnityEngine.UI;
 
 public class ControlsPanel : MonoBehaviour
 {
-    public PlayerSetupController parent;
+    //public PlayerSetupController parent;
 
     public Button buttonToSelectOnOpen;
     public Button buttonToSelectOnClose;
@@ -26,20 +26,20 @@ public class ControlsPanel : MonoBehaviour
 
     private void OnEnable()
     {
-        //inputActions.FindActionMap("Fighter").Disable();
         eventSystem.SetSelectedGameObject(buttonToSelectOnOpen.gameObject);
-        ControlsOpened?.Invoke(this, parent.PlayerIndex);
+        ControlsOpened?.Invoke(this, 0);
     }
 
     private void OnDisable()
     {
-        //inputActions.FindActionMap("Fighter").Enable();
-        eventSystem.SetSelectedGameObject(buttonToSelectOnClose.gameObject);
-        ControlsClosed?.Invoke(this, parent.PlayerIndex);
+        //eventSystem.SetSelectedGameObject(buttonToSelectOnClose.gameObject);
+        eventSystem.SetSelectedGameObject(null);
+        ControlsClosed?.Invoke(this, 0);
     }
 
     public void OnClose()
     {
+        //ControlsClosed?.Invoke(this, 0);
         gameObject.SetActive(false);
     }
 }

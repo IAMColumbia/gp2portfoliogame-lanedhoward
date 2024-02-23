@@ -7,7 +7,9 @@ using UnityEngine.InputSystem;
 
 public class ControlRebinder : MonoBehaviour
 {
-    public PlayerSetupController playerSetupController;
+    //public PlayerSetupController playerSetupController;
+
+    public ControlsManager controls;
 
     PlayerInput playerInput;
 
@@ -22,7 +24,8 @@ public class ControlRebinder : MonoBehaviour
 
     private void OnEnable()
     {
-        playerInput = PlayerConfigurationManager.Instance.GetPlayerInput(playerSetupController.PlayerIndex);
+        //playerInput = PlayerConfigurationManager.Instance.GetPlayerInput(playerSetupController.PlayerIndex);
+        playerInput = controls.human.Input;
         UpdateBindingText();
         ControlsManager.ControlsUpdated += (s,e) => UpdateBindingText();
     }
@@ -46,7 +49,7 @@ public class ControlRebinder : MonoBehaviour
             .OnComplete(operation => {
                 UpdateBindingText();
                 action.Enable();
-                ControlRebound?.Invoke(this, playerSetupController.PlayerIndex);
+                ControlRebound?.Invoke(this, controls.human.PlayerIndex);
                 operation.Dispose();
             })
             .OnCancel(operation =>

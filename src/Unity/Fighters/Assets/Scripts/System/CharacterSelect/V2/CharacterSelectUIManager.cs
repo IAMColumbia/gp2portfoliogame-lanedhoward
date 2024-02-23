@@ -7,6 +7,8 @@ public class CharacterSelectUIManager : MonoBehaviour
 {
     public List<GamePlayerSlot> playerSlots;
 
+    public List<MenuPanels> menuPanels;
+
     public GameObject startButton;
 
     private void Awake()
@@ -16,7 +18,10 @@ public class CharacterSelectUIManager : MonoBehaviour
 
     public void SetUpCursor(Cursor cursor)
     {
-        cursor.gamePlayerSlot = playerSlots[GamePlayerManager.Instance.GetGamePlayerIndex(cursor.humanPlayerConfig)];
+        var index = GamePlayerManager.Instance.GetGamePlayerIndex(cursor.humanPlayerConfig);
+        cursor.gamePlayerSlot = playerSlots[index];
+        cursor.panels = menuPanels[index];
+        cursor.panels.Setup(cursor);
     }
 
     private void OnEnable()
@@ -35,5 +40,10 @@ public class CharacterSelectUIManager : MonoBehaviour
         startButton.SetActive(playerSlots.All(s => s.gamePlayerConfig.Character != null 
         && (s.gamePlayerConfig.playerType != PlayerType.Human || s.humanPlayerConfig != null)));
         
+    }
+
+    public void OpenControlsPanel(Cursor cursor)
+    {
+        cursor.panels.OpenControlsMenu(cursor);
     }
 }

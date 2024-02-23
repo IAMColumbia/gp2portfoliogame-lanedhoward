@@ -7,7 +7,9 @@ using UnityEngine.InputSystem;
 
 public class ControlsManager : MonoBehaviour
 {
-    public PlayerSetupController playerSetupController;
+    //public PlayerSetupController playerSetupController;
+
+    public HumanPlayerConfig human;
 
     PlayerInput playerInput;
 
@@ -15,7 +17,8 @@ public class ControlsManager : MonoBehaviour
 
     private void OnEnable()
     {
-        playerInput = PlayerConfigurationManager.Instance.GetPlayerInput(playerSetupController.PlayerIndex);
+        //playerInput = PlayerConfigurationManager.Instance.GetPlayerInput(playerSetupController.PlayerIndex);
+        playerInput = human.Input;
 
         ControlRebinder.ControlRebound += ControlRebinder_ControlRebound;
     }
@@ -26,7 +29,7 @@ public class ControlsManager : MonoBehaviour
 
     private void ControlRebinder_ControlRebound(object sender, int playerIndex)
     {
-        if (playerIndex == playerSetupController.PlayerIndex)
+        if (playerIndex == human.PlayerIndex)
         {
             SaveControls();
         }
@@ -53,8 +56,8 @@ public class ControlsManager : MonoBehaviour
 
     public void LoadControls()
     {
-        if (PlayerConfigurationManager.Instance.playerConfigs[playerSetupController.PlayerIndex].IsRealPlayer == false) return;
-        playerInput = PlayerConfigurationManager.Instance.GetPlayerInput(playerSetupController.PlayerIndex);
+        if (human == null) return;
+        playerInput = human.Input;
         if (playerInput == null) return;
         ResetAllBindings();
         string rebinds = PlayerPrefs.GetString(GetRebindsKey());

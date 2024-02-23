@@ -41,7 +41,7 @@ public class GamePlayerSlot : SoundPlayer
         token = Instantiate(tokenPrefab, transform.position, Quaternion.identity, transform.parent);
         token.SetUpToken(this);
         portraitImage.gameObject.SetActive(false);
-        nameText.gameObject.SetActive(false);
+        nameText.transform.parent.gameObject.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -78,7 +78,7 @@ public class GamePlayerSlot : SoundPlayer
 
         nameText.text = characterModule.CharacterName;
         descText.text = characterModule.CharacterDescription;
-        nameText.gameObject.SetActive(true);
+        nameText.transform.parent.gameObject.SetActive(true);
 
         if (characterModule.nameAnnouncement != null)
         {
@@ -94,7 +94,7 @@ public class GamePlayerSlot : SoundPlayer
 
         portraitImage.gameObject.SetActive(false);
 
-        nameText.gameObject.SetActive(false);
+        nameText.transform.parent.gameObject.SetActive(false);
 
         GamePlayerUpdated?.Invoke(this, EventArgs.Empty);
     }

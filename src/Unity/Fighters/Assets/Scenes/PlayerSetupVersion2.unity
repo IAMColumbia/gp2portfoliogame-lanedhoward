@@ -1555,6 +1555,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -32.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7364911223496452728, guid: 46b318e7ceed05f4f8ef5bd1eb5b64df, type: 3}
+      propertyPath: m_text
+      value: Controls (Player 2)
+      objectReference: {fileID: 0}
     - target: {fileID: 7492479306534252806, guid: 46b318e7ceed05f4f8ef5bd1eb5b64df, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -2383,6 +2387,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -32.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7364911223496452728, guid: 46b318e7ceed05f4f8ef5bd1eb5b64df, type: 3}
+      propertyPath: m_text
+      value: Controls (Player 1)
+      objectReference: {fileID: 0}
     - target: {fileID: 7492479306534252806, guid: 46b318e7ceed05f4f8ef5bd1eb5b64df, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -3058,6 +3066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxPlayers: 2
   gameMode: 0
+  playerInputManager: {fileID: 0}
 --- !u!1001 &7409941528457871254
 PrefabInstance:
   m_ObjectHideFlags: 0

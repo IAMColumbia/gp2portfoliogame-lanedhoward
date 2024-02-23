@@ -19,6 +19,8 @@ public class GamePlayerManager : MonoBehaviour
     /// </summary>
     public GameMode gameMode;
 
+    public PlayerInputManager playerInputManager;
+
     public static GamePlayerManager Instance { get; private set; }
 
     public static event EventHandler HumanPlayerJoined;
@@ -34,6 +36,9 @@ public class GamePlayerManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this);
+            playerInputManager = GetComponent<PlayerInputManager>();
+            ControlsPanel.ControlsOpened += ControlsPanel_ControlsOpened;
+            ControlsPanel.ControlsClosed += ControlsPanel_ControlsClosed;
             Initialize();
         }
     }
@@ -122,6 +127,39 @@ public class GamePlayerManager : MonoBehaviour
         }
         Initialize();
         SceneManager.LoadScene("PlayerSetupVersion2");
+    }
+
+
+
+    private void ControlsPanel_ControlsOpened(object sender, int e)
+    {
+        if (humanPlayerConfigs.Count >= 2)
+        {
+            foreach (var config in humanPlayerConfigs)
+            {
+                if (config.PlayerIndex != e)
+                {
+                    InputSystem.DisableDevice(config.Input.devices[0]);
+                }
+            }
+        }
+
+        playerInputManager.DisableJoining();
+    }
+    private void ControlsPanel_ControlsClosed(object sender, int e)
+    {
+        if (humanPlayerConfigs.Count >= 2)
+        {
+            foreach (var config in humanPlayerConfigs)
+            {
+                if (config.PlayerIndex != e)
+                {
+                    InputSystem.EnableDevice(config.Input.devices[0]);
+                }
+            }
+        }
+
+        playerInputManager.EnableJoining();
     }
 }
 

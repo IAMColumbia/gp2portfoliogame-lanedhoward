@@ -11,6 +11,7 @@ using UnityEngine.UI;
 
 public class ControlsPanel : MonoBehaviour
 {
+    public ControlsManager manager;
     //public PlayerSetupController parent;
 
     public Button buttonToSelectOnOpen;
@@ -27,14 +28,14 @@ public class ControlsPanel : MonoBehaviour
     private void OnEnable()
     {
         eventSystem.SetSelectedGameObject(buttonToSelectOnOpen.gameObject);
-        ControlsOpened?.Invoke(this, 0);
+        ControlsOpened?.Invoke(this, manager.human.PlayerIndex);
     }
 
     private void OnDisable()
     {
         //eventSystem.SetSelectedGameObject(buttonToSelectOnClose.gameObject);
         eventSystem.SetSelectedGameObject(null);
-        ControlsClosed?.Invoke(this, 0);
+        ControlsClosed?.Invoke(this, manager.human.PlayerIndex);
     }
 
     public void OnClose()

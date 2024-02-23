@@ -1381,6 +1381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61852a8c862d51d45b090ae5302458a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 3100101885945298736}
   buttonToSelectOnOpen: {fileID: 2505815170611870489}
   buttonToSelectOnClose: {fileID: 0}
   eventSystem: {fileID: 6117864902252046995}

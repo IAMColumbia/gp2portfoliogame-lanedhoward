@@ -223,10 +223,14 @@ MonoBehaviour:
   moveSpeed: 4
   PlayerText: {fileID: 3823451100517558727}
   gamePlayerSlot: {fileID: 0}
+  panels: {fileID: 0}
   uiManager: {fileID: 0}
   token: {fileID: 0}
   canvas: {fileID: 0}
   tokenSprite: {fileID: 6939649911925332857}
+  cursorEnabled: 0
+  cursorEnableDelay: 0
+  cursorEnableDelayMax: 0.1
 --- !u!212 &461452403702987438
 SpriteRenderer:
   m_ObjectHideFlags: 0

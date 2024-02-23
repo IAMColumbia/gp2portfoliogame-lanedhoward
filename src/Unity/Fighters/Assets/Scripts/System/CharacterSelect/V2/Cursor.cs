@@ -36,6 +36,10 @@ public class Cursor : MonoBehaviour
 
     public SpriteRenderer tokenSprite;
 
+    public bool cursorEnabled = false;
+
+    public float cursorEnableDelay;
+    public float cursorEnableDelayMax = 0.25f;
 
     public void SetGraphicRaycaster(GraphicRaycaster raycaster)
     {
@@ -70,11 +74,26 @@ public class Cursor : MonoBehaviour
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         var sprite = GetComponent<SpriteRenderer>();
         spriteSize = new Vector2(sprite.bounds.size.x / 2, sprite.bounds.size.y / 2);
+
+        // wait to enable control, so that you don't instantly drop the token
+        cursorEnableDelay = cursorEnableDelayMax;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (cursorEnableDelay > 0)
+        {
+            cursorEnableDelay -= Time.deltaTime;
+
+            if (cursorEnableDelay <= 0)
+            {
+                cursorEnabled = true;
+            }
+        }
+
+        if (cursorEnabled == false) return;
+
         if (playerInput != null)
         {
             Vector3 move = playerInput.actions["Move"].ReadValue<Vector2>();
@@ -153,4 +172,21 @@ public class Cursor : MonoBehaviour
         token = null;
         tokenSprite.gameObject.SetActive(false);
     }
+
+    private void OnEnable()
+    {
+        ControlsPanel.ControlsOpened += ControlsPanel_ControlsOpened;
+        ControlsPanel.ControlsClosed += ControlsPanel_ControlsClosed;
+    }
+
+
+    private void ControlsPanel_ControlsOpened(object sender, int e)
+    {
+        cursorEnabled = false;
+    }
+    private void ControlsPanel_ControlsClosed(object sender, int e)
+    {
+        cursorEnableDelay = cursorEnableDelayMax;
+    }
+
 }

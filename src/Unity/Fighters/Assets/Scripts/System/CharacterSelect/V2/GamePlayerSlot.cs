@@ -16,7 +16,7 @@ public class GamePlayerSlot : SoundPlayer
     public GamePlayerConfig gamePlayerConfig;
 
     /// <summary>
-    /// Might be set by GamePlayerManager
+    /// Set by cursor
     /// </summary>
     public HumanPlayerConfig humanPlayerConfig;
 
@@ -59,6 +59,7 @@ public class GamePlayerSlot : SoundPlayer
         {
             // need to set the control type to CPU probably
             SetControllerSetting(PlayerType.CPU);
+            RecallToken();
         }
         else
         {
@@ -158,5 +159,10 @@ public class GamePlayerSlot : SoundPlayer
         }
 
         controllerText.text = text;
+    }
+
+    public void RecallToken()
+    {
+        token.transform.position = transform.position;
     }
 }

@@ -60,6 +60,19 @@ public class Cursor : MonoBehaviour
     {
         //GamePlayerManager should know about the PI by now, so we should be able to set our HumanPlayerConfig
         GamePlayerManager.Instance.SetUpCursor(this);
+
+        SetUpGamePlayerSlot();
+        
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        var sprite = GetComponent<SpriteRenderer>();
+        spriteSize = new Vector2(sprite.bounds.size.x / 2, sprite.bounds.size.y / 2);
+
+        // wait to enable control, so that you don't instantly drop the token
+        cursorEnableDelay = cursorEnableDelayMax;
+    }
+
+    public void SetUpGamePlayerSlot()
+    {
         uiManager.SetUpCursor(this);
 
         gamePlayerSlot.SetHumanPlayerConfig(humanPlayerConfig);
@@ -71,12 +84,6 @@ public class Cursor : MonoBehaviour
             PlayerText.text = $"P{gamePlayerSlot.PlayerSlotIndex + 1}";
         }
 
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        var sprite = GetComponent<SpriteRenderer>();
-        spriteSize = new Vector2(sprite.bounds.size.x / 2, sprite.bounds.size.y / 2);
-
-        // wait to enable control, so that you don't instantly drop the token
-        cursorEnableDelay = cursorEnableDelayMax;
     }
 
     // Update is called once per frame
@@ -177,8 +184,45 @@ public class Cursor : MonoBehaviour
     {
         ControlsPanel.ControlsOpened += ControlsPanel_ControlsOpened;
         ControlsPanel.ControlsClosed += ControlsPanel_ControlsClosed;
+
+        GamePlayerManager.PlayersSwapped += GamePlayerManager_PlayersSwapped;
+        GamePlayerManager.PlayersAboutToSwap += GamePlayerManager_PlayersAboutToSwap;
     }
 
+    private void OnDisable()
+    {
+        ControlsPanel.ControlsOpened -= ControlsPanel_ControlsOpened;
+        ControlsPanel.ControlsClosed -= ControlsPanel_ControlsClosed;
+
+        GamePlayerManager.PlayersSwapped -= GamePlayerManager_PlayersSwapped;
+        GamePlayerManager.PlayersAboutToSwap -= GamePlayerManager_PlayersAboutToSwap;
+    }
+
+    private void GamePlayerManager_PlayersAboutToSwap(object sender, System.EventArgs e)
+    {
+        if (token != null)
+        {
+            DropToken();
+        }
+        gamePlayerSlot.ClearCharacter();
+    }
+
+    private void GamePlayerManager_PlayersSwapped(object sender, System.EventArgs e)
+    {
+        if (gamePlayerSlot != null)
+        {
+            // remove human from my slot before swapping to a new one, unless the other player already swapped into that one
+            if (gamePlayerSlot.humanPlayerConfig == humanPlayerConfig)
+            {
+                gamePlayerSlot.SetHumanPlayerConfig(null);
+            }
+        }
+
+        humanPlayerConfig.Input.uiInputModule = null;
+
+        // human that controls this cursor won't change, but the slot (and player number we are) might
+        SetUpGamePlayerSlot();
+    }
 
     private void ControlsPanel_ControlsOpened(object sender, int e)
     {

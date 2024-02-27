@@ -37,11 +37,19 @@ public class ControlsManager : MonoBehaviour
 
     public void ResetAllBindings()
     {
+        ResetAllBindings(true);
+    }
+
+    public void ResetAllBindings(bool save)
+    {
         foreach (var map in playerInput.actions.actionMaps)
         {
             map.RemoveAllBindingOverrides();
         }
-
+        if (save)
+        {
+            SaveControls();
+        }
         ControlsUpdated?.Invoke(this, EventArgs.Empty);
     }
 
@@ -59,7 +67,8 @@ public class ControlsManager : MonoBehaviour
         if (human == null) return;
         playerInput = human.Input;
         if (playerInput == null) return;
-        ResetAllBindings();
+        Debug.Log("Loading Controls for " + GetRebindsKey());
+        ResetAllBindings(false);
         string rebinds = PlayerPrefs.GetString(GetRebindsKey());
         if (!string.IsNullOrEmpty(rebinds))
         {
@@ -71,6 +80,7 @@ public class ControlsManager : MonoBehaviour
     public void SaveControls()
     {
         if (playerInput == null) return;
+        Debug.Log("Saving Controls for " + GetRebindsKey());
         string rebinds = playerInput.actions.SaveBindingOverridesAsJson();
         PlayerPrefs.SetString(GetRebindsKey(), rebinds);
     }

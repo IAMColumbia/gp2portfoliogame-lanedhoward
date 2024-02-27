@@ -46,4 +46,9 @@ public class CharacterSelectUIManager : MonoBehaviour
     {
         cursor.panels.OpenControlsMenu(cursor);
     }
+
+    public void SwapPlayers()
+    {
+        GamePlayerManager.Instance.SwapPlayers();
+    }
 }

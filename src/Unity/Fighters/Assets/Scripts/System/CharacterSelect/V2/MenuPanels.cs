@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.Windows;
 
@@ -15,6 +16,9 @@ public class MenuPanels : MonoBehaviour
 
     [SerializeField]
     private InputSystemUIInputModule uiInputModule;
+
+    private InputActionReference move;
+    private InputActionReference submit;
 
     public void Setup(Cursor cursor)
     {
@@ -29,9 +33,22 @@ public class MenuPanels : MonoBehaviour
         // unless we re-enable the original assets (that player 1 uses)
         var originalActionsAsset = uiInputModule.actionsAsset;
 
+        uiInputModule.move = move;
+        uiInputModule.submit = submit;
+
         cursor.humanPlayerConfig.Input.uiInputModule = uiInputModule;
 
-        originalActionsAsset.Enable();
+
+        if (originalActionsAsset != null)
+        {
+            originalActionsAsset.Enable();
+        }
+    }
+
+    private void Start()
+    {
+        move = uiInputModule.move;
+        submit = uiInputModule.submit;
     }
 
     public void OpenControlsMenu(Cursor cursor)

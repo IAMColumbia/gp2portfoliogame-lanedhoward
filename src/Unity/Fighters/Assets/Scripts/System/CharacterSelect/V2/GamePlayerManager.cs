@@ -24,7 +24,14 @@ public class GamePlayerManager : MonoBehaviour
     public static GamePlayerManager Instance { get; private set; }
 
     public static event EventHandler HumanPlayerJoined;
-    public static event EventHandler StartForced;
+    /// <summary>
+    /// Event for the start of player swap process
+    /// </summary>
+    public static event EventHandler PlayersAboutToSwap;
+    /// <summary>
+    /// Event for the actual player swap process
+    /// </summary>
+    public static event EventHandler PlayersSwapped;
 
     private void Awake()
     {
@@ -160,6 +167,22 @@ public class GamePlayerManager : MonoBehaviour
         }
 
         playerInputManager.EnableJoining();
+    }
+
+    public void SwapPlayers()
+    {
+        PlayersAboutToSwap?.Invoke(this, EventArgs.Empty);
+
+        //swap the humans between the gameplayerconfigs
+        // (could be null)
+        var human1 = gamePlayerConfigs[0].humanPlayerConfig;
+
+        gamePlayerConfigs[0].humanPlayerConfig = gamePlayerConfigs[1].humanPlayerConfig;
+        gamePlayerConfigs[1].humanPlayerConfig = human1;
+
+        PlayersSwapped?.Invoke(this, EventArgs.Empty);
+        
+
     }
 }
 

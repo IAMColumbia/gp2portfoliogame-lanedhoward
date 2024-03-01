@@ -3037,6 +3037,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: MovesListButton
       objectReference: {fileID: 0}
+    - target: {fileID: 7320309387459375392, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320309387459375392, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320309387459375392, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 640805665}
+    - target: {fileID: 7320309387459375392, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320309387459375392, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenMovesListPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320309387459375392, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CharacterSelectUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320309387459375392, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
 --- !u!224 &3638624681525724734 stripped

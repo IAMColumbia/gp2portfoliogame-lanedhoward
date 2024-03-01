@@ -46,6 +46,11 @@ public class CharacterSelectUIManager : MonoBehaviour
     {
         cursor.panels.OpenControlsMenu(cursor);
     }
+    
+    public void OpenMovesListPanel(Cursor cursor)
+    {
+        cursor.panels.OpenMovesList(cursor);
+    }
 
     public void SwapPlayers()
     {

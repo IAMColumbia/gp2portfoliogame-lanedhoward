@@ -1,4 +1,5 @@
 using LogicUI.FancyTextRendering;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,10 +9,11 @@ using UnityEngine.UI;
 
 public class MovesListPanel : MonoBehaviour
 {
-    public PlayerSetupController parent;
+    public GamePlayerConfig gamePlayerConfig;
 
     public TextMeshProUGUI SystemText;
     public MarkdownRenderer CharacterText;
+    public TextMeshProUGUI swapButtonText;
 
     public enum State
     {
@@ -26,22 +28,29 @@ public class MovesListPanel : MonoBehaviour
 
     public EventSystem eventSystem;
 
+    public static event EventHandler MovesListOpened;
+    public static event EventHandler MovesListClosed;
+
     private void OnEnable()
     {
         ShowCharacter();
         eventSystem.SetSelectedGameObject(buttonToSelectOnOpen.gameObject);
+        MovesListOpened?.Invoke(this, EventArgs.Empty);
 
     }
 
     private void OnDisable()
     {
-        eventSystem.SetSelectedGameObject(buttonToSelectOnClose.gameObject);
+        //eventSystem.SetSelectedGameObject(buttonToSelectOnClose.gameObject);
+        MovesListClosed?.Invoke(this, EventArgs.Empty);
+
     }
 
     public void ShowSystem()
     {
         SystemText.gameObject.SetActive(true);
         CharacterText.gameObject.SetActive(false);
+        swapButtonText.text = "Show Character Moves";
         CurrentState = State.ShowingSystem;
     }
 
@@ -49,13 +58,23 @@ public class MovesListPanel : MonoBehaviour
     {
         SystemText.gameObject.SetActive(false);
         CharacterText.gameObject.SetActive(true);
+        swapButtonText.text = "Show Universal Moves";
         CurrentState = State.ShowingCharacter;
 
-        CharacterModule character = PlayerConfigurationManager.Instance.GetCharacter(parent.PlayerIndex);
+        CharacterModule character = gamePlayerConfig.Character;
 
         if (character != null)
         {
             CharacterText.Source = character.MovesList;
+        }
+        else
+        {
+            CharacterText.Source = 
+@"## Character Moves
+
+
+### No Character Selected
+";
         }
     }
 

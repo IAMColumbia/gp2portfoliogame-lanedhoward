@@ -10,6 +10,7 @@ using UnityEngine.Windows;
 public class MenuPanels : MonoBehaviour
 {
     public ControlsManager controlsManager;
+    public MovesListPanel movesListPanel;
 
     [SerializeField]
     private MultiplayerEventSystem eventSystem;
@@ -43,6 +44,8 @@ public class MenuPanels : MonoBehaviour
         {
             originalActionsAsset.Enable();
         }
+
+        movesListPanel.gamePlayerConfig = cursor.gamePlayerSlot.gamePlayerConfig;
     }
 
     private void Start()
@@ -53,28 +56,12 @@ public class MenuPanels : MonoBehaviour
 
     public void OpenControlsMenu(Cursor cursor)
     {
-        
-        //gameObject.SetActive(true);
-
-        //eventSystem.enabled = true;
         controlsManager.gameObject.SetActive(true);
     }
-
-    private void OnEnable()
+    
+    public void OpenMovesList(Cursor cursor)
     {
-        ControlsPanel.ControlsClosed += ControlsPanel_ControlsClosed;
+        movesListPanel.gameObject.SetActive(true);
     }
 
-    private void OnDisable()
-    {
-        ControlsPanel.ControlsClosed -= ControlsPanel_ControlsClosed;
-    }
-
-    private void ControlsPanel_ControlsClosed(object sender, int e)
-    {
-        //controlsManager.human.Input.uiInputModule = null;
-        //eventSystem.SetSelectedGameObject(null);
-        //eventSystem.enabled = false;
-        //gameObject.SetActive(false);
-    }
 }

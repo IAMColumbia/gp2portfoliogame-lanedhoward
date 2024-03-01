@@ -46,9 +46,13 @@ public class GamePlayerManager : MonoBehaviour
             playerInputManager = GetComponent<PlayerInputManager>();
             ControlsPanel.ControlsOpened += ControlsPanel_ControlsOpened;
             ControlsPanel.ControlsClosed += ControlsPanel_ControlsClosed;
+            MovesListPanel.MovesListOpened += MovesListPanel_MovesListOpened;
+            MovesListPanel.MovesListClosed += MovesListPanel_MovesListClosed;
             Initialize();
         }
     }
+
+    
 
     public void Initialize()
     {
@@ -166,6 +170,16 @@ public class GamePlayerManager : MonoBehaviour
             }
         }
 
+        playerInputManager.EnableJoining();
+    }
+
+    private void MovesListPanel_MovesListOpened(object sender, EventArgs e)
+    {
+        playerInputManager.DisableJoining();
+    }
+
+    private void MovesListPanel_MovesListClosed(object sender, EventArgs e)
+    {
         playerInputManager.EnableJoining();
     }
 

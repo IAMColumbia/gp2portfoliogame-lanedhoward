@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -182,8 +183,10 @@ public class Cursor : MonoBehaviour
 
     private void OnEnable()
     {
-        ControlsPanel.ControlsOpened += ControlsPanel_ControlsOpened;
-        ControlsPanel.ControlsClosed += ControlsPanel_ControlsClosed;
+        ControlsPanel.ControlsOpened += OnMenuPanelOpened;
+        ControlsPanel.ControlsClosed += OnMenuPanelClosed;
+        MovesListPanel.MovesListOpened += OnMenuPanelOpened;
+        MovesListPanel.MovesListClosed += OnMenuPanelClosed;
 
         GamePlayerManager.PlayersSwapped += GamePlayerManager_PlayersSwapped;
         GamePlayerManager.PlayersAboutToSwap += GamePlayerManager_PlayersAboutToSwap;
@@ -191,8 +194,10 @@ public class Cursor : MonoBehaviour
 
     private void OnDisable()
     {
-        ControlsPanel.ControlsOpened -= ControlsPanel_ControlsOpened;
-        ControlsPanel.ControlsClosed -= ControlsPanel_ControlsClosed;
+        ControlsPanel.ControlsOpened -= OnMenuPanelOpened;
+        ControlsPanel.ControlsClosed -= OnMenuPanelClosed;
+        MovesListPanel.MovesListOpened -= OnMenuPanelOpened;
+        MovesListPanel.MovesListClosed -= OnMenuPanelClosed;
 
         GamePlayerManager.PlayersSwapped -= GamePlayerManager_PlayersSwapped;
         GamePlayerManager.PlayersAboutToSwap -= GamePlayerManager_PlayersAboutToSwap;
@@ -224,13 +229,20 @@ public class Cursor : MonoBehaviour
         SetUpGamePlayerSlot();
     }
 
-    private void ControlsPanel_ControlsOpened(object sender, int e)
+    private void OnMenuPanelOpened(object sender, int e)
     {
         cursorEnabled = false;
     }
-    private void ControlsPanel_ControlsClosed(object sender, int e)
+    private void OnMenuPanelClosed(object sender, int e)
     {
         cursorEnableDelay = cursorEnableDelayMax;
     }
-
+    private void OnMenuPanelOpened(object sender, EventArgs e)
+    {
+        OnMenuPanelOpened(sender, -1);
+    }
+    private void OnMenuPanelClosed(object sender, EventArgs e)
+    {
+        OnMenuPanelClosed(sender, -1);
+    }
 }

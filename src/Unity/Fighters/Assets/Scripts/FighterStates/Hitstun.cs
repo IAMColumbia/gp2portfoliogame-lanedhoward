@@ -149,11 +149,11 @@ public class Hitstun : FighterState, IStunState
 
             if (lastVelocity.y < fighter.fighterRigidbody.velocity.y)
             {
-                fighter.fighterRigidbody.velocity = lastVelocity * Vector2.down; //groundBounceVelocity;
+                fighter.fighterRigidbody.velocity = new Vector2(lastVelocity.x, -lastVelocity.y); //lastVelocity * Vector2.down; //groundBounceVelocity;
             }
             else
             {
-                fighter.fighterRigidbody.velocity *= Vector2.down; //groundBounceVelocity;
+                fighter.fighterRigidbody.velocity = new Vector2(fighter.fighterRigidbody.velocity.x, -fighter.fighterRigidbody.velocity.y); //Vector2.down; //groundBounceVelocity;
             }
 
             groundBounce = false;

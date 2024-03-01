@@ -37,7 +37,10 @@ public class Grabbing : FighterState, IAnimationEndState
         }
 
 
-        AnimationEndTransitionToNextState(NeutralOrAir());
+        if (AnimationEndTransitionToNextState(NeutralOrAir()))
+        {
+            fighter.currentAttack.OnAnimationEnd(fighter);
+        }
     }
 
     public override void ExitState()
@@ -50,5 +53,6 @@ public class Grabbing : FighterState, IAnimationEndState
     public void OnForceAnimationEnded()
     {
         fighter.SwitchState(NeutralOrAir());
+        fighter.currentAttack.OnAnimationEnd(fighter);
     }
 }

@@ -279,13 +279,32 @@ public class FishingAirSuccess : ThrowAttackSuccess
 
         properties.attackType = GameAttackProperties.AttackType.Heavy;
 
-        properties.hitProperties.airKnockback.Set(-6f, -11f);
-        properties.hitProperties.selfKnockback.Set(-5f, 0);
+        properties.hitProperties.airKnockback.Set(-2f, -11f);
+        properties.hitProperties.selfKnockback.Set(-6f, 0);
         properties.hitProperties.damage = 250f;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
         properties.hitProperties.hardKD = false;
         properties.hitProperties.groundBounceOnAirHit = true;
+        properties.hitProperties.wallBounce = false;
+
+    }
+
+    public override void OnAnimationEnd(FighterMain fighter)
+    {
+        base.OnAnimationEnd(fighter);
+
+        // manually apply self knockback
+        // todo: make it apply combo scaling so you get pushed further later in the combo?
+
+        Vector2 kb = properties.hitProperties.selfKnockback;
+
+        if (fighter.otherFighterMain.isAtTheWall)
+        {
+            kb.x += properties.hitProperties.knockback.x / 1.5f;
+        }
+
+        fighter.OnVelocityImpulseRelativeToOtherFighter(kb);
 
     }
 }

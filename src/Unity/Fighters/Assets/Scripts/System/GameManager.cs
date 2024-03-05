@@ -19,6 +19,8 @@ public class GameManager : SoundPlayer
 
     public GameObject[] Walls;
 
+    public CharacterModule[] allCharacters;
+
     [Header("Player 1")]
     public Transform player1spawn;
     public FighterMain player1;
@@ -89,12 +91,19 @@ public class GameManager : SoundPlayer
         }
         LaneLibrary.RandomMethods.Choose(stages).SetActive(true);
 
+        // any human controller can press pause, regardless of if they are controlling a fighter
+        // so that we can pause during cpu battles
+        foreach (HumanPlayerConfig human in GamePlayerManager.Instance.humanPlayerConfigs)
+        {
+            human.Input.actions["Pause"].performed += PausePressed;
+        }
+
         player1GameWins = 0;
         player2GameWins = 0;
 
         NewGame();
 
-        PlayCharacterMusic();
+        
     }
 
     private void PlayCharacterMusic()
@@ -113,8 +122,19 @@ public class GameManager : SoundPlayer
         player1lives = 2;
         player2lives = 2;
 
+        // handle random select
+        foreach (GamePlayerConfig gamePlayer in GamePlayerManager.Instance.gamePlayerConfigs)
+        {
+            if (gamePlayer.IsRandomSelect == true)
+            {
+                gamePlayer.Character = LaneLibrary.RandomMethods.Choose(allCharacters);
+                gamePlayer.CharacterMaterialIndex = RandomMethods.RANDOM.Next(gamePlayer.Character.materials.Length);
+            }
+        }
 
         SetupRound();
+
+        PlayCharacterMusic();
     }
 
     public void SetupRound()
@@ -535,7 +555,7 @@ public class GameManager : SoundPlayer
         player1Healthbar.SetMaterial(configManager.gamePlayerConfigs[0].Character.materials[configManager.gamePlayerConfigs[0].CharacterMaterialIndex]);
         player1StocksDisplay.InitializeStocksDisplay(player1);
         player1StocksDisplay.SetMaterial(configManager.gamePlayerConfigs[0].Character.materials[configManager.gamePlayerConfigs[0].CharacterMaterialIndex]);
-        player1.PausePressed += (sender, e) => PauseGame();
+        //player1.PausePressed += (sender, e) => PauseGame();
         player1.Walls = Walls;
         player1NotificationManager.SetupNotificationManager(player1);
 
@@ -546,9 +566,14 @@ public class GameManager : SoundPlayer
         player2Healthbar.SetMaterial(configManager.gamePlayerConfigs[1].Character.materials[configManager.gamePlayerConfigs[1].CharacterMaterialIndex]);
         player2StocksDisplay.InitializeStocksDisplay(player2);
         player2StocksDisplay.SetMaterial(configManager.gamePlayerConfigs[1].Character.materials[configManager.gamePlayerConfigs[1].CharacterMaterialIndex]);
-        player2.PausePressed += (sender, e) => PauseGame();
+        //player2.PausePressed += (sender, e) => PauseGame();
         player2.Walls = Walls;
         player2NotificationManager.SetupNotificationManager(player2);
+    }
+
+    private void PausePressed(InputAction.CallbackContext obj)
+    {
+        PauseGame();
     }
 
     public void PauseGame()

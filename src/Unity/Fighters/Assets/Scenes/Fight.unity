@@ -2237,6 +2237,11 @@ MonoBehaviour:
   Walls:
   - {fileID: 882806211}
   - {fileID: 177127792}
+  allCharacters:
+  - {fileID: 11400000, guid: 34c10423f2e25284f9eabac345d3dc9b, type: 2}
+  - {fileID: 11400000, guid: 70ce4418a59a3ac41a0827b3c9589115, type: 2}
+  - {fileID: 11400000, guid: 72dad53e91bb29b4198c503c5becd1f4, type: 2}
+  - {fileID: 11400000, guid: 0403857f69354ec47947004298de64e5, type: 2}
   player1spawn: {fileID: 1462191732}
   player1: {fileID: 0}
   player1Healthbar: {fileID: 1184261825}

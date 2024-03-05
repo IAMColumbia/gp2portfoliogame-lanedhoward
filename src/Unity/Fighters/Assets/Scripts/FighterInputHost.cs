@@ -38,15 +38,15 @@ public class FighterInputHost : IInputHost
         attackD = player.FindAction("AttackD");
         dashMacro = player.FindAction("DashMacro");
 
-        pause = player.FindAction("Pause");
+        //pause = player.FindAction("Pause");
     }
 
     public IHostPackage GetCurrentInputs()
     {
-        if (pause.triggered)
-        {
-            PausePressed?.Invoke(this, EventArgs.Empty);
-        }
+        //if (pause.triggered)
+        //{
+        //    PausePressed?.Invoke(this, EventArgs.Empty);
+        //}
 
         var v = move.ReadValue<Vector2>();
 

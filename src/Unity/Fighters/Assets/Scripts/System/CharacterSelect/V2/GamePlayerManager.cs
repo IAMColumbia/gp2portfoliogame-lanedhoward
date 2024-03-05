@@ -246,6 +246,8 @@ public class GamePlayerConfig
 
     public int CharacterMaterialIndex;
 
+    public bool IsRandomSelect = false;
+
     public int GameWins;
 
     public PlayerType playerType;

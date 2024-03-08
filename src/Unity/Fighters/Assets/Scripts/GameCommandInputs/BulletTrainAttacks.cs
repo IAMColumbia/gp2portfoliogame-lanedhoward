@@ -1,4 +1,5 @@
-﻿using CommandInputReaderLibrary.Gestures;
+﻿using CommandInputReaderLibrary;
+using CommandInputReaderLibrary.Gestures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,24 @@ public static class BulletTrainAttacks
                 new BackWavedash()
             };
         return attacks;
+    }
+
+    public static List<IReadableGesture> GetGestures()
+    {
+        List<IReadableGesture> gestures = new List<IReadableGesture>()
+            {
+                new QuarterCircleBack(),
+                new QuarterCircleForward(),
+                new CrouchGesture(),
+                new BackGesture(),
+                new ForwardGesture(),
+                new NeutralGesture(),
+                new ForwardOrNeutralGesture(),
+                new DownForwardGesture(),
+                new DownBackGesture(),
+                new NoGesture()
+            };
+        return gestures;
     }
 }
 

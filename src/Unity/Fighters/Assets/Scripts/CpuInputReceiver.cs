@@ -11,30 +11,28 @@ using UnityEngine;
 public class CpuInputReceiver : FighterInputReceiver
 {
     List<IReadableGesture> possibleGestures;
-    List<IButton> possibleButtons;
+    Dictionary<IButton, int> possibleButtons;
     Dictionary<int, int> upDownWeights;
     Dictionary<int, int> leftRightWeights;
 
     public CpuInputReceiver(FighterMain _fighter, FighterInputHost _inputHost, InputReader _inputReader) : base(_fighter, _inputHost, _inputReader)
     {
-        possibleButtons = new List<IButton>()
-        {
-            new AttackA(),
-            new AttackB(),
-            new AttackC(),
-            new AttackD(),
-            new DashMacro()
-        };
+        possibleButtons = new Dictionary<IButton, int>();
+        possibleButtons.Add(new AttackA(), 10);
+        possibleButtons.Add(new AttackB(), 13);
+        possibleButtons.Add(new AttackC(), 13);
+        possibleButtons.Add(new AttackD(), 7);
+        possibleButtons.Add(new DashMacro(), 7);
 
         upDownWeights = new Dictionary<int, int>();
-        upDownWeights.Add(-1, 9);
+        upDownWeights.Add(-1, 8);
         upDownWeights.Add(0, 10);
         upDownWeights.Add(1, 1);
 
         leftRightWeights = new Dictionary<int, int>();
-        leftRightWeights.Add(-1, 4);
+        leftRightWeights.Add(-1, 5);
         leftRightWeights.Add(0, 1);
-        leftRightWeights.Add(1, 5);
+        leftRightWeights.Add(1, 7);
 
     }
 
@@ -58,7 +56,7 @@ public class CpuInputReceiver : FighterInputReceiver
 
                 gestures.Add(RandomMethods.Choose(possibleGestures));
                 if (RandomMethods.RANDOM.Next(2) != 0) gestures.Add(new NoGesture());
-                buttons.Add(RandomMethods.Choose(possibleButtons));
+                buttons.Add(RandomMethods.ChooseWeighted(possibleButtons));
 
                 IReadPackage package = new ReadPackage(null, gestures, buttons, 0);
                 

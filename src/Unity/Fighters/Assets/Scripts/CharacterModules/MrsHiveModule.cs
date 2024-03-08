@@ -15,6 +15,6 @@ public class MrsHiveModule : CharacterModule
     }
     public override List<IReadableGesture> GetPossibleGestures()
     {
-        return FighterGestures.GetDefaultGestures();
+        return MrsHiveAttacks.GetGestures();
     }
 }

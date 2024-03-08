@@ -15,6 +15,6 @@ public class BlackhandModule : CharacterModule
     }
     public override List<IReadableGesture> GetPossibleGestures()
     {
-        return FighterGestures.GetDefaultGestures();
+        return BlackhandAttacks.GetGestures();
     }
 }

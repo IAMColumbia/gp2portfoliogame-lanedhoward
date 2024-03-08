@@ -43,6 +43,25 @@ public static class FighterAttacks
             };
         return attacks;
     }
+
+    public static List<IReadableGesture> GetGestures()
+    {
+        List<IReadableGesture> gestures = new List<IReadableGesture>()
+            {
+                new QuarterCircleBack(),
+                new QuarterCircleForward(),
+                new DragonPunch(),
+                new CrouchGesture(),
+                new BackGesture(),
+                new ForwardGesture(),
+                new NeutralGesture(),
+                new ForwardOrNeutralGesture(),
+                new DownForwardGesture(),
+                new DownBackGesture(),
+                new NoGesture()
+            };
+        return gestures;
+    }
 }
 
 

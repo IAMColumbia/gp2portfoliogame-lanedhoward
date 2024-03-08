@@ -15,6 +15,6 @@ public class BulletTrainModule : CharacterModule
     }
     public override List<IReadableGesture> GetPossibleGestures()
     {
-        return FighterGestures.GetDefaultGestures();
+        return BulletTrainAttacks.GetGestures();
     }
 }

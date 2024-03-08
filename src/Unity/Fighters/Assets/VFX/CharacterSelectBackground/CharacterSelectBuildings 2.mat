@@ -46,8 +46,8 @@ Material:
     - _DstBlend: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SinAmplitude: 0.001
-    - _SinRate: 10
+    - _SinAmplitude: 0.002
+    - _SinRate: 3
     - _SrcBlend: 1
     - _Surface: 0
     - _ZTest: 4

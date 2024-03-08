@@ -330,6 +330,7 @@ public class HiveSummon : GameAttack
                 hive.EndProjectile();
                 hive.StartProjectile(forwardBack);
             }
+            hive.breakOnCollisionWithOtherProjectile = false;
             fighter.SetStocks(honeyStocksAmount);
         }
     }
@@ -388,7 +389,8 @@ public class HiveAttack : GameAttack
         if (fighter.fireball.projectileActive)
         {
             fighter.fireball.projectileProperties = fireballProperties;
-            fighter.fireball.breakOnCollision = true;
+            fighter.fireball.breakOnCollisionWithPlayer = true;
+            fighter.fireball.breakOnCollisionWithOtherProjectile = true;
             fighter.fireball.hitbox.OpenForCollision = true;
             fighter.fireball.hitbox._state = ColliderState.Open;
             fighter.SetStocks(fighter.GetStocks() - 1);

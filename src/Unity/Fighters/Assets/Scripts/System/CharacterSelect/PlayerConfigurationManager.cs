@@ -12,7 +12,7 @@ public enum GameMode
     TwoPlayer,
     Training,
     SinglePlayer,
-    AIvsAI
+    CPUvsCPU
 }
 
 /// <summary>

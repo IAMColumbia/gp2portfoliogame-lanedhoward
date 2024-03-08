@@ -8,12 +8,15 @@ using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using LaneLibrary;
 using Cinemachine;
+using System.Linq;
 
 public class GameManager : SoundPlayer
 {
     public GameObject fighterPrefab;
 
     public int round;
+
+    public GameMode gameMode;
 
     public GameObject[] stages;
 
@@ -85,17 +88,29 @@ public class GameManager : SoundPlayer
             return;
         }
 
-        foreach (var s in stages)
-        {
-            s.SetActive(false);
-        }
-        LaneLibrary.RandomMethods.Choose(stages).SetActive(true);
-
         // any human controller can press pause, regardless of if they are controlling a fighter
         // so that we can pause during cpu battles
         foreach (HumanPlayerConfig human in GamePlayerManager.Instance.humanPlayerConfigs)
         {
             human.Input.actions["Pause"].performed += PausePressed;
+        }
+
+        // decide gamemode
+        if (GamePlayerManager.Instance.gamePlayerConfigs.All(c => c.playerType == PlayerType.Human))
+        {
+            gameMode = GameMode.TwoPlayer;
+        }
+        else if (GamePlayerManager.Instance.gamePlayerConfigs.All(c => c.playerType == PlayerType.CPU))
+        {
+            gameMode = GameMode.CPUvsCPU;
+        }
+        else if (GamePlayerManager.Instance.gamePlayerConfigs.Any(c => c.playerType == PlayerType.Training))
+        {
+            gameMode = GameMode.Training;
+        }
+        else
+        {
+            gameMode = GameMode.SinglePlayer;
         }
 
         player1GameWins = 0;
@@ -117,6 +132,12 @@ public class GameManager : SoundPlayer
 
     public void NewGame()
     {
+        foreach (var s in stages)
+        {
+            s.SetActive(false);
+        }
+        LaneLibrary.RandomMethods.Choose(stages).SetActive(true);
+
         round = 1;
 
         player1lives = 2;
@@ -361,6 +382,13 @@ public class GameManager : SoundPlayer
             winScreen.UpdateRecord(player1GameWins, player2GameWins);
 
             eventSystem.SetSelectedGameObject(RematchButton);
+
+            if (gameMode == GameMode.CPUvsCPU)
+            {
+                yield return new WaitForSeconds(2.5f);
+                Rematch();
+            }
+
         }
         else
         {

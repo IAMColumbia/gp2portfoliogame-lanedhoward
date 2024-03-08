@@ -14781,7 +14781,8 @@ MonoBehaviour:
   breakOnWallContact: 0
   selfDamage: 0
   breakOnHit: 1
-  breakOnCollision: 1
+  breakOnCollisionWithPlayer: 1
+  breakOnCollisionWithOtherProjectile: 0
   maxHitDistance: 100
   fireballStartSound: {fileID: 8300000, guid: 05e268efd6852f249a62405fc1a5a322, type: 3}
   startVelocityNeutral: {x: 6.5, y: 0}

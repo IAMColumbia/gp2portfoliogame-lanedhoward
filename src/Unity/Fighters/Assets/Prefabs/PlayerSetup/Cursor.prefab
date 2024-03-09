@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInput: {fileID: 0}
-  moveSpeed: 4
+  moveSpeed: 5
   PlayerText: {fileID: 3823451100517558727}
   gamePlayerSlot: {fileID: 0}
   panels: {fileID: 0}

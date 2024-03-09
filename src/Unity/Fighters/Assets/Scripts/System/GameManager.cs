@@ -399,6 +399,8 @@ public class GameManager : SoundPlayer
 
     public void Rematch()
     {
+        StopAllCoroutines();
+
         Destroy(player1.gameObject);
         Destroy(player2.gameObject);
 
@@ -407,6 +409,12 @@ public class GameManager : SoundPlayer
 
     public void ReturnToCharacterSelect()
     {
+        // remove references
+        foreach (HumanPlayerConfig human in GamePlayerManager.Instance.humanPlayerConfigs)
+        {
+            human.Input.actions["Pause"].performed -= PausePressed;
+        }
+
         //PlayerConfigurationManager.Instance.BackToCharacterSelect();
         GamePlayerManager.Instance.BackToCharacterSelect();
     }

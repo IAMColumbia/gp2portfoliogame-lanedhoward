@@ -238,18 +238,19 @@ public class Pegleg : GameAttack
 
         properties.blockProperties.knockback.Set(-6f, 0);
         properties.blockProperties.airKnockback.Set(-6f, 5f);
-        properties.blockProperties.selfKnockback.Set(-9f, 0);
+        properties.blockProperties.selfKnockback.Set(-4f, 0);
         properties.blockProperties.damage = 75f;
-        properties.blockProperties.hitstopTime = AttackSettings.attackLevel2_blockhitstop;
-        properties.blockProperties.stunTime = AttackSettings.attackLevel2_blockstun;
+        properties.blockProperties.hitstopTime = AttackSettings.attackLevel3_blockhitstop;
+        properties.blockProperties.stunTime = AttackSettings.attackLevel3_blockstun;
 
         properties.hitProperties.knockback.Set(-10f, 9f);
         properties.hitProperties.airKnockback.Set(-10f, 9f);
-        properties.hitProperties.selfKnockback.Set(-3f, 0);
+        properties.hitProperties.selfKnockback.Set(-1f, 0);
         properties.hitProperties.damage = 350f;
-        properties.hitProperties.hitstopTime = AttackSettings.attackLevel2_hithitstop;
-        properties.hitProperties.stunTime = AttackSettings.attackLevel2_hitstun;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
         properties.hitProperties.hardKD = true;
+        properties.hitProperties.wallBounce = true;
     }
 }
 

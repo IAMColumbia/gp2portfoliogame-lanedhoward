@@ -43,6 +43,14 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2600808897975010573, guid: dd49196d4ed24cf45a73ac74811c8c32, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2600808897975010573, guid: dd49196d4ed24cf45a73ac74811c8c32, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2800889981901860192, guid: dd49196d4ed24cf45a73ac74811c8c32, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -119,13 +127,16 @@ MonoBehaviour:
   fighterParent: {fileID: 0}
   originalParent: {fileID: 0}
   hitbox: {fileID: 7406844032417370648}
+  particles: {fileID: 0}
   velocity: {x: -9, y: 0}
   projectileActive: 0
   lifetime: 2.5
   timer: 0
   breakOnWallContact: 0
-  selfDamage: 0
+  selfDamage: 1
   breakOnHit: 0
+  breakOnCollisionWithPlayer: 1
+  breakOnCollisionWithOtherProjectile: 1
   maxHitDistance: 1
   fireballStartSound: {fileID: 8300000, guid: dfdaaeef652b2674db26113035f774cb, type: 3}
   wallXpos: 12

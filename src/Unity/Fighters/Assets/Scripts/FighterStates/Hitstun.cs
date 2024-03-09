@@ -66,10 +66,12 @@ public class Hitstun : FighterState, IStunState
 
         if (fighter.currentStance == FighterStance.Air)
         {
-            if (!fighter.fighterAnimator.GetAnimatorStateInfo().IsName("AirHit"))
+            if (!fighter.fighterAnimator.GetAnimatorStateInfo().IsName("AirHit") && !fighter.fighterAnimator.GetAnimatorStateInfo().IsName("AirHitFalling"))
             {
                 fighter.fighterAnimator.StartAnimation("AirHit");
             }
+
+            UpdateFallingAnimationBool();
 
             wasEverAirborne = true;
             if (stateTimer > 0.1f)

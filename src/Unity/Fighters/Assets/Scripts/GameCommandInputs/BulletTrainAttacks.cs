@@ -44,7 +44,9 @@ public static class BulletTrainAttacks
                 new ForwardHop(),
                 new NeutralHop(),
                 new ForwardWavedash(),
-                new BackWavedash()
+                new BackWavedash(),
+                new ForwardWavedashCancel(),
+                new BackWavedashCancel()
             };
         return attacks;
     }

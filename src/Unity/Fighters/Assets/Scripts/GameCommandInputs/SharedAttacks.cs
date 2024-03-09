@@ -732,7 +732,7 @@ public class ForwardWavedash : GameAttack
         conditions.Add(new GestureCondition(this, new DownForwardGesture()));
         conditions.Add(new ButtonCondition(this, new DashMacro()));
         conditions.Add(new GroundedCondition(this, true));
-        conditions.Add(new GatlingCondition(this));
+        conditions.Add(new NoGatlingCondition(this));
 
         whiffSoundIndex = 0;
         hitSoundIndex = 0;
@@ -774,6 +774,25 @@ public class ForwardWavedash : GameAttack
     }
 }
 
+/// <summary>
+/// forward wavedash as a special cancel. more time before cancelable recovery. avoids infinites
+/// </summary>
+public class ForwardWavedashCancel : ForwardWavedash
+{
+    public ForwardWavedashCancel() : base()
+    {
+        conditions.Clear();
+        conditions.Add(new GestureCondition(this, new DownForwardGesture()));
+        conditions.Add(new ButtonCondition(this, new DashMacro()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new GatlingCondition(this));
+
+        properties.AnimationName = "WavedashForwardCancel";
+
+        properties.attackType = GameAttackProperties.AttackType.Special;
+    }
+}
+
 public class BackWavedash : GameAttack
 {
     Vector2 wavedashVelocity;
@@ -782,7 +801,7 @@ public class BackWavedash : GameAttack
         conditions.Add(new GestureCondition(this, new DownBackGesture()));
         conditions.Add(new ButtonCondition(this, new DashMacro()));
         conditions.Add(new GroundedCondition(this, true));
-        conditions.Add(new GatlingCondition(this));
+        conditions.Add(new NoGatlingCondition(this));
 
         whiffSoundIndex = 0;
         hitSoundIndex = 0;
@@ -817,6 +836,25 @@ public class BackWavedash : GameAttack
         {
             a.allowJumping = true;
         }
+    }
+}
+
+/// <summary>
+/// back wavedash as a special cancel. more time before cancelable recovery. avoids infinites
+/// </summary>
+public class BackWavedashCancel : BackWavedash
+{
+    public BackWavedashCancel() : base()
+    {
+        conditions.Clear();
+        conditions.Add(new GestureCondition(this, new DownBackGesture()));
+        conditions.Add(new ButtonCondition(this, new DashMacro()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new GatlingCondition(this));
+
+        properties.AnimationName = "WavedashBackCancel";
+
+        properties.attackType = GameAttackProperties.AttackType.Special;
     }
 }
 

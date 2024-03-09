@@ -55,4 +55,10 @@ public class TimeManager : MonoBehaviour
             }
         }
     }
+
+    private void OnDisable()
+    {
+        ResetTimeScale();
+        isInSlowmo = false;
+    }
 }

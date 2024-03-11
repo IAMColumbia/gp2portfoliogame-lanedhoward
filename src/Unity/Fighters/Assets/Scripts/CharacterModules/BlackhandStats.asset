@@ -24,7 +24,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e7575c920d13bea4abe6c058c574c912, type: 2}
   song: {fileID: 8300000, guid: ff261eb8c2bed8b468509bfc107755da, type: 3}
   nameAnnouncement: {fileID: 8300000, guid: 35442701af72eb24ca4431b6ee7fe092, type: 3}
-  MaxHealth: 3000
+  MaxHealth: 5000
   JuggleMomentumMultiplier: 0.2
   softKnockdownTime: 0.1
   hardKnockdownTime: 0.5

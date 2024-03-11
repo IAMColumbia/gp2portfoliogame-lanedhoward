@@ -16,7 +16,8 @@ public class Healthbar : MonoBehaviour
     private bool draining;
 
     public TextMeshProUGUI nametag;
-    public Image portrait;
+    public TextMeshProUGUI descriptionTag;
+    public Image headshot;
 
     public Image[] hearts;
 
@@ -56,16 +57,19 @@ public class Healthbar : MonoBehaviour
         percent = Mathf.Max(percent, minPercent);
     }
 
-    public void SetNametag(string name)
+    public void SetCharacterModule(CharacterModule character)
     {
-        nametag.SetText(name);
+        nametag.SetText(character.CharacterName);
+        descriptionTag.SetText(character.CharacterDescription);
+        headshot.sprite = character.Headshot;
+
     }
 
     public void SetMaterial(Material mat)
     {
         //healthbar.CrossFadeColor(mat.GetColor("_MainColor"),0,false,false);
         //healthbar.material = mat;
-        portrait.material = mat;
+        headshot.material = mat;
         foreach (var h in hearts)
         {
             h.material = mat;

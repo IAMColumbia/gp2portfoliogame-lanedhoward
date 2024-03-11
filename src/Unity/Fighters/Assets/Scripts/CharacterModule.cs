@@ -11,6 +11,7 @@ public class CharacterModule : ScriptableObject
     public string CharacterName;
     public string CharacterDescription;
     public Sprite Portrait;
+    public Sprite Headshot;
     public Material[] materials;
     public AudioClip song;
     public AudioClip nameAnnouncement;

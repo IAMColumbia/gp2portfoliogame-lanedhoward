@@ -15,6 +15,7 @@ MonoBehaviour:
   CharacterName: Barnacle Bill Roddy
   CharacterDescription: LAKE MICHIGAN PIRATE
   Portrait: {fileID: 21300000, guid: 8e98ac5cdeead884c9201457070c0fb3, type: 3}
+  Headshot: {fileID: 21300000, guid: b68a6605d8dcf004faeeada098b465dd, type: 3}
   materials:
   - {fileID: 2100000, guid: 60a2e37dd07c8c84399b54e789aeb9f2, type: 2}
   - {fileID: 2100000, guid: d25a58a977ee9ec4eaa94db5899dbf0b, type: 2}

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterName: The People's Champ!!
   CharacterDescription: HOMETOWN HERO
-  Portrait: {fileID: 21300000, guid: 398ae98fa2496c44cb7ad3fcf75a4d6b, type: 3}
-  Headshot: {fileID: 21300000, guid: 4f560a6c1ba7b894f902abc78d2471b5, type: 3}
+  Portrait: {fileID: 21300000, guid: 7935524e5da53b54fa2cf68ec0cb6043, type: 3}
+  Headshot: {fileID: 21300000, guid: 73659734f782036478a62b6626cde4da, type: 3}
   materials:
   - {fileID: 2100000, guid: 6a17db4d6a8b85b41ad8c5ff2dbdad69, type: 2}
   - {fileID: 2100000, guid: e5408ccd2d0d01b4face6752dc82e411, type: 2}

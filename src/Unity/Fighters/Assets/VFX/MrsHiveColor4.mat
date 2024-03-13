@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BlackhandColor5
+  m_Name: MrsHiveColor4
   m_Shader: {fileID: -6465566751694194690, guid: 864ea19888a78b04898a69721488bdbb, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -39,7 +39,8 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _MainColor: {r: 0.27725163, g: 0.8301887, b: 0.8194572, a: 0}
-    - _SecondaryColor: {r: 0.3220894, g: 0.11427554, b: 0.5660378, a: 1}
-    - _SpecialColor: {r: 0.93485594, g: 0.9433962, b: 0.742257, a: 1}
+    - _MainColor: {r: 0.6182679, g: 0.85882354, b: 0.5137255, a: 0}
+    - _OutlineColor: {r: 1, g: 1, b: 1, a: 0}
+    - _SecondaryColor: {r: 0.058846552, g: 0.3584906, b: 0.2143714, a: 0}
+    - _SpecialColor: {r: 0.6901961, g: 0.972549, b: 0.85621667, a: 0}
   m_BuildTextureStacks: []

@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FighterColor6
+  m_Name: BulletTrainColor3
   m_Shader: {fileID: -6465566751694194690, guid: 864ea19888a78b04898a69721488bdbb, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: -8328923581568760697, guid: dca990922d2354849a2d0b7c9c888261, type: 3}
+        m_Texture: {fileID: -8328923581568760697, guid: d38d754dbccf5df4cbe0122d3e979af7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -39,7 +39,8 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _MainColor: {r: 1, g: 0.4188679, b: 0.4188679, a: 0}
-    - _SecondaryColor: {r: 0.41509432, g: 0.2808234, b: 0.26393732, a: 0}
-    - _SpecialColor: {r: 0.9056604, g: 0.063225314, b: 0.13164641, a: 0}
+    - _MainColor: {r: 0.11192584, g: 0.049519394, b: 0.24528301, a: 0}
+    - _OutlineColor: {r: 1, g: 1, b: 1, a: 0}
+    - _SecondaryColor: {r: 0.6405948, g: 0.25432533, b: 0.8867924, a: 0}
+    - _SpecialColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []

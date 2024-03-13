@@ -121,6 +121,7 @@
     <Compile Include="Assets\Scripts\GameCommandInputs\BlackHandAttacks.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\BulletTrainAttacks.cs" />
     <Compile Include="Assets\Scripts\System\TimeManager.cs" />
+    <Compile Include="Assets\Scripts\System\ThrowCamera.cs" />
     <Compile Include="Assets\Scripts\LaneLibrary\ConsoleUtils.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\ThrowAttack.cs" />
     <Compile Include="Assets\Scripts\Announcer\AnnouncerSO.cs" />
@@ -167,7 +168,6 @@
     <Compile Include="Assets\Scripts\System\CharacterSelect\ControlsPanel.cs" />
     <Compile Include="Assets\Scripts\WallBounceReceiver.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\System\ThrowCamera.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

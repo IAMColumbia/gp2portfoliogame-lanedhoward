@@ -1152,6 +1152,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
     public void PlayGriddyVFX()
     {
+        SendNotification("Griddy Enhanced!");
         griddyParticles.Play();
         wavedashParticles.Play();
     }

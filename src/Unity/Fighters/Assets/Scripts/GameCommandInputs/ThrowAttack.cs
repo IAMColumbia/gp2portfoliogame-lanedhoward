@@ -43,6 +43,9 @@ public class ThrowAttackSuccess : GameAttack
     public bool canBeTeched;
     public bool canChicagoPunish;
 
+    public static EventHandler ThrowStarted;
+    public static EventHandler ThrowEnded;
+
     public ThrowAttackSuccess()
     {
         flipOnTech = false;
@@ -53,6 +56,8 @@ public class ThrowAttackSuccess : GameAttack
     public override void OnStartup(FighterMain fighter)
     {
         base.OnStartup(fighter);
+
+        ThrowStarted?.Invoke(this, EventArgs.Empty);
 
         fighter.SwitchState(fighter.grabbing);
 
@@ -127,6 +132,19 @@ public class ThrowAttackSuccess : GameAttack
         {
             fighter.ThrowFlipPlayers();
         }
+        ThrowEnded?.Invoke(this, EventArgs.Empty);
+
+    }
+
+    public override void OnRecovery(FighterMain fighter)
+    {
+        base.OnRecovery(fighter);
+        ThrowEnded?.Invoke(this, EventArgs.Empty);
+    }
+
+    public override void OnAnimationEnd(FighterMain fighter)
+    {
+        base.OnAnimationEnd(fighter);
     }
 }
 

@@ -396,15 +396,15 @@ public class EnhancedPeoplesUppercut : PeoplesUppercut
         properties.blockProperties.hitstopTime = AttackSettings.attackLevel4_blockhitstop;
         properties.blockProperties.stunTime = AttackSettings.attackLevel4_blockstun;
 
-        properties.hitProperties.knockback.Set(-4f, 18f);
-        properties.hitProperties.airKnockback.Set(-4f, 16f);
+        properties.hitProperties.knockback.Set(-4f, 19f);
+        properties.hitProperties.airKnockback.Set(-4f, 17f);
         properties.hitProperties.selfKnockback.Set(-2f, 0);
         properties.hitProperties.damage = 700f;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel4_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel4_hitstun;
         properties.hitProperties.hardKD = true;
 
-        velocity = new Vector2(6f, 0);
+        velocity = new Vector2(5f, 0);
     }
 
     public override void OnStartup(FighterMain fighter)

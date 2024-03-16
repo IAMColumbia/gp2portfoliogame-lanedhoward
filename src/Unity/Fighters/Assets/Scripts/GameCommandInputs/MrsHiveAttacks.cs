@@ -31,6 +31,7 @@ public static class MrsHiveAttacks
                 new HiveAttack(),
                 new Teleport(),
                 new Stinger(),
+                new Swarm(),
                 new BackThrowWhiff(new GrabSuccess()),
                 new GrabWhiff(new GrabSuccess()),
                 new AirBackThrowWhiff(new AirGrabSuccess()),
@@ -566,6 +567,55 @@ public class Stinger : GameAttack
 
         fighter.OnVelocityImpulseRelativeToSelf(vel);
 
+        fighter.SetStocks(fighter.GetStocks() - 1);
+    }
+}
+
+public class Swarm : GameAttack
+{
+    public Swarm() : base()
+    {
+        conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
+        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new GatlingCondition(this));
+        conditions.Add(new HasStockCondition(this));
+        conditions.Add(new GroundedCondition(this, true));
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[3];
+        whiffSoundIndex = 2;
+        hitSoundIndex = 3;
+
+        properties.AnimationName = "Swarm";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Standing;
+
+        properties.landCancelStartup = false;
+        properties.landCancelActive = false;
+        properties.landCancelRecovery = false;
+
+        // hits 4 times
+
+        properties.blockProperties.knockback.Set(-1.5f, 0);
+        properties.blockProperties.airKnockback.Set(-2.5f, -4f);
+        properties.blockProperties.selfKnockback.Set(-1f, 0);
+        properties.blockProperties.damage = 50f;
+        properties.blockProperties.hitstopTime = AttackSettings.attackLevel2_blockhitstop;
+        properties.blockProperties.stunTime = AttackSettings.attackLevel3_blockstun;
+
+        properties.hitProperties.knockback.Set(-1.75f, 0);
+        properties.hitProperties.airKnockback.Set(-1.75f, 8f);
+        properties.hitProperties.selfKnockback.Set(-1.75f, 0);
+        properties.hitProperties.damage = 145f;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel2_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
         fighter.SetStocks(fighter.GetStocks() - 1);
     }
 }

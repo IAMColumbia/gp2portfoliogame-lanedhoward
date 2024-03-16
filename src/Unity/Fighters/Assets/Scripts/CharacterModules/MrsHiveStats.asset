@@ -60,12 +60,18 @@ MonoBehaviour:
 
     Beehive Summon: 236 + Light. Grants 4 Honey.
 
-    Beehive Detonate:
-    214 + Light. Resets Honey.
 
-    Beehive Teleport: 22 + Light. Costs 1 Honey.
+    Beehive
+    Detonate: 214 + Light. Resets Honey.
 
-    Stinger:
-    Down + Heavy in air. Costs 1 Honey.
+    Beehive Teleport: 22 + Light. Costs
+    1 Honey.
 
-    Fly: Dash in air. Costs 1 Honey'
+
+    Stinger: Down + Heavy in air. Costs 1 Honey.
+
+    Fly: Dash in
+    air. Costs 1 Honey
+
+
+    Swarm: 236 + Heavy. Costs 1 Honey.'

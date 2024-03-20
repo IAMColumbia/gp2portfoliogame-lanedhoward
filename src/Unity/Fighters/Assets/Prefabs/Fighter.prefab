@@ -331,7 +331,7 @@ MonoBehaviour:
   blockSounds:
   - {fileID: 8300000, guid: 470a5173824ac2a45931aee638948ab8, type: 3}
   throwTechSound: {fileID: 8300000, guid: 618cb72e0ed85ac47809de66811faf0a, type: 3}
-  parrySound: {fileID: 8300000, guid: 05e268efd6852f249a62405fc1a5a322, type: 3}
+  parrySound: {fileID: 8300000, guid: 3bf567554e0cd2f418b6b1fa8d88c5ce, type: 3}
   bounceSound: {fileID: 8300000, guid: 16b7d9df4794ba24492d8a676c3ea726, type: 3}
   smallHitParticles: {fileID: 7919910832669422064}
   midHitParticles: {fileID: 333986196007816026}

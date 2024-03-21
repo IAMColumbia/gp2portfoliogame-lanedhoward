@@ -51,8 +51,8 @@ public class FighterInputHost : IInputHost
         var v = move.ReadValue<Vector2>();
 
         var p = new HostPackage();
-        p.UpDown = (int)v.y;
-        p.LeftRight = (int)v.x;
+        p.UpDown = Mathf.RoundToInt(v.y);
+        p.LeftRight = Mathf.RoundToInt(v.x);
 
         AddButtonToHostPackage<AttackA>(p, attackA);
         AddButtonToHostPackage<AttackB>(p, attackB);

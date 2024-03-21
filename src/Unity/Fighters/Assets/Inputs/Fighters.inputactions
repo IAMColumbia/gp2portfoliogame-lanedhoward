@@ -375,6 +375,116 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "Joystick",
+                    "id": "afd0c85a-da6b-40c0-8e95-4ece4bbf1e5e",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "36d5ed37-e7a5-4837-88e0-074c907cd33e",
+                    "path": "<Joystick>/stick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "b1b0366f-e740-4c26-ac62-fb04b4787428",
+                    "path": "<Joystick>/stick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "db5d4146-45bb-4380-a219-a34fa9193e13",
+                    "path": "<Joystick>/stick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "f66fae03-c1a9-4adc-b1ba-c6db2795ca67",
+                    "path": "<Joystick>/stick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "JoystickHat",
+                    "id": "f0b47e38-8dfb-4ed8-aba1-5e20e2478e59",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "f7d5af77-313e-4d88-a061-3e00d8dbc721",
+                    "path": "<HID::ZEROPLUS P4 Wired Gamepad>/hat/up",
+                    "interactions": "",
+                    "processors": "AxisDeadzone",
+                    "groups": "Joystick",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "8076611f-9909-4c28-a907-eab24c66cd98",
+                    "path": "<HID::ZEROPLUS P4 Wired Gamepad>/hat/down",
+                    "interactions": "",
+                    "processors": "AxisDeadzone",
+                    "groups": "Joystick",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "ed1be90f-4b6a-4be5-bb96-a1bd0a0be139",
+                    "path": "<HID::ZEROPLUS P4 Wired Gamepad>/hat/left",
+                    "interactions": "",
+                    "processors": "AxisDeadzone",
+                    "groups": "Joystick",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "bb308efc-5431-4919-9a1d-f307624ba42f",
+                    "path": "<HID::ZEROPLUS P4 Wired Gamepad>/hat/right",
+                    "interactions": "",
+                    "processors": "AxisDeadzone",
+                    "groups": "Joystick",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "349a256a-cef1-4268-a2e3-d5bab29b4578",
                     "path": "<Keyboard>/u",
@@ -392,6 +502,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "AttackA",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2f4d9965-0a92-444f-a168-8c6de87d2c9f",
+                    "path": "<HID::ZEROPLUS P4 Wired Gamepad>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
                     "action": "AttackA",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -420,6 +541,17 @@
                 },
                 {
                     "name": "",
+                    "id": "00923485-34c0-43aa-ba5a-b3e11117dcd3",
+                    "path": "<HID::ZEROPLUS P4 Wired Gamepad>/button4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "AttackB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "aa1f443e-3eb1-46d5-a2fd-0dd36929c9b6",
                     "path": "<Keyboard>/k",
                     "interactions": "",
@@ -436,6 +568,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "AttackC",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "428f7b39-8e4e-4328-98de-ff4c6b4f5405",
+                    "path": "<HID::ZEROPLUS P4 Wired Gamepad>/button3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
                     "action": "AttackC",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -469,6 +612,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "Join",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d580a3f4-2521-4ac4-95e4-e1b888118457",
+                    "path": "<HID::ZEROPLUS P4 Wired Gamepad>/button10",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
                     "action": "Join",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -541,6 +695,50 @@
                 },
                 {
                     "name": "",
+                    "id": "9947b2a5-fbae-48a3-8eff-c0907238da4f",
+                    "path": "<HID::ZEROPLUS P4 Wired Gamepad>/button6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "DashMacro",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "101b912c-e01b-40ac-8aba-97a2685da3e3",
+                    "path": "<HID::ZEROPLUS P4 Wired Gamepad>/button5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "DashMacro",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ccf73b8a-2b5a-4ca3-adac-4cea884f887f",
+                    "path": "<HID::ZEROPLUS P4 Wired Gamepad>/button7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "DashMacro",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d50ae8b1-b55f-4574-8360-a7ad49523012",
+                    "path": "<HID::ZEROPLUS P4 Wired Gamepad>/button8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "DashMacro",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a84ce758-4da3-4c04-9f71-3c01dfc19ed1",
                     "path": "<Keyboard>/j",
                     "interactions": "",
@@ -563,6 +761,17 @@
                 },
                 {
                     "name": "",
+                    "id": "919212b2-223f-43af-956e-7c7a0a359884",
+                    "path": "<HID::ZEROPLUS P4 Wired Gamepad>/button2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "AttackD",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "da565c87-65d7-4d49-81cc-8de90bf3fde9",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
@@ -579,6 +788,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "74b962c6-5f1c-4f18-92ae-256cf3dfdd53",
+                    "path": "<HID::ZEROPLUS P4 Wired Gamepad>/button10",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -612,6 +832,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f8f2dfdb-98a4-452b-a41f-fd98c618f315",
+                    "path": "<HID::ZEROPLUS P4 Wired Gamepad>/button2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
                     "action": "Submit",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -921,6 +1152,22 @@
                 {
                     "devicePath": "<Gamepad>",
                     "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Joystick",
+            "bindingGroup": "Joystick",
+            "devices": [
+                {
+                    "devicePath": "<Joystick>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<HID::ZEROPLUS P4 Wired Gamepad>",
+                    "isOptional": true,
                     "isOR": false
                 }
             ]

@@ -198,6 +198,10 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public event EventHandler<int> StocksUpdated;
     public event EventHandler PausePressed;
     public event EventHandler<string> SentNotification;
+    public event EventHandler HitConnected;
+    public event EventHandler AttackInRecovery;
+
+
 
     public static event EventHandler<Vector2> GroundBounced;
     public class WallBounceEventArgs : EventArgs
@@ -574,6 +578,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         {
             currentAttackState = CurrentAttackState.Recovery;
             currentAttack.OnRecovery(this);
+            AttackInRecovery?.Invoke(this, EventArgs.Empty);
         }
     }
 
@@ -716,6 +721,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
                 }
 
                 OnVelocityImpulseRelativeToOtherFighter(kb);
+
+                HitConnected?.Invoke(this, EventArgs.Empty);
             }
 
             return successfulHit;

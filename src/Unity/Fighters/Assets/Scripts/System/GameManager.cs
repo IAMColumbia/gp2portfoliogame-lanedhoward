@@ -561,7 +561,7 @@ public class GameManager : SoundPlayer
                         fm.InitializePlayerInput(config.humanPlayerConfig.Input);
                         break;
                     case PlayerType.CPU:
-                        fm.InjectInputReceiver(new CpuInputReceiver(fm, null, null));
+                        fm.InjectInputReceiver(new HardCpuInputReceiver(fm, null, null));
                         break;
                     case PlayerType.Training:
                         fm.InjectInputReceiver(new TrainingInputReceiver(fm, null, null));

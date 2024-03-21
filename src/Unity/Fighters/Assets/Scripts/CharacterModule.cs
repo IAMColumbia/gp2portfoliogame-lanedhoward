@@ -70,10 +70,15 @@ public class CharacterModule : ScriptableObject
 
     public virtual List<GameAttack> GetGameAttacks()
     {
-        throw new System.NotImplementedException();
+        return null;
     }
     public virtual List<IReadableGesture> GetPossibleGestures()
     {
-        throw new System.NotImplementedException();
+        return null;
+    }
+
+    public virtual List<CpuCombo> GetCpuCombos()
+    {
+        return null;
     }
 }

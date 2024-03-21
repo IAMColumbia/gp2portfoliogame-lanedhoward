@@ -14,6 +14,7 @@ namespace LaneLibrary
         public static T Choose<T>(T[] choices)
         {
             int max = choices.Length;
+            if (max == 0) return default(T);
             int rand = RANDOM.Next(max); //get a random index
             return choices[rand];
 
@@ -22,6 +23,7 @@ namespace LaneLibrary
         public static T Choose<T>(List<T> choices)
         {
             int max = choices.Count;
+            if (max == 0) return default(T);
             int rand = RANDOM.Next(max); //get a random index
             return choices[rand];
 

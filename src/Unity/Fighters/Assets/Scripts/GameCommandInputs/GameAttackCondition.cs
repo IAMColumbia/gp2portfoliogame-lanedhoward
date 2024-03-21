@@ -19,6 +19,11 @@ public class GameAttackCondition
         return false;
     }
 
+    public virtual bool CanExecute(FighterMain fighter)
+    {
+        return CanExecute(null, fighter);
+    }
+
 }
 
 public class StanceCondition : GameAttackCondition

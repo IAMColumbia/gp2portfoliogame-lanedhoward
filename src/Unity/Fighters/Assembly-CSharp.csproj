@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\CharacterModules\FighterModule.cs" />
     <Compile Include="Assets\Scripts\CPU\CpuInputReceiver.cs" />
     <Compile Include="Assets\Scripts\System\Notification.cs" />
+    <Compile Include="Assets\Scripts\CPU\CpuCombo.cs" />
     <Compile Include="Assets\Scripts\LaneLibrary\RandomMethods.cs" />
     <Compile Include="Assets\Scripts\CharacterModules\BulletTrainModule.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Knockdown.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Assets\Scripts\GameCommandInputs\MrsHiveAttacks.cs" />
     <Compile Include="Assets\Scripts\System\CharacterSelect\TitleMenu.cs" />
     <Compile Include="Assets\Scripts\LaneLibrary\Swapper.cs" />
+    <Compile Include="Assets\Scripts\CPU\HardCpuInputReceiver.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadablePackage.cs" />
     <Compile Include="Assets\Inputs\Fighters.cs" />
     <Compile Include="Assets\Scripts\System\CharacterSelect\V2\MenuPanels.cs" />
@@ -168,8 +170,6 @@
     <Compile Include="Assets\Scripts\System\CharacterSelect\ControlsPanel.cs" />
     <Compile Include="Assets\Scripts\WallBounceReceiver.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\CPU\HardCpuInputReceiver.cs" />
-    <Compile Include="Assets\Scripts\CPU\CpuCombo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

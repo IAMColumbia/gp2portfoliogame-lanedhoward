@@ -15,30 +15,77 @@ public class HardCpuInputReceiver : FighterInputReceiver
     int comboIndex;
     bool lastHitConnected;
 
-    Dictionary<int, int> upDownWeights;
-    Dictionary<int, int> leftRightWeights;
+    Dictionary<int, int> upDownWeightsClose;
+    Dictionary<int, int> upDownWeightsFar;
+    Dictionary<int, int> leftRightWeightsClose;
+    Dictionary<int, int> leftRightWeightsFar;
+
+    int mashRateClose = 3;
+    int mashRateFar = 7;
+
+    bool isClose;
+    float closeDistance = 3f;
+
 
     public HardCpuInputReceiver(FighterMain _fighter, FighterInputHost _inputHost, InputReader _inputReader) : base(_fighter, _inputHost, _inputReader)
     {
         fighter.AttackInRecovery += Fighter_AttackInRecovery;
         fighter.HitConnected += Fighter_HitConnected;
+        fighter.GotHit += StopCombo;
+        fighter.Blocked += StopCombo;
+        fighter.ThrowTeched += StopCombo;
+        fighter.Parried += Fighter_Parried;
 
-        upDownWeights = new Dictionary<int, int>();
-        upDownWeights.Add(-1, 8);
-        upDownWeights.Add(0, 10);
-        upDownWeights.Add(1, 1);
+        upDownWeightsFar = new Dictionary<int, int>();
+        upDownWeightsFar.Add(-1, 5);
+        upDownWeightsFar.Add(0, 15);
+        upDownWeightsFar.Add(1, 1);
 
-        leftRightWeights = new Dictionary<int, int>();
-        leftRightWeights.Add(-1, 5);
-        leftRightWeights.Add(0, 1);
-        leftRightWeights.Add(1, 7);
+        leftRightWeightsFar = new Dictionary<int, int>();
+        leftRightWeightsFar.Add(-1, 5);
+        leftRightWeightsFar.Add(0, 2);
+        leftRightWeightsFar.Add(1, 15);
 
+        upDownWeightsClose = new Dictionary<int, int>();
+        upDownWeightsClose.Add(-1, 10);
+        upDownWeightsClose.Add(0, 15);
+        upDownWeightsClose.Add(1, 1);
+
+        leftRightWeightsClose = new Dictionary<int, int>();
+        leftRightWeightsClose.Add(-1, 10);
+        leftRightWeightsClose.Add(0, 0);
+        leftRightWeightsClose.Add(1, 9);
+
+    }
+
+    private void Fighter_Parried(object sender, EventArgs e)
+    {
+        // reset buffer to give opporunity to pick the new move
+        bufferedInput = null;
+        currentCombo = null;
+        StartNewCombo();
+    }
+
+    private void StopCombo(object sender, EventArgs e)
+    {
+        // dont try to continue this combo
+        currentCombo = null;
     }
 
     private void Fighter_HitConnected(object sender, EventArgs e)
     {
         lastHitConnected = true;
         comboIndex += 1;
+        if (currentCombo != null)
+        {
+            if (comboIndex >= currentCombo.moves.Count)
+            {
+                // finished the combo
+                currentCombo = null;
+            }
+        }
+        // reset buffer to give opporunity to pick the new move
+        bufferedInput = null;
     }
 
     private void Fighter_AttackInRecovery(object sender, EventArgs e)
@@ -51,15 +98,22 @@ public class HardCpuInputReceiver : FighterInputReceiver
                 currentCombo = null;
                 return;
             }
-
-            if (currentCombo.moves[comboIndex].needsToConnect && !lastHitConnected)
+            if (!lastHitConnected)
             {
-                //dropped the combo
-                currentCombo = null;
-            }
-            else
-            {
-                comboIndex += 1;
+                if (currentCombo.moves[comboIndex].needsToConnect)
+                {
+                    //dropped the combo
+                    currentCombo = null;
+                }
+                else
+                {
+                    comboIndex += 1;
+                    if (comboIndex >= currentCombo.moves.Count)
+                    {
+                        // finished the combo
+                        currentCombo = null;
+                    }
+                }
             }
         }
     }
@@ -75,19 +129,19 @@ public class HardCpuInputReceiver : FighterInputReceiver
     {
         ManageBuffer();
 
+        isClose = Mathf.Abs(fighter.otherFighter.transform.position.x - fighter.transform.position.x) <= closeDistance;
+
         if (RandomMethods.RANDOM.Next(18) == 0)
         {
-            if (RandomMethods.RANDOM.Next(4) == 0)
+            if (RandomMethods.RANDOM.Next(2) == 0)
             {
                 if (currentCombo == null)
                 {
-                    currentCombo = RandomMethods.Choose(combos.Where(c => c.CanExecute(fighter)).ToList());
+                    var mashRate = isClose ? mashRateClose : mashRateFar;
 
-                    if (currentCombo != null)
+                    if (RandomMethods.RANDOM.Next(mashRate) == 0)
                     {
-                        // found a combo we can execute
-                        // start it at 0
-                        comboIndex = 0;
+                        StartNewCombo();
                     }
                 }
 
@@ -124,8 +178,23 @@ public class HardCpuInputReceiver : FighterInputReceiver
         return false;
     }
 
+    public void StartNewCombo()
+    {
+        currentCombo = RandomMethods.Choose(combos.Where(c => c.CanExecute(fighter)).ToList());
+
+        if (currentCombo != null)
+        {
+            // found a combo we can execute
+            // start it at 0
+            comboIndex = 0;
+        }
+    }
+
     public void ChooseMoveDirections()
     {
+        var leftRightWeights = isClose ? leftRightWeightsClose : leftRightWeightsFar;
+        var upDownWeights = isClose ? upDownWeightsClose : upDownWeightsFar;
+
         UpDown = RandomMethods.ChooseWeighted(upDownWeights);
         LeftRight = RandomMethods.ChooseWeighted(leftRightWeights);
         if (fighter.facingDirection != Directions.FacingDirection.RIGHT)

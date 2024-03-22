@@ -200,6 +200,9 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public event EventHandler<string> SentNotification;
     public event EventHandler HitConnected;
     public event EventHandler AttackInRecovery;
+    public event EventHandler Blocked;
+    public event EventHandler Parried;
+    public event EventHandler ThrowTeched;
 
 
 
@@ -794,6 +797,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
             OnVelocityImpulseJuggle(kb, JuggleMomentumMultiplier);
             CurrentHealth -= pp.damage;
 
+            Blocked?.Invoke(this, EventArgs.Empty);
+
             PlaySound(blockSounds[0]);
             SwitchState(blockstun);
             ((IStunState)currentState).SetStun(pp.stunTime);
@@ -1000,6 +1005,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         OnVelocityImpulseRelativeToOtherFighter(throwTechKnockback);
         SendNotification("Throw Tech!!");
         throwTechParticles.Play();
+        ThrowTeched?.Invoke(this, EventArgs.Empty);
     }
 
     public void ThrowFlipPlayers()
@@ -1018,6 +1024,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         PlaySound(parrySound);
         PlayParryVFX();
         SendNotification("Parry!!!");
+        Parried?.Invoke(this, EventArgs.Empty);
     }
 
     private void PushAwayFromWall()

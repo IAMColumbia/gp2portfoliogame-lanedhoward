@@ -1,4 +1,5 @@
 using CommandInputReaderLibrary;
+using CommandInputReaderLibrary.Gestures;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -79,6 +80,150 @@ public class CharacterModule : ScriptableObject
 
     public virtual List<CpuCombo> GetCpuCombos()
     {
-        return null;
+        List<CpuCombo> combos = new List<CpuCombo>()
+        {
+            new CpuCombo()
+            {
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, true)
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new NoGesture(), new AttackA(), true),
+                    new CpuMove(new CrouchGesture(), new AttackB(), false)
+                }
+            },
+            // throws
+            new CpuCombo()
+            {
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new NoGesture(), new AttackD(), false)
+                }
+            },
+            new CpuCombo()
+            {
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new BackGesture(), new AttackD(), false)
+                }
+            },
+            // wavedash
+            new CpuCombo()
+            {
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, true)
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new DownForwardGesture(), new DashMacro(), false)
+                }
+            },
+            new CpuCombo()
+            {
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, true)
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new DownBackGesture(), new DashMacro(), false)
+                }
+            },
+            new CpuCombo()
+            {
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, true)
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new DownForwardGesture(), new DashMacro(), false),
+                    new CpuMove(new CrouchGesture(), new AttackB(), false)
+                }
+            },
+            new CpuCombo()
+            {
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, true)
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new DownBackGesture(), new DashMacro(), false),
+                    new CpuMove(new CrouchGesture(), new AttackB(), false)
+                }
+            },
+            // parry
+            new CpuCombo()
+            {
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new CrouchGesture(), new AttackD(), true)
+                }
+            },
+            // air normals
+            new CpuCombo()
+            {
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, false)
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new NoGesture(), new AttackA(), true)
+                }
+            },
+            new CpuCombo()
+            {
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, false)
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new NoGesture(), new AttackB(), true)
+                }
+            },
+            new CpuCombo()
+            {
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, false)
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new NoGesture(), new AttackC(), true)
+                }
+            },
+            new CpuCombo()
+            {
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, false)
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new NoGesture(), new AttackA(), true),
+                    new CpuMove(new NoGesture(), new AttackB(), true)
+                }
+            },
+            new CpuCombo()
+            {
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, false)
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new NoGesture(), new AttackA(), true),
+                    new CpuMove(new NoGesture(), new AttackC(), true)
+                }
+            }
+
+        };
+        return combos;
     }
 }

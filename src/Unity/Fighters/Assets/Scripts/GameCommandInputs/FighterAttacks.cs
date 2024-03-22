@@ -304,9 +304,9 @@ public class GriddyAttack : GameAttack
         fighter.OnVelocityImpulseRelativeToSelf(velocity);
     }
 
-    public override void OnActive(FighterMain fighter)
+    public override void OnRecovery(FighterMain fighter)
     {
-        base.OnActive(fighter);
+        base.OnRecovery(fighter);
         fighter.canAct = true;
     }
 }

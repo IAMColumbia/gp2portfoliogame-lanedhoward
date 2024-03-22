@@ -14,7 +14,7 @@ public class HardCpuInputReceiver : FighterInputReceiver
     CpuCombo currentCombo;
     int comboIndex;
     bool lastHitConnected;
-
+    int timesPressedAtComboIndex;
     Dictionary<int, int> upDownWeightsClose;
     Dictionary<int, int> upDownWeightsFar;
     Dictionary<int, int> leftRightWeightsClose;
@@ -76,6 +76,7 @@ public class HardCpuInputReceiver : FighterInputReceiver
     {
         lastHitConnected = true;
         comboIndex += 1;
+        timesPressedAtComboIndex = 0;
         if (currentCombo != null)
         {
             if (comboIndex >= currentCombo.moves.Count)
@@ -108,6 +109,8 @@ public class HardCpuInputReceiver : FighterInputReceiver
                 else
                 {
                     comboIndex += 1;
+                    bufferedInput = null;
+                    timesPressedAtComboIndex = 0;
                     if (comboIndex >= currentCombo.moves.Count)
                     {
                         // finished the combo
@@ -162,11 +165,20 @@ public class HardCpuInputReceiver : FighterInputReceiver
                         buttons.Add(currentCombo.moves[comboIndex].button);
 
                         IReadPackage package = new ReadPackage(null, gestures, buttons, 0);
-                
+
+                        //Debug.Log($"{fighter.name} Attempting move: {gestures[0]} {buttons[0]}");
+
                         bufferedInput = package;
                         bufferedAttackTime = 0;
                         lastHitConnected = false;
 
+                        timesPressedAtComboIndex += 1;
+
+                        if (timesPressedAtComboIndex > 5)
+                        {
+                            comboIndex = 0;
+                            currentCombo = null;
+                        }
                     }
 
                 }
@@ -178,15 +190,27 @@ public class HardCpuInputReceiver : FighterInputReceiver
         return false;
     }
 
+    Dictionary<CpuCombo, int> combosWeighted;
     public void StartNewCombo()
     {
-        currentCombo = RandomMethods.Choose(combos.Where(c => c.CanExecute(fighter)).ToList());
+        combosWeighted = new Dictionary<CpuCombo, int>();
+
+        foreach(var c in combos)
+        {
+            if (c.CanExecute(fighter))
+            {
+                combosWeighted.Add(c, c.weight);
+            }
+        }
+
+        currentCombo = RandomMethods.ChooseWeighted(combosWeighted);
 
         if (currentCombo != null)
         {
             // found a combo we can execute
             // start it at 0
             comboIndex = 0;
+            timesPressedAtComboIndex = 0;
         }
     }
 

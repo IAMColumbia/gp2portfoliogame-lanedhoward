@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 public class CpuMove : GameMoveInput
 {
@@ -34,4 +35,17 @@ public class CpuCombo
     }
     public List<CpuMove> moves;
     public List<GameAttackCondition> conditions;
+    public int weight = 100;
+}
+
+public class FarCondition : GameAttackCondition
+{
+    public FarCondition(GameAttack _parent) : base(_parent)
+    {
+    }
+
+    public override bool CanExecute(FighterMain fighter)
+    {
+        return Mathf.Abs(fighter.otherFighter.transform.position.x - fighter.transform.position.x) >= 3;
+    }
 }

@@ -331,7 +331,7 @@ public class GriddyBack : GriddyAttack
             )
             );
 
-        whiffSoundIndex = 2;
+        whiffSoundIndex = 16;
 
         properties.AnimationName = "GriddyBack";
 
@@ -363,7 +363,7 @@ public class GriddyForward : GriddyAttack
             )
             );
 
-        whiffSoundIndex = 2;
+        whiffSoundIndex = 16;
 
         properties.AnimationName = "GriddyForward";
 
@@ -414,6 +414,12 @@ public class EnhancedPeoplesUppercut : PeoplesUppercut
 
         fighter.OnVelocityImpulseRelativeToSelf(velocity);
     }
+
+    public override void OnHit(FighterMain fighter, FighterMain otherFighter)
+    {
+        base.OnHit(fighter, otherFighter);
+        fighter.PlaySound(fighter.hitSounds[4]);
+    }
 }
 
 public class EnhancedOverhead : Overhead
@@ -457,6 +463,12 @@ public class EnhancedOverhead : Overhead
         fighter.PlayGriddyVFX();
 
         fighter.OnVelocityImpulseRelativeToSelf(velocity);
+    }
+
+    public override void OnHit(FighterMain fighter, FighterMain otherFighter)
+    {
+        base.OnHit(fighter, otherFighter);
+        fighter.PlaySound(fighter.hitSounds[4]);
     }
 }
 
@@ -513,5 +525,11 @@ public class EnhancedFireballStomp : FireballStomp
         fighter.PlayGriddyVFX();
 
         fighter.OnVelocityImpulseRelativeToSelf(velocity);
+    }
+
+    public override void OnHit(FighterMain fighter, FighterMain otherFighter)
+    {
+        base.OnHit(fighter, otherFighter);
+        fighter.PlaySound(fighter.hitSounds[4]);
     }
 }

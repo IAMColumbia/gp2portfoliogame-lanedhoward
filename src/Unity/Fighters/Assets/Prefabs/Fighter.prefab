@@ -319,20 +319,31 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 362073ef3ac26f04dbc2efc09950aefd, type: 3}
   - {fileID: 8300000, guid: 569a9a9003641714c83e56d48dbf3f55, type: 3}
   - {fileID: 8300000, guid: c33bfdd77d90aa54c9a6e9612a5c442e, type: 3}
-  - {fileID: 8300000, guid: 6847788e142519642bf8470ed20dc4fb, type: 3}
+  - {fileID: 8300000, guid: d83d4ab9031bf8f4f9262716b3609245, type: 3}
   - {fileID: 8300000, guid: bc0533b04f645ff4fa68206fa7b275e0, type: 3}
   - {fileID: 8300000, guid: c8398678e5d13ef4896aa04edb4e7c52, type: 3}
   - {fileID: 8300000, guid: deb774375d45bf2419d67d87a92cf1ac, type: 3}
+  - {fileID: 8300000, guid: 7f911f95766924843abb0b926c0dc40b, type: 3}
+  - {fileID: 8300000, guid: a8fcb0d442468394c95c9ab606be4990, type: 3}
+  - {fileID: 8300000, guid: 7520adddfcc92634594216c82fe80fba, type: 3}
+  - {fileID: 8300000, guid: 11d007eb18db54540a5f03fb2d323641, type: 3}
+  - {fileID: 8300000, guid: fc1ae3014a6b51a4e875e4cb4e0f4758, type: 3}
+  - {fileID: 8300000, guid: a0bd82909b5f1ae4d9587640b9d2bed4, type: 3}
+  - {fileID: 8300000, guid: c95a56f33018dcc409352b4875a570d5, type: 3}
+  - {fileID: 8300000, guid: c949e2a6c3075a645adaced1bf9ae3c9, type: 3}
+  - {fileID: 8300000, guid: b9b927989308c624d89eedb07b533993, type: 3}
   hitSounds:
   - {fileID: 8300000, guid: 46c7a1c1a1192c94dbcb83868ddf5a0c, type: 3}
   - {fileID: 8300000, guid: 123aa45c3845ccc4089c2c158a2a1898, type: 3}
   - {fileID: 8300000, guid: ef5208889573ecf48a62b6a78b4807dd, type: 3}
   - {fileID: 8300000, guid: d5b12f917025a9a489ee303063a26c05, type: 3}
+  - {fileID: 8300000, guid: 67bb9ce59db336644b698b95fd14e7b0, type: 3}
   blockSounds:
   - {fileID: 8300000, guid: 470a5173824ac2a45931aee638948ab8, type: 3}
   throwTechSound: {fileID: 8300000, guid: 618cb72e0ed85ac47809de66811faf0a, type: 3}
   parrySound: {fileID: 8300000, guid: 3bf567554e0cd2f418b6b1fa8d88c5ce, type: 3}
   bounceSound: {fileID: 8300000, guid: 16b7d9df4794ba24492d8a676c3ea726, type: 3}
+  griddyEnhancedSound: {fileID: 8300000, guid: f9e0915763d955d4fa9ab05d671ea408, type: 3}
   smallHitParticles: {fileID: 7919910832669422064}
   midHitParticles: {fileID: 333986196007816026}
   heavyHitParticles: {fileID: 707240543187319496}

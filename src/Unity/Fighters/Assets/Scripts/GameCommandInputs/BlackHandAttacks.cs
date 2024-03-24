@@ -120,6 +120,12 @@ public class CannonGrabSuccess : ThrowAttackSuccess
 
         properties.hitProperties.wallBounce = true;
     }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+        fighter.PlaySound(fighter.whiffSounds[14]);
+    }
 }
 
 public class SharkCall : GameAttack
@@ -265,7 +271,7 @@ public class FishingGrabWhiff : ThrowAttack
 
         //whiffSound = fighter.whiffSounds[0];
         //hitSound = fighter.hitSounds[0];
-        whiffSoundIndex = 5;
+        whiffSoundIndex = 15;
         hitSoundIndex = 1;
 
         properties.AnimationName = "FishingGrab";

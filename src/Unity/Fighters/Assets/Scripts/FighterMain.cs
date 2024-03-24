@@ -180,6 +180,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public AudioClip throwTechSound;
     public AudioClip parrySound;
     public AudioClip bounceSound;
+    public AudioClip griddyEnhancedSound;
 
     [Header("Particles")]
     public ParticleSystem smallHitParticles;
@@ -1169,6 +1170,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         SendNotification("Griddy Enhanced!");
         griddyParticles.Play();
         wavedashParticles.Play();
+        PlaySound(griddyEnhancedSound);
     }
 
     public int GetStocks()

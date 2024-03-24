@@ -84,7 +84,7 @@ public class Pogo : GameAttack
 
         //whiffSound = fighter.whiffSounds[1];
         //hitSound = fighter.hitSounds[4];
-        whiffSoundIndex = 2;
+        whiffSoundIndex = 11;
         hitSoundIndex = 3;
 
         properties.AnimationName = "Pogo";
@@ -210,7 +210,7 @@ public class Fly : GameAttack
 
         //whiffSound = fighter.whiffSounds[0];
         //hitSound = fighter.hitSounds[3];
-        whiffSoundIndex = 0;
+        whiffSoundIndex = 9;
         hitSoundIndex = 1;
 
         properties.AnimationName = "Fly";
@@ -302,7 +302,7 @@ public class HiveSummon : GameAttack
 
         //whiffSound = fighter.whiffSounds[0];
         //hitSound = fighter.hitSounds[3];
-        whiffSoundIndex = 2;
+        whiffSoundIndex = 10;
         hitSoundIndex = 3;
 
         properties.AnimationName = "HiveSummon";
@@ -445,7 +445,7 @@ public class Teleport : GameAttack
 
         //whiffSound = fighter.whiffSounds[0];
         //hitSound = fighter.hitSounds[3];
-        whiffSoundIndex = 2;
+        whiffSoundIndex = 13;
         hitSoundIndex = 3;
 
         properties.AnimationName = "Teleport";
@@ -501,7 +501,7 @@ public class Stinger : GameAttack
 
         //whiffSound = fighter.whiffSounds[0];
         //hitSound = fighter.hitSounds[3];
-        whiffSoundIndex = 2;
+        whiffSoundIndex = 8;
         hitSoundIndex = 3;
 
         properties.AnimationName = "Stinger";
@@ -583,7 +583,7 @@ public class Swarm : GameAttack
 
         //whiffSound = fighter.whiffSounds[0];
         //hitSound = fighter.hitSounds[3];
-        whiffSoundIndex = 2;
+        whiffSoundIndex = 12;
         hitSoundIndex = 3;
 
         properties.AnimationName = "Swarm";

@@ -163,6 +163,12 @@ public class SharkCall : GameAttack
         properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
         properties.hitProperties.hardKD = false;
     }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+        fighter.PlaySound(fighter.whiffSounds[17]);
+    }
 }
 
 public class WaveCall : GameAttack

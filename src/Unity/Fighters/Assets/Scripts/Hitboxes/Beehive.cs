@@ -79,6 +79,20 @@ public class Beehive : Projectile
         }
     }
 
+    public override void OnFighterGotHit(object sender, EventArgs e)
+    {
+        if (projectileActive && breakOnHit)
+        {
+            if (fighterParent.GetStocks() > 1)
+            {
+                fighterParent.SetStocks(fighterParent.GetStocks() - 1);
+            }
+            else
+            {
+                EndProjectile();
+            }
+        }
+    }
 
     public override void EndProjectile()
     {

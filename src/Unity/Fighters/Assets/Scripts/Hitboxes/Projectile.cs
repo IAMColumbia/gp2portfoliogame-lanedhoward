@@ -184,7 +184,7 @@ public class Projectile : SoundPlayer, IHitboxResponder
         }
     }
 
-    public void OnFighterGotHit(object sender, EventArgs e)
+    public virtual void OnFighterGotHit(object sender, EventArgs e)
     {
         if (projectileActive && breakOnHit)
         {

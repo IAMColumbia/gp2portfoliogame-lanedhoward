@@ -40,6 +40,7 @@ Material:
     m_Floats: []
     m_Colors:
     - _MainColor: {r: 1, g: 0.4188679, b: 0.4188679, a: 0}
-    - _SecondaryColor: {r: 0.8018868, g: 0.2148451, b: 0.2148451, a: 0}
+    - _OutlineColor: {r: 1, g: 1, b: 1, a: 0}
+    - _SecondaryColor: {r: 0.7075472, g: 0.102794565, b: 0.15644409, a: 0}
     - _SpecialColor: {r: 0.9056604, g: 0.063225314, b: 0.13164641, a: 0}
   m_BuildTextureStacks: []

@@ -36,6 +36,7 @@ public class Cursor : MonoBehaviour
     public Canvas canvas;
 
     public SpriteRenderer tokenSprite;
+    public SpriteRenderer cursorSprite;
 
     public bool cursorEnabled = false;
 
@@ -65,8 +66,10 @@ public class Cursor : MonoBehaviour
         SetUpGamePlayerSlot();
         
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        var sprite = GetComponent<SpriteRenderer>();
-        spriteSize = new Vector2(sprite.bounds.size.x / 2, sprite.bounds.size.y / 2);
+        //var sprite = GetComponent<SpriteRenderer>();
+        //spriteSize = new Vector2(sprite.bounds.size.x / 2, sprite.bounds.size.y / 2);
+        // temporary? fix since the visible sprite is smaller than the sprite canvas
+        spriteSize = Vector2.zero;
 
         // wait to enable control, so that you don't instantly drop the token
         cursorEnableDelay = cursorEnableDelayMax;
@@ -77,6 +80,8 @@ public class Cursor : MonoBehaviour
         uiManager.SetUpCursor(this);
 
         gamePlayerSlot.SetHumanPlayerConfig(humanPlayerConfig);
+
+        cursorSprite.material = gamePlayerSlot.tokenMaterial;
 
         PickUpToken(gamePlayerSlot.token);
 
@@ -166,7 +171,7 @@ public class Cursor : MonoBehaviour
         if (token != null) return;
         token = t;
         token.gameObject.SetActive(false);
-        tokenSprite.color = t.color;
+        tokenSprite.material = t.image.material;
         tokenSprite.gameObject.SetActive(true);
 
         token.slot.ClearCharacter();

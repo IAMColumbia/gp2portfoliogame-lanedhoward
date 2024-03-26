@@ -12,13 +12,10 @@ public class Token : MonoBehaviour
     public TextMeshProUGUI label;
     public Image image;
 
-    public Color color;
-
     public void SetUpToken(GamePlayerSlot slot)
     {
         this.slot = slot;
-        color = slot.color;
-        image.color = color;
+        image.material = slot.tokenMaterial;
         label.text = $"P{slot.PlayerSlotIndex + 1}";
     }
 

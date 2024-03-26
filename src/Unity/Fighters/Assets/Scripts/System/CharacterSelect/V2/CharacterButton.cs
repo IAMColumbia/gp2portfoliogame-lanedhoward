@@ -14,18 +14,12 @@ public class CharacterButton : MonoBehaviour
     
     void Awake()
     {
-        //if (IsRandom)
-        //{
-        //    nameTag.text = "Random";
-        //}
-        //else
-        //{
-            if (character != null)
-            {
-                image.material = character.materials[0];
-                nameTag.text = character.CharacterName;
-            }
-        //}
+        if (character != null)
+        {
+            image.sprite = character.Headshot;
+            image.material = character.materials[0];
+            nameTag.text = character.CharacterName;
+        }
     }
 
     public void PressCharacterButton(Cursor cursor)

@@ -25,7 +25,8 @@ public class GamePlayerSlot : SoundPlayer
 
     public Token token;
 
-    public Color color;
+    //public Color color;
+    public Material tokenMaterial;
 
     public Image portraitImage;
     public TextMeshProUGUI nameText;

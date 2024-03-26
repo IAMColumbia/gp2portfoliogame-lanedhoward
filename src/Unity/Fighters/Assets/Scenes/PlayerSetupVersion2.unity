@@ -560,6 +560,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stage Button
       objectReference: {fileID: 0}
+    - target: {fileID: 7051047351730915877, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ef879f875eb59e4490c8bc88e82e78c, type: 3}
 --- !u!224 &338432040 stripped
@@ -789,6 +793,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1490242730}
     m_Modifications:
+    - target: {fileID: 1654337022279907017, guid: 5801c1e0226819744bbe505507ddf089, type: 3}
+      propertyPath: m_text
+      value: Barnacle Bill Roddy
+      objectReference: {fileID: 0}
     - target: {fileID: 1833970128056664305, guid: 5801c1e0226819744bbe505507ddf089, type: 3}
       propertyPath: character
       value: 
@@ -1248,6 +1256,10 @@ PrefabInstance:
       propertyPath: color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2702478074433246935, guid: 23c3e7199fedd994ea6678fe1dbbff9e, type: 3}
+      propertyPath: tokenMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: f57d9881d597e284193fb618f3a6de69, type: 2}
     - target: {fileID: 2702478074433246935, guid: 23c3e7199fedd994ea6678fe1dbbff9e, type: 3}
       propertyPath: PlayerSlotIndex
       value: 1
@@ -1896,6 +1908,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1490242730}
     m_Modifications:
+    - target: {fileID: 1654337022279907017, guid: 5801c1e0226819744bbe505507ddf089, type: 3}
+      propertyPath: m_text
+      value: Mrs. Hive
+      objectReference: {fileID: 0}
     - target: {fileID: 1833970128056664305, guid: 5801c1e0226819744bbe505507ddf089, type: 3}
       propertyPath: character
       value: 
@@ -1994,6 +2010,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1490242730}
     m_Modifications:
+    - target: {fileID: 1654337022279907017, guid: 5801c1e0226819744bbe505507ddf089, type: 3}
+      propertyPath: m_text
+      value: Bullet Train
+      objectReference: {fileID: 0}
     - target: {fileID: 1833970128056664305, guid: 5801c1e0226819744bbe505507ddf089, type: 3}
       propertyPath: character
       value: 
@@ -2368,7 +2388,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -427}
+  m_AnchoredPosition: {x: 0, y: -399.4}
   m_SizeDelta: {x: 1000, y: 216.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1490242731
@@ -3731,6 +3751,10 @@ PrefabInstance:
       propertyPath: color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2702478074433246935, guid: 23c3e7199fedd994ea6678fe1dbbff9e, type: 3}
+      propertyPath: tokenMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 9257be7a04f66184fb1a0e4aaf03ce8b, type: 2}
     - target: {fileID: 5155463903614778648, guid: 23c3e7199fedd994ea6678fe1dbbff9e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3980,6 +4004,10 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 11400000, guid: 34c10423f2e25284f9eabac345d3dc9b, type: 2}
+    - target: {fileID: 4306132913763466525, guid: 5801c1e0226819744bbe505507ddf089, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 236c607e148945c4d835d1deb75d0330, type: 3}
     - target: {fileID: 7804804229334576282, guid: 5801c1e0226819744bbe505507ddf089, type: 3}
       propertyPath: OnInteractCursor.m_PersistentCalls.m_Calls.Array.size
       value: 0
@@ -4086,6 +4114,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8053380575903605543, guid: 5801c1e0226819744bbe505507ddf089, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8380963007814625499, guid: 5801c1e0226819744bbe505507ddf089, type: 3}
+      propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

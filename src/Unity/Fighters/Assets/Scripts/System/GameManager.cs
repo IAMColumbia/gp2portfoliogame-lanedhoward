@@ -56,6 +56,7 @@ public class GameManager : SoundPlayer
     public EventSystem eventSystem;
 
     public PlayableDirector introTimeline;
+    public PlayableDirector creditsTimeline;
 
     public AnnouncerSO announcerVoiceLines;
 
@@ -132,6 +133,11 @@ public class GameManager : SoundPlayer
 
     public void NewGame()
     {
+        if (creditsTimeline.state == PlayState.Playing)
+        {
+            creditsTimeline.Stop();
+        }
+
         foreach (var s in stages)
         {
             s.SetActive(false);
@@ -388,6 +394,10 @@ public class GameManager : SoundPlayer
                 yield return new WaitForSeconds(2.5f);
                 Rematch();
             }
+
+            // credits easter egg
+            yield return new WaitForSeconds(10f);
+            creditsTimeline.Play();
 
         }
         else

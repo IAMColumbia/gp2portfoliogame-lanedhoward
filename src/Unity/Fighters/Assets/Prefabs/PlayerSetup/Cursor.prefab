@@ -228,6 +228,7 @@ MonoBehaviour:
   token: {fileID: 0}
   canvas: {fileID: 0}
   tokenSprite: {fileID: 6939649911925332857}
+  cursorSprite: {fileID: 461452403702987438}
   cursorEnabled: 0
   cursorEnableDelay: 0
   cursorEnableDelayMax: 0.1
@@ -251,7 +252,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 6a17db4d6a8b85b41ad8c5ff2dbdad69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -272,7 +273,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 49
-  m_Sprite: {fileID: -7699328018653931357, guid: 35ddbe873b8b5e94386b79d2e3faca55, type: 3}
+  m_Sprite: {fileID: 5600238749998363612, guid: 7727db0d13753bd4997b7d92c98795d1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -356,8 +357,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 25
-  m_Sprite: {fileID: 2964074431356209969, guid: 35ddbe873b8b5e94386b79d2e3faca55, type: 3}
-  m_Color: {r: 1, g: 0.5877967, b: 0, a: 1}
+  m_Sprite: {fileID: 2232933937642080707, guid: 7727db0d13753bd4997b7d92c98795d1, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

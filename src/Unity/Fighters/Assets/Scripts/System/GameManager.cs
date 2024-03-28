@@ -49,6 +49,7 @@ public class GameManager : SoundPlayer
     public GameObject RematchButton;
     public GameObject StartScreen;
     public GameObject StartButton;
+    public PostGameUIPanels[] postGameUIs;
 
     public GameObject Announcer;
     public TMPro.TextMeshProUGUI AnnouncerText;
@@ -117,9 +118,47 @@ public class GameManager : SoundPlayer
         player1GameWins = 0;
         player2GameWins = 0;
 
+        SetupPostGameUI();
+
         NewGame();
 
         
+    }
+
+    private void SetupPostGameUI()
+    {
+        foreach (var pg in postGameUIs)
+        {
+            //pg.Hide();
+            pg.UIActive = false;
+        }
+        if (gameMode == GameMode.CPUvsCPU)
+        {
+            if (GamePlayerManager.Instance.humanPlayerConfigs.Count > 0)
+            {
+                postGameUIs[0].Setup(GamePlayerManager.Instance.humanPlayerConfigs[0].Input);
+                postGameUIs[0].Show();
+                if (GamePlayerManager.Instance.humanPlayerConfigs.Count > 1)
+                {
+                    postGameUIs[1].Setup(GamePlayerManager.Instance.humanPlayerConfigs[1].Input);
+                    //postGameUIs[1].Show();
+                    postGameUIs[1].UIActive = true;
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                if (GamePlayerManager.Instance.gamePlayerConfigs[i].playerType == PlayerType.Human)
+                {
+                    postGameUIs[i].Setup(GamePlayerManager.Instance.gamePlayerConfigs[i].humanPlayerConfig.Input);
+                    //postGameUIs[i].Show();
+                    postGameUIs[i].UIActive = true;
+
+                }
+            }
+        }
     }
 
     private void PlayCharacterMusic()
@@ -196,7 +235,8 @@ public class GameManager : SoundPlayer
 
         //StartScreen.SetActive(true);
         Announcer.SetActive(false);
-        winScreen.gameObject.SetActive(false);
+        //winScreen.gameObject.SetActive(false);
+        winScreen.HideWinScreen();
 
         //eventSystem.SetSelectedGameObject(StartButton);
         StartCoroutine(StartRound());
@@ -384,10 +424,12 @@ public class GameManager : SoundPlayer
                 player1GameWins += 1;
             }
 
-            winScreen.gameObject.SetActive(true);
+            //winScreen.gameObject.SetActive(true);
             winScreen.UpdateRecord(player1GameWins, player2GameWins);
+            winScreen.ShowWinScreen();
 
-            eventSystem.SetSelectedGameObject(RematchButton);
+            //eventSystem.SetSelectedGameObject(RematchButton);
+            
 
             if (gameMode == GameMode.CPUvsCPU)
             {
@@ -491,64 +533,6 @@ public class GameManager : SoundPlayer
 
     public void SpawnPlayers()
     {
-        /*
-        var configManager = PlayerConfigurationManager.Instance;
-
-        for (int i = 0; i < 2; i++)
-        {
-            if (configManager.playerConfigs[i] != null)
-            {
-
-                Transform t = i == 0 ? player1spawn : player2spawn;
-
-                GameObject fighter = Instantiate(fighterPrefab);
-
-                fighter.transform.position = t.position;
-
-                //Debug.Log($"Player created: Player {configManager.playerConfigs[i].PlayerIndex} with {configManager.playerConfigs[i].Input.devices[0].name}");
-
-                var fm = fighter.GetComponent<FighterMain>();
-
-                switch (configManager.gameMode)
-                {
-                    case GameMode.TwoPlayer:
-                        fm.InitializePlayerInput(configManager.playerConfigs[i].Input);
-                        break;
-                    case GameMode.Training:
-                        if (i == 0)
-                        {
-                            fm.InitializePlayerInput(configManager.playerConfigs[i].Input);
-                        }
-                        else
-                        {
-                            fm.InjectInputReceiver(new TrainingInputReceiver(fm, null, null));
-                        }
-                        break;
-                    case GameMode.SinglePlayer:
-                        // todo
-                        break;
-                    case GameMode.AIvsAI:
-                        fm.InjectInputReceiver(new CpuInputReceiver(fm, null, null));
-                        break;
-                }
-
-                fm.characterModule = configManager.playerConfigs[i].Character;
-                fm.InitializeCharacterModule();
-
-                fm.SetMaterial(configManager.playerConfigs[i].Character.materials[configManager.playerConfigs[i].CharacterMaterialIndex]);
-
-                if (i==0)
-                {
-                    player1 = fm;
-                }
-                else
-                {
-                    player2 = fm;
-                }
-            }
-        }
-        */
-
         var configManager = GamePlayerManager.Instance;
 
         for (int i = 0; i < 2; i++)
@@ -628,4 +612,29 @@ public class GameManager : SoundPlayer
         ReturnToCharacterSelect();
     }
 
+    private void OnEnable()
+    {
+        PostGameUIPanels.MenuClicked += PostGameUIPanels_MenuClicked;
+        PostGameUIPanels.RematchClicked += PostGameUIPanels_RematchClicked;
+    }
+
+    private void OnDisable()
+    {
+        PostGameUIPanels.MenuClicked -= PostGameUIPanels_MenuClicked;
+        PostGameUIPanels.RematchClicked -= PostGameUIPanels_RematchClicked;
+    }
+
+    private void PostGameUIPanels_RematchClicked(object sender, EventArgs e)
+    {
+        if (postGameUIs.Where(p => p.UIActive).All(p => p.rematchClicked))
+        {
+            Rematch();
+        }
+    }
+
+    private void PostGameUIPanels_MenuClicked(object sender, EventArgs e)
+    {
+        // if anyone clicks menu, immediately return to menu
+        ReturnToCharacterSelect();
+    }
 }

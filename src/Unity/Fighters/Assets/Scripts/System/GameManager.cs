@@ -137,11 +137,10 @@ public class GameManager : SoundPlayer
             if (GamePlayerManager.Instance.humanPlayerConfigs.Count > 0)
             {
                 postGameUIs[0].Setup(GamePlayerManager.Instance.humanPlayerConfigs[0].Input);
-                postGameUIs[0].Show();
+                postGameUIs[0].UIActive = true;
                 if (GamePlayerManager.Instance.humanPlayerConfigs.Count > 1)
                 {
                     postGameUIs[1].Setup(GamePlayerManager.Instance.humanPlayerConfigs[1].Input);
-                    //postGameUIs[1].Show();
                     postGameUIs[1].UIActive = true;
                 }
             }

@@ -30,6 +30,7 @@ public class HardCpuInputReceiver : FighterInputReceiver
     public HardCpuInputReceiver(FighterMain _fighter, FighterInputHost _inputHost, InputReader _inputReader) : base(_fighter, _inputHost, _inputReader)
     {
         fighter.AttackInRecovery += Fighter_AttackInRecovery;
+        fighter.AttackActive += Fighter_AttackActive;
         fighter.HitConnected += Fighter_HitConnected;
         fighter.GotHit += StopCombo;
         fighter.Blocked += StopCombo;
@@ -56,6 +57,35 @@ public class HardCpuInputReceiver : FighterInputReceiver
         leftRightWeightsClose.Add(0, 0);
         leftRightWeightsClose.Add(1, 9);
 
+    }
+
+    // some/many attacks that dont need to connect are cancellable starting in their active frames
+    // so we advance the combo there too
+    private void Fighter_AttackActive(object sender, EventArgs e)
+    {
+        if (currentCombo != null)
+        {
+            if (comboIndex >= currentCombo.moves.Count)
+            {
+                // finished the combo
+                currentCombo = null;
+                return;
+            }
+            if (!lastHitConnected)
+            {
+                if (!currentCombo.moves[comboIndex].needsToConnect)
+                {
+                    comboIndex += 1;
+                    bufferedInput = null;
+                    timesPressedAtComboIndex = 0;
+                    if (comboIndex >= currentCombo.moves.Count)
+                    {
+                        // finished the combo
+                        currentCombo = null;
+                    }
+                }
+            }
+        }
     }
 
     private void Fighter_Parried(object sender, EventArgs e)

@@ -148,6 +148,7 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\IInputReceiver.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IHostPackage.cs" />
     <Compile Include="Assets\Scripts\FighterMain.cs" />
+    <Compile Include="Assets\Scripts\System\PostGameUIPanels.cs" />
     <Compile Include="Assets\Scripts\MusicPlayer.cs" />
     <Compile Include="Assets\Scripts\FighterStates\IStunState.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IGesture.cs" />
@@ -170,7 +171,7 @@
     <Compile Include="Assets\Scripts\System\CharacterSelect\ControlsPanel.cs" />
     <Compile Include="Assets\Scripts\WallBounceReceiver.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\System\PostGameUIPanels.cs" />
+    <Compile Include="Assets\Scripts\System\MainMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

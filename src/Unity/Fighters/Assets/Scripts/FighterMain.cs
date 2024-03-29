@@ -201,6 +201,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public event EventHandler<string> SentNotification;
     public event EventHandler HitConnected;
     public event EventHandler AttackInRecovery;
+    public event EventHandler AttackActive;
     public event EventHandler Blocked;
     public event EventHandler Parried;
     public event EventHandler ThrowTeched;
@@ -573,6 +574,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         {
             currentAttackState = CurrentAttackState.Active;
             currentAttack.OnActive(this);
+            AttackActive?.Invoke(this, EventArgs.Empty);
         }
     }
 

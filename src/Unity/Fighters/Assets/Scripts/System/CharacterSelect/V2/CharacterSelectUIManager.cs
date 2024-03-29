@@ -56,4 +56,9 @@ public class CharacterSelectUIManager : MonoBehaviour
     {
         GamePlayerManager.Instance.SwapPlayers();
     }
+
+    public void ReturnToMainMenu()
+    {
+        GamePlayerManager.Instance.BackToMainMenu();
+    }
 }

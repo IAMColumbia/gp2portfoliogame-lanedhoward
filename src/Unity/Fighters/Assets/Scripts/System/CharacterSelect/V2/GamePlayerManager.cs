@@ -130,6 +130,18 @@ public class GamePlayerManager : MonoBehaviour
 
     public void BackToCharacterSelect()
     {
+        Clear();
+        SceneManager.LoadScene("PlayerSetupVersion2");
+    }
+
+    public void BackToMainMenu()
+    {
+        Clear();
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Clear()
+    {
         humanPlayerConfigs.Clear();
         gamePlayerConfigs.Clear();
         foreach (PlayerInput pi in GetComponentsInChildren<PlayerInput>())
@@ -137,10 +149,7 @@ public class GamePlayerManager : MonoBehaviour
             Destroy(pi.gameObject);
         }
         Initialize();
-        SceneManager.LoadScene("PlayerSetupVersion2");
     }
-
-
 
     private void ControlsPanel_ControlsOpened(object sender, int e)
     {

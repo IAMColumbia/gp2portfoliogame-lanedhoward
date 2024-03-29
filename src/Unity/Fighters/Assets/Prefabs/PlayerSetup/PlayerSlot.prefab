@@ -57,7 +57,7 @@ MonoBehaviour:
   PlayerSlotIndex: 0
   tokenPrefab: {fileID: 2885870226838660408, guid: f88bf273aa3bbd044bdc17057c2e5f6e, type: 3}
   token: {fileID: 0}
-  color: {r: 0, g: 0, b: 0, a: 0}
+  tokenMaterial: {fileID: 0}
   portraitImage: {fileID: 8084398475504750808}
   nameText: {fileID: 5203876112385770714}
   descText: {fileID: 1782205939493480318}
@@ -71,7 +71,7 @@ AudioSource:
   m_GameObject: {fileID: 2056614344497239866}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6216042817125044243, guid: d48c9a3641ebac746b37213230365bca, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1

@@ -114,7 +114,8 @@ MonoBehaviour:
   breakOnWallContact: 1
   selfDamage: 0
   breakOnHit: 1
-  breakOnCollision: 1
+  breakOnCollisionWithPlayer: 1
+  breakOnCollisionWithOtherProjectile: 1
   maxHitDistance: 100
   fireballStartSound: {fileID: 8300000, guid: 7cde8dc2a0e329a49b6e3da17602594a, type: 3}
 --- !u!114 &2373229198103690463
@@ -192,7 +193,7 @@ AudioSource:
   m_GameObject: {fileID: 6814210493323356101}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8089799617236857904, guid: d48c9a3641ebac746b37213230365bca, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1

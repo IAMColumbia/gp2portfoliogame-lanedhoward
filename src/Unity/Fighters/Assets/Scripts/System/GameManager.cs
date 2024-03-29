@@ -175,6 +175,7 @@ public class GameManager : SoundPlayer
         {
             creditsTimeline.Stop();
         }
+        creditsTimeline.gameObject.SetActive(false);
 
         foreach (var s in stages)
         {
@@ -438,6 +439,7 @@ public class GameManager : SoundPlayer
 
             // credits easter egg
             yield return new WaitForSeconds(10f);
+            creditsTimeline.gameObject.SetActive(true);
             creditsTimeline.Play();
 
         }

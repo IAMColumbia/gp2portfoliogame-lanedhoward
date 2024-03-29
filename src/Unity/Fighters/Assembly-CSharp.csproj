@@ -91,6 +91,7 @@
     <Compile Include="Assets\Scripts\System\WinScreen.cs" />
     <Compile Include="Assets\Scripts\System\CharacterSelect\V2\CharacterButton.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\HostPackage.cs" />
+    <Compile Include="Assets\Scripts\System\MainMenu.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IButton.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Hitstun.cs" />
     <Compile Include="Assets\Scripts\System\CharacterSelect\PlayerConfigurationManager.cs" />
@@ -171,7 +172,6 @@
     <Compile Include="Assets\Scripts\System\CharacterSelect\ControlsPanel.cs" />
     <Compile Include="Assets\Scripts\WallBounceReceiver.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\System\MainMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

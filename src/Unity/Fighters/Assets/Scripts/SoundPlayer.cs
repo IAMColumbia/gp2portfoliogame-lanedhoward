@@ -16,9 +16,13 @@ public class SoundPlayer : MonoBehaviour
         audioSource.PlayOneShot(sound);
     }
 
+    /// <summary>
+    /// plays a random sound from the array
+    /// </summary>
+    /// <param name="sounds"></param>
     public void PlaySound(AudioClip[] sounds)
     {
-        int clipIndex = Random.Range(0, sounds.Length - 1);
+        int clipIndex = Random.Range(0, sounds.Length);
         audioSource.PlayOneShot(sounds[clipIndex]);
     }
 }

@@ -431,7 +431,7 @@ public class GameManager : SoundPlayer
             //eventSystem.SetSelectedGameObject(RematchButton);
             
 
-            if (gameMode == GameMode.CPUvsCPU)
+            if (gameMode == GameMode.CPUvsCPU && GameSettings.Instance.CPUvCPUAutoRematch)
             {
                 yield return new WaitForSeconds(2.5f);
                 Rematch();

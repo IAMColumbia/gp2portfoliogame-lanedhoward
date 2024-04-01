@@ -172,6 +172,9 @@
     <Compile Include="Assets\Scripts\System\CharacterSelect\ControlsPanel.cs" />
     <Compile Include="Assets\Scripts\WallBounceReceiver.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
+    <Compile Include="Assets\Scripts\System\SoundOption.cs" />
+    <Compile Include="Assets\Scripts\System\GameSettings.cs" />
+    <Compile Include="Assets\Scripts\System\CpuRematch.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

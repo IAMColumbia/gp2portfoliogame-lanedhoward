@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     InputAction pressAnyKey;
+    bool canPressAnyKey;
 
     public GameObject pressAnyKeyText;
     public GameObject titleText;
@@ -23,21 +24,36 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pressAnyKey = new InputAction(binding: "/*/<button>");
-        pressAnyKey.performed += PressAnyKey_performed;
-        pressAnyKey.Enable();
-
         // apply settings
         ApplySettings();
+
+
+        pressAnyKey = new InputAction(binding: "/*/<button>");
+        pressAnyKey.started += PressAnyKey_performed;
+        pressAnyKey.Enable();
+        canPressAnyKey = false;
+
+        StartCoroutine(EnablePressAnyKey());
+
+    }
+
+    public IEnumerator EnablePressAnyKey()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        canPressAnyKey = true;
     }
 
     private void PressAnyKey_performed(InputAction.CallbackContext obj)
     {
-        pressAnyKey.performed -= PressAnyKey_performed;
-        pressAnyKey.Disable();
+        if (canPressAnyKey)
+        {
+            pressAnyKey.performed -= PressAnyKey_performed;
+            pressAnyKey.Disable();
 
-        pressAnyKeyText.SetActive(false);
-        StartCoroutine(ShowMenu());
+            pressAnyKeyText.SetActive(false);
+            StartCoroutine(ShowMenu());
+        }
     }
 
     public void PressStart()

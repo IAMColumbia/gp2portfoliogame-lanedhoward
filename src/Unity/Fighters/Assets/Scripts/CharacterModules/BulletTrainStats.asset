@@ -50,31 +50,39 @@ MonoBehaviour:
   displayStocks: 1
   startingStocks: 6
   stocksIcon: {fileID: 21300000, guid: 792e66fd7416e974db1be83c5c6d2657, type: 3}
-  MovesList: '## Bullet Train
+  MovesList: '### Bullet Train
 
 
     #### Draw Gun:
 
-    236 + Heavy
+    <sprite name="D"><sprite
+    name="DF"><sprite name="F"> + <sprite name="H">
+
+    Bullet Train enters a unique
+    Gun Stance, where they can shoot at various angles or take other actions. Most
+    gun stance moves cancel into each other.
 
 
-    #### >
-    Gun Moves:
+    #### > Gun Stance Moves:
 
-    5H: fast short-range shot
+    <sprite
+    name="H">: fast short-range shot
 
-    2H: low launcher
+    <sprite name="D"> + <sprite name="H">:
+    low launcher shot
 
-    4H: anti-air
-    shot
+    <sprite name="B"> + <sprite name="H">: anti-air shot
 
-    6H: long range sweet spot shot
+    <sprite
+    name="F"> + <sprite name="H">: long range sweet spot shot
 
-    5M: pistol whip overhead
+    <sprite name="M">:
+    Pistol Whip (Overhead)
 
-    5L:
-    reload
+    <sprite name="L">: Reload
 
-    Dash: Spin
+    <sprite name="Dash">:
+    Spin
 
-    #### Holster: 214 + H'
+    <sprite name="D"><sprite name="DB"><sprite name="B"> + <sprite name="H">:
+    Holster Gun'

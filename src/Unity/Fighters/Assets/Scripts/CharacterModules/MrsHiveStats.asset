@@ -52,26 +52,38 @@ MonoBehaviour:
   stocksIcon: {fileID: 21300000, guid: 3fda01695e8cfcc4cb1d24b2cd40e780, type: 3}
   MovesList: '### Mrs. Hive
 
-    Syringe Thrust: 41236 + Medium
+    Syringe Thrust: <sprite name="B"><sprite name="DB"><sprite
+    name="D"><sprite name="DF"><sprite name="F"> + <sprite name="M">
 
-    Syringe Pogo:
-    22 + Medium
+    Syringe
+    Pogo: <sprite name="D"><sprite name="D"> + <sprite name="M">
 
 
-    Beehive Summon: 236 + Light. Grants 4 Honey.
+    #### Honey:
 
+    A
+    unique resource that allows Mrs. Hive to use powerful movement and mixup tools. 
+    1 Honey is lost each time you are hit.
+
+
+    Beehive Summon: <sprite name="D"><sprite
+    name="DF"><sprite name="F"> + <sprite name="L">. Grants 4 Honey.
 
     Beehive
-    Detonate: 214 + Light. Resets Honey.
+    Detonate: <sprite name="D"><sprite name="DB"><sprite name="B"> + <sprite name="L">.
+    Resets Honey to 0.
 
-    Beehive Teleport: 22 + Light. Costs
-    1 Honey.
+    Beehive Teleport: <sprite name="D"><sprite name="D">
+    + <sprite name="L">. Costs 1 Honey.
+
+    Swarm: <sprite name="D"><sprite name="DF"><sprite
+    name="F"> + <sprite name="H">. Costs 1 Honey.
 
 
-    Stinger: Down + Heavy in air. Costs 1 Honey.
+    Stinger: <sprite name="D">
+    + <sprite name="H"> in air. Costs 1 Honey.
 
-    Fly: Dash in
+    Fly: <sprite name="Dash"> in
     air. Costs 1 Honey
 
-
-    Swarm: 236 + Heavy. Costs 1 Honey.'
+'

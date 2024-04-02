@@ -53,26 +53,39 @@ MonoBehaviour:
   MovesList: '## The People''s Champ!!
 
 
-    #### The Red Wave (Fireball)
-
-    236
-    + Medium
-
-    #### The People''s Uppercut (Reversal)
-
-    623 + Heavy
-
-    ####
-    The Heartland Hammer (Overhead)
-
-    214 + Medium
-
     #### The Griddy
 
-    214
-    + Light OR 236 + Light
+    <sprite name="D"><sprite
+    name="DB"><sprite name="B"> + <sprite name="L"> OR <sprite name="D"><sprite name="DF"><sprite
+    name="F"> + <sprite name="L">
 
-    Cancels into itself, or other specials for enhanced
-    properties.
+    Cancels into itself, or other specials for
+    enhanced properties.
 
-    (Simple inputs allowed for griddy cancels)'
+    (Simple inputs allowed for griddy cancels)
+
+
+    ####
+    The Red Wave (Fireball)
+
+    <sprite name="D"><sprite name="DF"><sprite name="F">
+    + <sprite name="M">
+
+    OR <sprite name="F"> + <sprite name="M"> during Griddy
+
+    ####
+    The People''s Uppercut (Reversal)
+
+    <sprite name="F"><sprite name="D"><sprite
+    name="DF"> + <sprite name="H">
+
+    OR <sprite name="F"> + <sprite name="H">
+    during Griddy
+
+    #### The Heartland Hammer (Overhead)
+
+    <sprite name="D"><sprite
+    name="DB"><sprite name="B"> + <sprite name="H">
+
+    OR <sprite name="B"> + <sprite
+    name="H"> during Griddy'

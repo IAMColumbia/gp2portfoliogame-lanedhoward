@@ -147,6 +147,7 @@
     <Compile Include="Assets\Scripts\System\CharacterSelect\ControlsManager.cs" />
     <Compile Include="Assets\Scripts\GroundBounceReceiver.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IInputReceiver.cs" />
+    <Compile Include="Assets\Scripts\System\SoundOption.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IHostPackage.cs" />
     <Compile Include="Assets\Scripts\FighterMain.cs" />
     <Compile Include="Assets\Scripts\System\PostGameUIPanels.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="Assets\Scripts\Hitboxes\Projectile.cs" />
     <Compile Include="Assets\Scripts\LaneLibrary\Extensions.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableGestureWithShortcuts.cs" />
+    <Compile Include="Assets\Scripts\System\CpuRematch.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Prejump.cs" />
     <Compile Include="Assets\Scripts\System\StocksDisplay.cs" />
     <Compile Include="Assets\Scripts\FighterAnimator.cs" />
@@ -164,6 +166,7 @@
     <Compile Include="Assets\Scripts\System\CharacterSelect\V2\GamePlayerSlot.cs" />
     <Compile Include="Assets\Scripts\PriorityQueue.cs" />
     <Compile Include="Assets\Scripts\System\CharacterSelect\V2\Token.cs" />
+    <Compile Include="Assets\Scripts\System\GameSettings.cs" />
     <Compile Include="Assets\Scripts\FighterStates\Backdashing.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\HostPackageComparer.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttack.cs" />
@@ -172,11 +175,9 @@
     <Compile Include="Assets\Scripts\System\CharacterSelect\ControlsPanel.cs" />
     <Compile Include="Assets\Scripts\WallBounceReceiver.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
-    <Compile Include="Assets\Scripts\System\SoundOption.cs" />
-    <Compile Include="Assets\Scripts\System\GameSettings.cs" />
-    <Compile Include="Assets\Scripts\System\CpuRematch.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Art\Sprites\ui\command input sprites.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\FancyTextRendering\TextMesh Pro\Shaders\TMPro_Properties.cginc" />

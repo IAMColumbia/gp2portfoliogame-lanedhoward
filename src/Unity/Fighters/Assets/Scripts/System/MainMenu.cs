@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : SoundPlayer
 {
     InputAction pressAnyKey;
     bool canPressAnyKey;
@@ -20,6 +20,8 @@ public class MainMenu : MonoBehaviour
     public GameObject firstSelectedOptions;
 
     public SoundOption[] soundOptions;
+
+    public AudioClip nameAnnouncement;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +55,8 @@ public class MainMenu : MonoBehaviour
 
             pressAnyKeyText.SetActive(false);
             StartCoroutine(ShowMenu());
+
+            //PlaySound(nameAnnouncement);
         }
     }
 

@@ -132,7 +132,7 @@ public class Cursor : MonoBehaviour
                 if (results.Count > 0)
                 {
                     List<CursorButton> buttons = new List<CursorButton>();
-                    
+
                     foreach (var r in results)
                     {
                         CursorButton button = r.gameObject.GetComponent<CursorButton>();

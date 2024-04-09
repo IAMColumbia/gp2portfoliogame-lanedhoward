@@ -9,6 +9,7 @@ public class HelpDialogue : MonoBehaviour
     public string[] dialogue;
 
 
+    public GameObject dialogueRoot;
     public TextMeshProUGUI dialogueText;
     public TextMeshProUGUI dialogueButtonText;
 
@@ -16,7 +17,7 @@ public class HelpDialogue : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("show tutorial: " + GameSettings.Instance.ShowTutorial);
+        //Debug.Log("show tutorial: " + GameSettings.Instance.ShowTutorial);
         if (GameSettings.Instance.ShowTutorial)
         {
             ShowDialogue();
@@ -31,13 +32,13 @@ public class HelpDialogue : MonoBehaviour
     {
         index = 0;
         UpdateDialogue();
-        gameObject.SetActive(true);
+        dialogueRoot.SetActive(true);
     }
 
     public void HideDialogue()
     {
         index = 0;
-        gameObject.SetActive(false);
+        dialogueRoot.SetActive(false);
     }
 
     public void PressNext()

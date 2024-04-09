@@ -72,7 +72,15 @@ public class ControlsManager : MonoBehaviour
         string rebinds = PlayerPrefs.GetString(GetRebindsKey());
         if (!string.IsNullOrEmpty(rebinds))
         {
-            playerInput.actions.LoadBindingOverridesFromJson(rebinds);
+            try
+            {
+                playerInput.actions.LoadBindingOverridesFromJson(rebinds);
+            }
+            catch
+            {
+                // if there is an error, just reset them and save it
+                ResetAllBindings(true);
+            }
         }
         ControlsUpdated?.Invoke(this, EventArgs.Empty);
     }

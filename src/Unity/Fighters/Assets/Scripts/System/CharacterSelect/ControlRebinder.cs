@@ -20,6 +20,7 @@ public class ControlRebinder : MonoBehaviour
 
     public TextMeshProUGUI bindingText;
 
+    public string ControlSchemeRequired;
 
     /// <summary>
     /// A control was rebound. Argument: playerIndex
@@ -28,15 +29,25 @@ public class ControlRebinder : MonoBehaviour
 
     private void OnEnable()
     {
-        //playerInput = PlayerConfigurationManager.Instance.GetPlayerInput(playerSetupController.PlayerIndex);
+
         playerInput = controls.human.Input;
+        ControlsManager.ControlsUpdated += UpdateBindingText;
+
+        if (!string.IsNullOrEmpty(ControlSchemeRequired))
+        {
+            if (playerInput.currentControlScheme != ControlSchemeRequired)
+            {
+                gameObject.SetActive(false);
+                return;
+            }
+        }
+
         UpdateBindingText();
-        ControlsManager.ControlsUpdated += (s,e) => UpdateBindingText();
     }
 
     private void OnDisable()
     {
-        ControlsManager.ControlsUpdated -= (s, e) => UpdateBindingText();
+        ControlsManager.ControlsUpdated -= UpdateBindingText;
     }
 
     public void PerformRebinding()
@@ -49,12 +60,12 @@ public class ControlRebinder : MonoBehaviour
 
         var bindingIndex = GetBindingIndex(action);
 
-        if (isPartOfComposite)
-        {
-            var t = action.ChangeCompositeBinding("Keyboard-Space").WithGroup(playerInput.currentControlScheme).NextPartBinding(PartName).bindingIndex;
-            //t.NextPartBinding("Up").bindingIndex;
+        //if (isPartOfComposite)
+        //{
+        //    var t = action.ChangeCompositeBinding(playerInput.currentControlScheme).NextPartBinding(PartName).bindingIndex;
+        //    //t.NextPartBinding("Up").bindingIndex;
 
-        }
+        //}
 
 
         action.PerformInteractiveRebinding(bindingIndex)
@@ -73,7 +84,13 @@ public class ControlRebinder : MonoBehaviour
             .WithMatchingEventsBeingSuppressed(true)
             .WithTimeout(5)
             .OnMatchWaitForAnother(0.1f)
+            .WithCancelingThrough("an enormous string of absolute gibberish which overrides the default which is escape and causes the above bug")
             .Start();
+    }
+
+    public void UpdateBindingText(object sender, EventArgs e)
+    {
+        UpdateBindingText();
     }
 
     public void UpdateBindingText()
@@ -93,6 +110,11 @@ public class ControlRebinder : MonoBehaviour
 
     private int GetBindingIndex(InputAction action)
     {
+        //action.GetBindingIndex()
+        if (isPartOfComposite)
+        {
+            return action.ChangeCompositeBinding(playerInput.currentControlScheme).NextPartBinding(PartName).bindingIndex;
+        }
         return action.GetBindingIndex(InputBinding.MaskByGroup(playerInput.currentControlScheme));
     }
 }

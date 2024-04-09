@@ -2913,7 +2913,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1540155922
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2948,7 +2948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InitialText: 'Checking for updates... '
-  UpdateFoundText: Update found! Download it from itch.io
+  UpdateFoundText: Update found! Download it from www.traintrackscombat.rocks
   NoUpdateFoundText: You are on the latest version!
   ErrorText: Error checking for updates.
   UpdateText: {fileID: 1240691623}
@@ -3361,9 +3361,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Arriving 4/17/2024
-
-    www.traintrackscombat.rocks'
+  m_text: Press any button...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}

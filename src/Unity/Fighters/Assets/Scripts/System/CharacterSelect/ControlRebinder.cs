@@ -15,7 +15,11 @@ public class ControlRebinder : MonoBehaviour
 
     public string ActionPath;
 
+    public bool isPartOfComposite;
+    public string PartName;
+
     public TextMeshProUGUI bindingText;
+
 
     /// <summary>
     /// A control was rebound. Argument: playerIndex
@@ -44,6 +48,14 @@ public class ControlRebinder : MonoBehaviour
         bindingText.text = "<Waiting...>";
 
         var bindingIndex = GetBindingIndex(action);
+
+        if (isPartOfComposite)
+        {
+            var t = action.ChangeCompositeBinding("Keyboard-Space").WithGroup(playerInput.currentControlScheme).NextPartBinding(PartName).bindingIndex;
+            //t.NextPartBinding("Up").bindingIndex;
+
+        }
+
 
         action.PerformInteractiveRebinding(bindingIndex)
             .OnComplete(operation => {

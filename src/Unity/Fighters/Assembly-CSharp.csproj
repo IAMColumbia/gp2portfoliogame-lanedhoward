@@ -179,6 +179,7 @@
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
     <Compile Include="Assets\Scripts\System\CharacterSelect\V2\HelpButton.cs" />
     <Compile Include="Assets\Scripts\System\TrainingInfo.cs" />
+    <Compile Include="Assets\Scripts\System\TrainingDetails.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Art\Sprites\ui\command input sprites.txt" />

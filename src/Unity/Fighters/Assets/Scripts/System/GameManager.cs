@@ -50,6 +50,7 @@ public class GameManager : SoundPlayer
     public GameObject StartScreen;
     public GameObject StartButton;
     public PostGameUIPanels[] postGameUIs;
+    public TrainingInfo trainingInfo;
 
     public GameObject Announcer;
     public TMPro.TextMeshProUGUI AnnouncerText;
@@ -102,7 +103,8 @@ public class GameManager : SoundPlayer
         {
             gameMode = GameMode.TwoPlayer;
         }
-        else if (GamePlayerManager.Instance.gamePlayerConfigs.All(c => c.playerType == PlayerType.CPU))
+        else if (GamePlayerManager.Instance.gamePlayerConfigs.All(c => (c.playerType == PlayerType.CPU) 
+        || (c.playerType == PlayerType.Training))) // if you have two training dummys or a dummy and a cpu, treat it as cpu v cpu
         {
             gameMode = GameMode.CPUvsCPU;
         }
@@ -183,6 +185,8 @@ public class GameManager : SoundPlayer
         }
         LaneLibrary.RandomMethods.Choose(stages).SetActive(true);
 
+        trainingInfo.gameObject.SetActive(gameMode == GameMode.Training && GameSettings.Instance.ShowTrainingInfo);
+
         round = 1;
 
         player1lives = 2;
@@ -248,16 +252,26 @@ public class GameManager : SoundPlayer
         if (s == null) throw new Exception("Got lefthitstun event from null sender");
 
         ComboUI ui;
+        Healthbar h;
         if (s == player1)
         {
             ui = player2ComboUI;
+            h = player1Healthbar;
         }
         else
         {
             ui = player1ComboUI;
+            h = player2Healthbar;
+
         }
 
         ui.StartEndComboCount();
+
+        if (gameMode == GameMode.Training)
+        {
+            s.CurrentHealth = s.MaxHealth;
+            h.SetHealthbar(1, 1, true);
+        }
     }
 
     private void Player_GotHit(object sender, EventArgs e)
@@ -282,6 +296,11 @@ public class GameManager : SoundPlayer
         if (!ui.isActiveAndEnabled) ui.ShowText();
 
         ui.UpdateComboText(combo.hitCount, combo.totalDamage);
+
+        if (gameMode == GameMode.Training)
+        {
+            trainingInfo.SetInfo(combo);
+        }
     }
 
     

@@ -165,6 +165,7 @@ public class GunDraw : GunStanceAttack
         properties.attackType = GameAttackProperties.AttackType.Special;
         properties.attackStance = FighterStance.Standing;
 
+        properties.landCancelRecovery = false;
         properties.landCancelStartup = false;
         properties.landCancelActive = false;
     }

@@ -46,7 +46,7 @@ public class Healthbar : MonoBehaviour
         }
     }
 
-    public void SetHealthbar(float current, float max)
+    public void SetHealthbar(float current, float max, bool setDrainBar = false)
     {
         if (current <= 0 || max <= 0)
         {
@@ -55,6 +55,10 @@ public class Healthbar : MonoBehaviour
         }
         percent = Mathf.Pow((current / max), gutsPower);
         percent = Mathf.Max(percent, minPercent);
+        if (setDrainBar && drainbar != null)
+        {
+            drainbar.fillAmount = percent;
+        }
     }
 
     public void SetCharacterModule(CharacterModule character)

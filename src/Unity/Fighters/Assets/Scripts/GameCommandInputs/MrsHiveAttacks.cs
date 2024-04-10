@@ -518,7 +518,7 @@ public class Stinger : GameAttack
         properties.blockProperties.stunTime = AttackSettings.attackLevel3_blockstun;
 
         properties.hitProperties.knockback.Set(-5f, 0);
-        properties.hitProperties.airKnockback.Set(-1.75f, -6f);
+        properties.hitProperties.airKnockback.Set(-1.75f, -9f);
         properties.hitProperties.selfKnockback.Set(-5f, 0);
         properties.hitProperties.damage = 300f;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;

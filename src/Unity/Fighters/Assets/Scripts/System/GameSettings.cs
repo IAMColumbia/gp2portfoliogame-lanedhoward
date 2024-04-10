@@ -23,6 +23,7 @@ public class GameSettings
     
     public bool CPUvCPUAutoRematch;
     public bool ShowTutorial;
+    public bool ShowTrainingInfo;
 
     protected GameSettings()
     {
@@ -33,12 +34,13 @@ public class GameSettings
     {
         CPUvCPUAutoRematch = PlayerPrefs.GetInt("CPUvCPUAutoRematch", 0) == 1;
         ShowTutorial = PlayerPrefs.GetInt("ShowTutorial", 1) == 1;
-        Debug.Log("show tutorial: " + ShowTutorial);
+        ShowTrainingInfo = PlayerPrefs.GetInt("ShowTrainingInfo", 1) == 1;
     }
 
     public void SaveSettings()
     {
         PlayerPrefs.SetInt("CPUvCPUAutoRematch", CPUvCPUAutoRematch ? 1 : 0);
         PlayerPrefs.SetInt("ShowTutorial", ShowTutorial ? 1 : 0);
+        PlayerPrefs.SetInt("ShowTrainingInfo", ShowTrainingInfo ? 1 : 0);
     }
 }

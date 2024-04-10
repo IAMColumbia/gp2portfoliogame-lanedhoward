@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
+/// <summary>
+/// owned by the fighter getting comboed
+/// </summary>
 public class Combo
 {
     public bool currentlyGettingComboed;
@@ -50,7 +53,7 @@ public class Combo
         if (hitCount > MAX_UNSCALED_HITS)
         {
             damageScale = MathF.Max(damageScale * DAMAGE_SCALING_PER_HIT, DAMAGE_MIN_SCALING);
-            momentumScale = MathF.Min(momentumScale * MOMENTUM_SCALING_PER_HIT, MOMENTUM_MAX_SCALING);
+            //momentumScale = MathF.Min(momentumScale * MOMENTUM_SCALING_PER_HIT, MOMENTUM_MAX_SCALING);
             knockbackScale.x = MathF.Min(knockbackScale.x * KNOCKBACK_SCALING_PER_HIT, KNOCKBACK_MAX_SCALING);
             knockbackScale.y = MathF.Max(knockbackScale.y / KNOCKBACK_SCALING_PER_HIT, 1/KNOCKBACK_MAX_SCALING);
         }

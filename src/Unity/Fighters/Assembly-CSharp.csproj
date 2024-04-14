@@ -129,6 +129,7 @@
     <Compile Include="Assets\Scripts\LaneLibrary\ConsoleUtils.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\ThrowAttack.cs" />
     <Compile Include="Assets\Scripts\Announcer\AnnouncerSO.cs" />
+    <Compile Include="Assets\Scripts\System\TrainingDetails.cs" />
     <Compile Include="Assets\Scripts\FighterStates\FighterState.cs" />
     <Compile Include="Assets\Scripts\Hitboxes\Hurtbox.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\FighterGestures.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\IInputReceiver.cs" />
     <Compile Include="Assets\Scripts\System\SoundOption.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\IHostPackage.cs" />
+    <Compile Include="Assets\Scripts\System\TrainingInfo.cs" />
     <Compile Include="Assets\Scripts\FighterMain.cs" />
     <Compile Include="Assets\Scripts\System\PostGameUIPanels.cs" />
     <Compile Include="Assets\Scripts\MusicPlayer.cs" />
@@ -178,8 +180,6 @@
     <Compile Include="Assets\Scripts\WallBounceReceiver.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
     <Compile Include="Assets\Scripts\System\CharacterSelect\V2\HelpButton.cs" />
-    <Compile Include="Assets\Scripts\System\TrainingInfo.cs" />
-    <Compile Include="Assets\Scripts\System\TrainingDetails.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Art\Sprites\ui\command input sprites.txt" />

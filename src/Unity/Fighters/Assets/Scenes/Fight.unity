@@ -4555,10 +4555,10 @@ PlayableDirector:
     value: {fileID: 1702333310}
   - key: {fileID: -1404866493463534635, guid: 7dde4ad4654522f4097d6c59ece44483, type: 2}
     value: {fileID: 7698575338885332568}
-  - key: {fileID: -2254423342285355302, guid: 7dde4ad4654522f4097d6c59ece44483, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 1914259775}
   - key: {fileID: 5511241108373831903, guid: 7dde4ad4654522f4097d6c59ece44483, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 1914259775}
   m_ExposedReferences:
     m_References: []
 --- !u!82 &1914259775
@@ -6016,7 +6016,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4481977189175268679, guid: 19c7a070ea94aac418bf5aa5cd2139a3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19c7a070ea94aac418bf5aa5cd2139a3, type: 3}
@@ -6320,7 +6320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1792802140846926202, guid: 1e9f5e50a4c73cc4a9e36a4eb10d0de6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7028080218834019153, guid: 1e9f5e50a4c73cc4a9e36a4eb10d0de6, type: 3}
       propertyPath: m_Color.a

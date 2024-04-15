@@ -260,7 +260,7 @@ public class BulletTrainModule : CharacterModule
             // in gun stance
             new CpuCombo()
             {
-                weight = 30000,
+                weight = 300000,
                 conditions = new List<GameAttackCondition>()
                 {
                     new GroundedCondition(null, true),
@@ -275,7 +275,7 @@ public class BulletTrainModule : CharacterModule
             },
             new CpuCombo() // put your gun away if youre far
             {
-                weight = 800000,
+                weight = 8000000,
                 conditions = new List<GameAttackCondition>()
                 {
                     new GroundedCondition(null, true),
@@ -291,7 +291,7 @@ public class BulletTrainModule : CharacterModule
             },
             new CpuCombo()
             {
-                weight = 30000,
+                weight = 300000,
                 conditions = new List<GameAttackCondition>()
                 {
                     new GroundedCondition(null, true),
@@ -310,7 +310,7 @@ public class BulletTrainModule : CharacterModule
             },
             new CpuCombo() // reload while empty, much more important
             {
-                weight = 300000,
+                weight = 6000000,
                 conditions = new List<GameAttackCondition>()
                 {
                     new GroundedCondition(null, true),
@@ -329,7 +329,7 @@ public class BulletTrainModule : CharacterModule
             },
             new CpuCombo()
             {
-                weight = 30000,
+                weight = 600000,
                 conditions = new List<GameAttackCondition>()
                 {
                     new GroundedCondition(null, true),
@@ -345,7 +345,7 @@ public class BulletTrainModule : CharacterModule
             },
             new CpuCombo()
             {
-                weight = 100000,
+                weight = 1000000,
                 conditions = new List<GameAttackCondition>()
                 {
                     new GroundedCondition(null, true),
@@ -360,7 +360,7 @@ public class BulletTrainModule : CharacterModule
             },
             new CpuCombo() // PLEASE dash closer when far
             {
-                weight = 10000000,
+                weight = 100000000,
                 conditions = new List<GameAttackCondition>()
                 {
                     new GroundedCondition(null, true),
@@ -376,7 +376,7 @@ public class BulletTrainModule : CharacterModule
             },
             new CpuCombo() // PLEASE dash closer when far
             {
-                weight = 10000000,
+                weight = 100000000,
                 conditions = new List<GameAttackCondition>()
                 {
                     new GroundedCondition(null, true),
@@ -393,7 +393,7 @@ public class BulletTrainModule : CharacterModule
             },
             new CpuCombo() // PLEASE dash closer when far
             {
-                weight = 10000000,
+                weight = 100000000,
                 conditions = new List<GameAttackCondition>()
                 {
                     new GroundedCondition(null, true),
@@ -410,7 +410,7 @@ public class BulletTrainModule : CharacterModule
             },
             new CpuCombo()
             {
-                weight = 100000,
+                weight = 1000000,
                 conditions = new List<GameAttackCondition>()
                 {
                     new GroundedCondition(null, true),
@@ -430,7 +430,7 @@ public class BulletTrainModule : CharacterModule
             },
             new CpuCombo()
             {
-                weight = 30000,
+                weight = 300000,
                 conditions = new List<GameAttackCondition>()
                 {
                     new GroundedCondition(null, true),
@@ -445,7 +445,7 @@ public class BulletTrainModule : CharacterModule
             },
             new CpuCombo()
             {
-                weight = 100000,
+                weight = 1000000,
                 conditions = new List<GameAttackCondition>()
                 {
                     new GroundedCondition(null, true),
@@ -464,7 +464,7 @@ public class BulletTrainModule : CharacterModule
             },
             new CpuCombo()
             {
-                weight = 100000,
+                weight = 1000000,
                 conditions = new List<GameAttackCondition>()
                 {
                     new GroundedCondition(null, true),
@@ -482,7 +482,7 @@ public class BulletTrainModule : CharacterModule
             },
             new CpuCombo()
             {
-                weight = 30000,
+                weight = 300000,
                 conditions = new List<GameAttackCondition>()
                 {
                     new GroundedCondition(null, true),
@@ -503,7 +503,7 @@ public class BulletTrainModule : CharacterModule
             },
             new CpuCombo()
             {
-                weight = 30000,
+                weight = 300000,
                 conditions = new List<GameAttackCondition>()
                 {
                     new GroundedCondition(null, true),
@@ -521,7 +521,7 @@ public class BulletTrainModule : CharacterModule
             },
             new CpuCombo()
             {
-                weight = 30000,
+                weight = 300000,
                 conditions = new List<GameAttackCondition>()
                 {
                     new GroundedCondition(null, true),

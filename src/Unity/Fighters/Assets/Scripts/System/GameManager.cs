@@ -91,6 +91,9 @@ public class GameManager : SoundPlayer
             return;
         }
 
+        // test
+        //Application.targetFrameRate = 30;
+
         // any human controller can press pause, regardless of if they are controlling a fighter
         // so that we can pause during cpu battles
         foreach (HumanPlayerConfig human in GamePlayerManager.Instance.humanPlayerConfigs)

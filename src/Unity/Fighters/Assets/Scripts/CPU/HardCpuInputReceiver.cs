@@ -26,6 +26,8 @@ public class HardCpuInputReceiver : FighterInputReceiver
     bool isClose;
     float closeDistance = 3f;
 
+    float timer;
+    float timerMax = 1f / 60f;
 
     public HardCpuInputReceiver(FighterMain _fighter, FighterInputHost _inputHost, InputReader _inputReader) : base(_fighter, _inputHost, _inputReader)
     {
@@ -162,9 +164,19 @@ public class HardCpuInputReceiver : FighterInputReceiver
     {
         ManageBuffer();
 
+
+        // limit to 60 ticks per second
+        timer += Time.unscaledDeltaTime;
+        if (timer < timerMax)
+        {
+            return false;
+        }
+
+        timer -= timerMax;
+
         isClose = Mathf.Abs(fighter.otherFighter.transform.position.x - fighter.transform.position.x) <= closeDistance;
 
-        if (RandomMethods.RANDOM.Next(18) == 0)
+        if (RandomMethods.RANDOM.Next(3) == 0)
         {
             if (RandomMethods.RANDOM.Next(2) == 0)
             {

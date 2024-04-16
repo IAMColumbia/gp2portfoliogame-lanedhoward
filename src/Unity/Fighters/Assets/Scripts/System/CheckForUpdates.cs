@@ -34,6 +34,8 @@ public class CheckForUpdates : MonoBehaviour
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.Log(www.error);
+
+            Error();
         }
         else
         {

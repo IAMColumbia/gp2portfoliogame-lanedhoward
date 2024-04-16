@@ -13,12 +13,14 @@ public class MovesListPanel : MonoBehaviour
 
     public TextMeshProUGUI SystemText;
     public MarkdownRenderer CharacterText;
+    public MarkdownRenderer BioText;
     public TextMeshProUGUI swapButtonText;
 
     public enum State
     {
         ShowingSystem,
-        ShowingCharacter
+        ShowingCharacter,
+        ShowingBio
     }
 
     public State CurrentState = State.ShowingSystem;
@@ -50,6 +52,7 @@ public class MovesListPanel : MonoBehaviour
     {
         SystemText.gameObject.SetActive(true);
         CharacterText.gameObject.SetActive(false);
+        BioText.gameObject.SetActive(false);
         swapButtonText.text = "Show Character Moves";
         CurrentState = State.ShowingSystem;
     }
@@ -58,7 +61,8 @@ public class MovesListPanel : MonoBehaviour
     {
         SystemText.gameObject.SetActive(false);
         CharacterText.gameObject.SetActive(true);
-        swapButtonText.text = "Show Universal Moves";
+        BioText.gameObject.SetActive(false);
+        swapButtonText.text = "Show Character Bio";
         CurrentState = State.ShowingCharacter;
 
         CharacterModule character = gamePlayerConfig.Character;
@@ -78,15 +82,44 @@ public class MovesListPanel : MonoBehaviour
         }
     }
 
-    public void OnSwap()
+    public void ShowBio()
     {
-        if (CurrentState == State.ShowingCharacter)
+        SystemText.gameObject.SetActive(false);
+        CharacterText.gameObject.SetActive(false);
+        BioText.gameObject.SetActive(true);
+        swapButtonText.text = "Show System Mechanics";
+        CurrentState = State.ShowingBio;
+
+        CharacterModule character = gamePlayerConfig.Character;
+
+        if (character != null)
         {
-            ShowSystem();
+            BioText.Source = character.Bio;
         }
         else
         {
-            ShowCharacter();
+            BioText.Source =
+@"## Character Bio
+
+
+### No Character Selected
+";
+        }
+    }
+
+    public void OnSwap()
+    {
+        switch (CurrentState)
+        {
+            case State.ShowingSystem:
+                ShowCharacter();
+                break;
+            case State.ShowingCharacter:
+                ShowBio();
+                break;
+            case State.ShowingBio:
+                ShowSystem();
+                break;
         }
     }
 

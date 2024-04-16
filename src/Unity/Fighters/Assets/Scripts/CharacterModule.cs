@@ -69,6 +69,9 @@ public class CharacterModule : ScriptableObject
     [TextArea(3,20)]
     public string MovesList;
 
+    [TextArea(3, 20)]
+    public string Bio;
+
     public virtual List<GameAttack> GetGameAttacks()
     {
         return null;

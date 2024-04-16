@@ -38,6 +38,9 @@ public class Cursor : MonoBehaviour
     public SpriteRenderer tokenSprite;
     public SpriteRenderer cursorSprite;
 
+    public Sprite openHandSprite;
+    public Sprite tokenHandSprite;
+
     public bool cursorEnabled = false;
 
     public float cursorEnableDelay;
@@ -174,6 +177,8 @@ public class Cursor : MonoBehaviour
         tokenSprite.material = t.image.material;
         tokenSprite.gameObject.SetActive(true);
 
+        cursorSprite.sprite = tokenHandSprite;
+
         token.slot.ClearCharacter();
 
     }
@@ -184,6 +189,8 @@ public class Cursor : MonoBehaviour
         token.gameObject.SetActive(true);
         token = null;
         tokenSprite.gameObject.SetActive(false);
+
+        cursorSprite.sprite = openHandSprite;
     }
 
     private void OnEnable()

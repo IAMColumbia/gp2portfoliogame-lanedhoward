@@ -68,6 +68,8 @@ public class GameManager : SoundPlayer
 
     public CinemachineTargetGroup targetGroup;
 
+    public StartButtonClicker pauseClicker;
+
     public enum RoundEndTypes
     {
         Normal,
@@ -632,7 +634,10 @@ public class GameManager : SoundPlayer
     public void PauseGame()
     {
         // pause not implemented, just go back to character select
-        ReturnToCharacterSelect();
+        if (pauseClicker.PressStart())
+        {
+            ReturnToCharacterSelect();
+        }
     }
 
     private void OnEnable()

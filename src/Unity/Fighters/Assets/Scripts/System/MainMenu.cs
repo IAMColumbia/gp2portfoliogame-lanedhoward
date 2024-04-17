@@ -63,6 +63,8 @@ public class MainMenu : SoundPlayer
         resetButton.started -= ResetButton_started;
         resetButton.Disable();
 
+        uiInputModule.actionsAsset.RemoveAllBindingOverrides();
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

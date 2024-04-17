@@ -22,7 +22,16 @@ public class CheckForUpdates : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(GetVersion());
+        // only check when the game starts, not returning to the menu
+        if (Time.realtimeSinceStartup < 5)
+        {
+            StartCoroutine(GetVersion());
+        }
+        else
+        {
+            UpdateText.text = "";
+            FadeOutText();
+        }
     }
 
     IEnumerator GetVersion()

@@ -70,6 +70,7 @@ public class ControlsManager : MonoBehaviour
         Debug.Log("Loading Controls for " + GetRebindsKey());
         ResetAllBindings(false);
         string rebinds = PlayerPrefs.GetString(GetRebindsKey());
+        
         if (!string.IsNullOrEmpty(rebinds))
         {
             try

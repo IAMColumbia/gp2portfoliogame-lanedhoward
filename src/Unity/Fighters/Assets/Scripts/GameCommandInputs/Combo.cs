@@ -18,6 +18,7 @@ public class Combo
     public float momentumScale;
     public Vector2 knockbackScale;
 
+    public GameAttackProperties.BlockType lastBlockType;
     public float lastHitFrameAdvantage;
     public bool hasUsedComboGrab;
 

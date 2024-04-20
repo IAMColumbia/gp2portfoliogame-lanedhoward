@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -30,8 +31,8 @@ Knockback Scale: {combo.knockbackScale}";
         string plus = combo.lastHitFrameAdvantage >= 0 ? "+" : "";
         string usedComboGrab = combo.hasUsedComboGrab ? "YES" : "NO";
 
-        extraText.text = $@"Frame Advantage: {plus}{combo.lastHitFrameAdvantage}
-Used Combo Grab: {usedComboGrab}
-";
+        extraText.text = $@"Used Combo Grab: {usedComboGrab}
+Frame Advantage: {plus}{combo.lastHitFrameAdvantage}
+Block Type: {combo.lastBlockType}";
     }
 }

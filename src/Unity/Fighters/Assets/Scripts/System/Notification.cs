@@ -10,7 +10,7 @@ public class Notification : MonoBehaviour
     private float fadeTime;
 
     private TextMeshProUGUI text;
-    private float timer;
+    public float timer;
 
     bool fadeStarted;
 

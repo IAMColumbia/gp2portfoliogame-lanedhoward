@@ -64,7 +64,7 @@ MonoBehaviour:
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
-  m_ChildControlHeight: 1
+  m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
@@ -87,6 +87,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4765420
   notificationTimeMax: 1.25
+  fadeTime: 1
 --- !u!1001 &413780227326229796
 PrefabInstance:
   m_ObjectHideFlags: 0

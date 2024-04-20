@@ -319,7 +319,7 @@ public class FishingAirSuccess : ThrowAttackSuccess
 
         properties.attackType = GameAttackProperties.AttackType.Heavy;
 
-        properties.hitProperties.airKnockback.Set(-2f, -9f);
+        properties.hitProperties.airKnockback.Set(-2f, -11f);
         properties.hitProperties.selfKnockback.Set(-6f, 0);
         properties.hitProperties.damage = 250f;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;

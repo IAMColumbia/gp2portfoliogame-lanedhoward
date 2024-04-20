@@ -800,13 +800,18 @@ public class FighterMain : SoundPlayer, IHitboxResponder
             OnVelocityImpulseJuggle(kb, JuggleMomentumMultiplier);
             CurrentHealth -= pp.damage;
 
-            Blocked?.Invoke(this, EventArgs.Empty);
 
             PlaySound(blockSounds[0]);
             SwitchState(blockstun);
             CalculateFrameAdvantage(pp.stunTime);
+            currentCombo.lastBlockType = properties.blockType;
+
 
             ((IStunState)currentState).SetStun(pp.stunTime);
+
+            Blocked?.Invoke(this, EventArgs.Empty);
+
+
             return HitReport.Block;
         }
 
@@ -827,12 +832,11 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         
         OnVelocityImpulseJuggle(kb, JuggleMomentumMultiplier * currentCombo.momentumScale);
 
-        GotHit?.Invoke(this, EventArgs.Empty);
-        
+        CalculateFrameAdvantage(pp.stunTime);
+        currentCombo.lastBlockType = properties.blockType;
 
         SwitchState(hitstun);
         Hitstun hs = (Hitstun)currentState;
-        CalculateFrameAdvantage(pp.stunTime);
         hs.SetStun(pp.stunTime);
         hs.SetHardKD(pp.hardKD);
         hs.SetWallBounce(pp.wallBounce);
@@ -847,6 +851,9 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         {
             DoGroundBounceFX();
         }
+
+        GotHit?.Invoke(this, EventArgs.Empty);
+
         return HitReport.Hit;
     }
 
@@ -866,7 +873,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
                 {
                     if (currentCombo.hasUsedComboGrab) // have we used a combo grab yet
                     {
-                        SendNotification("Combo Grab Escaoe!!");
+                        SendNotification("Combo Grab Escape!!");
                         return HitReport.Parried;
                     }
                     else // now we have, so next time it wont hit

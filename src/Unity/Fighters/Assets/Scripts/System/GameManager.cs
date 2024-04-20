@@ -224,6 +224,9 @@ public class GameManager : SoundPlayer
         player1.GotHit += Player_GotHit;
         player2.GotHit += Player_GotHit;
 
+        player1.Blocked += Player_Blocked;
+        player2.Blocked += Player_Blocked;
+
         player1.LeftHitstun += Player_LeftHitstun;
         player2.LeftHitstun += Player_LeftHitstun;
 
@@ -249,6 +252,19 @@ public class GameManager : SoundPlayer
 
         //eventSystem.SetSelectedGameObject(StartButton);
         StartCoroutine(StartRound());
+    }
+
+    private void Player_Blocked(object sender, EventArgs e)
+    {
+        if (gameMode != GameMode.Training) return;
+
+        FighterMain s = (FighterMain)sender;
+        if (s == null) throw new Exception("Got blocked event from null sender");
+
+        Combo combo;
+        combo = s.currentCombo;
+
+        trainingInfo.SetInfo(combo);
     }
 
     private void Player_LeftHitstun(object sender, EventArgs e)

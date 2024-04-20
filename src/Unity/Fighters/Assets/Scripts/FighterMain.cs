@@ -196,8 +196,9 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
     public event EventHandler GotHit;
     public event EventHandler LeftHitstun;
+    public event EventHandler LeftBlockstun;
     public event EventHandler<int> StocksUpdated;
-    public event EventHandler PausePressed;
+    public event Action<int,int> PausePressed;
     public event EventHandler<string> SentNotification;
     public event EventHandler HitConnected;
     public event EventHandler AttackInRecovery;
@@ -369,7 +370,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
     private void InputHost_PausePressed(object sender, EventArgs e)
     {
-        PausePressed?.Invoke(this, e);
+        PausePressed?.Invoke(inputReceiver.LeftRight, inputReceiver.UpDown);
     }
 
     public void SetMaterial(Material mat)
@@ -1021,6 +1022,11 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     {
         currentCombo.currentlyGettingComboed = false;
         LeftHitstun?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void ExitBlockstun()
+    {
+        LeftBlockstun?.Invoke(this, EventArgs.Empty);
     }
 
     public Directions.FacingDirection ShouldFaceDirection()

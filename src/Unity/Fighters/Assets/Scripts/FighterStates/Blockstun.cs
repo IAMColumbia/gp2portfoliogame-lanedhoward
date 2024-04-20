@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -65,5 +66,11 @@ public class Blockstun : FighterState, IStunState
     public void SetStun(float stun)
     {
         blockstun = stun;
+    }
+
+    public override void ExitState()
+    {
+        base.ExitState();
+        fighter.ExitBlockstun();
     }
 }

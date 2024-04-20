@@ -70,6 +70,8 @@ public class GameManager : SoundPlayer
 
     public StartButtonClicker pauseClicker;
 
+    private event Action CycleBlockSetting;
+
     public enum RoundEndTypes
     {
         Normal,
@@ -230,6 +232,9 @@ public class GameManager : SoundPlayer
         player1.LeftHitstun += Player_LeftHitstun;
         player2.LeftHitstun += Player_LeftHitstun;
 
+        player1.LeftBlockstun += Player_LeftBlockstun;
+        player2.LeftBlockstun += Player_LeftBlockstun;
+
         player1ComboUI.HideText();
         player2ComboUI.HideText();
 
@@ -252,6 +257,29 @@ public class GameManager : SoundPlayer
 
         //eventSystem.SetSelectedGameObject(StartButton);
         StartCoroutine(StartRound());
+    }
+
+    private void Player_LeftBlockstun(object sender, EventArgs e)
+    {
+        if (gameMode != GameMode.Training) return;
+
+        FighterMain s = (FighterMain)sender;
+        if (s == null) throw new Exception("Got leftblockstun event from null sender");
+
+        Healthbar h;
+        if (s == player1)
+        {
+            h = player1Healthbar;
+        }
+        else
+        {
+            h = player2Healthbar;
+
+        }
+        
+        s.CurrentHealth = s.MaxHealth;
+        h.SetHealthbar(1, 1, true);
+        
     }
 
     private void Player_Blocked(object sender, EventArgs e)
@@ -599,7 +627,12 @@ public class GameManager : SoundPlayer
                         fm.InjectInputReceiver(new HardCpuInputReceiver(fm, null, null));
                         break;
                     case PlayerType.Training:
-                        fm.InjectInputReceiver(new TrainingInputReceiver(fm, null, null));
+                        TrainingInputReceiver ti = new TrainingInputReceiver(fm, null, null);
+
+                        CycleBlockSetting += ti.ChangeBlockSetting;
+
+                        fm.InjectInputReceiver(ti);
+
                         break;
                 }
 
@@ -644,6 +677,26 @@ public class GameManager : SoundPlayer
 
     private void PausePressed(InputAction.CallbackContext obj)
     {
+        if (gameMode == GameMode.Training)
+        {
+            FighterMain humanFighter;
+            if (GamePlayerManager.Instance.gamePlayerConfigs[0].playerType == PlayerType.Human)
+            {
+                humanFighter = player1;
+            }
+            else
+            {
+                humanFighter = player2;
+            }
+
+            if (humanFighter.inputReceiver.LeftRight == 0 && humanFighter.inputReceiver.UpDown == -1)
+            {
+                // cycle block settings
+                CycleBlockSetting?.Invoke();
+                return;
+            }
+
+        }
         PauseGame();
     }
 

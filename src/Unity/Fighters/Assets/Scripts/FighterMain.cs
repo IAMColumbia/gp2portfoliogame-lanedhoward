@@ -804,6 +804,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
             PlaySound(blockSounds[0]);
             SwitchState(blockstun);
+            CalculateFrameAdvantage(pp.stunTime);
+
             ((IStunState)currentState).SetStun(pp.stunTime);
             return HitReport.Block;
         }
@@ -830,7 +832,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
         SwitchState(hitstun);
         Hitstun hs = (Hitstun)currentState;
-
+        CalculateFrameAdvantage(pp.stunTime);
         hs.SetStun(pp.stunTime);
         hs.SetHardKD(pp.hardKD);
         hs.SetWallBounce(pp.wallBounce);
@@ -851,7 +853,30 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     private HitReport GetThrownWith(GameAttackProperties properties)
     {
         if (isThrowInvulnerable) return HitReport.Whiff;
-        if (currentState is Hitstun && properties.canGrabHitstun == false) return HitReport.Whiff;
+        
+        if (currentState is Hitstun)
+        {
+            if (properties.canGrabHitstun == false)
+            {
+                return HitReport.Whiff;
+            }
+            else // can grab hitstun = true
+            {
+                if (currentCombo != null)
+                {
+                    if (currentCombo.hasUsedComboGrab) // have we used a combo grab yet
+                    {
+                        SendNotification("Combo Grab Escaoe!!");
+                        return HitReport.Parried;
+                    }
+                    else // now we have, so next time it wont hit
+                    {
+                        currentCombo.hasUsedComboGrab = true;
+                    }
+                }
+            }
+        }
+
         if (isGrounded && currentState.jumpsEnabled && hasJumpInput) return HitReport.Whiff; 
         if ((properties.stanceToBeGrabbed == FighterStance.Air) != (currentStance == FighterStance.Air)) return HitReport.Whiff;
 
@@ -936,6 +961,35 @@ public class FighterMain : SoundPlayer, IHitboxResponder
             }
         }
         return false;
+    }
+
+    /// <summary>
+    /// done by defender, displays frame advantage of attacker
+    /// </summary>
+    /// <param name="stunTime"></param>
+    public void CalculateFrameAdvantage(float stunTime)
+    {
+        // stunTime should be a float in seconds, in increments of 1/60
+
+        var anim = otherFighterMain.fighterAnimator.GetAnimatorStateInfo();
+        float remainingAnimTime = anim.length - (anim.length * anim.normalizedTime);
+        if (remainingAnimTime < 0)
+        {
+            // anim must have looped
+            return;
+        }
+
+        float advantage = stunTime - remainingAnimTime; // in seconds
+        float advantageFrames = Mathf.Round(advantage * 60);
+        // probably wil need to round / floor / ceil this?
+
+        //string plus = advantageFrames >= 0 ? "+" : "";
+
+        if (currentCombo != null)
+        {
+            currentCombo.lastHitFrameAdvantage = advantageFrames;
+        }
+        //Debug.Log($"Attacker is {plus}{advantageFrames}");
     }
 
     public void DoWallBounce()

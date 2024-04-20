@@ -299,6 +299,11 @@ public class FishingGrabWhiff : ThrowAttack
     {
         base.OnActive(fighter);
     }
+
+    public override void OnHit(FighterMain fighter, FighterMain otherFighter)
+    {
+        base.OnHit(fighter, otherFighter);
+    }
 }
 
 public class FishingAirSuccess : ThrowAttackSuccess
@@ -332,14 +337,14 @@ public class FishingAirSuccess : ThrowAttackSuccess
         // manually apply self knockback
         // todo: make it apply combo scaling so you get pushed further later in the combo?
 
-        Vector2 kb = properties.hitProperties.selfKnockback;
+        //Vector2 kb = properties.hitProperties.selfKnockback;
 
-        if (fighter.otherFighterMain.isAtTheWall)
-        {
-            kb.x += properties.hitProperties.knockback.x / 1.5f;
-        }
+        //if (fighter.otherFighterMain.isAtTheWall)
+        //{
+        //    kb.x += properties.hitProperties.knockback.x / 1.5f;
+        //}
 
-        fighter.OnVelocityImpulseRelativeToOtherFighter(kb);
+        //fighter.OnVelocityImpulseRelativeToOtherFighter(kb);
 
     }
 }

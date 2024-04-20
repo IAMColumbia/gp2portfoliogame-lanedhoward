@@ -18,6 +18,9 @@ public class Combo
     public float momentumScale;
     public Vector2 knockbackScale;
 
+    public float lastHitFrameAdvantage;
+    public bool hasUsedComboGrab;
+
     private const float DAMAGE_SCALING_PER_HIT = 0.825f;
     private const float DAMAGE_MIN_SCALING = 0.3f;
     private const float MOMENTUM_SCALING_PER_HIT = 1.17f;
@@ -39,6 +42,7 @@ public class Combo
         damageScale = 1;
         momentumScale = 1;
         knockbackScale = Vector2.one;
+        hasUsedComboGrab = false;
     }
 
     public void AddHit()

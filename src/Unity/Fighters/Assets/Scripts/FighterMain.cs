@@ -843,9 +843,18 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         hs.SetWallBounce(pp.wallBounce);
         if (pp.wallBounce && isAtTheWall)
         {
-            CheckForWalledness(); // this will check for wallbounce if this is the first frame they are walled
-
-            hs.CheckForWallbounce(); // this will check for wallbounce if theyve been walled. but won't wallbounce if the first one did
+            if (wallDirection != otherFighterMain.ShouldFaceDirection())
+            {
+                // weird corner overlap crossup wallbounce bug
+                // just play the vfx but let the crossup knockback rock
+                // instead of doing some double negative stuff that means no knockback
+                DoWallBounceFX();
+            }
+            else
+            {
+                CheckForWalledness(); // this will check for wallbounce if this is the first frame they are walled
+                hs.CheckForWallbounce(); // this will check for wallbounce if theyve been walled. but won't wallbounce if the first one did
+            }
         }
         hs.SetGroundBounce(groundBounce);
         if (pp.playGroundBounceParticlesOnGroundedHit && isGrounded)
@@ -1002,11 +1011,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
     public void DoWallBounce(Vector2 lastVelocity)
     {
-        timeManager.DoHitStop(bounceHitstop);
-        PlaySound(bounceSound);
-
+        
         //fighterRigidbody.velocity = new Vector2(-fighterRigidbody.velocity.x, fighterRigidbody.velocity.y);
-
 
         // use velocity from the frame before, because current velocity might already be 0 from colliding with wall
         if (Mathf.Abs(lastVelocity.x) > Mathf.Abs(fighterRigidbody.velocity.x))
@@ -1018,7 +1024,16 @@ public class FighterMain : SoundPlayer, IHitboxResponder
             fighterRigidbody.velocity = new Vector2(-fighterRigidbody.velocity.x, fighterRigidbody.velocity.y);
         }
 
+        DoWallBounceFX();
+
+    }
+
+    public void DoWallBounceFX()
+    {
+        timeManager.DoHitStop(bounceHitstop);
+        PlaySound(bounceSound);
         WallBounced?.Invoke(this, new WallBounceEventArgs() { position = (Vector2)transform.position + centerOffset, wallDirection = this.wallDirection });
+
     }
 
     /// <summary>

@@ -454,6 +454,9 @@ public class Teleport : GameAttack
         properties.attackType = GameAttackProperties.AttackType.Special;
         properties.attackStance = FighterStance.Standing;
 
+        properties.landCancelStartup = false;
+        properties.landCancelActive = false;
+        properties.landCancelRecovery = false;
     }
 
     public override void OnStartup(FighterMain fighter)

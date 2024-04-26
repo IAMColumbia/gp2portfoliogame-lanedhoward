@@ -1000,11 +1000,24 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         //Debug.Log($"Attacker is {plus}{advantageFrames}");
     }
 
-    public void DoWallBounce()
+    public void DoWallBounce(Vector2 lastVelocity)
     {
         timeManager.DoHitStop(bounceHitstop);
         PlaySound(bounceSound);
-        fighterRigidbody.velocity = new Vector2(-fighterRigidbody.velocity.x, fighterRigidbody.velocity.y);
+
+        //fighterRigidbody.velocity = new Vector2(-fighterRigidbody.velocity.x, fighterRigidbody.velocity.y);
+
+
+        // use velocity from the frame before, because current velocity might already be 0 from colliding with wall
+        if (Mathf.Abs(lastVelocity.x) > Mathf.Abs(fighterRigidbody.velocity.x))
+        {
+            fighterRigidbody.velocity = new Vector2(-lastVelocity.x, lastVelocity.y); 
+        }
+        else
+        {
+            fighterRigidbody.velocity = new Vector2(-fighterRigidbody.velocity.x, fighterRigidbody.velocity.y);
+        }
+
         WallBounced?.Invoke(this, new WallBounceEventArgs() { position = (Vector2)transform.position + centerOffset, wallDirection = this.wallDirection });
     }
 

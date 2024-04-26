@@ -210,7 +210,7 @@ public class Hitstun : FighterState, IStunState
         if (wallBounce)
         {
             wallBounce = false;
-            fighter.DoWallBounce();
+            fighter.DoWallBounce(lastVelocity);
         }
     }
 }

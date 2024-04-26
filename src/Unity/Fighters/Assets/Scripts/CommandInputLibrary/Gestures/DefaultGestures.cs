@@ -45,6 +45,7 @@ namespace CommandInputReaderLibrary.Gestures
             requiredInputs.Push(new GestureComponent(Direction.DownForward, InputReader.TimeBetweenSequentialInputs));
             requiredInputs.Push(new GestureComponent(Direction.Forward, InputReader.TimeBetweenSequentialInputs));
 
+            disallowedInputs.Add(new GestureComponent(Direction.Back, 0));
         }
     }
 
@@ -62,6 +63,8 @@ namespace CommandInputReaderLibrary.Gestures
             requiredInputs.Push(new GestureComponent(Direction.Down, InputReader.TimeBetweenSequentialInputs));
             requiredInputs.Push(new GestureComponent(Direction.DownBack, InputReader.TimeBetweenSequentialInputs));
             requiredInputs.Push(new GestureComponent(Direction.Back, InputReader.TimeBetweenSequentialInputs));
+
+            disallowedInputs.Add(new GestureComponent(Direction.Forward, 0));
 
         }
     }

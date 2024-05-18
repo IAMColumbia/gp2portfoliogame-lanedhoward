@@ -131,7 +131,6 @@ public class GameManager : SoundPlayer
 
         NewGame();
 
-        
     }
 
     private void SetupPostGameUI()
@@ -147,10 +146,15 @@ public class GameManager : SoundPlayer
             {
                 postGameUIs[0].Setup(GamePlayerManager.Instance.humanPlayerConfigs[0].Input);
                 postGameUIs[0].UIActive = true;
+
+                GamePlayerManager.Instance.humanPlayerConfigs[0].Input.onDeviceLost += Input_onDeviceLost;
+
                 if (GamePlayerManager.Instance.humanPlayerConfigs.Count > 1)
                 {
                     postGameUIs[1].Setup(GamePlayerManager.Instance.humanPlayerConfigs[1].Input);
                     postGameUIs[1].UIActive = true;
+
+                    GamePlayerManager.Instance.humanPlayerConfigs[1].Input.onDeviceLost += Input_onDeviceLost;
                 }
             }
         }
@@ -164,9 +168,24 @@ public class GameManager : SoundPlayer
                     //postGameUIs[i].Show();
                     postGameUIs[i].UIActive = true;
 
+                    GamePlayerManager.Instance.humanPlayerConfigs[i].Input.onDeviceLost += Input_onDeviceLost;
                 }
             }
         }
+    }
+
+    private void Input_onDeviceLost(PlayerInput obj)
+    {
+        if (gameActive == false && postGameUIs.Any(ui => ui.panel.activeInHierarchy))
+        {
+            StartCoroutine(DelayReturnToMenu());
+        }
+    }
+
+    public IEnumerator DelayReturnToMenu()
+    {
+        yield return new WaitForSeconds(0.1f);
+        ReturnToCharacterSelect();
     }
 
     private void PlayCharacterMusic()
@@ -249,6 +268,8 @@ public class GameManager : SoundPlayer
 
         targetGroup.AddMember(player1.transform, 1, 1);
         targetGroup.AddMember(player2.transform, 1, 1);
+
+        
 
         //StartScreen.SetActive(true);
         Announcer.SetActive(false);

@@ -11,7 +11,7 @@ using UnityEngine.Windows;
 public class PostGameUIPanels : MonoBehaviour
 {
     [SerializeField]
-    private GameObject panel;
+    public GameObject panel;
 
     [SerializeField]
     private MultiplayerEventSystem eventSystem;

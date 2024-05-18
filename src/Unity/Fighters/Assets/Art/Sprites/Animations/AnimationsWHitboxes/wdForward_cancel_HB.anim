@@ -97,7 +97,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.2
+  - time: 0.23333333
     functionName: CallAttackRecoveryEvent
     data: 
     objectReferenceParameter: {fileID: 0}

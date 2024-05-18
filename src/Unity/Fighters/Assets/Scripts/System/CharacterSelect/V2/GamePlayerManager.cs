@@ -32,6 +32,8 @@ public class GamePlayerManager : MonoBehaviour
     /// Event for the actual player swap process
     /// </summary>
     public static event EventHandler PlayersSwapped;
+    public static event EventHandler ControllerDisconnected;
+
 
     private void Awake()
     {
@@ -93,7 +95,45 @@ public class GamePlayerManager : MonoBehaviour
             {
                 gamePlayerConfigs[1].humanPlayerConfig = newHuman;
             }
+
+            pi.onDeviceLost += Pi_onDeviceLost;
         }
+    }
+
+    private void Pi_onDeviceLost(PlayerInput obj)
+    {
+        if (SceneManager.GetActiveScene().name == "PlayerSetupVersion2")
+        {
+
+            // only do anything on character select screen
+            StartCoroutine(HandleDeviceLost(obj));
+        }
+    }
+
+    private IEnumerator HandleDeviceLost(PlayerInput obj)
+    {
+        yield return new WaitForSeconds(0.1f);
+        HumanPlayerConfig humanWhoDisconnected;
+        GamePlayerConfig gamePlayerWhoDisconnected;
+
+        if (obj == gamePlayerConfigs[0].humanPlayerConfig?.Input)
+        {
+            humanWhoDisconnected = gamePlayerConfigs[0].humanPlayerConfig;
+            gamePlayerWhoDisconnected = gamePlayerConfigs[0];
+
+
+        }
+        else
+        {
+            humanWhoDisconnected = gamePlayerConfigs[1].humanPlayerConfig;
+            gamePlayerWhoDisconnected = gamePlayerConfigs[1];
+        }
+
+        gamePlayerWhoDisconnected.humanPlayerConfig = null;
+        humanPlayerConfigs.Remove(humanWhoDisconnected);
+        GameObject.Destroy(humanWhoDisconnected.Input.gameObject);
+
+        ControllerDisconnected?.Invoke(this, EventArgs.Empty);
     }
 
     public int GetGamePlayerIndex(HumanPlayerConfig human)
@@ -114,7 +154,7 @@ public class GamePlayerManager : MonoBehaviour
     /// <param name="cursor"></param>
     public void SetUpCursor(Cursor cursor)
     {
-        cursor.humanPlayerConfig = humanPlayerConfigs[cursor.playerInput.playerIndex];
+        cursor.humanPlayerConfig = humanPlayerConfigs.Where(h => h.Input == cursor.playerInput).First();
         Debug.Log($"Cursor {cursor.playerInput.playerIndex} now has human {cursor.humanPlayerConfig.PlayerIndex}");
     }
 

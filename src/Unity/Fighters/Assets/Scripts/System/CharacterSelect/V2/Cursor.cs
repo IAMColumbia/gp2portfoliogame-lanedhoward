@@ -202,8 +202,10 @@ public class Cursor : MonoBehaviour
 
         GamePlayerManager.PlayersSwapped += GamePlayerManager_PlayersSwapped;
         GamePlayerManager.PlayersAboutToSwap += GamePlayerManager_PlayersAboutToSwap;
+        GamePlayerManager.ControllerDisconnected += GamePlayerManager_ControllerDisconnected;
     }
 
+    
     private void OnDisable()
     {
         ControlsPanel.ControlsOpened -= OnMenuPanelOpened;
@@ -213,6 +215,8 @@ public class Cursor : MonoBehaviour
 
         GamePlayerManager.PlayersSwapped -= GamePlayerManager_PlayersSwapped;
         GamePlayerManager.PlayersAboutToSwap -= GamePlayerManager_PlayersAboutToSwap;
+        GamePlayerManager.ControllerDisconnected -= GamePlayerManager_ControllerDisconnected;
+
     }
 
     private void GamePlayerManager_PlayersAboutToSwap(object sender, System.EventArgs e)
@@ -240,6 +244,24 @@ public class Cursor : MonoBehaviour
         // human that controls this cursor won't change, but the slot (and player number we are) might
         SetUpGamePlayerSlot();
     }
+
+    private void GamePlayerManager_ControllerDisconnected(object sender, EventArgs e)
+    {
+        // if our human got removed or if it was already removed
+        if (gamePlayerSlot.gamePlayerConfig.humanPlayerConfig == null)
+        {
+            if (token != null)
+            {
+                DropToken();
+            }
+            gamePlayerSlot.SetHumanPlayerConfig(null);
+            gamePlayerSlot.ClearCharacter();
+
+            Destroy(this.gameObject);
+
+        }
+    }
+
 
     private void OnMenuPanelOpened(object sender, int e)
     {

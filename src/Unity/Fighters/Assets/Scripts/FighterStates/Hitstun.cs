@@ -111,6 +111,10 @@ public class Hitstun : FighterState, IStunState
 
                     ((IStunState)fighter.currentState).SetStun(kdTime);
                 }
+                else
+                {
+                    CheckForReversal();
+                }
             }
         }
 

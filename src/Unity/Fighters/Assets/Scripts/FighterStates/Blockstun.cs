@@ -60,7 +60,10 @@ public class Blockstun : FighterState, IStunState
 
         UpdateStance();
 
-        TimeTransitionToNextState(blockstun, NeutralOrAir());
+        if (TimeTransitionToNextState(blockstun, NeutralOrAir()))
+        {
+            CheckForReversal();
+        }
     }
 
     public void SetStun(float stun)

@@ -440,17 +440,24 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
         if (canAct && inputReceiver.bufferedInput != null)
         {
-            UpdateStance();
-
-            var foundAttack = inputReceiver.ParseAttack(inputReceiver.bufferedInput);
-
-            if (foundAttack != null)
-            {
-                inputReceiver.bufferedInput = null;
-                SetCurrentAttack(foundAttack);
-            }
+            TryExecuteBufferedInput();
             
         }
+    }
+
+    public bool TryExecuteBufferedInput()
+    {
+        UpdateStance();
+
+        var foundAttack = inputReceiver.ParseAttack(inputReceiver.bufferedInput);
+
+        if (foundAttack != null)
+        {
+            inputReceiver.bufferedInput = null;
+            SetCurrentAttack(foundAttack);
+            return true;
+        }
+        return false;
     }
 
     public void SetCurrentAttack(GameAttack newAttack)

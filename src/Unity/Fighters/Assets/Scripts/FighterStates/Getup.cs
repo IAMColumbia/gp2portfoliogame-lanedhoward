@@ -32,7 +32,10 @@ public class Getup : FighterState, IAnimationEndState
 
         DoFriction(fighter.groundFriction);
 
-        AnimationEndTransitionToNextState(fighter.neutral);
+        if (AnimationEndTransitionToNextState(fighter.neutral))
+        {
+            CheckForReversal();
+        }
     }
 
     public override void ExitState()
@@ -45,6 +48,9 @@ public class Getup : FighterState, IAnimationEndState
 
     public void OnForceAnimationEnded()
     {
-        fighter.SwitchState(fighter.neutral);
+        if (!CheckForReversal())
+        {
+            fighter.SwitchState(fighter.neutral);
+        }
     }
 }

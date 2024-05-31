@@ -203,5 +203,18 @@ public abstract class FighterState
         return (fighter.currentStance == FighterStance.Air) ? fighter.air : fighter.neutral;
     }
 
+
+    protected bool CheckForReversal()
+    {
+        if (fighter.inputReceiver.bufferedInput != null)
+        {
+            if (fighter.TryExecuteBufferedInput())
+            {
+                fighter.SendNotification("Reversal!");
+                return true;
+            }
+        }
+        return false;
+    }
     #endregion
 }

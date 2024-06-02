@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\GameCommandInputs\SharedAttacks.cs" />
     <Compile Include="Assets\Scripts\System\Scroller.cs" />
     <Compile Include="Assets\Scripts\FighterStates\LandingLag.cs" />
+    <Compile Include="Assets\Scripts\GameCommandInputs\KnightAttacks.cs" />
     <Compile Include="Assets\Scripts\FighterButtons.cs" />
     <Compile Include="Assets\Scripts\FighterStates\AttackState.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\InputReader.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="Assets\Scripts\GameCommandInputs\GameAttack.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\ReadableChargeGesture.cs" />
     <Compile Include="Assets\Scripts\System\NotificationManager.cs" />
+    <Compile Include="Assets\Scripts\CharacterModules\KnightModule.cs" />
     <Compile Include="Assets\Scripts\System\CharacterSelect\ControlsPanel.cs" />
     <Compile Include="Assets\Scripts\WallBounceReceiver.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />

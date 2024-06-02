@@ -1145,40 +1145,6 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         }
     }
 
-    /*
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("WallTrigger"))
-        {
-            isAtTheWall = true;
-            if (collision.gameObject.transform.position.x > transform.position.x)
-            {
-                wallDirection = Directions.FacingDirection.RIGHT;
-            }
-            else
-            {
-                wallDirection = Directions.FacingDirection.LEFT;
-            }
-
-            if (currentState is Hitstun h)
-            {
-                h.CheckForWallbounce();
-            }
-
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("WallTrigger"))
-        {
-            //if (fighterRigidbody.simulated)
-            {
-                isAtTheWall = false;
-            }
-        }
-    }
-    */
     private void SetGravity()
     {
         if (currentCombo != null)

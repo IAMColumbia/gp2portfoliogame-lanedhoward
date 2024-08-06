@@ -56,36 +56,36 @@ MonoBehaviour:
     #### Draw Gun:
 
     <sprite name="D"><sprite
-    name="DF"><sprite name="F"> + <sprite name="H">
+    name="DF"><sprite name="F"> + <sprite name="H">     ( <sprite name="Special">
+    )
 
-    Bullet Train enters a unique
-    Gun Stance, where they can shoot at various angles or take other actions. Most
-    gun stance moves cancel into each other.
+    Bullet Train enters a unique Gun Stance, where they can shoot at various
+    angles or take other actions. Most gun stance moves cancel into each other.
 
 
-    #### > Gun Stance Moves:
+    ####
+    > Gun Stance Moves:
 
-    <sprite
-    name="H">: fast short-range shot
-
-    <sprite name="D"> + <sprite name="H">:
-    low launcher shot
-
-    <sprite name="B"> + <sprite name="H">: anti-air shot
+    <sprite name="H">: fast short-range shot
 
     <sprite
-    name="F"> + <sprite name="H">: long range sweet spot shot
+    name="D"> + <sprite name="H">: low launcher shot
 
-    <sprite name="M">:
-    Pistol Whip (Overhead)
+    <sprite name="B"> + <sprite
+    name="H">: anti-air shot
 
-    <sprite name="L">: Reload
+    <sprite name="F"> + <sprite name="H">: long range
+    sweet spot shot
 
-    <sprite name="Dash">:
-    Spin
+    <sprite name="M">: Pistol Whip (Overhead)
 
-    <sprite name="D"><sprite name="DB"><sprite name="B"> + <sprite name="H">:
-    Holster Gun'
+    <sprite name="L">:
+    Reload
+
+    <sprite name="Dash">: Spin
+
+    <sprite name="D"><sprite name="DB"><sprite
+    name="B"> + <sprite name="H">  ( <sprite name="Special"> ) : Holster Gun'
   Bio: '## Bullet Train
 
     (they/them/any/all)

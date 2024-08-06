@@ -56,33 +56,35 @@ MonoBehaviour:
     Cannon Grab:  (Powerful command grab)
 
     <sprite
-    name="D"><sprite name="DF"><sprite name="F"> + <sprite name="G">
+    name="D"><sprite name="DF"><sprite name="F"> + <sprite name="G">      ( <sprite
+    name="F"> + <sprite name="Special"> )
 
 
-    Harpoon
-    Grab:  (Anti-air grab)
+    Harpoon Grab:  (Anti-air grab)
 
-    <sprite name="D"><sprite name="DB"><sprite name="B">
-    + <sprite name="G">
+    <sprite
+    name="D"><sprite name="DB"><sprite name="B"> + <sprite name="G">      ( <sprite
+    name="B"> + <sprite name="Special"> )
 
 
     Shark Call: (Shark anti-air)
 
-    <sprite name="F"><sprite
-    name="D"><sprite name="DF"> + <sprite name="H">
+    <sprite
+    name="F"><sprite name="D"><sprite name="DF"> + <sprite name="H">      ( <sprite
+    name="D"> + <sprite name="Special"> )
 
 
     Wave Call: (Reverse fireball)
 
     <sprite
-    name="D"><sprite name="DB"><sprite name="B"> + <sprite name="M">
+    name="D"><sprite name="DB"><sprite name="B"> + <sprite name="M">      ( <sprite
+    name="Special"> )
 
 
-    Peg Leg:
-    (Forward advancing kick)
+    Peg Leg: (Forward advancing kick)
 
-    <sprite name="D"><sprite name="DF"><sprite name="F">
-    + <sprite name="M">'
+    <sprite name="F">
+    + <sprite name="H">'
   Bio: "## Barnacle Bill Roddy\n(he/him)\n\nBarnacle Bill moved to the midwest following
     his dishonorable discharge from the US Navy.\n\nHe spent his last dime on a boat,
     and his last nickel on a bottle of rum.\n\nCaptain William \"Barnacle Bill\"

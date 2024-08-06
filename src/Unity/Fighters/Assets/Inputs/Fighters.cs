@@ -82,6 +82,15 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""SpecialButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""d44fe3eb-f76a-4ef3-88e9-7597588abbe2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Join"",
                     ""type"": ""Button"",
                     ""id"": ""89adef62-3417-44f8-b17a-177ebf5a852d"",
@@ -681,6 +690,39 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                     ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a5d629d1-cbb9-402b-b44d-f3494953f40e"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""SpecialButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d993e66c-3ab0-4d9d-985e-aad48b998e8b"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SpecialButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ca31dbe-a3a9-4062-9d09-78df5d79cc67"",
+                    ""path"": ""<HID::ZEROPLUS P4 Wired Gamepad>/button7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""SpecialButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1017,6 +1059,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
         m_Fighter_AttackC = m_Fighter.FindAction("AttackC", throwIfNotFound: true);
         m_Fighter_AttackD = m_Fighter.FindAction("AttackD", throwIfNotFound: true);
         m_Fighter_DashMacro = m_Fighter.FindAction("DashMacro", throwIfNotFound: true);
+        m_Fighter_SpecialButton = m_Fighter.FindAction("SpecialButton", throwIfNotFound: true);
         m_Fighter_Join = m_Fighter.FindAction("Join", throwIfNotFound: true);
         m_Fighter_Pause = m_Fighter.FindAction("Pause", throwIfNotFound: true);
         m_Fighter_Submit = m_Fighter.FindAction("Submit", throwIfNotFound: true);
@@ -1093,6 +1136,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
     private readonly InputAction m_Fighter_AttackC;
     private readonly InputAction m_Fighter_AttackD;
     private readonly InputAction m_Fighter_DashMacro;
+    private readonly InputAction m_Fighter_SpecialButton;
     private readonly InputAction m_Fighter_Join;
     private readonly InputAction m_Fighter_Pause;
     private readonly InputAction m_Fighter_Submit;
@@ -1106,6 +1150,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
         public InputAction @AttackC => m_Wrapper.m_Fighter_AttackC;
         public InputAction @AttackD => m_Wrapper.m_Fighter_AttackD;
         public InputAction @DashMacro => m_Wrapper.m_Fighter_DashMacro;
+        public InputAction @SpecialButton => m_Wrapper.m_Fighter_SpecialButton;
         public InputAction @Join => m_Wrapper.m_Fighter_Join;
         public InputAction @Pause => m_Wrapper.m_Fighter_Pause;
         public InputAction @Submit => m_Wrapper.m_Fighter_Submit;
@@ -1136,6 +1181,9 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                 @DashMacro.started -= m_Wrapper.m_FighterActionsCallbackInterface.OnDashMacro;
                 @DashMacro.performed -= m_Wrapper.m_FighterActionsCallbackInterface.OnDashMacro;
                 @DashMacro.canceled -= m_Wrapper.m_FighterActionsCallbackInterface.OnDashMacro;
+                @SpecialButton.started -= m_Wrapper.m_FighterActionsCallbackInterface.OnSpecialButton;
+                @SpecialButton.performed -= m_Wrapper.m_FighterActionsCallbackInterface.OnSpecialButton;
+                @SpecialButton.canceled -= m_Wrapper.m_FighterActionsCallbackInterface.OnSpecialButton;
                 @Join.started -= m_Wrapper.m_FighterActionsCallbackInterface.OnJoin;
                 @Join.performed -= m_Wrapper.m_FighterActionsCallbackInterface.OnJoin;
                 @Join.canceled -= m_Wrapper.m_FighterActionsCallbackInterface.OnJoin;
@@ -1167,6 +1215,9 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
                 @DashMacro.started += instance.OnDashMacro;
                 @DashMacro.performed += instance.OnDashMacro;
                 @DashMacro.canceled += instance.OnDashMacro;
+                @SpecialButton.started += instance.OnSpecialButton;
+                @SpecialButton.performed += instance.OnSpecialButton;
+                @SpecialButton.canceled += instance.OnSpecialButton;
                 @Join.started += instance.OnJoin;
                 @Join.performed += instance.OnJoin;
                 @Join.canceled += instance.OnJoin;
@@ -1297,6 +1348,7 @@ public partial class @Fighters : IInputActionCollection2, IDisposable
         void OnAttackC(InputAction.CallbackContext context);
         void OnAttackD(InputAction.CallbackContext context);
         void OnDashMacro(InputAction.CallbackContext context);
+        void OnSpecialButton(InputAction.CallbackContext context);
         void OnJoin(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnSubmit(InputAction.CallbackContext context);

@@ -152,8 +152,18 @@ public class GunDraw : GunStanceAttack
 {
     public GunDraw(GameAttack stance) : base(stance)
     {
-        conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
-        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new LogicalOrCondition(this,
+            // normal input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new QuarterCircleForward()),
+                new ButtonCondition(this, new AttackC())),
+            // simple input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new NoGesture()),
+                new ButtonCondition(this, new SpecialButton()))
+            ));
+        //conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
+        //conditions.Add(new ButtonCondition(this, new AttackC()));
         //conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new GatlingCondition(this));
 
@@ -175,8 +185,18 @@ public class GunHolster : GameAttack
 {
     public GunHolster() : base()
     {
-        conditions.Add(new GestureCondition(this, new QuarterCircleBack()));
-        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new LogicalOrCondition(this,
+            // normal input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new QuarterCircleBack()),
+                new ButtonCondition(this, new AttackC())),
+            // simple input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new NoGesture()),
+                new ButtonCondition(this, new SpecialButton()))
+            ));
+        //conditions.Add(new GestureCondition(this, new QuarterCircleBack()));
+        //conditions.Add(new ButtonCondition(this, new AttackC()));
         conditions.Add(new GroundedCondition(this, true));
         //conditions.Add(new FollowUpCondition(this, typeof(GunStanceAttack)));
         conditions.Add(new LogicalOrCondition(this, 

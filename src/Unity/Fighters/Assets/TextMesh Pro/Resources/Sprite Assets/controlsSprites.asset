@@ -155,6 +155,12 @@ MonoBehaviour:
     m_Scale: 1
     m_Name: Dash
     m_HashCode: 2409374
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 13
+    m_Scale: 1
+    m_Name: Special
+    m_HashCode: 488855617
   m_SpriteGlyphTable:
   - m_Index: 0
     m_Metrics:
@@ -345,6 +351,21 @@ MonoBehaviour:
       m_HorizontalAdvance: 32
     m_GlyphRect:
       m_X: 384
+      m_Y: 0
+      m_Width: 32
+      m_Height: 32
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: -2070420201, guid: be0eb52c11975a54a8f549a22ab7bfd2, type: 3}
+  - m_Index: 13
+    m_Metrics:
+      m_Width: 32
+      m_Height: 32
+      m_HorizontalBearingX: -0
+      m_HorizontalBearingY: 32
+      m_HorizontalAdvance: 32
+    m_GlyphRect:
+      m_X: 416
       m_Y: 0
       m_Width: 32
       m_Height: 32

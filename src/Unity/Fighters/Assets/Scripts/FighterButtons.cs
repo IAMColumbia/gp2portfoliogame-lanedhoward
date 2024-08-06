@@ -43,3 +43,11 @@ public class DashMacro : Button
         Priority = 100;
     }
 }
+
+public class SpecialButton : Button
+{
+    public SpecialButton()
+    {
+        Priority = 120;
+    }
+}

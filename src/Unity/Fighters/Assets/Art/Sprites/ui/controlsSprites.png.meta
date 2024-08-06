@@ -388,6 +388,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: controlsSprites_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 0
+        width: 32
+        height: 32
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2979c70c5d283e4da25b2fb9cf40866
+      internalID: -943314737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -410,6 +431,7 @@ TextureImporter:
       controlsSprites_10: 543876221
       controlsSprites_6: 1518611261
       controlsSprites_2: -1392039765
+      controlsSprites_13: -943314737
       controlsSprites_0: 30507048
       controlsSprites_11: -1319664633
   spritePackingTag: 

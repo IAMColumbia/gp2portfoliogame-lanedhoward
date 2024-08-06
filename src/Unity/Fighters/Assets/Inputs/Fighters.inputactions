@@ -60,6 +60,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "SpecialButton",
+                    "type": "Button",
+                    "id": "d44fe3eb-f76a-4ef3-88e9-7597588abbe2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Join",
                     "type": "Button",
                     "id": "89adef62-3417-44f8-b17a-177ebf5a852d",
@@ -657,6 +666,39 @@
                     "processors": "",
                     "groups": "Joystick",
                     "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a5d629d1-cbb9-402b-b44d-f3494953f40e",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "SpecialButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d993e66c-3ab0-4d9d-985e-aad48b998e8b",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "SpecialButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0ca31dbe-a3a9-4062-9d09-78df5d79cc67",
+                    "path": "<HID::ZEROPLUS P4 Wired Gamepad>/button7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "SpecialButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

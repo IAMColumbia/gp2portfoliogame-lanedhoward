@@ -16,6 +16,7 @@ public class FighterInputHost : IInputHost
     private InputAction attackC;
     private InputAction attackD;
     private InputAction dashMacro;
+    private InputAction specialButton;
 
     private InputAction pause;
     public event EventHandler PausePressed;
@@ -37,6 +38,7 @@ public class FighterInputHost : IInputHost
         attackC = player.FindAction("AttackC");
         attackD = player.FindAction("AttackD");
         dashMacro = player.FindAction("DashMacro");
+        specialButton = player.FindAction("SpecialButton");
 
         //pause = player.FindAction("Pause");
     }
@@ -59,6 +61,7 @@ public class FighterInputHost : IInputHost
         AddButtonToHostPackage<AttackC>(p, attackC);
         AddButtonToHostPackage<AttackD>(p, attackD);
         AddButtonToHostPackage<DashMacro>(p, dashMacro);
+        AddButtonToHostPackage<SpecialButton>(p, specialButton);
 
         return p;
     }

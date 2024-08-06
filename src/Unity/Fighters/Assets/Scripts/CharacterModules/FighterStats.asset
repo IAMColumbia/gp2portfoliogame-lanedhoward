@@ -50,45 +50,20 @@ MonoBehaviour:
   displayStocks: 0
   startingStocks: 0
   stocksIcon: {fileID: 0}
-  MovesList: '## The People''s Champ!!
-
-
-    #### The Griddy
-
-    <sprite name="D"><sprite
-    name="DB"><sprite name="B"> + <sprite name="L"> OR <sprite name="D"><sprite name="DF"><sprite
-    name="F"> + <sprite name="L">
-
-    Cancels into itself, or other specials for
-    enhanced properties.
-
-    (Simple inputs allowed for griddy cancels)
-
-
-    ####
-    The Red Wave (Fireball)
-
-    <sprite name="D"><sprite name="DF"><sprite name="F">
-    + <sprite name="M">
-
-    OR <sprite name="F"> + <sprite name="M"> during Griddy
-
-    ####
-    The People''s Uppercut (Reversal)
-
-    <sprite name="F"><sprite name="D"><sprite
-    name="DF"> + <sprite name="H">
-
-    OR <sprite name="F"> + <sprite name="H">
-    during Griddy
-
-    #### The Heartland Hammer (Overhead)
-
-    <sprite name="D"><sprite
-    name="DB"><sprite name="B"> + <sprite name="H">
-
-    OR <sprite name="B"> + <sprite
-    name="H"> during Griddy'
+  MovesList: "## The People's Champ!!\n\n#### The Griddy\n<sprite name=\"D\"><sprite
+    name=\"DB\"><sprite name=\"B\"> + <sprite name=\"L\"> OR <sprite name=\"D\"><sprite
+    name=\"DF\"><sprite name=\"F\"> + <sprite name=\"L\">\n               ( <sprite
+    name=\"DB\"> + <sprite name=\"Special\"> OR <sprite name=\"DF\"> + <sprite name=\"Special\">
+    )\n    Cancels into itself, or other specials for enhanced properties.\n    (Simple
+    inputs allowed for griddy cancels)\n#### The Red Wave (Fireball)\n<sprite name=\"D\"><sprite
+    name=\"DF\"><sprite name=\"F\"> + <sprite name=\"M\">      ( <sprite name=\"Special\">
+    )\nOR <sprite name=\"F\"> + <sprite name=\"M\"> during Griddy\n#### The People's
+    Uppercut (Reversal)\n<sprite name=\"F\"><sprite name=\"D\"><sprite name=\"DF\">
+    + <sprite name=\"H\">      ( <sprite name=\"F\"> + <sprite name=\"Special\">
+    )\nOR <sprite name=\"F\"> + <sprite name=\"H\"> during Griddy\n#### The Heartland
+    Hammer (Overhead)\n<sprite name=\"D\"><sprite name=\"DB\"><sprite name=\"B\">
+    + <sprite name=\"H\">      ( <sprite name=\"B\"> + <sprite name=\"Special\">
+    )\nOR <sprite name=\"B\"> + <sprite name=\"H\"> during Griddy"
   Bio: "## The People's Champ!!\n(he/him)\n\nThe People's Champ!! became a social
     media sensation after videos of him dancing during street fights went viral in
     2019. \n\nHis arrogant fighting style isn't just for show; his taunting grants

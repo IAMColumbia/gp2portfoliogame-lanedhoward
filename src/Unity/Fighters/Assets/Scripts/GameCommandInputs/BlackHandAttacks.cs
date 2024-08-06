@@ -22,11 +22,11 @@ public static class BlackhandAttacks
                 new CrouchSweep(),
                 new ShoulderBash(),
                 new JumpStomp(),
-                new SharkCall(),
-                new WaveCall(),
-                new Pegleg(),
-                new CannonGrabWhiff(new CannonGrabSuccess()),
-                new FishingGrabWhiff(new FishingAirSuccess()),
+                new SharkCall(), // 5s
+                new WaveCall(), // 2s
+                new Pegleg(), // 6m
+                new CannonGrabWhiff(new CannonGrabSuccess()), // 6s
+                new FishingGrabWhiff(new FishingAirSuccess()), // 4s
                 new BackThrowWhiff(new GrabSuccess()),
                 new GrabWhiff(new GrabSuccess()),
                 new AirBackThrowWhiff(new AirGrabSuccess()),
@@ -68,8 +68,18 @@ public class CannonGrabWhiff : ThrowAttack
 {
     public CannonGrabWhiff(ThrowAttackSuccess _success) : base(_success)
     {
-        conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
-        conditions.Add(new ButtonCondition(this, new AttackD()));
+        conditions.Add(new LogicalOrCondition(this,
+            // normal input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new QuarterCircleForward()),
+                new ButtonCondition(this, new AttackD())),
+            // simple input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new ForwardGesture()),
+                new ButtonCondition(this, new SpecialButton()))
+            ));
+        //conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
+        //conditions.Add(new ButtonCondition(this, new AttackD()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new GatlingCondition(this));
 
@@ -132,8 +142,18 @@ public class SharkCall : GameAttack
 {
     public SharkCall() : base()
     {
-        conditions.Add(new GestureCondition(this, new DragonPunch()));
-        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new LogicalOrCondition(this,
+            // normal input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new DragonPunch()),
+                new ButtonCondition(this, new AttackC())),
+            // simple input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new CrouchGesture()),
+                new ButtonCondition(this, new SpecialButton()))
+            ));
+        //conditions.Add(new GestureCondition(this, new DragonPunch()));
+        //conditions.Add(new ButtonCondition(this, new AttackC()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new GatlingCondition(this));
 
@@ -177,8 +197,19 @@ public class WaveCall : GameAttack
     Vector3 spawnOffset;
     public WaveCall() : base()
     {
-        conditions.Add(new GestureCondition(this, new QuarterCircleBack()));
-        conditions.Add(new ButtonCondition(this, new AttackB()));
+        conditions.Add(new LogicalOrCondition(this,
+            // normal input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new QuarterCircleBack()),
+                new ButtonCondition(this, new AttackB())),
+            // simple input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new NeutralGesture()),
+                new ButtonCondition(this, new SpecialButton()))
+            ));
+
+        //conditions.Add(new GestureCondition(this, new QuarterCircleBack()));
+        //conditions.Add(new ButtonCondition(this, new AttackB()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new GatlingCondition(this));
 
@@ -232,8 +263,8 @@ public class Pegleg : GameAttack
 {
     public Pegleg() : base()
     {
-        conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
-        conditions.Add(new ButtonCondition(this, new AttackB()));
+        conditions.Add(new GestureCondition(this, new ForwardGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackC()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new GatlingCondition(this));
 
@@ -270,8 +301,18 @@ public class FishingGrabWhiff : ThrowAttack
 {
     public FishingGrabWhiff(ThrowAttackSuccess _success) : base(_success)
     {
-        conditions.Add(new GestureCondition(this, new QuarterCircleBack()));
-        conditions.Add(new ButtonCondition(this, new AttackD()));
+        conditions.Add(new LogicalOrCondition(this,
+            // normal input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new QuarterCircleBack()),
+                new ButtonCondition(this, new AttackD())),
+            // simple input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new BackGesture()),
+                new ButtonCondition(this, new SpecialButton()))
+            ));
+        //conditions.Add(new GestureCondition(this, new QuarterCircleBack()));
+        //conditions.Add(new ButtonCondition(this, new AttackD()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new GatlingCondition(this));
 

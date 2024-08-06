@@ -24,14 +24,14 @@ public static class MrsHiveAttacks
                 new Launcher(),
                 new Roundhouse(),
                 new JumpSlice(),
-                new Pogo(),
-                new Thrust(),
+                new Pogo(), // 22m should be easy enough
+                new Thrust(), // 6s
                 new Fly(),
-                new HiveSummon(),
-                new HiveAttack(),
-                new Teleport(),
+                new HiveAttack(), //5s with hive out
+                new HiveSummon(), //5s 
+                new Teleport(), //2s
                 new Stinger(),
-                new Swarm(),
+                new Swarm(), //4s
                 new BackThrowWhiff(new GrabSuccess()),
                 new GrabWhiff(new GrabSuccess()),
                 new AirBackThrowWhiff(new AirGrabSuccess()),
@@ -141,8 +141,18 @@ public class Thrust : GameAttack
 {
     public Thrust() : base()
     {
-        conditions.Add(new GestureCondition(this, new HalfCircleForward()));
-        conditions.Add(new ButtonCondition(this, new AttackB()));
+        conditions.Add(new LogicalOrCondition(this,
+            // normal input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new HalfCircleForward()),
+                new ButtonCondition(this, new AttackB())),
+            // simple input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new ForwardGesture()),
+                new ButtonCondition(this, new SpecialButton()))
+            ));
+        //conditions.Add(new GestureCondition(this, new HalfCircleForward()));
+        //conditions.Add(new ButtonCondition(this, new AttackB()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new GatlingCondition(this));
 
@@ -295,8 +305,18 @@ public class HiveSummon : GameAttack
 
     public HiveSummon() : base()
     {
-        conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
-        conditions.Add(new ButtonCondition(this, new AttackA()));
+        conditions.Add(new LogicalOrCondition(this,
+            // normal input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new QuarterCircleForward()),
+                new ButtonCondition(this, new AttackA())),
+            // simple input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new NeutralGesture()),
+                new ButtonCondition(this, new SpecialButton()))
+            ));
+        //conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
+        //conditions.Add(new ButtonCondition(this, new AttackA()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new GatlingCondition(this));
 
@@ -344,8 +364,18 @@ public class HiveAttack : GameAttack
     GameAttackProperties fireballProperties;
     public HiveAttack() : base()
     {
-        conditions.Add(new GestureCondition(this, new QuarterCircleBack()));
-        conditions.Add(new ButtonCondition(this, new AttackA()));
+        conditions.Add(new LogicalOrCondition(this,
+            // normal input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new QuarterCircleBack()),
+                new ButtonCondition(this, new AttackA())),
+            // simple input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new NeutralGesture()),
+                new ButtonCondition(this, new SpecialButton()))
+            ));
+        //conditions.Add(new GestureCondition(this, new QuarterCircleBack()));
+        //conditions.Add(new ButtonCondition(this, new AttackA()));
         conditions.Add(new GatlingCondition(this));
         conditions.Add(new HasStockCondition(this));
 
@@ -434,8 +464,18 @@ public class Teleport : GameAttack
 
     public Teleport() : base()
     {
-        conditions.Add(new GestureCondition(this, new DownDownGesture()));
-        conditions.Add(new ButtonCondition(this, new AttackA()));
+        conditions.Add(new LogicalOrCondition(this,
+            // normal input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new DownDownGesture()),
+                new ButtonCondition(this, new AttackA())),
+            // simple input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new CrouchGesture()),
+                new ButtonCondition(this, new SpecialButton()))
+            ));
+        //conditions.Add(new GestureCondition(this, new DownDownGesture()));
+        //conditions.Add(new ButtonCondition(this, new AttackA()));
         //conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new LogicalOrCondition(this,
             new GatlingCondition(this),
@@ -578,8 +618,18 @@ public class Swarm : GameAttack
 {
     public Swarm() : base()
     {
-        conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
-        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new LogicalOrCondition(this,
+            // normal input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new QuarterCircleForward()),
+                new ButtonCondition(this, new AttackC())),
+            // simple input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new BackGesture()),
+                new ButtonCondition(this, new SpecialButton()))
+            ));
+        //conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
+        //conditions.Add(new ButtonCondition(this, new AttackC()));
         conditions.Add(new GatlingCondition(this));
         conditions.Add(new HasStockCondition(this));
         conditions.Add(new GroundedCondition(this, true));

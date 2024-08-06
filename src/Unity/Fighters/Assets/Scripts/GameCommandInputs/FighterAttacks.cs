@@ -73,8 +73,19 @@ public class PeoplesUppercut : GameAttack
     private float onHitLandingLagTime = 0f;
     public PeoplesUppercut() : base()
     {
-        conditions.Add(new GestureCondition(this, new DragonPunch()));
-        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new LogicalOrCondition(this,
+            // normal input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new DragonPunch()),
+                new ButtonCondition(this, new AttackC())),
+            // simple input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new ForwardGesture()),
+                new ButtonCondition(this, new SpecialButton()))
+            ));
+
+        //conditions.Add(new GestureCondition(this, new DragonPunch()));
+        //conditions.Add(new ButtonCondition(this, new AttackC()));
         conditions.Add(new GatlingCondition(this));
 
         //whiffSound = fighter.whiffSounds[1];
@@ -132,8 +143,19 @@ public class Overhead : GameAttack
 {
     public Overhead() : base()
     {
-        conditions.Add(new GestureCondition(this, new QuarterCircleBack()));
-        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new LogicalOrCondition(this,
+            // normal input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new QuarterCircleBack()),
+                new ButtonCondition(this, new AttackC())),
+            // simple input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new BackGesture()),
+                new ButtonCondition(this, new SpecialButton()))
+            ));
+
+        //conditions.Add(new GestureCondition(this, new QuarterCircleBack()));
+        //conditions.Add(new ButtonCondition(this, new AttackC()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new GatlingCondition(this));
 
@@ -225,8 +247,18 @@ public class FireballStomp : GameAttack
     protected Vector2 fireballVelocity;
     public FireballStomp() : base()
     {
-        conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
-        conditions.Add(new ButtonCondition(this, new AttackB()));
+        conditions.Add(new LogicalOrCondition(this,
+            // normal input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new QuarterCircleForward()),
+                new ButtonCondition(this, new AttackB())),
+            // simple input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new NeutralGesture()),
+                new ButtonCondition(this, new SpecialButton()))
+            ));
+        //conditions.Add(new GestureCondition(this, new QuarterCircleForward()));
+        //conditions.Add(new ButtonCondition(this, new AttackB()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new GatlingCondition(this));
 
@@ -315,15 +347,33 @@ public class GriddyBack : GriddyAttack
 {
     public GriddyBack() : base()
     {
-        conditions.Add(new LogicalOrCondition(this, 
-            new GestureCondition(this, new QuarterCircleBack()),
+        conditions.Add(new LogicalOrCondition(this,
+            // normal input
             new LogicalAndCondition(this,
-                new FollowUpCondition(this, typeof(GriddyForward)),
-                new GestureCondition(this, new BackGesture())
-                )
-            )
-            );
-        conditions.Add(new ButtonCondition(this, new AttackA()));
+                new LogicalOrCondition(this,
+                    new GestureCondition(this, new QuarterCircleBack()),
+                    new LogicalAndCondition(this,
+                        new FollowUpCondition(this, typeof(GriddyForward)),
+                        new GestureCondition(this, new BackGesture())
+                        )
+                    ),
+                new ButtonCondition(this, new AttackA())),
+            // simple input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new DownBackGesture()),
+                new ButtonCondition(this, new SpecialButton()))
+            ));
+
+
+        //conditions.Add(new LogicalOrCondition(this, 
+        //    new GestureCondition(this, new QuarterCircleBack()),
+        //    new LogicalAndCondition(this,
+        //        new FollowUpCondition(this, typeof(GriddyForward)),
+        //        new GestureCondition(this, new BackGesture())
+        //        )
+        //    )
+        //    );
+        //conditions.Add(new ButtonCondition(this, new AttackA()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new LogicalOrCondition(this, 
             new GatlingCondition(this),
@@ -347,15 +397,33 @@ public class GriddyForward : GriddyAttack
 {
     public GriddyForward() : base()
     {
+
         conditions.Add(new LogicalOrCondition(this,
-            new GestureCondition(this, new QuarterCircleForward()),
+            // normal input
             new LogicalAndCondition(this,
-                new FollowUpCondition(this, typeof(GriddyBack)),
-                new GestureCondition(this, new ForwardGesture())
-                )
-            )
-            );
-        conditions.Add(new ButtonCondition(this, new AttackA()));
+                new LogicalOrCondition(this,
+                    new GestureCondition(this, new QuarterCircleForward()),
+                    new LogicalAndCondition(this,
+                        new FollowUpCondition(this, typeof(GriddyBack)),
+                        new GestureCondition(this, new ForwardGesture())
+                        )
+                    ),
+                new ButtonCondition(this, new AttackA())),
+            // simple input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new DownForwardGesture()),
+                new ButtonCondition(this, new SpecialButton()))
+            ));
+
+        //conditions.Add(new LogicalOrCondition(this,
+        //    new GestureCondition(this, new QuarterCircleForward()),
+        //    new LogicalAndCondition(this,
+        //        new FollowUpCondition(this, typeof(GriddyBack)),
+        //        new GestureCondition(this, new ForwardGesture())
+        //        )
+        //    )
+        //    );
+        //conditions.Add(new ButtonCondition(this, new AttackA()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new LogicalOrCondition(this,
             new GatlingCondition(this),
@@ -381,12 +449,27 @@ public class EnhancedPeoplesUppercut : PeoplesUppercut
     public EnhancedPeoplesUppercut() : base()
     {
         conditions.Clear();
+
         conditions.Add(new LogicalOrCondition(this,
-            new GestureCondition(this, new DragonPunch()),
-            new GestureCondition(this, new ForwardGesture())
-            )
-            );
-        conditions.Add(new ButtonCondition(this, new AttackC()));
+            // normal input
+            new LogicalAndCondition(this,
+                new LogicalOrCondition(this,
+                    new GestureCondition(this, new DragonPunch()),
+                    new GestureCondition(this, new ForwardGesture())
+                    ),
+                new ButtonCondition(this, new AttackC())),
+            // simple input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new ForwardGesture()),
+                new ButtonCondition(this, new SpecialButton()))
+            ));
+
+        //conditions.Add(new LogicalOrCondition(this,
+        //    new GestureCondition(this, new DragonPunch()),
+        //    new GestureCondition(this, new ForwardGesture())
+        //    )
+        //    );
+        //conditions.Add(new ButtonCondition(this, new AttackC()));
         conditions.Add(new FollowUpCondition(this, typeof(GriddyAttack)));
 
         properties.blockProperties.knockback.Set(-2f, 0);
@@ -429,12 +512,27 @@ public class EnhancedOverhead : Overhead
     public EnhancedOverhead() : base()
     {
         conditions.Clear();
+
         conditions.Add(new LogicalOrCondition(this,
-            new GestureCondition(this, new QuarterCircleBack()),
-            new GestureCondition(this, new BackGesture())
-            )
-            );
-        conditions.Add(new ButtonCondition(this, new AttackC()));
+            // normal input
+            new LogicalAndCondition(this,
+                new LogicalOrCondition(this,
+                    new GestureCondition(this, new QuarterCircleBack()),
+                    new GestureCondition(this, new BackGesture())
+                    ),
+                new ButtonCondition(this, new AttackC())),
+            // simple input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new BackGesture()),
+                new ButtonCondition(this, new SpecialButton()))
+            ));
+
+        //conditions.Add(new LogicalOrCondition(this,
+        //    new GestureCondition(this, new QuarterCircleBack()),
+        //    new GestureCondition(this, new BackGesture())
+        //    )
+        //    );
+        //conditions.Add(new ButtonCondition(this, new AttackC()));
         conditions.Add(new FollowUpCondition(this, typeof(GriddyAttack)));
 
         properties.blockProperties.knockback.Set(-3f, 0);
@@ -478,12 +576,27 @@ public class EnhancedFireballStomp : FireballStomp
     public EnhancedFireballStomp() : base()
     {
         conditions.Clear();
+
         conditions.Add(new LogicalOrCondition(this,
-            new GestureCondition(this, new QuarterCircleForward()),
-            new GestureCondition(this, new ForwardGesture())
-            )
-            );
-        conditions.Add(new ButtonCondition(this, new AttackB()));
+            // normal input
+            new LogicalAndCondition(this,
+                new LogicalOrCondition(this,
+                    new GestureCondition(this, new QuarterCircleForward()),
+                    new GestureCondition(this, new ForwardGesture())
+                    ),
+                new ButtonCondition(this, new AttackB())),
+            // simple input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new NeutralGesture()),
+                new ButtonCondition(this, new SpecialButton()))
+            ));
+
+        //conditions.Add(new LogicalOrCondition(this,
+        //    new GestureCondition(this, new QuarterCircleForward()),
+        //    new GestureCondition(this, new ForwardGesture())
+        //    )
+        //    );
+        //conditions.Add(new ButtonCondition(this, new AttackB()));
         conditions.Add(new FollowUpCondition(this, typeof(GriddyAttack)));
 
         properties.blockProperties.knockback.Set(-5f, 0);

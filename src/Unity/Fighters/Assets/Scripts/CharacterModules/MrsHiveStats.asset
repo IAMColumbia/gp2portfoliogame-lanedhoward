@@ -53,38 +53,40 @@ MonoBehaviour:
   MovesList: '### Mrs. Hive
 
     Syringe Thrust: <sprite name="B"><sprite name="DB"><sprite
-    name="D"><sprite name="DF"><sprite name="F"> + <sprite name="M">
+    name="D"><sprite name="DF"><sprite name="F"> + <sprite name="M">    ( <sprite
+    name="F"> + <sprite name="Special"> )
 
-    Syringe
-    Pogo: <sprite name="D"><sprite name="D"> + <sprite name="M">
+    Syringe Pogo: <sprite name="D"><sprite
+    name="D"> + <sprite name="M">
 
 
     #### Honey:
 
-    A
-    unique resource that allows Mrs. Hive to use powerful movement and mixup tools. 
-    1 Honey is lost each time you are hit.
+    A unique resource that allows
+    Mrs. Hive to use powerful movement and mixup tools.  1 Honey is lost each time
+    you are hit.
 
 
-    Beehive Summon: <sprite name="D"><sprite
-    name="DF"><sprite name="F"> + <sprite name="L">. Grants 4 Honey.
+    Beehive Summon: <sprite name="D"><sprite name="DF"><sprite
+    name="F"> + <sprite name="L">     ( <sprite name="Special"> )   -  Grants 4 Honey.
 
     Beehive
-    Detonate: <sprite name="D"><sprite name="DB"><sprite name="B"> + <sprite name="L">.
-    Resets Honey to 0.
+    Detonate: <sprite name="D"><sprite name="DB"><sprite name="B"> + <sprite name="L">    
+    ( <sprite name="Special"> )   -  Resets Honey to 0.
 
-    Beehive Teleport: <sprite name="D"><sprite name="D">
-    + <sprite name="L">. Costs 1 Honey.
+    Beehive Teleport: <sprite
+    name="D"><sprite name="D"> + <sprite name="L">     ( <sprite name="D"> + <sprite
+    name="Special"> )   -  Costs 1 Honey.
 
     Swarm: <sprite name="D"><sprite name="DF"><sprite
-    name="F"> + <sprite name="H">. Costs 1 Honey.
+    name="F"> + <sprite name="H">     ( <sprite name="B"> + <sprite name="Special">
+    )   -  Costs 1 Honey.
 
 
-    Stinger: <sprite name="D">
-    + <sprite name="H"> in air. Costs 1 Honey.
+    Stinger: <sprite name="D"> + <sprite name="H"> in
+    air   -  Costs 1 Honey.
 
-    Fly: <sprite name="Dash"> in
-    air. Costs 1 Honey
+    Fly: <sprite name="Dash"> in air   -  Costs 1 Honey
 
 '
   Bio: '## Mrs. Hive

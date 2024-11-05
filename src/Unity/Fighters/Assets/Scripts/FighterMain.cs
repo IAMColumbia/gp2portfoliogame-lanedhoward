@@ -453,7 +453,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
         if (foundAttack != null)
         {
-            inputReceiver.bufferedInput = null;
+            //inputReceiver.bufferedInput = null;
             SetCurrentAttack(foundAttack);
             return true;
         }
@@ -470,8 +470,20 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         currentAttack = newAttack;
         if (currentStance == FighterStance.Standing || currentStance == FighterStance.Crouching)
         {
-            AutoTurnaround();
+            bool turnedAround = AutoTurnaround();
+            
+            if (turnedAround)
+            {
+                // inputReceiver.bufferedInput will have changed due to the turn around.
+                // need to re-parse the attack
+                var foundAttack = inputReceiver.ParseAttack(inputReceiver.bufferedInput);
+                if (foundAttack != null)
+                {
+                    currentAttack = foundAttack;
+                }
+            }
         }
+        inputReceiver.bufferedInput = null;
         currentAttackState = CurrentAttackState.Startup;
         SwitchState(attacking);
         currentAttack.OnStartup(this);
@@ -1074,9 +1086,13 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         return Directions.FacingDirection.RIGHT;
     }
 
-    public void AutoTurnaround()
+    /// <summary>
+    /// Returns true if the fighter actually did turn around
+    /// </summary>
+    /// <returns></returns>
+    public bool AutoTurnaround()
     {
-        if (otherFighter == null) return;
+        if (otherFighter == null) return false;
 
         Directions.FacingDirection shouldFaceDirection = ShouldFaceDirection();
 
@@ -1084,7 +1100,9 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         if (facingDirection != shouldFaceDirection)
         {
             FaceDirection(shouldFaceDirection);
+            return true;
         }
+        return false;
     }
     /// <summary>
     /// Only the fighter who would otherwise be getting thrown should initialize the throw tech

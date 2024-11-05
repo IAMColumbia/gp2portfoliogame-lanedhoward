@@ -147,5 +147,11 @@ namespace CommandInputReaderLibrary
         {
             return inputHost;
         }
+
+        public void ReReadGestures(IReadPackage bufferedInput)
+        {
+            List<IReadableGesture> foundGestures = ReadAllGestures();
+            bufferedInput.gestures = foundGestures;
+        }
     }
 }

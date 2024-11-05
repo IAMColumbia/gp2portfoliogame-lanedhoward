@@ -188,7 +188,16 @@ public class FighterInputReceiver : IInputReceiver
 
     public virtual void UpdateFacingDirection()
     {
-        inputReader.ChangeFacingDirection(fighter.facingDirection);
+        if (inputReader.GetFacingDirection() != fighter.facingDirection)
+        {
+            inputReader.ChangeFacingDirection(fighter.facingDirection);
+
+            // if we had a move buffered, check its gestures again for the new direction
+            if (bufferedInput != null)
+            {
+                inputReader.ReReadGestures(bufferedInput);
+            }
+        }
     }
 
     public virtual Directions.Direction GetDirection()

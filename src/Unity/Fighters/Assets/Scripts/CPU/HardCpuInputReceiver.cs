@@ -39,25 +39,33 @@ public class HardCpuInputReceiver : FighterInputReceiver
         fighter.ThrowTeched += StopCombo;
         fighter.Parried += Fighter_Parried;
 
-        upDownWeightsFar = new Dictionary<int, int>();
-        upDownWeightsFar.Add(-1, 5);
-        upDownWeightsFar.Add(0, 15);
-        upDownWeightsFar.Add(1, 1);
+        upDownWeightsFar = new Dictionary<int, int>
+        {
+            { -1, 5 },
+            { 0, 15 },
+            { 1, 1 }
+        };
 
-        leftRightWeightsFar = new Dictionary<int, int>();
-        leftRightWeightsFar.Add(-1, 5);
-        leftRightWeightsFar.Add(0, 2);
-        leftRightWeightsFar.Add(1, 15);
+        leftRightWeightsFar = new Dictionary<int, int>
+        {
+            { -1, 5 },
+            { 0, 2 },
+            { 1, 15 }
+        };
 
-        upDownWeightsClose = new Dictionary<int, int>();
-        upDownWeightsClose.Add(-1, 10);
-        upDownWeightsClose.Add(0, 15);
-        upDownWeightsClose.Add(1, 1);
+        upDownWeightsClose = new Dictionary<int, int>
+        {
+            { -1, 10 },
+            { 0, 15 },
+            { 1, 1 }
+        };
 
-        leftRightWeightsClose = new Dictionary<int, int>();
-        leftRightWeightsClose.Add(-1, 10);
-        leftRightWeightsClose.Add(0, 0);
-        leftRightWeightsClose.Add(1, 9);
+        leftRightWeightsClose = new Dictionary<int, int>
+        {
+            { -1, 10 },
+            { 0, 0 },
+            { 1, 9 }
+        };
 
     }
 
@@ -176,7 +184,7 @@ public class HardCpuInputReceiver : FighterInputReceiver
 
         isClose = Mathf.Abs(fighter.otherFighter.transform.position.x - fighter.transform.position.x) <= closeDistance;
 
-        if (RandomMethods.RANDOM.Next(3) == 0)
+        if (RandomMethods.RANDOM.Next(4) == 0)
         {
             if (RandomMethods.RANDOM.Next(2) == 0)
             {

@@ -51,3 +51,11 @@ public class SpecialButton : Button
         Priority = 120;
     }
 }
+
+public class SuperButton : Button
+{
+    public SuperButton()
+    {
+        Priority = 150;
+    }
+}

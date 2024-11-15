@@ -80,7 +80,17 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
     [Header("Super Values")]
     public float MaxMeter = 400;
-    public float CurrentMeter = 0;
+    public float CurrentMeter
+    {
+        get => m_currentMeter;
+        set
+        {
+            m_currentMeter = MathF.Min(MaxMeter, value);
+        }
+        
+    }
+    private float m_currentMeter;
+
     public float MeterPerDamage = 0.1f;
 
     [Header("Combo Values")]

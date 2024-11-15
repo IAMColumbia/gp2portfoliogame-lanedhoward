@@ -31,6 +31,8 @@ public static class KnightAttacks
                 new BackHop(),
                 new ForwardHop(),
                 new NeutralHop(),
+                new KnightForwardDiveRoll(),
+                new KnightBackDiveRoll(),
                 new ForwardDiveRoll(),
                 new BackDiveRoll()
             };
@@ -56,10 +58,10 @@ public static class KnightAttacks
     }
 }
 
-public class ForwardDiveRoll : GameAttack
+public class KnightForwardDiveRoll : GameAttack
 {
     protected Vector2 wavedashVelocity;
-    public ForwardDiveRoll() : base()
+    public KnightForwardDiveRoll() : base()
     {
         conditions.Add(new GestureCondition(this, new DownForwardGesture()));
         conditions.Add(new ButtonCondition(this, new DashMacro()));
@@ -108,9 +110,9 @@ public class ForwardDiveRoll : GameAttack
     
 }
 
-public class BackDiveRoll : ForwardDiveRoll
+public class KnightBackDiveRoll : KnightForwardDiveRoll
 {
-    public BackDiveRoll() : base()
+    public KnightBackDiveRoll() : base()
     {
         conditions.Clear();
         conditions.Add(new GestureCondition(this, new DownBackGesture()));

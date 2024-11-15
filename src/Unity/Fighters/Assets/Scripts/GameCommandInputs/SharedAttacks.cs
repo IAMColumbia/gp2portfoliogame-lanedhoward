@@ -1017,3 +1017,83 @@ public class JumpStomp : GameAttack
         fighter.OnVelocityImpulseRelativeToSelf(new Vector2(0, 12));
     }
 }
+
+public class ForwardDiveRoll : GameAttack
+{
+    protected float meterCost;
+    protected Vector2 wavedashVelocity;
+    public ForwardDiveRoll() : base()
+    {
+        meterCost = 100;
+
+        conditions.Add(new GestureCondition(this, new ForwardGesture()));
+        conditions.Add(new ButtonCondition(this, new SuperButton()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new NoGatlingCondition(this));
+        conditions.Add(new MeterCostCondition(this, meterCost));
+
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
+
+        wavedashVelocity = new Vector2(12f, 8f);
+
+        properties.AnimationName = "DiveRollForward";
+
+        properties.attackType = GameAttackProperties.AttackType.Super;
+
+        properties.landCancelActive = false;
+        properties.landCancelStartup = false;
+        properties.landCancelRecovery = false;
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+
+        fighter.isStrikeInvulnerable = true;
+        fighter.isThrowInvulnerable = true;
+
+        fighter.CurrentMeter -= meterCost;
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+
+        fighter.OnHaltAllVelocity();
+        fighter.OnVelocityImpulseRelativeToSelf(wavedashVelocity);
+    }
+
+    public override void OnRecovery(FighterMain fighter)
+    {
+        base.OnRecovery(fighter);
+
+        fighter.isStrikeInvulnerable = false;
+        fighter.isThrowInvulnerable = false;
+
+    }
+
+
+}
+
+public class BackDiveRoll : ForwardDiveRoll
+{
+    public BackDiveRoll() : base()
+    {
+        conditions.Clear();
+        conditions.Add(new GestureCondition(this, new BackGesture()));
+        conditions.Add(new ButtonCondition(this, new SuperButton()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new NoGatlingCondition(this));
+        conditions.Add(new MeterCostCondition(this, meterCost));
+
+        whiffSoundIndex = 0;
+        hitSoundIndex = 0;
+
+        wavedashVelocity = new Vector2(-12f, 8f);
+
+        properties.AnimationName = "DiveRollBack";
+
+        properties.attackType = GameAttackProperties.AttackType.Super;
+    }
+}

@@ -38,7 +38,9 @@ public static class BlackhandAttacks
                 new ForwardWavedash(),
                 new BackWavedash(),
                 new ForwardWavedashCancel(),
-                new BackWavedashCancel()
+                new BackWavedashCancel(),
+                new ForwardDiveRoll(),
+                new BackDiveRoll()
             };
         return attacks;
     }

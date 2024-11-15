@@ -78,6 +78,11 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public float MaxHealth = 1000;
     public float CurrentHealth = 0;
 
+    [Header("Super Values")]
+    public float MaxMeter = 400;
+    public float CurrentMeter = 0;
+    public float MeterPerDamage = 0.1f;
+
     [Header("Combo Values")]
     public float JuggleMomentumMultiplier = 0.2f;
     public float bounceHitstop = 0f / 60f;
@@ -94,6 +99,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
     [Header("Parry Values")]
     public float parryHitstop = 15f / 60f;
+    public float parryMeterGain = 50f;
 
     [Header("Movement Values")]
     public float walkAccel;
@@ -738,7 +744,13 @@ public class FighterMain : SoundPlayer, IHitboxResponder
                     }
                 }
 
+                //meter
+                var cc = hurtbox.fighterParent.currentCombo;
+                float meterScale = cc.currentlyGettingComboed ? cc.damageScale : 1;
+                float meterGain = meterScale * pp.damage * MeterPerDamage;
+                CurrentMeter += meterGain;
 
+                // self knockback
                 Vector2 kb = pp.selfKnockback;
                 
                 if (hurtbox.fighterParent.isAtTheWall)
@@ -798,6 +810,11 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         }
 
         GameAttackPropertiesProperties pp = blocked ? properties.blockProperties : properties.hitProperties;
+
+        //meter
+        float meterScale = currentCombo.currentlyGettingComboed ? 1/(currentCombo.damageScale + 0.4f) : 1;
+        float meterGain = meterScale * pp.damage * MeterPerDamage;
+        CurrentMeter += meterGain;
 
         //knockback
         Vector2 kb;
@@ -1147,6 +1164,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         PlaySound(parrySound);
         PlayParryVFX();
         SendNotification("Parry!!!");
+        CurrentMeter += parryMeterGain;
         Parried?.Invoke(this, EventArgs.Empty);
     }
 

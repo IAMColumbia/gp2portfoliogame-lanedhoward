@@ -198,6 +198,22 @@ public class FollowUpCondition : GameAttackCondition
     }
 }
 
+public class MeterCostCondition : GameAttackCondition
+{
+    float MeterCost;
+    public MeterCostCondition(GameAttack _parent, float meterCost) : base(_parent)
+    {
+        MeterCost = meterCost;
+    }
+
+    public override bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
+    {
+        if (fighter.CurrentMeter >= MeterCost) return true;
+
+        return false;
+    }
+}
+
 public class LogicalAndCondition : GameAttackCondition
 {
     GameAttackCondition condition1;

@@ -28,6 +28,7 @@ public class GameManager : SoundPlayer
     public Transform player1spawn;
     public FighterMain player1;
     public Healthbar player1Healthbar;
+    public Healthbar player1Superbar;
     public ComboUI player1ComboUI;
     public StocksDisplay player1StocksDisplay;
     public NotificationManager player1NotificationManager;
@@ -38,6 +39,7 @@ public class GameManager : SoundPlayer
     public Transform player2spawn;
     public FighterMain player2;
     public Healthbar player2Healthbar;
+    public Healthbar player2Superbar;
     public ComboUI player2ComboUI;
     public StocksDisplay player2StocksDisplay;
     public NotificationManager player2NotificationManager;
@@ -266,6 +268,9 @@ public class GameManager : SoundPlayer
         player1Healthbar.InitializeEvents(player1);
         player2Healthbar.InitializeEvents(player2);
 
+        player1Superbar.SetHealthbar(player1.CurrentMeter, player1.MaxMeter, true);
+        player2Superbar.SetHealthbar(player2.CurrentMeter, player2.MaxMeter, true);
+
         targetGroup.AddMember(player1.transform, 1, 1);
         targetGroup.AddMember(player2.transform, 1, 1);
 
@@ -382,6 +387,9 @@ public class GameManager : SoundPlayer
 
             player1Healthbar.SetHealthbar(player1.CurrentHealth, player1.MaxHealth);
             player2Healthbar.SetHealthbar(player2.CurrentHealth, player2.MaxHealth);
+
+            player1Superbar.SetHealthbar(player1.CurrentMeter, player1.MaxMeter);
+            player2Superbar.SetHealthbar(player2.CurrentMeter, player2.MaxMeter);
 
             bool p1died = false;
             bool p2died = false;

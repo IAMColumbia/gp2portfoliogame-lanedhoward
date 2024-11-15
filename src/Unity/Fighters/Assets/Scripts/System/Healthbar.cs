@@ -13,6 +13,7 @@ public class Healthbar : MonoBehaviour
     public float gutsPower;
     public float drainRate;
 
+    [SerializeField]
     private bool draining;
 
     public TextMeshProUGUI nametag;
@@ -20,7 +21,6 @@ public class Healthbar : MonoBehaviour
     public Image headshot;
 
     public Image[] hearts;
-
 
     // Update is called once per frame
     void Update()
@@ -55,9 +55,12 @@ public class Healthbar : MonoBehaviour
         }
         percent = Mathf.Pow((current / max), gutsPower);
         percent = Mathf.Max(percent, minPercent);
-        if (setDrainBar && drainbar != null)
+        if (drainbar != null)
         {
-            drainbar.fillAmount = percent;
+            if (setDrainBar || percent >= drainbar.fillAmount)
+            {
+                drainbar.fillAmount = percent;
+            }
         }
     }
 

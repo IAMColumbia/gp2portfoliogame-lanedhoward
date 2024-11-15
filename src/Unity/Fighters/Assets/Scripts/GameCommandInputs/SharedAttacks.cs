@@ -779,6 +779,7 @@ public class ForwardWavedash : GameAttack
 /// </summary>
 public class ForwardWavedashCancel : ForwardWavedash
 {
+    float meterCost = 100;
     public ForwardWavedashCancel() : base()
     {
         conditions.Clear();
@@ -786,10 +787,17 @@ public class ForwardWavedashCancel : ForwardWavedash
         conditions.Add(new ButtonCondition(this, new DashMacro()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new GatlingCondition(this));
+        conditions.Add(new MeterCostCondition(this, meterCost));
 
         properties.AnimationName = "WavedashForwardCancel";
 
         properties.attackType = GameAttackProperties.AttackType.Special;
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+        fighter.CurrentMeter -= meterCost;
     }
 }
 
@@ -844,6 +852,7 @@ public class BackWavedash : GameAttack
 /// </summary>
 public class BackWavedashCancel : BackWavedash
 {
+    float meterCost = 100;
     public BackWavedashCancel() : base()
     {
         conditions.Clear();
@@ -851,10 +860,18 @@ public class BackWavedashCancel : BackWavedash
         conditions.Add(new ButtonCondition(this, new DashMacro()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new GatlingCondition(this));
+        conditions.Add(new MeterCostCondition(this, meterCost));
+
 
         properties.AnimationName = "WavedashBackCancel";
 
         properties.attackType = GameAttackProperties.AttackType.Special;
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+        fighter.CurrentMeter -= meterCost;
     }
 }
 

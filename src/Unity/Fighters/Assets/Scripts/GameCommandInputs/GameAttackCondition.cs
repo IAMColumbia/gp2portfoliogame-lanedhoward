@@ -19,6 +19,11 @@ public class GameAttackCondition
         return false;
     }
 
+    /// <summary>
+    /// used only in CPU fighter calculations, not in attack parsing
+    /// </summary>
+    /// <param name="fighter"></param>
+    /// <returns></returns>
     public virtual bool CanExecute(FighterMain fighter)
     {
         return CanExecute(null, fighter);
@@ -257,5 +262,17 @@ public class LogicalNotCondition : GameAttackCondition
     public override bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
     {
         return (!condition.CanExecute(moveInput, fighter));
+    }
+}
+
+public class InHitstunCondition : GameAttackCondition
+{
+    public InHitstunCondition(GameAttack _parent) : base(_parent)
+    {
+    }
+
+    public override bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
+    {
+        return (fighter.currentState is Hitstun);
     }
 }

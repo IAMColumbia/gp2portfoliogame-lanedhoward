@@ -44,8 +44,9 @@ public static class MrsHiveAttacks
                 new BackWavedash(),
                 new ForwardWavedashCancel(),
                 new BackWavedashCancel(),
+                new Burst(new ForwardDiveRoll(), new BackDiveRoll()),
                 new ForwardDiveRoll(),
-                new BackDiveRoll()
+                new BackDiveRoll(),
             };
         return attacks;
     }

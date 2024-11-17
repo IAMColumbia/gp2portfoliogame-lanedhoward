@@ -1020,12 +1020,11 @@ public class JumpStomp : GameAttack
 
 public class ForwardDiveRoll : GameAttack
 {
-    protected float meterCost;
+    public float meterCost;
     protected Vector2 wavedashVelocity;
     public ForwardDiveRoll() : base()
     {
-        meterCost = 100;
-
+        meterCost = 100f;
         conditions.Add(new GestureCondition(this, new ForwardGesture()));
         conditions.Add(new ButtonCondition(this, new SuperButton()));
         conditions.Add(new GroundedCondition(this, true));
@@ -1095,5 +1094,109 @@ public class BackDiveRoll : ForwardDiveRoll
         properties.AnimationName = "DiveRollBack";
 
         properties.attackType = GameAttackProperties.AttackType.Super;
+    }
+}
+
+public class Burst : GameAttack
+{
+    public float meterCost;
+    ForwardDiveRoll rollForward;
+    BackDiveRoll rollBackward;
+    bool burstConnected;
+    public Burst(ForwardDiveRoll rollForward, BackDiveRoll rollBackward) : base()
+    {
+        meterCost = 100f;
+
+        conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new ButtonCondition(this, new SuperButton()));
+        conditions.Add(new InHitstunCondition(this));
+        conditions.Add(new MeterCostCondition(this, meterCost));
+
+        whiffSoundIndex = 13;
+        hitSoundIndex = 3;
+
+        properties.AnimationName = "Burst";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Super;
+        properties.attackStance = FighterStance.Air;
+
+        properties.blockProperties.knockback.Set(-2.5f, 0);
+        properties.blockProperties.airKnockback.Set(-2.5f, 5f);
+        properties.blockProperties.selfKnockback.Set(-0f, 0);
+        properties.blockProperties.damage = 0f;
+        properties.blockProperties.hitstopTime = AttackSettings.attackLevel4_blockhitstop;
+        properties.blockProperties.stunTime = AttackSettings.attackLevel4_blockstun;
+
+        properties.hitProperties.knockback.Set(-9f, 9);
+        properties.hitProperties.airKnockback.Set(-9f, 9f);
+        properties.hitProperties.selfKnockback.Set(-0f, 0);
+        properties.hitProperties.damage = 0f;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel4_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel4_hitstun;
+
+        properties.landCancelActive = false;
+        properties.landCancelStartup = false;
+        properties.landCancelRecovery = true;
+
+        properties.landingLagTime = 15f / 60f;
+
+        rollForward.meterCost = 0f;
+        rollBackward.meterCost = 0f;
+        this.rollForward = rollForward;
+        this.rollBackward = rollBackward;
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        fighter.isStrikeInvulnerable = true;
+        fighter.isThrowInvulnerable = true;
+        fighter.CurrentMeter -= meterCost;
+        fighter.PlayParryVFX();
+
+        //fighter.OnHaltAllVelocity();
+        burstConnected = false;
+    }
+
+    public override void OnHit(FighterMain fighter, FighterMain otherFighter)
+    {
+        base.OnHit(fighter, otherFighter);
+        burstConnected = true;
+    }
+
+    public override void OnBlock(FighterMain fighter, FighterMain otherFighter)
+    {
+        base.OnBlock(fighter, otherFighter);
+        burstConnected = true;
+    }
+
+
+
+    public override void OnRecovery(FighterMain fighter)
+    {
+        base.OnRecovery(fighter);
+        fighter.isStrikeInvulnerable = false;
+        fighter.isThrowInvulnerable = false;
+
+        var leftRight = fighter.inputReceiver.LeftRight;
+
+        if (leftRight != 0 && burstConnected)
+        {
+            // burst roll out
+
+            if ((fighter.facingDirection == CommandInputReaderLibrary.Directions.FacingDirection.RIGHT && leftRight == 1) 
+                || (fighter.facingDirection == CommandInputReaderLibrary.Directions.FacingDirection.LEFT && leftRight == -1))
+            {
+                // roll fwd
+                fighter.SetCurrentAttack(rollForward);
+            }
+            else
+            {
+                // roll back
+                fighter.SetCurrentAttack(rollBackward);
+            }
+
+        }
     }
 }

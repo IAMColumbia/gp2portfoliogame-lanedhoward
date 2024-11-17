@@ -33,8 +33,9 @@ public static class KnightAttacks
                 new NeutralHop(),
                 new KnightForwardDiveRoll(),
                 new KnightBackDiveRoll(),
+                new Burst(new ForwardDiveRoll(), new BackDiveRoll()),
                 new ForwardDiveRoll(),
-                new BackDiveRoll()
+                new BackDiveRoll(),
             };
         return attacks;
     }

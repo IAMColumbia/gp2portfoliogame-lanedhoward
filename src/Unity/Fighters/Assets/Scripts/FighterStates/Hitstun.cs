@@ -123,6 +123,24 @@ public class Hitstun : FighterState, IStunState
             lastVelocity = fighter.fighterRigidbody.velocity;
         }
 
+        // check for burst
+        if (stateTimer > 0.1f && !fighter.isDead)
+        {
+            if (fighter.inputReceiver.bufferedInput != null)
+            {
+                var foundAttack = fighter.inputReceiver.ParseAttack(fighter.inputReceiver.bufferedInput);
+
+                if (foundAttack != null)
+                {
+                    if (foundAttack is Burst burst)
+                    {
+                        fighter.SetCurrentAttack(burst);
+                    }
+                }
+
+            }
+        }
+
     }
 
     public override void ExitState()

@@ -484,7 +484,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         }
 
         currentAttack = newAttack;
-        if (currentStance == FighterStance.Standing || currentStance == FighterStance.Crouching)
+        if (currentStance != FighterStance.Air && inputReceiver.bufferedInput != null)
+            //bufferedInput might be null here if the attack was set outside of normal input timing (e.g. as a followup from an attack)
         {
             bool turnedAround = AutoTurnaround();
             

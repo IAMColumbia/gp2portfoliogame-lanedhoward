@@ -823,7 +823,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         GameAttackPropertiesProperties pp = blocked ? properties.blockProperties : properties.hitProperties;
 
         //meter
-        float meterScale = currentCombo.currentlyGettingComboed ? 1/(currentCombo.damageScale + 0.4f) : 1;
+        float meterScale = currentCombo.currentlyGettingComboed ? Mathf.Clamp(currentCombo.damageScale,0.3f,0.7f) : 0.7f;
         float meterGain = meterScale * pp.damage * MeterPerDamage;
         CurrentMeter += meterGain;
 

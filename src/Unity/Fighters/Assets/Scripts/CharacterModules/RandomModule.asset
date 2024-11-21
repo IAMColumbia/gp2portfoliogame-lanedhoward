@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81b6d287ce2e30c44a73021fb6e97e3f, type: 3}
+  m_Name: RandomModule
+  m_EditorClassIdentifier: 
+  CharacterName: Random
+  CharacterDescription: LET GOD DECIDE...
+  Portrait: {fileID: 21300000, guid: 9d188e5feefe1d54cad4142d0bacf788, type: 3}
+  Headshot: {fileID: 21300000, guid: 5e7611464b284f14f8c780ceee195a99, type: 3}
+  materials:
+  - {fileID: 2100000, guid: e7575c920d13bea4abe6c058c574c912, type: 2}
+  song: {fileID: 0}
+  nameAnnouncement: {fileID: 8300000, guid: f11294fbf93e22e4db7829694ea917e9, type: 3}
+  MaxHealth: 4000
+  JuggleMomentumMultiplier: 0.2
+  softKnockdownTime: 0.1
+  hardKnockdownTime: 0.5
+  walkAccel: 100
+  walkMaxSpeed: 5
+  groundFriction: 50
+  velocityToStopMoveAnimation: 1
+  forwardDashTime: 0.3
+  forwardDashActionableDelay: 0.1
+  forwardDashVelocity: {x: 6, y: 13}
+  backDashTime: 0.3
+  backDashActionableDelay: 0.1
+  backDashStrikeInvulnTime: 0
+  backDashVelocity: {x: -6, y: 13}
+  neutralDashTime: 0.3
+  neutralDashActionableDelay: 0.1
+  neutralDashVelocity: {x: 0, y: 13}
+  dashJumpCancelWindow: 0
+  dashMomentumMultiplier: 0.5
+  jumpVelocityHorizontal: 5
+  jumpVelocityVertical: 19
+  jumpMomentumMultiplier: 0.5
+  fireballPrefab: {fileID: 0}
+  displayStocks: 0
+  startingStocks: 0
+  stocksIcon: {fileID: 0}
+  MovesList: '## Random Select
+
+
+    Leave it up to chance...'

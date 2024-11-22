@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class FighterAnimator
 {
-    private Animator animator;
+    public Animator animator;
     private FighterMain fighter;
 
     [Header("Animator Values")]

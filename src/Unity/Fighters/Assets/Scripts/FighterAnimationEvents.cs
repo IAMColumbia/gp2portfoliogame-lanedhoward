@@ -7,6 +7,8 @@ public class FighterAnimationEvents : MonoBehaviour
 {
     public Action FighterAttackActiveStarted;
     public Action FighterAttackRecoveryStarted;
+    public Action FighterAttackSuperFlashStarted;
+    public Action FighterAttackSuperFlashEnded;
     public Action<Vector2> FighterAnimationVelocityImpulse;
     public Action FighterAnimationHaltVerticalVelocity;
     public Action FighterAnimationHaltHorizontalVelocity;
@@ -21,6 +23,14 @@ public class FighterAnimationEvents : MonoBehaviour
     public void CallAttackRecoveryEvent()
     {
         FighterAttackRecoveryStarted?.Invoke();
+    }
+    public void CallAttackSuperFlashStarted()
+    {
+        FighterAttackSuperFlashStarted?.Invoke();
+    }
+    public void CallAttackSuperFlashEnded()
+    {
+        FighterAttackSuperFlashEnded?.Invoke();
     }
     public void CauseVelocityImpulseX(float xVelocity)
     {

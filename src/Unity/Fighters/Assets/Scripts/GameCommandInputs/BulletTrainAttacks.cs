@@ -50,6 +50,7 @@ public static class BulletTrainAttacks
                 new Burst(new ForwardDiveRoll(), new BackDiveRoll()),
                 new ForwardDiveRoll(),
                 new BackDiveRoll(),
+                new SuperGunDraw()
             };
         return attacks;
     }
@@ -623,4 +624,26 @@ public class GunWhip : GunStanceAttack
 
     }
 
+}
+
+public class SuperGunDraw : GameAttack
+{
+    public SuperGunDraw() : base()
+    {
+        conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new ButtonCondition(this, new SuperButton()));
+        conditions.Add(new GatlingCondition(this));
+
+        whiffSoundIndex = 2;
+
+        properties.AnimationName = "SuperGunDraw";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Super;
+        properties.attackStance = FighterStance.Standing;
+
+        properties.landCancelRecovery = false;
+        properties.landCancelStartup = false;
+        properties.landCancelActive = false;
+    }
 }

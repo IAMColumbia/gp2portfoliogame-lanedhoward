@@ -258,6 +258,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         fighterAnimationEvents.FighterAttackActiveStarted += OnAttackActive;
         fighterAnimationEvents.FighterAttackRecoveryStarted += OnAttackRecovery;
         fighterAnimationEvents.FighterForceAnimationEnded += OnForceAnimationEnded;
+        fighterAnimationEvents.FighterAttackSuperFlashStarted += OnSuperFlashStarted;
+        fighterAnimationEvents.FighterAttackSuperFlashEnded += OnSuperFlashEnded;
 
         groundMask = LayerMask.GetMask("Ground");
 
@@ -623,6 +625,16 @@ public class FighterMain : SoundPlayer, IHitboxResponder
             currentAttack.OnRecovery(this);
             AttackInRecovery?.Invoke(this, EventArgs.Empty);
         }
+    }
+    protected void OnSuperFlashStarted()
+    {
+        fighterAnimator.animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        timeManager.StartSuperFlash();
+    }
+    protected void OnSuperFlashEnded()
+    {
+        fighterAnimator.animator.updateMode = AnimatorUpdateMode.Normal;
+        timeManager.EndSuperFlash();
     }
 
     protected void OnForceAnimationEnded()

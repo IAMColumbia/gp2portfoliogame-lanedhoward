@@ -9,6 +9,7 @@ public class TimeManager : MonoBehaviour
 
     public float realTimeUntilTimeScaleReset = 0f;
     public bool isInSlowmo = false;
+    public bool isInSuperFlash = false;
 
     private void Start()
     {
@@ -40,6 +41,7 @@ public class TimeManager : MonoBehaviour
 
     private void Update()
     {
+        if (isInSuperFlash) return;
         if (isInSlowmo)
         {
             if (realTimeUntilTimeScaleReset > 0)
@@ -60,5 +62,17 @@ public class TimeManager : MonoBehaviour
     {
         ResetTimeScale();
         isInSlowmo = false;
+    }
+
+    public void StartSuperFlash()
+    {
+        SetTimeScale(0f);
+        isInSuperFlash = true;
+    }
+
+    public void EndSuperFlash()
+    {
+        ResetTimeScale();
+        isInSuperFlash = false;
     }
 }

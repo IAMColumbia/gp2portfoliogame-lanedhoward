@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public static class BulletTrainAttacks
@@ -12,6 +13,9 @@ public static class BulletTrainAttacks
     public static List<GameAttack> GetBulletTrainAttacks()
     {
         GameAttack stance = new GunStance();
+        SuperGunHolster superGunHolster = new SuperGunHolster();
+        GameAttack superGunStance = new SuperGunStance(superGunHolster);
+
 
         List<GameAttack> attacks = new List<GameAttack>()
             {
@@ -50,7 +54,13 @@ public static class BulletTrainAttacks
                 new Burst(new ForwardDiveRoll(), new BackDiveRoll()),
                 new ForwardDiveRoll(),
                 new BackDiveRoll(),
-                new SuperGunDraw()
+                new SuperGunDraw(superGunStance),
+                superGunHolster,
+                new SuperGunSpinForward(superGunStance),
+                new SuperGunSpinBackward(superGunStance),
+                new SuperGunShot(superGunStance),
+
+
             };
         return attacks;
     }
@@ -626,13 +636,21 @@ public class GunWhip : GunStanceAttack
 
 }
 
-public class SuperGunDraw : GameAttack
+public class SuperGunDraw : SuperGunStanceAttack
 {
-    public SuperGunDraw() : base()
+    float meterCost;
+    public SuperGunDraw(GameAttack _stance) : base(_stance)
     {
+        meterCost = 200;
         conditions.Add(new GestureCondition(this, new NoGesture()));
         conditions.Add(new ButtonCondition(this, new SuperButton()));
-        conditions.Add(new GatlingCondition(this));
+        //conditions.Add(new GatlingCondition(this));
+        conditions.Add(new LogicalOrCondition(this, 
+            new GatlingCondition(this), //normal gatling
+            new LogicalOrCondition(this, // or follow up from gunstance
+                new FollowUpCondition(this, typeof(GunStance)),
+                new FollowUpCondition(this, typeof(GunStanceAttack)))));
+        conditions.Add(new MeterCostCondition(this, meterCost));
 
         whiffSoundIndex = 2;
 
@@ -645,5 +663,257 @@ public class SuperGunDraw : GameAttack
         properties.landCancelRecovery = false;
         properties.landCancelStartup = false;
         properties.landCancelActive = false;
+    }
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+        fighter.SetStocks(4);
+    }
+
+    public override void OnSuperFlashStarted(FighterMain fighter)
+    {
+        fighter.CurrentMeter -= meterCost;
+        base.OnSuperFlashStarted(fighter);
+    }
+
+    public override HitReport? OnGetHitDuring(FighterMain fighter, GameAttackProperties properties)
+    {
+        // dont set to full revolver ammo if you get hit before the super takes its meter cost
+        if (fighter.currentAttackState == CurrentAttackState.Startup) return null; 
+        return base.OnGetHitDuring(fighter, properties);
+    }
+}
+
+/// <summary>
+/// An attack that transitions to gun stance on ending.
+/// </summary>
+public abstract class SuperGunStanceAttack : GameAttack
+{
+    protected GameAttack stance;
+    public SuperGunStanceAttack(GameAttack _stance) : base()
+    {
+        stance = _stance;
+    }
+
+    public override void OnAnimationEnd(FighterMain fighter)
+    {
+        base.OnAnimationEnd(fighter);
+
+        fighter.SetCurrentAttack(stance);
+    }
+
+    public override HitReport? OnGetHitDuring(FighterMain fighter, GameAttackProperties properties)
+    {
+        fighter.SetStocks(6);
+        return base.OnGetHitDuring(fighter, properties);
+    }
+}
+
+public class SuperGunStance : GameAttack
+{
+    SuperGunHolster holster;
+    public SuperGunStance(SuperGunHolster holster) : base()
+    {
+        this.holster = holster;
+        whiffSoundIndex = -1;
+
+        properties.AnimationName = "SuperGunStance";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Standing;
+
+        properties.landCancelStartup = false;
+        properties.landCancelActive = false;
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        if (fighter.GetStocks() <= 0)
+        {
+            fighter.SetCurrentAttack(holster);
+            return;
+        }
+        
+        fighter.canAct = true;
+
+    }
+    public override HitReport? OnGetHitDuring(FighterMain fighter, GameAttackProperties properties)
+    {
+        fighter.SetStocks(6);
+        return base.OnGetHitDuring(fighter, properties);
+    }
+}
+
+
+public interface ISuperGunSpinParent { }
+
+public class SuperGunSpinForward : SuperGunStanceAttack, ISuperGunSpinParent
+{
+    Vector2 velocity;
+    public SuperGunSpinForward(GameAttack stance) : base(stance)
+    {
+        conditions.Add(new GestureCondition(this, new ForwardOrNeutralGesture()));
+        conditions.Add(new ButtonCondition(this, new DashMacro()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new LogicalOrCondition(this,
+            new FollowUpCondition(this, typeof(SuperGunStance)),
+            new FollowUpCondition(this, typeof(ISuperGunSpinParent))));
+
+        whiffSoundIndex = 2;
+
+        properties.AnimationName = "SuperGunSpinForward";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Standing;
+
+        velocity = new Vector2(12f, 0f);
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        fighter.PlayWavedashVFX();
+        fighter.OnHaltHorizontalVelocity();
+        fighter.OnVelocityImpulseRelativeToSelf(velocity);
+    }
+
+    public override void OnRecovery(FighterMain fighter)
+    {
+        base.OnRecovery(fighter);
+        fighter.canAct = true;
+    }
+}
+
+public class SuperGunSpinBackward : SuperGunStanceAttack, ISuperGunSpinParent
+{
+    Vector2 velocity;
+    public SuperGunSpinBackward(GameAttack stance) : base(stance)
+    {
+        conditions.Add(new GestureCondition(this, new BackGesture()));
+        conditions.Add(new ButtonCondition(this, new DashMacro()));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new LogicalOrCondition(this,
+            new FollowUpCondition(this, typeof(SuperGunStance)),
+            new FollowUpCondition(this, typeof(ISuperGunSpinParent))));
+
+        whiffSoundIndex = 2;
+
+        properties.AnimationName = "SuperGunSpinBackward";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Standing;
+
+        velocity = new Vector2(-12f, 0f);
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        fighter.PlayWavedashVFX();
+        fighter.OnHaltHorizontalVelocity();
+        fighter.OnVelocityImpulseRelativeToSelf(velocity);
+    }
+
+    public override void OnRecovery(FighterMain fighter)
+    {
+        base.OnRecovery(fighter);
+        fighter.canAct = true;
+    }
+}
+
+public class SuperGunHolster : GameAttack
+{
+    public SuperGunHolster() : base()
+    {
+        conditions.Add(new LogicalOrCondition(this,
+            // normal input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new QuarterCircleBack()),
+                new ButtonCondition(this, new AttackC())),
+            // simple input
+            new LogicalAndCondition(this,
+                new GestureCondition(this, new NoGesture()),
+                new ButtonCondition(this, new SpecialButton()))
+            ));
+        conditions.Add(new GroundedCondition(this, true));
+        //conditions.Add(new LogicalOrCondition(this,
+        //    new FollowUpCondition(this, typeof(SuperGunStance)),
+        //    new FollowUpCondition(this, typeof(SuperGunStanceAttack))));
+        conditions.Add(new FollowUpCondition(this, typeof(SuperGunStance)));
+
+        whiffSoundIndex = 2;
+
+        properties.AnimationName = "SuperGunHolster";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Standing;
+
+    }
+    public override void OnAnimationEnd(FighterMain fighter)
+    {
+        base.OnAnimationEnd(fighter);
+        fighter.SetStocks(6);
+    }
+    public override HitReport? OnGetHitDuring(FighterMain fighter, GameAttackProperties properties)
+    {
+        fighter.SetStocks(6);
+        return base.OnGetHitDuring(fighter, properties);
+    }
+}
+
+public class SuperGunShot : SuperGunStanceAttack
+{
+    public SuperGunShot(GameAttack stance) : base(stance)
+    {
+        conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new ButtonCondition(this, new AttackC()));
+        conditions.Add(new GroundedCondition(this, true));
+        //conditions.Add(new LogicalOrCondition(this,
+        //    new FollowUpCondition(this, typeof(SuperGunStance)),
+        //    new FollowUpCondition(this, typeof(SuperGunStanceAttack))));
+        conditions.Add(new FollowUpCondition(this, typeof(SuperGunStance)));
+        conditions.Add(new HasStockCondition(this));
+
+        whiffSoundIndex = 5;
+        hitSoundIndex = 2;
+
+        properties.AnimationName = "SuperGunShot";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Special;
+        properties.attackStance = FighterStance.Standing;
+
+
+        properties.blockProperties.knockback.Set(-7f, 0);
+        properties.blockProperties.airKnockback.Set(-9f, 6f);
+        properties.blockProperties.selfKnockback.Set(-3f, 0);
+        properties.blockProperties.damage = 75;
+        properties.blockProperties.hitstopTime = AttackSettings.attackLevel4_blockhitstop;
+        properties.blockProperties.stunTime = AttackSettings.attackLevel4_blockstun;
+
+        properties.hitProperties.knockback.Set(-6f, 14f);
+        properties.hitProperties.airKnockback.Set(-6f, 15f);
+        properties.hitProperties.selfKnockback.Set(-3f, 0);
+        properties.hitProperties.damage = 400;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel4_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel4_hitstun;
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        // play sound (gunshot) when active
+        base.OnStartup(fighter);
+        base.OnActive(fighter);
+
+        fighter.SetStocks(fighter.GetStocks() - 1);
     }
 }

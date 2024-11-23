@@ -104,6 +104,16 @@ public class GameAttack
     {
         return null;
     }
+
+    public virtual void OnSuperFlashStarted(FighterMain fighter)
+    {
+
+    }
+
+    public virtual void OnSuperFlashEnded(FighterMain fighter)
+    {
+
+    }
 }
 
 public class GameAttackStartupVelocity : GameAttack

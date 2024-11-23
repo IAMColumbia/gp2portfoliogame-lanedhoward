@@ -132,8 +132,12 @@ public class GatlingCondition : GameAttackCondition
         }
 
         if (parent.properties.attackType > fighter.currentAttack.properties.attackType) //gatling into a higher attack level
-        {
-            return true;
+        { 
+            if (fighter.currentAttack.properties.attackType != GameAttackProperties.AttackType.Special 
+                && fighter.currentAttack.properties.attackType != GameAttackProperties.AttackType.Super) // specials and supers are end of gatling series
+            {
+                return true;
+            }
         }
         if (parent.properties.attackType == GameAttackProperties.AttackType.Special || parent.properties.attackType == GameAttackProperties.AttackType.Super)
         {

@@ -81,6 +81,16 @@ public class GameManager : SoundPlayer
         DoubleKO
     }
 
+    public override void Awake()
+    {
+        base.Awake();
+        if (GamePlayerManager.Instance == null)
+        {
+            SceneManager.LoadScene("PlayerSetupVersion2");
+            return;
+        }
+    }
+
     private void Start()
     {
         /*
@@ -91,11 +101,7 @@ public class GameManager : SoundPlayer
         }
         */
 
-        if (GamePlayerManager.Instance == null)
-        {
-            SceneManager.LoadScene("PlayerSetupVersion2");
-            return;
-        }
+        
 
         // test
         //Application.targetFrameRate = 30;
@@ -305,7 +311,9 @@ public class GameManager : SoundPlayer
         
         s.CurrentHealth = s.MaxHealth;
         h.SetHealthbar(1, 1, true);
-        
+        player1.CurrentMeter = player1.MaxMeter;
+        player2.CurrentMeter = player2.MaxMeter;
+
     }
 
     private void Player_Blocked(object sender, EventArgs e)
@@ -382,14 +390,16 @@ public class GameManager : SoundPlayer
 
     private void Update()
     {
+        player1Superbar.SetHealthbar(player1.CurrentMeter, player1.MaxMeter);
+        player2Superbar.SetHealthbar(player2.CurrentMeter, player2.MaxMeter);
+
+        player1Healthbar.SetHealthbar(player1.CurrentHealth, player1.MaxHealth);
+        player2Healthbar.SetHealthbar(player2.CurrentHealth, player2.MaxHealth);
+
         if (gameActive)
         {
 
-            player1Healthbar.SetHealthbar(player1.CurrentHealth, player1.MaxHealth);
-            player2Healthbar.SetHealthbar(player2.CurrentHealth, player2.MaxHealth);
-
-            player1Superbar.SetHealthbar(player1.CurrentMeter, player1.MaxMeter);
-            player2Superbar.SetHealthbar(player2.CurrentMeter, player2.MaxMeter);
+            
 
             bool p1died = false;
             bool p2died = false;

@@ -1758,6 +1758,7 @@ MonoBehaviour:
   baseHitstopDuration: 0.08
   realTimeUntilTimeScaleReset: 0
   isInSlowmo: 0
+  isInSuperFlash: 0
 --- !u!4 &786745706
 Transform:
   m_ObjectHideFlags: 0

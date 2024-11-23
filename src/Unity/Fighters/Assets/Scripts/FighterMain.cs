@@ -85,7 +85,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         get => m_currentMeter;
         set
         {
-            m_currentMeter = MathF.Min(MaxMeter, value);
+            m_currentMeter = Mathf.Clamp(value, 0, MaxMeter);
         }
         
     }
@@ -472,13 +472,14 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         if (foundAttack != null)
         {
             //inputReceiver.bufferedInput = null;
-            SetCurrentAttack(foundAttack);
+            SetCurrentAttack(foundAttack, true);
             return true;
         }
         return false;
     }
 
-    public void SetCurrentAttack(GameAttack newAttack)
+
+    public void SetCurrentAttack(GameAttack newAttack, bool clearBuffer = false)
     {
         if (currentAttack != null)
         {
@@ -502,7 +503,10 @@ public class FighterMain : SoundPlayer, IHitboxResponder
                 }
             }
         }
-        inputReceiver.bufferedInput = null;
+        if (clearBuffer)
+        {
+            inputReceiver.bufferedInput = null;
+        }
         currentAttackState = CurrentAttackState.Startup;
         SwitchState(attacking);
         currentAttack.OnStartup(this);
@@ -630,11 +634,18 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     {
         fighterAnimator.animator.updateMode = AnimatorUpdateMode.UnscaledTime;
         timeManager.StartSuperFlash();
+        isStrikeInvulnerable = true;
+        isThrowInvulnerable = true;
+        if (currentAttack != null) currentAttack.OnSuperFlashStarted(this);
     }
     protected void OnSuperFlashEnded()
     {
         fighterAnimator.animator.updateMode = AnimatorUpdateMode.Normal;
         timeManager.EndSuperFlash();
+        isStrikeInvulnerable = false;
+        isThrowInvulnerable = false;
+        if (currentAttack != null) currentAttack.OnSuperFlashEnded(this);
+
     }
 
     protected void OnForceAnimationEnded()

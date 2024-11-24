@@ -56,24 +56,24 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\TypewriterAnimatorExample.cs" />
-    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\SwipeTutorial.cs" />
-    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\DirectionalLightController.cs" />
-    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\InputController.cs" />
-    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\Animatable.cs" />
-    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\Door.cs" />
-    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\Road.cs" />
     <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\Baggage.cs" />
-    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\HighlightableElement.cs" />
+    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\Road.cs" />
+    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\SlidingDoor.cs" />
     <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\HighlightedElementController.cs" />
     <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\JumpAnimation.cs" />
-    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\Headlights.cs" />
+    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\DirectionalLightController.cs" />
     <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\SqueezeAnimation.cs" />
-    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\Demo.cs" />
-    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\SlidingDoor.cs" />
+    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\Headlights.cs" />
     <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\Wheels.cs" />
     <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\CameraProjectionMatrixAnimation.cs" />
+    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\InputController.cs" />
+    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\SwipeTutorial.cs" />
+    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\TypewriterAnimatorExample.cs" />
+    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\Demo.cs" />
+    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\HighlightableElement.cs" />
+    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\Door.cs" />
+    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\Animatable.cs" />
+    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\CameraController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\PrimeTween\Demo\Scripts\PrimeTween.Demo.asmdef" />

@@ -20,10 +20,10 @@ public class SuperFlashCamera : MonoBehaviour
         FighterMain.SuperFlashEnded -= SuperFlashEnded;
     }
 
-    public void SuperFlashStarted(object sender, GameObject e)
+    public void SuperFlashStarted(object sender, Transform e)
     {
         vcam.Priority = 150;
-        vcam.Follow = e.transform;
+        vcam.Follow = e;
     }
 
     public void SuperFlashEnded(object sender, EventArgs e)

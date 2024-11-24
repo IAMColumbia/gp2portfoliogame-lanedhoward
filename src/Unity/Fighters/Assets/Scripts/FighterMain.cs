@@ -222,9 +222,15 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public event EventHandler Blocked;
     public event EventHandler Parried;
     public event EventHandler ThrowTeched;
-
-    public static event EventHandler<GameObject> SuperFlashStarted;
+    public class SuperPortraitEventArgs : EventArgs
+    {
+        public string SuperName;
+    }
+    public event EventHandler<SuperPortraitEventArgs> SuperPortraitStarted;
+    
+    public static event EventHandler<Transform> SuperFlashStarted;
     public static event EventHandler SuperFlashEnded;
+
 
     public static event EventHandler<Vector2> GroundBounced;
     public class WallBounceEventArgs : EventArgs
@@ -639,7 +645,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         isStrikeInvulnerable = true;
         isThrowInvulnerable = true;
         if (currentAttack != null) currentAttack.OnSuperFlashStarted(this);
-        SuperFlashStarted?.Invoke(this, this.gameObject);
+        SuperFlashStarted?.Invoke(this, transform);
     }
     protected void OnSuperFlashEnded()
     {
@@ -649,6 +655,11 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         isThrowInvulnerable = false;
         if (currentAttack != null) currentAttack.OnSuperFlashEnded(this);
         SuperFlashEnded?.Invoke(this, null);
+    }
+
+    public void StartSuperPortrait(string superName)
+    {
+        SuperPortraitStarted?.Invoke(this, new SuperPortraitEventArgs() { SuperName = superName });
     }
 
     protected void OnForceAnimationEnded()

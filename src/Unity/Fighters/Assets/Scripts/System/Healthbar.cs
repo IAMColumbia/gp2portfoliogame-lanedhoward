@@ -22,6 +22,8 @@ public class Healthbar : MonoBehaviour
 
     public Image[] hearts;
 
+    public SuperPortrait superPortrait;
+
     // Update is called once per frame
     void Update()
     {
@@ -69,18 +71,18 @@ public class Healthbar : MonoBehaviour
         nametag.SetText(character.CharacterName);
         descriptionTag.SetText(character.CharacterDescription);
         headshot.sprite = character.Headshot;
-
+        superPortrait.portrait.sprite = character.Portrait;
     }
 
     public void SetMaterial(Material mat)
     {
-        //healthbar.CrossFadeColor(mat.GetColor("_MainColor"),0,false,false);
-        //healthbar.material = mat;
         headshot.material = mat;
         foreach (var h in hearts)
         {
             h.material = mat;
         }
+
+        superPortrait.portrait.material = mat;
     }
 
     public void UpdateHearts(int lives)
@@ -106,6 +108,7 @@ public class Healthbar : MonoBehaviour
 
         fighter.GotHit += Fighter_GotHit;
         fighter.LeftHitstun += Fighter_LeftHitstun;
+        fighter.SuperPortraitStarted += superPortrait.StartSuperPortrait;
     }
 
     private void Fighter_LeftHitstun(object sender, System.EventArgs e)

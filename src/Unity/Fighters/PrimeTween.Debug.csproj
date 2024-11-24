@@ -56,8 +56,8 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\MeasureAllocations\MeasureMemoryAllocations.cs" />
     <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\MeasureAllocations\DebugInfo.cs" />
+    <Compile Include="Assets\Plugins\PrimeTween\Demo\Scripts\MeasureAllocations\MeasureMemoryAllocations.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\PrimeTween\Demo\Scripts\MeasureAllocations\PrimeTween.Debug.asmdef" />

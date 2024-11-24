@@ -673,7 +673,9 @@ public class SuperGunDraw : SuperGunStanceAttack
     public override void OnSuperFlashStarted(FighterMain fighter)
     {
         fighter.CurrentMeter -= meterCost;
+        fighter.StartSuperPortrait("Super Gun!!!");
         base.OnSuperFlashStarted(fighter);
+        
     }
 
     public override HitReport? OnGetHitDuring(FighterMain fighter, GameAttackProperties properties)

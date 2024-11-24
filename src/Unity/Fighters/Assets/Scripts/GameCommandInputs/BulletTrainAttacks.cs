@@ -893,14 +893,14 @@ public class SuperGunShot : SuperGunStanceAttack
 
         properties.blockProperties.knockback.Set(-7f, 0);
         properties.blockProperties.airKnockback.Set(-9f, 6f);
-        properties.blockProperties.selfKnockback.Set(-3f, 0);
+        properties.blockProperties.selfKnockback.Set(-2f, 0);
         properties.blockProperties.damage = 75;
         properties.blockProperties.hitstopTime = AttackSettings.attackLevel4_blockhitstop;
         properties.blockProperties.stunTime = AttackSettings.attackLevel4_blockstun;
 
         properties.hitProperties.knockback.Set(-6f, 14f);
         properties.hitProperties.airKnockback.Set(-6f, 15f);
-        properties.hitProperties.selfKnockback.Set(-3f, 0);
+        properties.hitProperties.selfKnockback.Set(-4f, 0);
         properties.hitProperties.damage = 400;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel4_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel4_hitstun;

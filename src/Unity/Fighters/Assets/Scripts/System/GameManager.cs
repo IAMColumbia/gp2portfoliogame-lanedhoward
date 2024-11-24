@@ -176,7 +176,7 @@ public class GameManager : SoundPlayer
                     //postGameUIs[i].Show();
                     postGameUIs[i].UIActive = true;
 
-                    GamePlayerManager.Instance.humanPlayerConfigs[i].Input.onDeviceLost += Input_onDeviceLost;
+                    GamePlayerManager.Instance.gamePlayerConfigs[i].humanPlayerConfig.Input.onDeviceLost += Input_onDeviceLost;
                 }
             }
         }

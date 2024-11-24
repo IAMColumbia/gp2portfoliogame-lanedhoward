@@ -46,12 +46,12 @@ public class SuperPortrait : MonoBehaviour
                 startValue: textStartX, endValue: 0f, 
                 duration: totalDuration / 2, 
                 useUnscaledTime: true, 
-                ease: Ease.OutCubic);
+                ease: Ease.OutQuart);
         Tween.LocalPositionX(superNameText.transform, 
                 startValue: 0f, endValue: textEndX, 
                 duration: totalDuration / 2, 
                 useUnscaledTime: true, 
-                ease: Ease.InCubic, 
+                ease: Ease.InQuart, 
                 startDelay: totalDuration/2)
             .OnComplete(target: superNameText.gameObject, target => target.SetActive(false));
 

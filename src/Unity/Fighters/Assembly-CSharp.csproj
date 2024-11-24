@@ -89,6 +89,7 @@
     <Compile Include="Assets\Scripts\Hitboxes\ReverseFireball.cs" />
     <Compile Include="Assets\Scripts\Hitboxes\Hitbox.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Gesture.cs" />
+    <Compile Include="Assets\Scripts\System\SuperPortrait.cs" />
     <Compile Include="Assets\Scripts\System\WinScreen.cs" />
     <Compile Include="Assets\Scripts\System\CharacterSelect\V2\CharacterButton.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\HostPackage.cs" />
@@ -184,7 +185,6 @@
     <Compile Include="Assets\Scripts\WallBounceReceiver.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
     <Compile Include="Assets\Scripts\System\CharacterSelect\V2\HelpButton.cs" />
-    <Compile Include="Assets\Scripts\System\SuperPortrait.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Art\Sprites\ui\command input sprites.txt" />

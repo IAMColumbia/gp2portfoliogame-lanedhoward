@@ -223,7 +223,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public event EventHandler Parried;
     public event EventHandler ThrowTeched;
 
-
+    public static event EventHandler<GameObject> SuperFlashStarted;
+    public static event EventHandler SuperFlashEnded;
 
     public static event EventHandler<Vector2> GroundBounced;
     public class WallBounceEventArgs : EventArgs
@@ -232,6 +233,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         public Directions.FacingDirection wallDirection;
     }
     public static event EventHandler<WallBounceEventArgs> WallBounced;
+    
 
     public override void Awake()
     {
@@ -637,6 +639,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         isStrikeInvulnerable = true;
         isThrowInvulnerable = true;
         if (currentAttack != null) currentAttack.OnSuperFlashStarted(this);
+        SuperFlashStarted?.Invoke(this, this.gameObject);
     }
     protected void OnSuperFlashEnded()
     {
@@ -645,7 +648,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         isStrikeInvulnerable = false;
         isThrowInvulnerable = false;
         if (currentAttack != null) currentAttack.OnSuperFlashEnded(this);
-
+        SuperFlashEnded?.Invoke(this, null);
     }
 
     protected void OnForceAnimationEnded()

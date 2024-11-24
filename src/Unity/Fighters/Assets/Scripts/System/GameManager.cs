@@ -100,8 +100,8 @@ public class GameManager : SoundPlayer
             return;
         }
         */
-
         
+
 
         // test
         //Application.targetFrameRate = 30;
@@ -390,16 +390,16 @@ public class GameManager : SoundPlayer
 
     private void Update()
     {
-        player1Superbar.SetHealthbar(player1.CurrentMeter, player1.MaxMeter);
-        player2Superbar.SetHealthbar(player2.CurrentMeter, player2.MaxMeter);
-
-        player1Healthbar.SetHealthbar(player1.CurrentHealth, player1.MaxHealth);
-        player2Healthbar.SetHealthbar(player2.CurrentHealth, player2.MaxHealth);
-
+        
         if (gameActive)
         {
 
-            
+            player1Healthbar.SetHealthbar(player1.CurrentHealth, player1.MaxHealth);
+            player2Healthbar.SetHealthbar(player2.CurrentHealth, player2.MaxHealth);
+
+            player1Superbar.SetHealthbar(player1.CurrentMeter, player1.MaxMeter);
+            player2Superbar.SetHealthbar(player2.CurrentMeter, player2.MaxMeter);
+
 
             bool p1died = false;
             bool p2died = false;

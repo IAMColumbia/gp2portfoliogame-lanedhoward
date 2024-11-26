@@ -261,7 +261,6 @@ MonoBehaviour:
   MaxHealth: 4000
   CurrentHealth: 0
   MaxMeter: 400
-  CurrentMeter: 0
   MeterPerDamage: 0.07
   JuggleMomentumMultiplier: 0.2
   bounceHitstop: 0.07
@@ -337,6 +336,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c949e2a6c3075a645adaced1bf9ae3c9, type: 3}
   - {fileID: 8300000, guid: b9b927989308c624d89eedb07b533993, type: 3}
   - {fileID: 8300000, guid: 0cd24a38bf771194e90143861ea545cb, type: 3}
+  - {fileID: 8300000, guid: 55cda520fd2ec0e4eadc9a3f3ed26af9, type: 3}
+  - {fileID: 8300000, guid: 5cdd84f5f30a1f04dadeadeb71e18860, type: 3}
   hitSounds:
   - {fileID: 8300000, guid: 46c7a1c1a1192c94dbcb83868ddf5a0c, type: 3}
   - {fileID: 8300000, guid: 123aa45c3845ccc4089c2c158a2a1898, type: 3}
@@ -349,6 +350,7 @@ MonoBehaviour:
   parrySound: {fileID: 8300000, guid: 3bf567554e0cd2f418b6b1fa8d88c5ce, type: 3}
   bounceSound: {fileID: 8300000, guid: 16b7d9df4794ba24492d8a676c3ea726, type: 3}
   griddyEnhancedSound: {fileID: 8300000, guid: f9e0915763d955d4fa9ab05d671ea408, type: 3}
+  superMoveSound: {fileID: 8300000, guid: b6b240b8df7983a48913c6118a6c2087, type: 3}
   smallHitParticles: {fileID: 7919910832669422064}
   midHitParticles: {fileID: 333986196007816026}
   heavyHitParticles: {fileID: 707240543187319496}

@@ -674,6 +674,7 @@ public class SuperGunDraw : SuperGunStanceAttack
     {
         fighter.CurrentMeter -= meterCost;
         fighter.StartSuperPortrait("Super Gun!!!");
+        fighter.DoSuperFX();
         base.OnSuperFlashStarted(fighter);
         
     }
@@ -881,7 +882,7 @@ public class SuperGunShot : SuperGunStanceAttack
         conditions.Add(new FollowUpCondition(this, typeof(SuperGunStance)));
         conditions.Add(new HasStockCondition(this));
 
-        whiffSoundIndex = 5;
+        whiffSoundIndex = 18;
         hitSoundIndex = 2;
 
         properties.AnimationName = "SuperGunShot";
@@ -917,5 +918,11 @@ public class SuperGunShot : SuperGunStanceAttack
         base.OnActive(fighter);
 
         fighter.SetStocks(fighter.GetStocks() - 1);
+    }
+
+    public override void OnRecovery(FighterMain fighter)
+    {
+        base.OnRecovery(fighter);
+        fighter.PlaySound(fighter.whiffSounds[19]); // rifle cock sound
     }
 }

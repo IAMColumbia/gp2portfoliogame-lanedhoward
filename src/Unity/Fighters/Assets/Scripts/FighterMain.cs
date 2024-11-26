@@ -197,6 +197,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public AudioClip parrySound;
     public AudioClip bounceSound;
     public AudioClip griddyEnhancedSound;
+    public AudioClip superMoveSound;
 
     [Header("Particles")]
     public ParticleSystem smallHitParticles;
@@ -660,6 +661,11 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public void StartSuperPortrait(string superName)
     {
         SuperPortraitStarted?.Invoke(this, new SuperPortraitEventArgs() { SuperName = superName });
+    }
+
+    public void DoSuperFX()
+    {
+        PlaySound(superMoveSound);
     }
 
     protected void OnForceAnimationEnded()

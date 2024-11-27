@@ -12,13 +12,16 @@ public class SuperPortrait : MonoBehaviour
     public Image portrait;
     public TextMeshProUGUI superNameText;
 
+    public CanvasGroup portraitGroup;
+    public CanvasGroup superNameTextGroup;
+
     public float totalDuration = 0.5f, portraitFadeTime = 0.1f;
     public float textStartX, textEndX;
 
     private void Awake()
     {
-        portrait.gameObject.SetActive(false);
-        superNameText.gameObject.SetActive(false);
+        portraitGroup.gameObject.SetActive(false);
+        superNameTextGroup.gameObject.SetActive(false);
     }
 
     public void StartSuperPortrait(object sender, FighterMain.SuperPortraitEventArgs e)
@@ -29,18 +32,18 @@ public class SuperPortrait : MonoBehaviour
 
     private void StartTween()
     {
-        portrait.gameObject.SetActive(true);
-        superNameText.gameObject.SetActive(true);
+        portraitGroup.gameObject.SetActive(true);
+        superNameTextGroup.gameObject.SetActive(true);
 
-        Tween.Alpha(portrait, 
-                startValue: 0f, endValue: 1f, 
-                duration: portraitFadeTime, 
+        Tween.Alpha(portraitGroup,
+                startValue: 0f, endValue: 1f,
+                duration: portraitFadeTime,
                 useUnscaledTime: true);
-        Tween.Alpha(portrait, startValue: 1f, endValue: 0f, 
+        Tween.Alpha(portraitGroup, startValue: 1f, endValue: 0f, 
                 duration: portraitFadeTime, 
                 useUnscaledTime: true, 
                 startDelay: totalDuration-portraitFadeTime)
-            .OnComplete(target: portrait.gameObject, target => target.SetActive(false)); 
+            .OnComplete(target: portraitGroup.gameObject, target => target.SetActive(false)); 
 
         Tween.LocalPositionX(superNameText.transform, 
                 startValue: textStartX, endValue: 0f, 
@@ -53,7 +56,7 @@ public class SuperPortrait : MonoBehaviour
                 useUnscaledTime: true, 
                 ease: Ease.InQuart, 
                 startDelay: totalDuration/2)
-            .OnComplete(target: superNameText.gameObject, target => target.SetActive(false));
+            .OnComplete(target: superNameTextGroup.gameObject, target => target.SetActive(false));
 
     }
 }

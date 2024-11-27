@@ -274,8 +274,8 @@ public class GameManager : SoundPlayer
         player1Healthbar.InitializeEvents(player1);
         player2Healthbar.InitializeEvents(player2);
 
-        player1Superbar.SetHealthbar(player1.CurrentMeter, player1.MaxMeter, true);
-        player2Superbar.SetHealthbar(player2.CurrentMeter, player2.MaxMeter, true);
+        player1Superbar.SetHealthbar(player1.CurrentMeter, player1.MaxMeter, false);
+        player2Superbar.SetHealthbar(player2.CurrentMeter, player2.MaxMeter, false);
 
         targetGroup.AddMember(player1.transform, 1, 1);
         targetGroup.AddMember(player2.transform, 1, 1);
@@ -354,6 +354,9 @@ public class GameManager : SoundPlayer
         {
             s.CurrentHealth = s.MaxHealth;
             h.SetHealthbar(1, 1, true);
+
+            player1.CurrentMeter = player1.MaxMeter;
+            player2.CurrentMeter = player2.MaxMeter;
         }
     }
 
@@ -390,16 +393,20 @@ public class GameManager : SoundPlayer
 
     private void Update()
     {
-        
+        if (player1 != null)
+        {
+            player1Healthbar.SetHealthbar(player1.CurrentHealth, player1.MaxHealth);
+            player1Superbar.SetHealthbar(player1.CurrentMeter, player1.MaxMeter);
+        }
+
+        if (player2 != null)
+        {
+            player2Healthbar.SetHealthbar(player2.CurrentHealth, player2.MaxHealth);
+            player2Superbar.SetHealthbar(player2.CurrentMeter, player2.MaxMeter);
+        }
+
         if (gameActive)
         {
-
-            player1Healthbar.SetHealthbar(player1.CurrentHealth, player1.MaxHealth);
-            player2Healthbar.SetHealthbar(player2.CurrentHealth, player2.MaxHealth);
-
-            player1Superbar.SetHealthbar(player1.CurrentMeter, player1.MaxMeter);
-            player2Superbar.SetHealthbar(player2.CurrentMeter, player2.MaxMeter);
-
 
             bool p1died = false;
             bool p2died = false;

@@ -250,9 +250,9 @@ public class Gun5Shot : GunStanceAttack
         properties.attackStance = FighterStance.Standing;
 
 
-        properties.blockProperties.knockback.Set(-7f, 0);
+        properties.blockProperties.knockback.Set(-9f, 0);
         properties.blockProperties.airKnockback.Set(-7f, 6f);
-        properties.blockProperties.selfKnockback.Set(-9f, 0);
+        properties.blockProperties.selfKnockback.Set(-5f, 0);
         properties.blockProperties.damage = 50;
         properties.blockProperties.hitstopTime = AttackSettings.attackLevel3_blockhitstop;
         properties.blockProperties.stunTime = AttackSettings.attackLevel3_blockstun;
@@ -260,7 +260,7 @@ public class Gun5Shot : GunStanceAttack
         properties.hitProperties.knockback.Set(-9f, 9f);
         properties.hitProperties.airKnockback.Set(-8f, 9f);
         properties.hitProperties.selfKnockback.Set(-3f, 0);
-        properties.hitProperties.damage = 325;
+        properties.hitProperties.damage = 300;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
 
@@ -313,7 +313,7 @@ public class Gun2Shot : GunStanceAttack
         properties.hitProperties.knockback.Set(-1.5f, 14f);
         properties.hitProperties.airKnockback.Set(-7.5f, 13f);
         properties.hitProperties.selfKnockback.Set(-4f, 0);
-        properties.hitProperties.damage = 325;
+        properties.hitProperties.damage = 300;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
 
@@ -366,7 +366,7 @@ public class Gun4Shot : GunStanceAttack
         properties.hitProperties.knockback.Set(-10f, 0f);
         properties.hitProperties.airKnockback.Set(-6f, 10f);
         properties.hitProperties.selfKnockback.Set(-3f, 0);
-        properties.hitProperties.damage = 325;
+        properties.hitProperties.damage = 300;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
 
@@ -409,9 +409,9 @@ public class Gun6Shot : GunStanceAttack
         properties.attackStance = FighterStance.Standing;
 
 
-        properties.blockProperties.knockback.Set(-7f, 0);
+        properties.blockProperties.knockback.Set(-9f, 0);
         properties.blockProperties.airKnockback.Set(-7f, 6f);
-        properties.blockProperties.selfKnockback.Set(-9f, 0);
+        properties.blockProperties.selfKnockback.Set(-5f, 0);
         properties.blockProperties.damage = 50;
         properties.blockProperties.hitstopTime = AttackSettings.attackLevel3_blockhitstop;
         properties.blockProperties.stunTime = AttackSettings.attackLevel3_blockstun;
@@ -419,7 +419,7 @@ public class Gun6Shot : GunStanceAttack
         properties.hitProperties.knockback.Set(-6f, 14f);
         properties.hitProperties.airKnockback.Set(-6f, 12f);
         properties.hitProperties.selfKnockback.Set(-3f, 0);
-        properties.hitProperties.damage = 325;
+        properties.hitProperties.damage = 300;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
 
@@ -668,12 +668,14 @@ public class SuperGunDraw : SuperGunStanceAttack
     {
         base.OnActive(fighter);
         fighter.SetStocks(4);
+        fighter.PlaySound(fighter.whiffSounds[19]); // rifle cock sound
+
     }
 
     public override void OnSuperFlashStarted(FighterMain fighter)
     {
         fighter.CurrentMeter -= meterCost;
-        fighter.StartSuperPortrait("Super Gun!!!");
+        fighter.StartSuperPortrait("Railroad Repeater");
         fighter.DoSuperFX();
         base.OnSuperFlashStarted(fighter);
         
@@ -684,6 +686,12 @@ public class SuperGunDraw : SuperGunStanceAttack
         // dont set to full revolver ammo if you get hit before the super takes its meter cost
         if (fighter.currentAttackState == CurrentAttackState.Startup) return null; 
         return base.OnGetHitDuring(fighter, properties);
+    }
+
+    public override void OnRecovery(FighterMain fighter)
+    {
+        base.OnRecovery(fighter);
+
     }
 }
 

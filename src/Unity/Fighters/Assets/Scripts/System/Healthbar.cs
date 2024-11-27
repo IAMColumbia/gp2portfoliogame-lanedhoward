@@ -53,10 +53,13 @@ public class Healthbar : MonoBehaviour
         if (current <= 0 || max <= 0)
         {
             percent = 0; 
-            return;
         }
-        percent = Mathf.Pow((current / max), gutsPower);
-        percent = Mathf.Max(percent, minPercent);
+        else
+        {
+            percent = Mathf.Pow((current / max), gutsPower);
+            percent = Mathf.Max(percent, minPercent);
+        }
+
         if (drainbar != null)
         {
             if (setDrainBar || percent >= drainbar.fillAmount)

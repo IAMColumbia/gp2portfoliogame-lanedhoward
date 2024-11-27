@@ -312,7 +312,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
         inputReceiver.UpdateFacingDirection();
 
-        CurrentHealth = MaxHealth;
+        //CurrentHealth = MaxHealth;
         fighterAnimator.velocityToStopMovingAnim = velocityToStopMoveAnimation;
 
         dashing = new Dashing(this);
@@ -335,6 +335,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public void InitializeCharacterModule()
     {
         MaxHealth = characterModule.MaxHealth;
+        CurrentHealth = MaxHealth;
         JuggleMomentumMultiplier = characterModule.JuggleMomentumMultiplier;
 
         softKnockdownTime = characterModule.softKnockdownTime;

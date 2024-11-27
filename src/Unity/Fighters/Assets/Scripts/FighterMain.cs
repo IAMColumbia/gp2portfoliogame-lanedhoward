@@ -210,6 +210,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public ParticleSystem throwTechParticles;
     public ParticleSystem griddyParticles;
     public ParticleSystem deathHitParticles;
+    public ParticleSystem superParticles;
 
     public event EventHandler GotHit;
     public event EventHandler LeftHitstun;
@@ -670,6 +671,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public void DoSuperFX()
     {
         PlaySound(superMoveSound);
+        superParticles.Play();
     }
 
     protected void OnForceAnimationEnded()
@@ -864,6 +866,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
             {
                 //die to chip damage
                 blocked = false;
+                otherFighterMain.SendNotification("Chip Kill!");
+
             }
         }
 
@@ -918,8 +922,15 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         
         currentCombo.AddHit();
 
+        // apply minimum scaling (pre hit)
+        currentCombo.damageScale = Mathf.Max(currentCombo.damageScale, properties.minDamageScale);
+
         float hitDamage = Mathf.Ceil(pp.damage * currentCombo.damageScale);
-        
+
+        // apply combo proration (after hit)
+        currentCombo.damageScale = Mathf.Min(currentCombo.damageScale, properties.damageScaleComboProration);
+
+
         CurrentHealth -= hitDamage;
         currentCombo.totalDamage += hitDamage;
 

@@ -178,6 +178,15 @@ public class GameAttackProperties
 
     public bool cancelIntoAnyAction;
 
+    /// <summary>
+    /// lowers the damage scale value to this value after the move hits, if it is not already lower
+    /// </summary>
+    public float damageScaleComboProration;
+    /// <summary>
+    /// MINIMUM damage scale that can be applied to this move. applied to the combo before the move does damage
+    /// </summary>
+    public float minDamageScale;
+
     public GameAttackPropertiesProperties blockProperties;
     public GameAttackPropertiesProperties hitProperties;
 
@@ -197,6 +206,9 @@ public class GameAttackProperties
         landCancelRecovery = true;
         landingLagTime = 0f;
         cancelIntoAnyAction = false;
+
+        damageScaleComboProration = 1f;
+        minDamageScale = 0f;
 
         blockProperties = new GameAttackPropertiesProperties();
         hitProperties = new GameAttackPropertiesProperties();

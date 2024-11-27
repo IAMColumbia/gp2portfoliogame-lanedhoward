@@ -26,6 +26,10 @@ public static class AttackSettings
     public static float attackLevel4_blockhitstop;
     public static float attackLevel4_hitstun;
     public static float attackLevel4_blockstun;
+
+    public static float lightProration;
+    public static float throwProration;
+    public static float superMinScaling;
     static AttackSettings()
     {
         attackLevel1_hithitstop = 7f / 60f;
@@ -47,6 +51,10 @@ public static class AttackSettings
         attackLevel4_blockhitstop = 12f / 60f;
         attackLevel4_hitstun = 32f / 60f;
         attackLevel4_blockstun = 26f / 60f;
+
+        lightProration = 0.85f;
+        throwProration = 0.6f;
+        superMinScaling = 0.3f;
     }
 
 }
@@ -83,6 +91,8 @@ public class Jab : GameAttack
         properties.hitProperties.damage = 85f;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel1_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel1_hitstun;
+
+        properties.damageScaleComboProration = AttackSettings.lightProration;
     }
 }
 
@@ -121,6 +131,10 @@ public class CrouchJab : GameAttack
         properties.hitProperties.damage = 75f;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel1_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel1_hitstun;
+
+        properties.damageScaleComboProration = AttackSettings.lightProration;
+
+
     }
 }
 
@@ -158,6 +172,9 @@ public class JumpKnee : GameAttack
         properties.hitProperties.damage = 100f;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel1_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel1_hitstun;
+
+        properties.damageScaleComboProration = AttackSettings.lightProration;
+
     }
 }
 
@@ -492,6 +509,9 @@ public class GrabSuccess : ThrowAttackSuccess
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel2_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel2_hitstun;
         properties.hitProperties.hardKD = true;
+
+        properties.damageScaleComboProration = AttackSettings.throwProration;
+
     }
 }
 
@@ -569,6 +589,9 @@ public class AirGrabSuccess : ThrowAttackSuccess
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel2_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel2_hitstun;
         properties.hitProperties.hardKD = true;
+
+        properties.damageScaleComboProration = AttackSettings.throwProration;
+
     }
 }
 

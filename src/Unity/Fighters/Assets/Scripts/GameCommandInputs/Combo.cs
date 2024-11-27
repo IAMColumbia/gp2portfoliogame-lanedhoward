@@ -23,7 +23,7 @@ public class Combo
     public bool hasUsedComboGrab;
 
     private const float DAMAGE_SCALING_PER_HIT = 0.825f;
-    private const float DAMAGE_MIN_SCALING = 0.15f;
+    private const float DAMAGE_MIN_SCALING = 0.2f;
     private const float MOMENTUM_SCALING_PER_HIT = 1.17f;
     private const float MOMENTUM_MAX_SCALING = 1.0f;
     private const float KNOCKBACK_MAX_SCALING = 10f;

@@ -311,8 +311,8 @@ public class Gun2Shot : GunStanceAttack
         properties.blockProperties.stunTime = AttackSettings.attackLevel3_blockstun;
 
         properties.hitProperties.knockback.Set(-1.5f, 14f);
-        properties.hitProperties.airKnockback.Set(-2f, 13f);
-        properties.hitProperties.selfKnockback.Set(-3f, 0);
+        properties.hitProperties.airKnockback.Set(-7.5f, 13f);
+        properties.hitProperties.selfKnockback.Set(-4f, 0);
         properties.hitProperties.damage = 325;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel3_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
@@ -905,6 +905,8 @@ public class SuperGunShot : SuperGunStanceAttack
         properties.hitProperties.damage = 400;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel4_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel4_hitstun;
+
+        properties.minDamageScale = AttackSettings.superMinScaling;
     }
 
     public override void OnStartup(FighterMain fighter)
@@ -918,6 +920,12 @@ public class SuperGunShot : SuperGunStanceAttack
         base.OnActive(fighter);
 
         fighter.SetStocks(fighter.GetStocks() - 1);
+
+        if (fighter.GetStocks() <= 0)
+        {
+            // play garand ping
+            fighter.PlaySound(fighter.whiffSounds[20]);
+        }
     }
 
     public override void OnRecovery(FighterMain fighter)

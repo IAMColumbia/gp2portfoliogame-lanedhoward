@@ -146,8 +146,8 @@ AnimationClip:
       value: {fileID: -8633510553313452270, guid: 85d6b5f7e4f103041bdaf03a6349f203, type: 3}
     - time: 0.066
       value: {fileID: -962927795260463431, guid: 85d6b5f7e4f103041bdaf03a6349f203, type: 3}
-    - time: 0.099
-      value: {fileID: -8336224314125802732, guid: 85d6b5f7e4f103041bdaf03a6349f203, type: 3}
+    - time: 0.1
+      value: {fileID: 180525652855454390, guid: 85d6b5f7e4f103041bdaf03a6349f203, type: 3}
     - time: 0.132
       value: {fileID: 180525652855454390, guid: 85d6b5f7e4f103041bdaf03a6349f203, type: 3}
     - time: 0.16666667
@@ -216,7 +216,7 @@ AnimationClip:
     - {fileID: -6215801320156558736, guid: 85d6b5f7e4f103041bdaf03a6349f203, type: 3}
     - {fileID: -8633510553313452270, guid: 85d6b5f7e4f103041bdaf03a6349f203, type: 3}
     - {fileID: -962927795260463431, guid: 85d6b5f7e4f103041bdaf03a6349f203, type: 3}
-    - {fileID: -8336224314125802732, guid: 85d6b5f7e4f103041bdaf03a6349f203, type: 3}
+    - {fileID: 180525652855454390, guid: 85d6b5f7e4f103041bdaf03a6349f203, type: 3}
     - {fileID: 180525652855454390, guid: 85d6b5f7e4f103041bdaf03a6349f203, type: 3}
     - {fileID: 1101910787934482005, guid: 85d6b5f7e4f103041bdaf03a6349f203, type: 3}
     - {fileID: 8908417199102474334, guid: 85d6b5f7e4f103041bdaf03a6349f203, type: 3}
@@ -379,7 +379,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.1
+  - time: 0.13333334
     functionName: CallAttackRecoveryEvent
     data: 
     objectReferenceParameter: {fileID: 0}

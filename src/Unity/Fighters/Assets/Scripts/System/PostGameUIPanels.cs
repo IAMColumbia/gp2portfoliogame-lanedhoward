@@ -91,13 +91,4 @@ public class PostGameUIPanels : MonoBehaviour
         MenuClicked?.Invoke(this, EventArgs.Empty);
     }
 
-    private void OnDisable()
-    {
-        //var originalActionsAsset = uiInputModule.actionsAsset;
-
-        //if (originalActionsAsset != null)
-        //{
-        //    originalActionsAsset.Enable();
-        //}
-    }
 }

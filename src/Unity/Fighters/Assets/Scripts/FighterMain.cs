@@ -495,7 +495,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
             currentAttack.OnCancel(this);
         }
 
-        currentAttack = newAttack;
+        bool useTurnAroundAttack = false;
+
         if (currentStance != FighterStance.Air && inputReceiver.bufferedInput != null)
             //bufferedInput might be null here if the attack was set outside of normal input timing (e.g. as a followup from an attack)
         {
@@ -503,18 +504,25 @@ public class FighterMain : SoundPlayer, IHitboxResponder
             
             if (turnedAround)
             {
-                // inputReceiver.bufferedInput will have changed due to the turn around.
+                // inputReceiver.bufferedInput will have changed due to the turn around gesture re-evaluation.
                 // need to re-parse the attack
                 var foundAttack = inputReceiver.ParseAttack(inputReceiver.bufferedInput);
                 if (foundAttack != null)
                 {
                     currentAttack = foundAttack;
+                    useTurnAroundAttack = true;
                 }
             }
         }
+
         if (clearBuffer)
         {
             inputReceiver.bufferedInput = null;
+        }
+
+        if (!useTurnAroundAttack)
+        {
+            currentAttack = newAttack;
         }
         currentAttackState = CurrentAttackState.Startup;
         SwitchState(attacking);
@@ -555,10 +563,6 @@ public class FighterMain : SoundPlayer, IHitboxResponder
                         h.CheckForWallbounce();
                     }
                 }
-            }
-            else
-            {
-                //isAtTheWall = false;
             }
         }
 

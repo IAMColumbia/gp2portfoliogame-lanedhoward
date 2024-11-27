@@ -49,7 +49,17 @@ public class GameAttack
     {
         if (conditions.Count == 0) return true;
         // if all conditions pass, this move can go
-        return conditions.All(c => c.CanExecute(moveInput, fighter));
+        // todo: reverse this for optimization? or don't use linq? if one condition is false, stop executing the rest of the conditions
+        //return conditions.All(c => c.CanExecute(moveInput, fighter));
+        //return !conditions.Any(c => !c.CanExecute(moveInput, fighter));
+        bool canExecute = true;
+        foreach (var c in conditions)
+        {
+            if (c.CanExecute(moveInput, fighter)) continue;
+            canExecute = false;
+            break;
+        }
+        return canExecute;
     }
 
     public virtual void OnStartup(FighterMain fighter)

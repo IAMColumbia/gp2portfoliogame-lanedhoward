@@ -1072,6 +1072,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -2866728616260122692}
     m_Position: {x: 2410, y: 1080, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -686720957634669250}
+    m_Position: {x: 2660, y: 540, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -1392,6 +1395,32 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 668077375634555367, guid: ebbd7d0d6faf8804ba2b4ea14954c5a8, type: 3}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &-686720957634669250
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BeeHeart
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 8bc89562a16a1fd45bf7a223a423f4b7, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -38,7 +38,7 @@ public class AttackState : FighterState, IAnimationEndState
         base.DoState();
 
 
-        if (fighter.currentStance == FighterStance.Air)
+        if (fighter.currentStance == FighterStance.Air || fighter.currentAttack.properties.attackStance == FighterStance.Air)
         {
             wasEverAirborne = true;
             if (stateTimer > 0.1f 

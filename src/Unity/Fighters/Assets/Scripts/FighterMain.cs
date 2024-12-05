@@ -1040,7 +1040,34 @@ public class FighterMain : SoundPlayer, IHitboxResponder
                 }
                 return true;
             }
+
             Directions.Direction dir = inputReceiver.GetDirection();
+
+            if (currentState is Blockstun)
+            {
+                // cross up protection
+                if (currentStance == FighterStance.Air)
+                {
+                    return true;
+                }
+                else
+                {
+                    // only high low
+                    if (properties.blockType == GameAttackProperties.BlockType.Low)
+                    {
+                        return (dir == Directions.Direction.Down 
+                            || dir == Directions.Direction.DownBack 
+                            || dir == Directions.Direction.DownForward);
+                    }
+                    if (properties.blockType == GameAttackProperties.BlockType.High)
+                    {
+                        return (dir != Directions.Direction.Down
+                            && dir != Directions.Direction.DownBack
+                            && dir != Directions.Direction.DownForward);
+                    }
+                    return true;
+                }
+            }
 
             if (currentStance == FighterStance.Air)
             {

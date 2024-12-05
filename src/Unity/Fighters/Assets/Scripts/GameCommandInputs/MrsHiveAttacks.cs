@@ -47,6 +47,7 @@ public static class MrsHiveAttacks
                 new Burst(new ForwardDiveRoll(), new BackDiveRoll()),
                 new ForwardDiveRoll(),
                 new BackDiveRoll(),
+                new BeeHeart(),
             };
         return attacks;
     }
@@ -673,5 +674,149 @@ public class Swarm : GameAttack
     {
         base.OnActive(fighter);
         fighter.SetStocks(fighter.GetStocks() - 1);
+    }
+}
+
+public class BeeHeart : GameAttack
+{
+    Vector2 velocity = new Vector2(7f, 7f);
+    float meterCost;
+
+    int armorHits;
+    int armorHitsMax;
+
+    float defaultLandingLag;
+    float hitLandingLag;
+
+    public BeeHeart() : base()
+    {
+        meterCost = 200;
+
+        armorHitsMax = 3;
+
+        conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new ButtonCondition(this, new SuperButton()));
+        conditions.Add(new GatlingCondition(this));
+        conditions.Add(new MeterCostCondition(this, meterCost));
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[3];
+        whiffSoundIndex = 8;
+        hitSoundIndex = 3;
+
+        properties.AnimationName = "BeeHeart";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Super;
+        properties.attackStance = FighterStance.Air;
+
+        properties.blockProperties.knockback.Set(-3f, 0);
+        properties.blockProperties.airKnockback.Set(-3f, 3f);
+        properties.blockProperties.selfKnockback.Set(-4f, 0);
+        properties.blockProperties.damage = 50f;
+        properties.blockProperties.hitstopTime = AttackSettings.attackLevel1_blockhitstop;
+        properties.blockProperties.stunTime = AttackSettings.attackLevel3_blockstun;
+
+        properties.hitProperties.knockback.Set(-2f, 10f);
+        properties.hitProperties.airKnockback.Set(-1.75f, 8.25f);
+        properties.hitProperties.selfKnockback.Set(0, 0);
+        properties.hitProperties.damage = 225f;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel1_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel3_hitstun;
+        properties.hitProperties.hardKD = true;
+
+        properties.minDamageScale = AttackSettings.superMinScaling;
+
+        defaultLandingLag = 0.35f;
+        hitLandingLag = 0.2f;
+
+        properties.landCancelStartup = false;
+        properties.landCancelActive = false;
+        properties.landCancelRecovery = true;
+        properties.landingLagTime = defaultLandingLag;
+
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+
+        fighter.CurrentMeter -= meterCost;
+        armorHits = armorHitsMax;
+        fighter.OnHaltAllVelocity();
+        properties.landingLagTime = defaultLandingLag;
+
+    }
+
+    public override void OnSuperFlashStarted(FighterMain fighter)
+    {
+        fighter.StartSuperPortrait("Heart of the Hive");
+        fighter.DoSuperFX();
+        base.OnSuperFlashStarted(fighter);
+    }
+
+    public override void OnSuperFlashEnded(FighterMain fighter)
+    {
+        base.OnSuperFlashEnded(fighter);
+        fighter.OnHaltAllVelocity();
+
+        int forwardBack = fighter.inputReceiver.LeftRight;
+        if (fighter.facingDirection == CommandInputReaderLibrary.Directions.FacingDirection.LEFT)
+        {
+            forwardBack *= -1;
+        }
+
+        fighter.OnVelocityImpulseRelativeToSelf(new Vector2(
+            velocity.x * forwardBack,
+            velocity.y * fighter.inputReceiver.UpDown));
+    }
+
+    // active will be called for each hitbox
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+
+        fighter.OnHaltAllVelocity();
+        
+        int forwardBack = fighter.inputReceiver.LeftRight;
+        if (fighter.facingDirection == CommandInputReaderLibrary.Directions.FacingDirection.LEFT)
+        {
+            forwardBack *= -1;
+        }
+
+        fighter.OnVelocityImpulseRelativeToSelf(new Vector2(
+            velocity.x * forwardBack, 
+            velocity.y * fighter.inputReceiver.UpDown));
+
+    }
+
+    public override HitReport? OnGetHitDuring(FighterMain fighter, GameAttackProperties properties)
+    {
+        if (fighter.currentAttackState == CurrentAttackState.Recovery)
+        {
+            return base.OnGetHitDuring(fighter, properties);
+        }
+
+        if (armorHits > 0)
+        {
+            // armor the hit
+            fighter.SendNotification("Armor!");
+            fighter.timeManager.DoHitStop(properties.hitProperties.hitstopTime);
+            fighter.CurrentHealth -= properties.hitProperties.damage/3;
+            armorHits -= 1;
+
+            return HitReport.Hit;
+        }
+
+        return base.OnGetHitDuring(fighter, properties);
+
+
+    }
+
+    public override void OnHit(FighterMain fighter, FighterMain otherFighter)
+    {
+        properties.landingLagTime = hitLandingLag;
+
+        base.OnHit(fighter, otherFighter);
     }
 }

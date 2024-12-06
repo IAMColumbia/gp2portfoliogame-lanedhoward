@@ -679,7 +679,7 @@ public class Swarm : GameAttack
 
 public class BeeHeart : GameAttack
 {
-    Vector2 velocity = new Vector2(7f, 7f);
+    Vector2 velocity = new Vector2(5f, 5f);
     float meterCost;
 
     int armorHits;
@@ -727,7 +727,7 @@ public class BeeHeart : GameAttack
 
         properties.minDamageScale = AttackSettings.superMinScaling;
 
-        defaultLandingLag = 0.35f;
+        defaultLandingLag = 0.5f;
         hitLandingLag = 0.2f;
 
         properties.landCancelStartup = false;
@@ -743,7 +743,7 @@ public class BeeHeart : GameAttack
 
         fighter.CurrentMeter -= meterCost;
         armorHits = armorHitsMax;
-        fighter.OnHaltAllVelocity();
+        //fighter.OnHaltAllVelocity();
         properties.landingLagTime = defaultLandingLag;
 
     }
@@ -759,6 +759,8 @@ public class BeeHeart : GameAttack
     {
         base.OnSuperFlashEnded(fighter);
         fighter.OnHaltAllVelocity();
+
+        fighter.disableGravity = true;
 
         int forwardBack = fighter.inputReceiver.LeftRight;
         if (fighter.facingDirection == CommandInputReaderLibrary.Directions.FacingDirection.LEFT)
@@ -808,6 +810,8 @@ public class BeeHeart : GameAttack
             return HitReport.Hit;
         }
 
+        fighter.disableGravity = false;
+
         return base.OnGetHitDuring(fighter, properties);
 
 
@@ -818,5 +822,11 @@ public class BeeHeart : GameAttack
         properties.landingLagTime = hitLandingLag;
 
         base.OnHit(fighter, otherFighter);
+    }
+
+    public override void OnRecovery(FighterMain fighter)
+    {
+        fighter.disableGravity = false;
+        base.OnRecovery(fighter);
     }
 }

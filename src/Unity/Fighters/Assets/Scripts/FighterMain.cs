@@ -118,6 +118,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public float velocityToStopMoveAnimation;
     public float normalGravity;
     public float comboGravity;
+    public bool disableGravity;
 
     [Header("Dashing Values")]
     public float forwardDashTime = 0.3f;
@@ -252,6 +253,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         //PlayerInput pi = GetComponent<PlayerInput>();
 
         isDead = false;
+        disableGravity = false;
 
         fighterRigidbody = GetComponent<Rigidbody2D>();
         fighterCollider = GetComponent<Collider2D>();
@@ -1288,7 +1290,11 @@ public class FighterMain : SoundPlayer, IHitboxResponder
                 return;
             }
         }
-
+        if (disableGravity)
+        {
+            fighterRigidbody.gravityScale = 0;
+            return;
+        }
         fighterRigidbody.gravityScale = normalGravity;
     }
 

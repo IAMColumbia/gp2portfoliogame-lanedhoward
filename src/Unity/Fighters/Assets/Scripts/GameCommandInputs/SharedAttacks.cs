@@ -30,6 +30,7 @@ public static class AttackSettings
     public static float lightProration;
     public static float throwProration;
     public static float superMinScaling;
+    public static float superMaxMeterBuildOnHit;
     static AttackSettings()
     {
         attackLevel1_hithitstop = 7f / 60f;
@@ -54,7 +55,8 @@ public static class AttackSettings
 
         lightProration = 0.85f;
         throwProration = 0.6f;
-        superMinScaling = 0.3f;
+        superMinScaling = 0.33f;
+        superMaxMeterBuildOnHit = 0f;
     }
 
 }

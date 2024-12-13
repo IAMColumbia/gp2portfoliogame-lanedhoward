@@ -1875,28 +1875,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: P2SuperMeter
       objectReference: {fileID: 0}
+    - target: {fileID: 6260102760273851679, guid: 010ef662e5fd1744f875c7da11be48a7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 135
+      objectReference: {fileID: 0}
     - target: {fileID: 6958053167477206420, guid: 010ef662e5fd1744f875c7da11be48a7, type: 3}
       propertyPath: m_FillOrigin
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 010ef662e5fd1744f875c7da11be48a7, type: 3}
---- !u!114 &833192787 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5542345835831066082, guid: 010ef662e5fd1744f875c7da11be48a7, type: 3}
-  m_PrefabInstance: {fileID: 833192786}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61c5ea8c9f44d4a40a2b750afd3f2be7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &833192788 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1545788867451698321, guid: 010ef662e5fd1744f875c7da11be48a7, type: 3}
   m_PrefabInstance: {fileID: 833192786}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &833192789 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9069940007168506736, guid: 010ef662e5fd1744f875c7da11be48a7, type: 3}
+  m_PrefabInstance: {fileID: 833192786}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e9d96bda43e3e499a4e7e8388efca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &882806211 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6446215207683566577, guid: 6d93ef2357f87de4bb5c39c7c086c54e, type: 3}
@@ -3669,7 +3673,7 @@ MonoBehaviour:
   player1spawn: {fileID: 1462191732}
   player1: {fileID: 0}
   player1Healthbar: {fileID: 1184261825}
-  player1Superbar: {fileID: 7708283132371065091}
+  player1Superbar: {fileID: 7708283132371065092}
   player1ComboUI: {fileID: 2826498167450192564}
   player1StocksDisplay: {fileID: 1184261826}
   player1NotificationManager: {fileID: 2288942967809236811}
@@ -3678,7 +3682,7 @@ MonoBehaviour:
   player2spawn: {fileID: 548818944}
   player2: {fileID: 0}
   player2Healthbar: {fileID: 1160802528177493823}
-  player2Superbar: {fileID: 833192787}
+  player2Superbar: {fileID: 833192789}
   player2ComboUI: {fileID: 1606481551}
   player2StocksDisplay: {fileID: 1160802528177493824}
   player2NotificationManager: {fileID: 1587070201}
@@ -7461,15 +7465,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7708283132371065091 stripped
+--- !u!114 &7708283132371065092 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5542345835831066082, guid: 010ef662e5fd1744f875c7da11be48a7, type: 3}
+  m_CorrespondingSourceObject: {fileID: 9069940007168506736, guid: 010ef662e5fd1744f875c7da11be48a7, type: 3}
   m_PrefabInstance: {fileID: 2743550373604074721}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61c5ea8c9f44d4a40a2b750afd3f2be7, type: 3}
+  m_Script: {fileID: 11500000, guid: d1e9d96bda43e3e499a4e7e8388efca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &7786603277603833845

@@ -809,7 +809,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
                 //meter
                 var cc = hurtbox.fighterParent.currentCombo;
-                float meterScale = cc.currentlyGettingComboed ? cc.damageScale : 1;
+                float meterScale = cc.currentlyGettingComboed ? Mathf.Min(cc.damageScale, 0.7f) : 0.7f;
+                meterScale = Mathf.Min(meterScale, currentAttack.properties.maxMeterScaleOnHit);
                 float meterGain = meterScale * pp.damage * MeterPerDamage;
                 CurrentMeter += meterGain;
 
@@ -877,7 +878,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         GameAttackPropertiesProperties pp = blocked ? properties.blockProperties : properties.hitProperties;
 
         //meter
-        float meterScale = currentCombo.currentlyGettingComboed ? Mathf.Clamp(currentCombo.damageScale,0.3f,0.7f) : 0.7f;
+        float meterScale = currentCombo.currentlyGettingComboed ? Mathf.Clamp(currentCombo.damageScale,0.3f,0.5f) : 0.5f;
         float meterGain = meterScale * pp.damage * MeterPerDamage;
         CurrentMeter += meterGain;
 

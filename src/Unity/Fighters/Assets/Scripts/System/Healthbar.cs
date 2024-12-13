@@ -48,7 +48,7 @@ public class Healthbar : MonoBehaviour
         }
     }
 
-    public void SetHealthbar(float current, float max, bool setDrainBar = false)
+    public virtual void SetHealthbar(float current, float max, bool setDrainBar = false)
     {
         if (current <= 0 || max <= 0)
         {

@@ -187,6 +187,11 @@ public class GameAttackProperties
     /// </summary>
     public float minDamageScale;
 
+    /// <summary>
+    /// applied on hit
+    /// </summary>
+    public float maxMeterScaleOnHit;
+
     public GameAttackPropertiesProperties blockProperties;
     public GameAttackPropertiesProperties hitProperties;
 
@@ -209,6 +214,7 @@ public class GameAttackProperties
 
         damageScaleComboProration = 1f;
         minDamageScale = 0f;
+        maxMeterScaleOnHit = 1f;
 
         blockProperties = new GameAttackPropertiesProperties();
         hitProperties = new GameAttackPropertiesProperties();

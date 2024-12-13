@@ -726,6 +726,8 @@ public class BeeHeart : GameAttack
         properties.hitProperties.hardKD = true;
 
         properties.minDamageScale = AttackSettings.superMinScaling;
+        properties.maxMeterScaleOnHit = AttackSettings.superMaxMeterBuildOnHit;
+
 
         defaultLandingLag = 0.5f;
         hitLandingLag = 0.2f;

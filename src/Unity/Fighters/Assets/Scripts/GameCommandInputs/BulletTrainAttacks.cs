@@ -915,6 +915,8 @@ public class SuperGunShot : SuperGunStanceAttack
         properties.hitProperties.stunTime = AttackSettings.attackLevel4_hitstun;
 
         properties.minDamageScale = AttackSettings.superMinScaling;
+        properties.maxMeterScaleOnHit = AttackSettings.superMaxMeterBuildOnHit;
+
     }
 
     public override void OnStartup(FighterMain fighter)

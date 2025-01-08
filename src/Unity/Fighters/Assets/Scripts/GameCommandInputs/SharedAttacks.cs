@@ -1139,7 +1139,7 @@ public class Burst : GameAttack
 
     ForwardDiveRoll rollForward;
     BackDiveRoll rollBackward;
-    bool burstConnected;
+    bool burstHit;
     public Burst(ForwardDiveRoll rollForward, BackDiveRoll rollBackward) : base()
     {
         conditions.Add(new GestureCondition(this, new NoGesture()));
@@ -1193,19 +1193,13 @@ public class Burst : GameAttack
         fighter.PlayParryVFX();
 
         //fighter.OnHaltAllVelocity();
-        burstConnected = false;
+        burstHit = false;
     }
 
     public override void OnHit(FighterMain fighter, FighterMain otherFighter)
     {
         base.OnHit(fighter, otherFighter);
-        burstConnected = true;
-    }
-
-    public override void OnBlock(FighterMain fighter, FighterMain otherFighter)
-    {
-        base.OnBlock(fighter, otherFighter);
-        burstConnected = true;
+        burstHit = true;
     }
 
 
@@ -1218,7 +1212,7 @@ public class Burst : GameAttack
 
         var leftRight = fighter.inputReceiver.LeftRight;
 
-        if (leftRight != 0 && burstConnected)
+        if (leftRight != 0 && burstHit)
         {
             // burst roll out
 

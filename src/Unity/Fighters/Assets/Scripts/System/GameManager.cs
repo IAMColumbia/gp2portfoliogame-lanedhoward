@@ -271,6 +271,9 @@ public class GameManager : SoundPlayer
         player1Healthbar.UpdateHearts(player1lives);
         player2Healthbar.UpdateHearts(player2lives);
 
+        player1Healthbar.burst.SetActive(true);
+        player2Healthbar.burst.SetActive(true);
+
         player1Healthbar.InitializeEvents(player1);
         player2Healthbar.InitializeEvents(player2);
 
@@ -705,7 +708,6 @@ public class GameManager : SoundPlayer
         player1Healthbar.SetMaterial(configManager.gamePlayerConfigs[0].Character.materials[configManager.gamePlayerConfigs[0].CharacterMaterialIndex]);
         player1StocksDisplay.InitializeStocksDisplay(player1);
         player1StocksDisplay.SetMaterial(configManager.gamePlayerConfigs[0].Character.materials[configManager.gamePlayerConfigs[0].CharacterMaterialIndex]);
-        //player1.PausePressed += (sender, e) => PauseGame();
         player1.Walls = Walls;
         player1NotificationManager.SetupNotificationManager(player1);
 
@@ -716,7 +718,6 @@ public class GameManager : SoundPlayer
         player2Healthbar.SetMaterial(configManager.gamePlayerConfigs[1].Character.materials[configManager.gamePlayerConfigs[1].CharacterMaterialIndex]);
         player2StocksDisplay.InitializeStocksDisplay(player2);
         player2StocksDisplay.SetMaterial(configManager.gamePlayerConfigs[1].Character.materials[configManager.gamePlayerConfigs[1].CharacterMaterialIndex]);
-        //player2.PausePressed += (sender, e) => PauseGame();
         player2.Walls = Walls;
         player2NotificationManager.SetupNotificationManager(player2);
     }

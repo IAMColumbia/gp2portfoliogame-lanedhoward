@@ -92,6 +92,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     private float m_currentMeter;
 
     public float MeterPerDamage = 0.1f;
+    public bool HasBurst;
 
     [Header("Combo Values")]
     public float JuggleMomentumMultiplier = 0.2f;
@@ -225,6 +226,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public event EventHandler Blocked;
     public event EventHandler Parried;
     public event EventHandler ThrowTeched;
+    public event EventHandler SpentBurst;
+
     public class SuperPortraitEventArgs : EventArgs
     {
         public string SuperName;
@@ -254,6 +257,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
         isDead = false;
         disableGravity = false;
+        HasBurst = true;
 
         fighterRigidbody = GetComponent<Rigidbody2D>();
         fighterCollider = GetComponent<Collider2D>();
@@ -282,8 +286,6 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         currentCombo = new Combo();
 
         InitializeFacingDirection();
-        
-        
         
         
         neutral = new Neutral(this);
@@ -1397,5 +1399,11 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     public void SendNotification(string notification)
     {
         SentNotification?.Invoke(this, notification);
+    }
+
+    public void SpendBurst()
+    {
+        HasBurst = false;
+        SpentBurst?.Invoke(this, EventArgs.Empty);
     }
 }

@@ -6338,6 +6338,10 @@ PrefabInstance:
       propertyPath: superPortrait
       value: 
       objectReference: {fileID: 2065431771}
+    - target: {fileID: 1194939807469938934, guid: 98317d97a5d38934099afb97336c77db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 1296044793001729738, guid: 98317d97a5d38934099afb97336c77db, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 4
@@ -6457,6 +6461,10 @@ PrefabInstance:
     - target: {fileID: 6534433027166453123, guid: 98317d97a5d38934099afb97336c77db, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799097812276610460, guid: 98317d97a5d38934099afb97336c77db, type: 3}
+      propertyPath: spinRate
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 8582291755958084352, guid: 98317d97a5d38934099afb97336c77db, type: 3}
       propertyPath: m_AnchoredPosition.x

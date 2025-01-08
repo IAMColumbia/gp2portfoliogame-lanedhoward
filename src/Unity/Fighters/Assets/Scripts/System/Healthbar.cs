@@ -24,6 +24,8 @@ public class Healthbar : MonoBehaviour
 
     public SuperPortrait superPortrait;
 
+    public GameObject burst;
+
     // Update is called once per frame
     void Update()
     {
@@ -112,6 +114,12 @@ public class Healthbar : MonoBehaviour
         fighter.GotHit += Fighter_GotHit;
         fighter.LeftHitstun += Fighter_LeftHitstun;
         fighter.SuperPortraitStarted += superPortrait.StartSuperPortrait;
+        fighter.SpentBurst += Fighter_SpentBurst;
+    }
+
+    private void Fighter_SpentBurst(object sender, System.EventArgs e)
+    {
+        burst.SetActive(false);
     }
 
     private void Fighter_LeftHitstun(object sender, System.EventArgs e)

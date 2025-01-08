@@ -1124,18 +1124,28 @@ public class BackDiveRoll : ForwardDiveRoll
 
 public class Burst : GameAttack
 {
-    public float meterCost;
+
+    public class HasBurstCondition : GameAttackCondition
+    {
+        public HasBurstCondition(GameAttack _parent) : base(_parent)
+        {
+        }
+
+        public override bool CanExecute(GameMoveInput moveInput, FighterMain fighter)
+        {
+            return fighter.HasBurst;
+        }
+    }
+
     ForwardDiveRoll rollForward;
     BackDiveRoll rollBackward;
     bool burstConnected;
     public Burst(ForwardDiveRoll rollForward, BackDiveRoll rollBackward) : base()
     {
-        meterCost = 100f;
-
         conditions.Add(new GestureCondition(this, new NoGesture()));
         conditions.Add(new ButtonCondition(this, new SuperButton()));
         conditions.Add(new InHitstunCondition(this));
-        conditions.Add(new MeterCostCondition(this, meterCost));
+        conditions.Add(new HasBurstCondition(this));
 
         whiffSoundIndex = 13;
         hitSoundIndex = 3;
@@ -1177,7 +1187,9 @@ public class Burst : GameAttack
         base.OnStartup(fighter);
         fighter.isStrikeInvulnerable = true;
         fighter.isThrowInvulnerable = true;
-        fighter.CurrentMeter -= meterCost;
+
+        fighter.SpendBurst();
+
         fighter.PlayParryVFX();
 
         //fighter.OnHaltAllVelocity();

@@ -651,6 +651,8 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     }
     protected void OnSuperFlashStarted()
     {
+        if (currentState is IStunState || currentState is GetGrabbed) return;
+
         fighterAnimator.animator.updateMode = AnimatorUpdateMode.UnscaledTime;
         timeManager.StartSuperFlash();
         isStrikeInvulnerable = true;
@@ -981,7 +983,19 @@ public class FighterMain : SoundPlayer, IHitboxResponder
     private HitReport GetThrownWith(GameAttackProperties properties)
     {
         if (isThrowInvulnerable) return HitReport.Whiff;
-        
+
+        if (isCurrentlyAttacking)
+        {
+            if (currentAttack != null)
+            {
+                HitReport? attackReport = currentAttack.OnGetThrownDuring(this, properties);
+                if (attackReport != null)
+                {
+                    return (HitReport)attackReport;
+                }
+            }
+        }
+
         if (currentState is Hitstun)
         {
             if (properties.canGrabHitstun == false)

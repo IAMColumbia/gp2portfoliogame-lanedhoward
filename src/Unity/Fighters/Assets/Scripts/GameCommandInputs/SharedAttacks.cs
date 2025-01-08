@@ -55,7 +55,7 @@ public static class AttackSettings
 
         lightProration = 0.85f;
         throwProration = 0.6f;
-        superMinScaling = 0.33f;
+        superMinScaling = 0.38f;
         superMaxMeterBuildOnHit = 0f;
     }
 

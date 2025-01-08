@@ -879,6 +879,9 @@ public class SuperGunHolster : GameAttack
 
 public class SuperGunShot : SuperGunStanceAttack
 {
+    float baseDamage;
+    float lastHitDamage;
+    
     public SuperGunShot(GameAttack stance) : base(stance)
     {
         conditions.Add(new GestureCondition(this, new NoGesture()));
@@ -910,17 +913,20 @@ public class SuperGunShot : SuperGunStanceAttack
         properties.hitProperties.knockback.Set(-6f, 14f);
         properties.hitProperties.airKnockback.Set(-6f, 15f);
         properties.hitProperties.selfKnockback.Set(-4f, 0);
-        properties.hitProperties.damage = 400;
+        properties.hitProperties.damage = baseDamage;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel4_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel4_hitstun;
 
         properties.minDamageScale = AttackSettings.superMinScaling;
         properties.maxMeterScaleOnHit = AttackSettings.superMaxMeterBuildOnHit;
 
+        baseDamage = 350;
+        lastHitDamage = 600;
     }
 
     public override void OnStartup(FighterMain fighter)
     {
+        properties.hitProperties.damage = (fighter.GetStocks() > 1) ? baseDamage : lastHitDamage;
     }
 
     public override void OnActive(FighterMain fighter)

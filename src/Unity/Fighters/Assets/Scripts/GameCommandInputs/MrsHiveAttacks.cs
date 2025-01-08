@@ -816,7 +816,15 @@ public class BeeHeart : GameAttack
 
         return base.OnGetHitDuring(fighter, properties);
 
+    }
 
+    public override HitReport? OnGetThrownDuring(FighterMain fighter, GameAttackProperties properties)
+    {
+        fighter.disableGravity = false;
+
+
+
+        return base.OnGetThrownDuring(fighter, properties);
     }
 
     public override void OnHit(FighterMain fighter, FighterMain otherFighter)

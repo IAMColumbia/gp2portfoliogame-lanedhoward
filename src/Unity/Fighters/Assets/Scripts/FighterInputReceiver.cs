@@ -84,7 +84,7 @@ public class FighterInputReceiver : IInputReceiver
         //}
 
 
-        if (package.buttons.Count > 0 || package.gestures.Any(g => g is IStandaloneGesture))
+        if (package.buttons.Count > 0 && package.buttons.Any(b => b.State == IButton.ButtonState.Pressed))
         {
             bufferedInput = package;
             bufferedAttackTime = 0;
@@ -116,12 +116,33 @@ public class FighterInputReceiver : IInputReceiver
             }
             return null;
         }
-        
+
         NoGesture noGesture = new NoGesture();
 
         IGesture currentGesture = noGesture;
 
-        GameMoveInput currentMoveInput = new GameMoveInput(currentGesture, package.buttons[0]);
+        IButton currentButton = package.buttons.FirstOrDefault(b => b.State == IButton.ButtonState.Pressed);
+
+        if (package.buttons.Count > 1)
+        {
+            // 2 buttons, check for 2 button commands
+
+            // special + any attack button == super button
+
+            // any 2 attack buttons == super defense button
+
+            if (package.buttons.Where(b => b is AttackA || b is AttackB || b is AttackC).Count() >= 2)
+            {
+                currentButton = new SuperDefenseButton();
+            }
+            else if (package.buttons.Where(b => b is AttackA || b is AttackB || b is AttackC || b is SpecialButton).Count() >= 2)
+            {
+                currentButton = new SuperButton();
+            }
+
+        }
+
+        GameMoveInput currentMoveInput = new GameMoveInput(currentGesture, currentButton);
 
 
         for (int i = 0; i < package.gestures.Count; i++)

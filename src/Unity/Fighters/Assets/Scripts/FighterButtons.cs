@@ -59,3 +59,11 @@ public class SuperButton : Button
         Priority = 150;
     }
 }
+
+public class SuperDefenseButton : Button
+{
+    public SuperDefenseButton()
+    {
+        Priority = 130;
+    }
+}

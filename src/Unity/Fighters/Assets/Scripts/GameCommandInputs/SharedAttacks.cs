@@ -1054,9 +1054,9 @@ public class ForwardDiveRoll : GameAttack
         conditions.Add(new LogicalOrCondition(this,
             new GestureCondition(this, new ForwardGesture()),
             new GestureCondition(this, new DownForwardGesture())));
-        conditions.Add(new ButtonCondition(this, new SuperButton()));
+        conditions.Add(new ButtonCondition(this, new SuperDefenseButton()));
         conditions.Add(new GroundedCondition(this, true));
-        conditions.Add(new NoGatlingCondition(this));
+        conditions.Add(new GatlingCondition(this));
         conditions.Add(new MeterCostCondition(this, meterCost));
 
         whiffSoundIndex = 0;
@@ -1112,9 +1112,9 @@ public class BackDiveRoll : ForwardDiveRoll
         conditions.Add(new LogicalOrCondition(this,
             new GestureCondition(this, new BackGesture()),
             new GestureCondition(this, new DownBackGesture())));
-        conditions.Add(new ButtonCondition(this, new SuperButton()));
+        conditions.Add(new ButtonCondition(this, new SuperDefenseButton()));
         conditions.Add(new GroundedCondition(this, true));
-        conditions.Add(new NoGatlingCondition(this));
+        conditions.Add(new GatlingCondition(this));
         conditions.Add(new MeterCostCondition(this, meterCost));
 
         whiffSoundIndex = 0;
@@ -1149,7 +1149,7 @@ public class Burst : GameAttack
     public Burst(ForwardDiveRoll rollForward, BackDiveRoll rollBackward) : base()
     {
         conditions.Add(new GestureCondition(this, new NoGesture()));
-        conditions.Add(new ButtonCondition(this, new SuperButton()));
+        conditions.Add(new ButtonCondition(this, new SuperDefenseButton()));
         conditions.Add(new InHitstunCondition(this));
         conditions.Add(new HasBurstCondition(this));
 

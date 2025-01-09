@@ -64,16 +64,22 @@ public class FighterInputHost : IInputHost
         AddButtonToHostPackage<AttackD>(p, attackD);
         AddButtonToHostPackage<DashMacro>(p, dashMacro);
         AddButtonToHostPackage<SpecialButton>(p, specialButton);
-        AddButtonToHostPackage<SuperButton>(p, superButton);
+        //AddButtonToHostPackage<SuperButton>(p, superButton);
 
         return p;
     }
 
     private void AddButtonToHostPackage<ButtonType>(HostPackage p, InputAction inputAction) where ButtonType: IButton, new()
     {
-        if (inputAction.triggered)
+        if (inputAction.WasPressedThisFrame())
         {
             p.Buttons.Add(new ButtonType() { State = IButton.ButtonState.Pressed });
+            return;
+        }
+        if (inputAction.IsPressed())
+        {
+            p.Buttons.Add(new ButtonType() { State = IButton.ButtonState.Held });
+            return;
         }
     }
 

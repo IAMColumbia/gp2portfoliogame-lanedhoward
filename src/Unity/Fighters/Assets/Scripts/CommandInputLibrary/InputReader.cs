@@ -1,4 +1,5 @@
 ﻿using CommandInputReaderLibrary;
+using CommandInputReaderLibrary.Gestures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,7 @@ namespace CommandInputReaderLibrary
         public static float MaxTimeBetweenChargeAndRelease = 16;
         public static float MaxTimeAfterRelease = 8;
 
+        public static float MaxTimeBetweenTwoButtonCommands = 3;
 
         public InputReader(IInputHost host)
         {
@@ -102,7 +104,16 @@ namespace CommandInputReaderLibrary
                 {
                     foreach (var b in lastInput.Buttons)
                     {
-                        buttons.Add(b);
+                        if (b.State == IButton.ButtonState.Pressed)
+                        {
+                            buttons.Add(b);
+                        }
+
+                        if (b.State == IButton.ButtonState.Held)
+                        {
+                            // how recently was it pressed?
+                            if (IsValidHeldButton(b, Time)) buttons.Add(b);
+                        }
                     }
                 }
 
@@ -152,6 +163,33 @@ namespace CommandInputReaderLibrary
         {
             List<IReadableGesture> foundGestures = ReadAllGestures();
             bufferedInput.gestures = foundGestures;
+        }
+
+        public bool IsValidHeldButton(IButton button, float currentTime)
+        {
+            for (int i = inputs.Count - 1; i > 0; i--) // start at most recent input and go backwards
+            {
+                ReadablePackage package = inputs[i];
+
+                bool thisIsTheLastInputWeShouldCheck = (currentTime - package.TimeReceived > MaxTimeBetweenTwoButtonCommands);
+
+                if (thisIsTheLastInputWeShouldCheck) break;
+
+                IButton packageButton = package.Buttons.First(b => b.GetType() == button.GetType());
+
+                if (packageButton != null)
+                {
+                    if (packageButton.State == IButton.ButtonState.Pressed)
+                    {
+                        return true;
+                    }
+
+                }
+
+            }
+
+            // if we made it through the whole loop without returning, assume the button has been held too long
+            return false;
         }
     }
 }

@@ -471,11 +471,27 @@ public class FighterMain : SoundPlayer, IHitboxResponder
                 break;
         }
 
-        if (canAct && inputReceiver.bufferedInput != null)
+        if (inputReceiver.bufferedInput != null)
         {
-            TryExecuteBufferedInput();
-            
+            if (canAct)
+            {
+                TryExecuteBufferedInput();
+                return;
+            }
+
+            if (inputReceiver.bufferedInput.buttons.Count > 1)
+            {
+                // just started an attack, try kara cancel
+                if (currentState is AttackState && currentState.stateTimer <= 4f/60f)
+                {
+                    TryExecuteBufferedInput();
+                    return;
+                }
+            }
         }
+
+
+        
     }
 
     public bool TryExecuteBufferedInput()

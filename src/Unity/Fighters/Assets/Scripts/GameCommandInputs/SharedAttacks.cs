@@ -1050,7 +1050,10 @@ public class ForwardDiveRoll : GameAttack
     public ForwardDiveRoll() : base()
     {
         meterCost = 100f;
-        conditions.Add(new GestureCondition(this, new ForwardGesture()));
+        //conditions.Add(new GestureCondition(this, new ForwardGesture()));
+        conditions.Add(new LogicalOrCondition(this,
+            new GestureCondition(this, new ForwardGesture()),
+            new GestureCondition(this, new DownForwardGesture())));
         conditions.Add(new ButtonCondition(this, new SuperButton()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new NoGatlingCondition(this));
@@ -1105,7 +1108,10 @@ public class BackDiveRoll : ForwardDiveRoll
     public BackDiveRoll() : base()
     {
         conditions.Clear();
-        conditions.Add(new GestureCondition(this, new BackGesture()));
+        //conditions.Add(new GestureCondition(this, new BackGesture()));
+        conditions.Add(new LogicalOrCondition(this,
+            new GestureCondition(this, new BackGesture()),
+            new GestureCondition(this, new DownBackGesture())));
         conditions.Add(new ButtonCondition(this, new SuperButton()));
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new NoGatlingCondition(this));

@@ -523,7 +523,10 @@ public class GunSpinForward : GunStanceAttack
     Vector2 velocity;
     public GunSpinForward(GameAttack stance) : base(stance)
     {
-        conditions.Add(new GestureCondition(this, new ForwardOrNeutralGesture()));
+        //conditions.Add(new GestureCondition(this, new ForwardOrNeutralGesture()));
+        conditions.Add(new LogicalOrCondition(this,
+            new GestureCondition(this, new ForwardOrNeutralGesture()),
+            new GestureCondition(this, new DownForwardGesture())));
         conditions.Add(new ButtonCondition(this, new DashMacro()));
         conditions.Add(new GroundedCondition(this, true));
         //conditions.Add(new FollowUpCondition(this, typeof(GunStanceAttack)));
@@ -562,7 +565,10 @@ public class GunSpinBackward : GunStanceAttack
     Vector2 velocity;
     public GunSpinBackward(GameAttack stance) : base(stance)
     {
-        conditions.Add(new GestureCondition(this, new BackGesture()));
+        //conditions.Add(new GestureCondition(this, new BackGesture()));
+        conditions.Add(new LogicalOrCondition(this,
+            new GestureCondition(this, new BackGesture()),
+            new GestureCondition(this, new DownBackGesture())));
         conditions.Add(new ButtonCondition(this, new DashMacro()));
         conditions.Add(new GroundedCondition(this, true));
         //conditions.Add(new FollowUpCondition(this, typeof(GunStanceAttack)));
@@ -758,19 +764,18 @@ public class SuperGunStance : GameAttack
 }
 
 
-public interface ISuperGunSpinParent { }
-
-public class SuperGunSpinForward : SuperGunStanceAttack, ISuperGunSpinParent
+public class SuperGunSpinForward : SuperGunStanceAttack
 {
     Vector2 velocity;
     public SuperGunSpinForward(GameAttack stance) : base(stance)
     {
-        conditions.Add(new GestureCondition(this, new ForwardOrNeutralGesture()));
+        //conditions.Add(new GestureCondition(this, new ForwardOrNeutralGesture()));
+        conditions.Add(new LogicalOrCondition(this,
+            new GestureCondition(this, new ForwardOrNeutralGesture()),
+            new GestureCondition(this, new DownForwardGesture())));
         conditions.Add(new ButtonCondition(this, new DashMacro()));
         conditions.Add(new GroundedCondition(this, true));
-        conditions.Add(new LogicalOrCondition(this,
-            new FollowUpCondition(this, typeof(SuperGunStance)),
-            new FollowUpCondition(this, typeof(ISuperGunSpinParent))));
+        conditions.Add(new FollowUpCondition(this, typeof(SuperGunStance)));
 
         whiffSoundIndex = 2;
 
@@ -798,17 +803,18 @@ public class SuperGunSpinForward : SuperGunStanceAttack, ISuperGunSpinParent
     }
 }
 
-public class SuperGunSpinBackward : SuperGunStanceAttack, ISuperGunSpinParent
+public class SuperGunSpinBackward : SuperGunStanceAttack
 {
     Vector2 velocity;
     public SuperGunSpinBackward(GameAttack stance) : base(stance)
     {
-        conditions.Add(new GestureCondition(this, new BackGesture()));
+        //conditions.Add(new GestureCondition(this, new BackGesture()));
+        conditions.Add(new LogicalOrCondition(this,
+            new GestureCondition(this, new BackGesture()),
+            new GestureCondition(this, new DownBackGesture())));
         conditions.Add(new ButtonCondition(this, new DashMacro()));
         conditions.Add(new GroundedCondition(this, true));
-        conditions.Add(new LogicalOrCondition(this,
-            new FollowUpCondition(this, typeof(SuperGunStance)),
-            new FollowUpCondition(this, typeof(ISuperGunSpinParent))));
+        conditions.Add(new FollowUpCondition(this, typeof(SuperGunStance)));
 
         whiffSoundIndex = 2;
 

@@ -145,6 +145,7 @@
     <Compile Include="Assets\Scripts\FighterStates\Getup.cs" />
     <Compile Include="Assets\Scripts\CharacterModule.cs" />
     <Compile Include="Assets\Scripts\System\CharacterSelect\SpawnPlayerSetupMenu.cs" />
+    <Compile Include="Assets\UISpinner.cs" />
     <Compile Include="Assets\Scripts\CharacterModules\MrsHiveModule.cs" />
     <Compile Include="Assets\Scripts\CommandInputLibrary\Button.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\GameMoveInputs.cs" />
@@ -186,7 +187,6 @@
     <Compile Include="Assets\Scripts\WallBounceReceiver.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
     <Compile Include="Assets\Scripts\System\CharacterSelect\V2\HelpButton.cs" />
-    <Compile Include="Assets\UISpinner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Art\Sprites\ui\command input sprites.txt" />

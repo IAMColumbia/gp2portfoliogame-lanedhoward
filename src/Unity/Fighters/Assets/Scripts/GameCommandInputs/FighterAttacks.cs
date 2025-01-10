@@ -683,9 +683,8 @@ public class SelfieGrabWhiff : ThrowAttack
     public override void OnSuperFlashStarted(FighterMain fighter)
     {
         fighter.CurrentMeter -= meterCost;
-        fighter.StartSuperPortrait("For The Fans");
+        fighter.StartSuperPortrait("For The Fans!!");
         fighter.DoSuperFX();
-        base.OnSuperFlashStarted(fighter);
     }
 
     public override void OnStartup(FighterMain fighter)
@@ -722,6 +721,12 @@ public class SelfieGrabSuccess : ThrowAttackSuccess
         properties.minDamageScale = AttackSettings.superMinScaling;
         properties.maxMeterScaleOnHit = AttackSettings.superMaxMeterBuildOnHit;
     }
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+        fighter.PlaySound(fighter.whiffSounds[21]);
+
+    }
 }
 
 public class EnhancedSelfieGrabWhiff : SelfieGrabWhiff
@@ -742,6 +747,13 @@ public class EnhancedSelfieGrabWhiff : SelfieGrabWhiff
         fighter.PlayGriddyVFX();
 
     }
+
+    public override void OnSuperFlashStarted(FighterMain fighter)
+    {
+        fighter.CurrentMeter -= meterCost;
+        fighter.StartSuperPortrait("Going Viral!!!");
+        fighter.DoSuperFX();
+    }
 }
 
 public class EnhancedSelfieGrabSuccess : ThrowAttackSuccess
@@ -758,7 +770,7 @@ public class EnhancedSelfieGrabSuccess : ThrowAttackSuccess
 
         properties.attackType = GameAttackProperties.AttackType.Super;
 
-        properties.hitProperties.knockback.Set(-13f, 15f);
+        properties.hitProperties.knockback.Set(-13f, 11f);
         properties.hitProperties.selfKnockback.Set(-3f, 0);
         properties.hitProperties.damage = lastHitDamage;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel4_hithitstop;
@@ -783,7 +795,8 @@ public class EnhancedSelfieGrabSuccess : ThrowAttackSuccess
     public override void OnActive(FighterMain fighter)
     {
         hits++;
-        fighter.PlaySound(fighter.hitSounds[4]);
+        fighter.PlaySound(fighter.hitSounds[4]); //griddy airhorn
+        fighter.PlaySound(fighter.whiffSounds[21]); // camera shutter
 
         if (hits == 3)
         {

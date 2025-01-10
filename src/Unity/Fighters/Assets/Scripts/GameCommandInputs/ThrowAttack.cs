@@ -105,9 +105,10 @@ public class ThrowAttackSuccess : GameAttack
 
         base.OnHit(fighter, fighter.otherFighterMain);
 
-        // meter
-        var cc = fighter.otherFighterMain.currentCombo;
-        float meterScale = cc.currentlyGettingComboed ? cc.damageScale : 1;
+        //meter
+        var cc = fighter.currentCombo;
+        float meterScale = cc.currentlyGettingComboed ? Mathf.Clamp(cc.damageScale, 0.35f, 0.7f) : 0.7f;
+        meterScale = Mathf.Min(meterScale, properties.maxMeterScaleOnHit);
         float meterGain = meterScale * properties.hitProperties.damage * fighter.MeterPerDamage;
         fighter.CurrentMeter += meterGain;
 

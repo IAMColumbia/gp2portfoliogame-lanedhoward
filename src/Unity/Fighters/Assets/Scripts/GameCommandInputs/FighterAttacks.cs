@@ -770,7 +770,7 @@ public class EnhancedSelfieGrabSuccess : ThrowAttackSuccess
 
         properties.attackType = GameAttackProperties.AttackType.Super;
 
-        properties.hitProperties.knockback.Set(-13f, 11f);
+        properties.hitProperties.knockback.Set(-13f, 12f);
         properties.hitProperties.selfKnockback.Set(-3f, 0);
         properties.hitProperties.damage = lastHitDamage;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel4_hithitstop;

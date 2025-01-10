@@ -181,6 +181,7 @@ public class GameAttackProperties
     // grab-specific properties
     public FighterStance stanceToBeGrabbed;
     public bool canGrabHitstun;
+    public bool canGrabAnyHitstunStance;
 
     public bool landCancelStartup;
     public bool landCancelActive;
@@ -217,6 +218,7 @@ public class GameAttackProperties
 
         stanceToBeGrabbed = FighterStance.Standing;
         canGrabHitstun = false;
+        canGrabAnyHitstunStance = false;
 
         landCancelStartup = true;
         landCancelActive = true;

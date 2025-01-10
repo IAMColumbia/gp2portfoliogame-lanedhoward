@@ -45,6 +45,9 @@ public static class FighterAttacks
                 new Burst(new ForwardDiveRoll(), new BackDiveRoll()),
                 new ForwardDiveRoll(),
                 new BackDiveRoll(),
+                new SelfieGrabWhiff(new SelfieGrabSuccess()),
+                new EnhancedSelfieGrabWhiff(new EnhancedSelfieGrabSuccess()),
+
             };
         return attacks;
     }
@@ -647,5 +650,191 @@ public class EnhancedFireballStomp : FireballStomp
     {
         base.OnHit(fighter, otherFighter);
         fighter.PlaySound(fighter.hitSounds[4]);
+    }
+}
+
+public class SelfieGrabWhiff : ThrowAttack
+{
+    protected float meterCost;
+    public SelfieGrabWhiff(ThrowAttackSuccess _success) : base(_success)
+    {
+        meterCost = 200;
+        conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new ButtonCondition(this, new SuperButton()));
+        conditions.Add(new GatlingCondition(this));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new MeterCostCondition(this, meterCost));
+
+
+        whiffSoundIndex = 1;
+        hitSoundIndex = 1;
+
+        properties.AnimationName = "SelfieGrabWhiff";
+
+        properties.stanceToBeGrabbed = FighterStance.Standing;
+        properties.canGrabHitstun = true;
+        properties.canGrabAnyHitstunStance = true;
+
+        canBeTeched = false;
+        canTech = false;
+        canChicagoPunish = false;
+    }
+
+    public override void OnSuperFlashStarted(FighterMain fighter)
+    {
+        fighter.CurrentMeter -= meterCost;
+        fighter.StartSuperPortrait("For The Fans");
+        fighter.DoSuperFX();
+        base.OnSuperFlashStarted(fighter);
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        fighter.isStrikeInvulnerable = true;
+        fighter.isThrowInvulnerable = true;
+
+    }
+}
+
+public class SelfieGrabSuccess : ThrowAttackSuccess
+{
+    public SelfieGrabSuccess() : base()
+    {
+        properties.AnimationName = "SelfieGrabHit";
+
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[2];
+        whiffSoundIndex = 1;
+        hitSoundIndex = 3;
+
+        properties.attackType = GameAttackProperties.AttackType.Super;
+
+        properties.hitProperties.knockback.Set(-11f, 9f);
+        properties.hitProperties.selfKnockback.Set(-3f, 0);
+        properties.hitProperties.damage = 1100f;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel4_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel4_hitstun;
+        properties.hitProperties.hardKD = true;
+        properties.hitProperties.groundBounceOnAirHit = false;
+        properties.hitProperties.wallBounce = false;
+
+        properties.minDamageScale = AttackSettings.superMinScaling;
+        properties.maxMeterScaleOnHit = AttackSettings.superMaxMeterBuildOnHit;
+    }
+}
+
+public class EnhancedSelfieGrabWhiff : SelfieGrabWhiff
+{
+    public EnhancedSelfieGrabWhiff(ThrowAttackSuccess _success) : base(_success)
+    {
+        conditions.Clear();
+        conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new ButtonCondition(this, new SuperButton()));
+        conditions.Add(new FollowUpCondition(this, typeof(GriddyAttack)));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new MeterCostCondition(this, meterCost));
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        fighter.PlayGriddyVFX();
+
+    }
+}
+
+public class EnhancedSelfieGrabSuccess : ThrowAttackSuccess
+{
+    int hits;
+    float normalHitDamage;
+    float lastHitDamage;
+    public EnhancedSelfieGrabSuccess() : base()
+    {
+        properties.AnimationName = "EnhancedSelfieGrabHit";
+
+        whiffSoundIndex = 1;
+        hitSoundIndex = 3;
+
+        properties.attackType = GameAttackProperties.AttackType.Super;
+
+        properties.hitProperties.knockback.Set(-13f, 15f);
+        properties.hitProperties.selfKnockback.Set(-3f, 0);
+        properties.hitProperties.damage = lastHitDamage;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel4_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel4_hitstun;
+        properties.hitProperties.hardKD = false;
+        properties.hitProperties.groundBounceOnAirHit = false;
+        properties.hitProperties.wallBounce = false;
+
+        properties.minDamageScale = AttackSettings.superMinScaling;
+        properties.maxMeterScaleOnHit = AttackSettings.superMaxMeterBuildOnHit;
+
+        lastHitDamage = 1100f;
+        normalHitDamage = 300f;
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+        hits = 0;
+    }
+
+    public override void OnActive(FighterMain fighter)
+    {
+        hits++;
+        fighter.PlaySound(fighter.hitSounds[4]);
+
+        if (hits == 3)
+        {
+            properties.hitProperties.damage = lastHitDamage;
+            base.OnActive(fighter);
+            return;
+        }
+
+        // first 2 hits
+
+        // throw success on active is basically base onhit
+
+        base.OnHit(fighter, fighter.otherFighterMain);
+
+        if (!fighter.otherFighterMain.currentCombo.currentlyGettingComboed)
+        {
+            fighter.otherFighterMain.currentCombo.ResetCombo();
+            fighter.otherFighterMain.currentCombo.currentlyGettingComboed = true;
+        }
+
+        fighter.otherFighterMain.currentCombo.AddHit();
+
+        float enemyStartHp = fighter.otherFighterMain.CurrentHealth;
+
+        float hitDamage = Mathf.Ceil(normalHitDamage * fighter.otherFighterMain.currentCombo.damageScale);
+
+        float effectiveDamage;
+
+        if (enemyStartHp <= hitDamage)
+        {
+            effectiveDamage = Mathf.Max(enemyStartHp * 0.45f, 0);
+        }
+        else
+        {
+            effectiveDamage = hitDamage;
+        }
+
+        //fighter.otherFighterMain.GetHitWith(this.properties);
+
+        fighter.otherFighterMain.CurrentHealth -= effectiveDamage;
+        fighter.otherFighterMain.currentCombo.totalDamage += hitDamage;
+
+        Vector3 hitlocation = fighter.otherFighter.transform.position + (Vector3)fighter.otherFighterMain.centerOffset;
+        fighter.PlayHitVFX(hitlocation, properties);
+
+        fighter.otherFighterMain.SendGotHitEvent();
+
+        //if (enemyStartHp > 0 && fighter.otherFighterMain.CurrentHealth <= 0)
+        //{
+        //    fighter.PlayKillHitVFX(hitlocation, properties);
+        //}
+
     }
 }

@@ -829,7 +829,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
 
                 //meter
                 var cc = hurtbox.fighterParent.currentCombo;
-                float meterScale = cc.currentlyGettingComboed ? Mathf.Min(cc.damageScale, 0.7f) : 0.7f;
+                float meterScale = cc.currentlyGettingComboed ? Mathf.Clamp(cc.damageScale, 0.35f, 0.7f) : 0.7f;
                 meterScale = Mathf.Min(meterScale, currentAttack.properties.maxMeterScaleOnHit);
                 float meterGain = meterScale * pp.damage * MeterPerDamage;
                 CurrentMeter += meterGain;
@@ -1012,8 +1012,11 @@ public class FighterMain : SoundPlayer, IHitboxResponder
             }
         }
 
+        bool grabbingHitstun = false;
+
         if (currentState is Hitstun)
         {
+            grabbingHitstun = true;
             if (properties.canGrabHitstun == false)
             {
                 return HitReport.Whiff;
@@ -1034,9 +1037,18 @@ public class FighterMain : SoundPlayer, IHitboxResponder
                 }
             }
         }
+        //else if (properties.canGrabHitstun)
+        //{
+        //    // dont let 2 combo grabs in a combo even if the first one hit raw
+        //    currentCombo.hasUsedComboGrab = true;
+
+        //}
+
+
 
         if (isGrounded && currentState.jumpsEnabled && hasJumpInput) return HitReport.Whiff; 
-        if ((properties.stanceToBeGrabbed == FighterStance.Air) != (currentStance == FighterStance.Air)) return HitReport.Whiff;
+        if (((properties.stanceToBeGrabbed == FighterStance.Air) != (currentStance == FighterStance.Air)) 
+            && !(grabbingHitstun && properties.canGrabAnyHitstunStance)) return HitReport.Whiff;
 
         if (isCurrentlyAttacking && currentAttack is ThrowAttack currentThrow && currentAttackState != CurrentAttackState.Recovery)
         {
@@ -1146,6 +1158,12 @@ public class FighterMain : SoundPlayer, IHitboxResponder
             }
         }
         return false;
+    }
+
+    public void SendGotHitEvent()
+    {
+        GotHit?.Invoke(this, EventArgs.Empty);
+
     }
 
     /// <summary>

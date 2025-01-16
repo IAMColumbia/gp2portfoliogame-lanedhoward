@@ -42,6 +42,7 @@ public static class BlackhandAttacks
                 new Burst(new ForwardDiveRoll(), new BackDiveRoll()),
                 new ForwardDiveRoll(),
                 new BackDiveRoll(),
+                new SharkCharge(new SharkChargeImpact()),
             };
         return attacks;
     }
@@ -374,21 +375,175 @@ public class FishingAirSuccess : ThrowAttackSuccess
 
     }
 
-    public override void OnAnimationEnd(FighterMain fighter)
+}
+
+public class SharkCharge : GameAttack
+{
+    Vector2 velocity = new Vector2(30f, 0f);
+    float meterCost;
+
+    int armorHits;
+    int armorHitsMax;
+
+    GameAttack impact;
+
+    public SharkCharge(GameAttack impact) : base()
     {
-        base.OnAnimationEnd(fighter);
+        this.impact = impact;
+        meterCost = 200;
 
-        // manually apply self knockback
-        // todo: make it apply combo scaling so you get pushed further later in the combo?
+        armorHitsMax = 3;
 
-        //Vector2 kb = properties.hitProperties.selfKnockback;
+        conditions.Add(new GestureCondition(this, new NoGesture()));
+        conditions.Add(new ButtonCondition(this, new SuperButton()));
+        conditions.Add(new GatlingCondition(this));
+        conditions.Add(new GroundedCondition(this, true));
+        conditions.Add(new MeterCostCondition(this, meterCost));
 
-        //if (fighter.otherFighterMain.isAtTheWall)
+        //whiffSound = fighter.whiffSounds[0];
+        //hitSound = fighter.hitSounds[3];
+        whiffSoundIndex = 2;
+        hitSoundIndex = 3;
+
+        properties.AnimationName = "SharkCharge";
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Super;
+        properties.attackStance = FighterStance.Standing;
+
+        properties.blockProperties.knockback.Set(-4.5f, 0);
+        properties.blockProperties.airKnockback.Set(-6f, 4f);
+        properties.blockProperties.selfKnockback.Set(-4f, 0);
+        properties.blockProperties.damage = 200f;
+        properties.blockProperties.hitstopTime = AttackSettings.attackLevel4_blockhitstop;
+        properties.blockProperties.stunTime = AttackSettings.attackLevel4_blockstun;
+
+        properties.hitProperties.knockback.Set(-9f, 15f);
+        properties.hitProperties.airKnockback.Set(-9f, 15f);
+        properties.hitProperties.selfKnockback.Set(-6f, 0);
+        properties.hitProperties.damage = 1350f;
+        properties.hitProperties.hitstopTime = AttackSettings.attackLevel4_hithitstop;
+        properties.hitProperties.stunTime = AttackSettings.attackLevel4_hitstun;
+        properties.hitProperties.hardKD = true;
+
+        properties.minDamageScale = AttackSettings.superMinScaling;
+        properties.maxMeterScaleOnHit = AttackSettings.superMaxMeterBuildOnHit;
+
+
+
+    }
+
+    public override void OnStartup(FighterMain fighter)
+    {
+        base.OnStartup(fighter);
+
+        fighter.CurrentMeter -= meterCost;
+        armorHits = armorHitsMax;
+
+    }
+
+    public override void OnSuperFlashStarted(FighterMain fighter)
+    {
+        fighter.StartSuperPortrait("Shark Charge");
+        fighter.DoSuperFX();
+        base.OnSuperFlashStarted(fighter);
+    }
+
+    public override void OnSuperFlashEnded(FighterMain fighter)
+    {
+        base.OnSuperFlashEnded(fighter);
+        //fighter.OnHaltAllVelocity();
+
+        //fighter.disableGravity = true;
+
+    }
+
+    // active will be called for each hitbox
+    public override void OnActive(FighterMain fighter)
+    {
+        base.OnActive(fighter);
+
+        fighter.OnVelocityImpulseRelativeToSelf(velocity);
+        //fighter.OnHaltAllVelocity();
+
+        //int forwardBack = fighter.inputReceiver.LeftRight;
+        //if (fighter.facingDirection == CommandInputReaderLibrary.Directions.FacingDirection.LEFT)
         //{
-        //    kb.x += properties.hitProperties.knockback.x / 1.5f;
+        //    forwardBack *= -1;
         //}
 
-        //fighter.OnVelocityImpulseRelativeToOtherFighter(kb);
+        //fighter.OnVelocityImpulseRelativeToSelf(new Vector2(
+        //    velocity.x * forwardBack,
+        //    velocity.y * fighter.inputReceiver.UpDown));
 
+    }
+
+    public override HitReport? OnGetHitDuring(FighterMain fighter, GameAttackProperties properties)
+    {
+        if (fighter.currentAttackState == CurrentAttackState.Recovery)
+        {
+            return base.OnGetHitDuring(fighter, properties);
+        }
+
+        if (armorHits > 0)
+        {
+            // armor the hit
+            fighter.SendNotification("Armor!");
+            fighter.timeManager.DoHitStop(properties.hitProperties.hitstopTime);
+            fighter.CurrentHealth -= properties.hitProperties.damage / 3;
+            armorHits -= 1;
+
+            return HitReport.Hit;
+        }
+
+        //fighter.disableGravity = false;
+
+        return base.OnGetHitDuring(fighter, properties);
+
+    }
+
+    public override HitReport? OnGetThrownDuring(FighterMain fighter, GameAttackProperties properties)
+    {
+        //fighter.disableGravity = false;
+
+
+
+        return base.OnGetThrownDuring(fighter, properties);
+    }
+
+    public override void OnHit(FighterMain fighter, FighterMain otherFighter)
+    {
+        base.OnHit(fighter, otherFighter);
+        //fighter.OnHaltAllVelocity();
+        fighter.SetCurrentAttack(impact);
+
+    }
+
+    public override void OnBlock(FighterMain fighter, FighterMain otherFighter)
+    {
+        base.OnBlock(fighter, otherFighter);
+        //fighter.OnHaltAllVelocity();
+        fighter.SetCurrentAttack(impact);
+
+    }
+
+    public override void OnRecovery(FighterMain fighter)
+    {
+        //fighter.disableGravity = false;
+        base.OnRecovery(fighter);
+    }
+}
+
+public class SharkChargeImpact : GameAttack
+{
+    public SharkChargeImpact()
+    {
+        properties.AnimationName = "SharkChargeImpact";
+
+        whiffSoundIndex = -1;
+
+        properties.blockType = GameAttackProperties.BlockType.Mid;
+        properties.attackType = GameAttackProperties.AttackType.Super;
+        properties.attackStance = FighterStance.Standing;
     }
 }

@@ -421,7 +421,7 @@ public class SharkCharge : GameAttack
         properties.hitProperties.knockback.Set(-9f, 15f);
         properties.hitProperties.airKnockback.Set(-9f, 15f);
         properties.hitProperties.selfKnockback.Set(-6f, 0);
-        properties.hitProperties.damage = 1350f;
+        properties.hitProperties.damage = 1000f;
         properties.hitProperties.hitstopTime = AttackSettings.attackLevel4_hithitstop;
         properties.hitProperties.stunTime = AttackSettings.attackLevel4_hitstun;
         properties.hitProperties.hardKD = true;

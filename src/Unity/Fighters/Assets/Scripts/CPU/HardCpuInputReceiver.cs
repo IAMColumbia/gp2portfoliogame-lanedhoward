@@ -34,7 +34,7 @@ public class HardCpuInputReceiver : FighterInputReceiver
         fighter.AttackInRecovery += Fighter_AttackInRecovery;
         fighter.AttackActive += Fighter_AttackActive;
         fighter.HitConnected += Fighter_HitConnected;
-        fighter.GotHit += StopCombo;
+        fighter.GotHit += Fighter_GotHit;
         fighter.Blocked += StopCombo;
         fighter.ThrowTeched += StopCombo;
         fighter.Parried += Fighter_Parried;
@@ -67,6 +67,27 @@ public class HardCpuInputReceiver : FighterInputReceiver
             { 1, 9 }
         };
 
+    }
+
+    private void Fighter_GotHit(object sender, EventArgs e)
+    {
+        StopCombo(sender, e);
+        // random burst
+        if (fighter.HasBurst)
+        {
+            if (RandomMethods.RANDOM.Next(3) == 0)
+            {
+                IReadPackage package = new ReadPackage(null, 
+                    new List<IReadableGesture>() { new NoGesture()},
+                    new List<IButton>() { new SuperDefenseButton() },
+                    0);
+
+
+                bufferedInput = package;
+                bufferedAttackTime = 0;
+                timesPressedAtComboIndex = 0;
+            }
+        }
     }
 
     // some/many attacks that dont need to connect are cancellable starting in their active frames

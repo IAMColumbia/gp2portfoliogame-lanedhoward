@@ -636,6 +636,23 @@ public class BulletTrainModule : CharacterModule
                     new CpuMove(new NoGesture(), new AttackC(), true),
                 }
             },
+            new CpuCombo()
+            {
+                weight = 500,
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, true),
+                    new MeterCostCondition(null, 200f)
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new NoGesture(), new SuperButton(), false),
+                    new CpuMove(new NoGesture(), new AttackC(), true),
+                    new CpuMove(new NoGesture(), new AttackC(), true),
+                    new CpuMove(new NoGesture(), new AttackC(), true),
+                    new CpuMove(new NoGesture(), new AttackC(), true),
+                }
+            },
         };
 
         combos.AddRange(baseCombos);

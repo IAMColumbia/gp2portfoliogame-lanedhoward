@@ -276,6 +276,86 @@ public class FighterModule : CharacterModule
                     new CpuMove(new ForwardGesture(), new AttackA(), false)
                 }
             },
+            new CpuCombo()
+            {
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, true),
+                    new MeterCostCondition(null, 200f)
+
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new NoGesture(), new AttackA(), true),
+                    new CpuMove(new NoGesture(), new AttackB(), true),
+                    new CpuMove(new NoGesture(), new AttackC(), true),
+                    new CpuMove(new NoGesture(), new SuperButton(), true)
+                }
+            },
+            new CpuCombo()
+            {
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, true),
+                    new MeterCostCondition(null, 200f)
+
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new CrouchGesture(), new AttackA(), true),
+                    new CpuMove(new CrouchGesture(), new AttackB(), true),
+                    new CpuMove(new CrouchGesture(), new AttackC(), true),
+                    new CpuMove(new NoGesture(), new SuperButton(), true)
+                }
+            },
+            new CpuCombo()
+            {
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, true),
+                    new MeterCostCondition(null, 200f)
+
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new CrouchGesture(), new AttackA(), true),
+                    new CpuMove(new CrouchGesture(), new AttackB(), true),
+                    new CpuMove(new CrouchGesture(), new AttackC(), true),
+                    new CpuMove(new QuarterCircleForward(), new AttackA(), false),
+                    new CpuMove(new NoGesture(), new SuperButton(), true)
+                }
+            },
+            new CpuCombo()
+            {
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, true),
+                    new MeterCostCondition(null, 200f)
+
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new NoGesture(), new AttackA(), true),
+                    new CpuMove(new NoGesture(), new AttackB(), true),
+                    new CpuMove(new NoGesture(), new AttackC(), true),
+                    new CpuMove(new QuarterCircleForward(), new AttackA(), false),
+                    new CpuMove(new NoGesture(), new SuperButton(), true)
+                }
+            },
+            new CpuCombo()
+            {
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, true),
+                    new MeterCostCondition(null, 200f)
+
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new QuarterCircleForward(), new AttackA(), false),
+                    new CpuMove(new NoGesture(), new SuperButton(), true)
+                }
+            },
         };
 
         combos.AddRange(baseCombos);

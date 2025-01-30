@@ -537,6 +537,105 @@ public class BulletTrainModule : CharacterModule
                     new CpuMove(new NoGesture(), new AttackA(), false)
                 }
             },
+            // if ur in super
+            new CpuCombo()
+            {
+                weight = 100000000,
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, true),
+                    new FollowUpCondition(null, typeof(SuperGunStance))
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new NoGesture(), new AttackC(), true),
+                    new CpuMove(new NoGesture(), new AttackC(), true),
+                    new CpuMove(new NoGesture(), new AttackC(), true),
+                    new CpuMove(new NoGesture(), new AttackC(), true),
+
+                }
+            },
+            new CpuCombo()
+            {
+                weight =50000000,
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, true),
+                    new FollowUpCondition(null, typeof(SuperGunStance))
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new ForwardGesture(), new DashMacro(), false)
+
+                }
+            },
+            new CpuCombo()
+            {
+                weight =50000000,
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, true),
+                    new FollowUpCondition(null, typeof(SuperGunStance))
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new BackGesture(), new DashMacro(), false)
+
+                }
+            },
+            // super holster
+            new CpuCombo()
+            {
+                weight =20000000,
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, true),
+                    new FollowUpCondition(null, typeof(SuperGunStance))
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new NoGesture(), new SpecialButton(), false)
+
+                }
+            },
+            new CpuCombo()
+            {
+                weight = 500,
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, true),
+                    new MeterCostCondition(null, 200f)
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new NoGesture(), new AttackA(), true),
+                    new CpuMove(new NoGesture(), new AttackB(), true),
+                    new CpuMove(new NoGesture(), new AttackC(), true),
+                    new CpuMove(new NoGesture(), new SuperButton(), false),
+                    new CpuMove(new NoGesture(), new AttackC(), true),
+                    new CpuMove(new NoGesture(), new AttackC(), true),
+                    new CpuMove(new NoGesture(), new AttackC(), true),
+                    new CpuMove(new NoGesture(), new AttackC(), true),
+                }
+            },
+            new CpuCombo()
+            {
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, true),
+                    new MeterCostCondition(null, 200f)
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new NoGesture(), new AttackB(), true),
+                    new CpuMove(new NoGesture(), new AttackC(), true),
+                    new CpuMove(new NoGesture(), new SuperButton(), false),
+                    new CpuMove(new NoGesture(), new AttackC(), true),
+                    new CpuMove(new NoGesture(), new AttackC(), true),
+                    new CpuMove(new NoGesture(), new AttackC(), true),
+                    new CpuMove(new NoGesture(), new AttackC(), true),
+                }
+            },
         };
 
         combos.AddRange(baseCombos);

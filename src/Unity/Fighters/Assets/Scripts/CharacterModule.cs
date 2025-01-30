@@ -224,7 +224,54 @@ public class CharacterModule : ScriptableObject
                     new CpuMove(new NoGesture(), new AttackA(), true),
                     new CpuMove(new NoGesture(), new AttackC(), true)
                 }
-            }
+            },
+            // roll
+            new CpuCombo()
+            {
+                weight = 25,
+
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, true),
+                    new MeterCostCondition(null, 100f)
+
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new ForwardGesture(), new SuperDefenseButton(), true)
+                }
+            },
+            new CpuCombo()
+            {
+                weight = 25,
+
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, true),
+                    new MeterCostCondition(null, 100f)
+
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new BackGesture(), new SuperDefenseButton(), true)
+                }
+            },
+            // super combos
+            new CpuCombo()
+            {
+                weight = 1000,
+                conditions = new List<GameAttackCondition>()
+                {
+                    new GroundedCondition(null, true),
+                    new MeterCostCondition(null, 200f)
+
+                },
+                moves = new List<CpuMove>()
+                {
+                    new CpuMove(new NoGesture(), new SuperButton(), true)
+                }
+            },
+
 
         };
         return combos;

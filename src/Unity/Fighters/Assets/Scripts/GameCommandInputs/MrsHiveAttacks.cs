@@ -692,7 +692,7 @@ public class BeeHeart : GameAttack
     {
         meterCost = 200;
 
-        armorHitsMax = 3;
+        armorHitsMax = 2;
 
         conditions.Add(new GestureCondition(this, new NoGesture()));
         conditions.Add(new ButtonCondition(this, new SuperButton()));
@@ -801,12 +801,18 @@ public class BeeHeart : GameAttack
             return base.OnGetHitDuring(fighter, properties);
         }
 
+        if (fighter.CurrentHealth <= properties.hitProperties.damage / AttackSettings.armorDamageReductionFactor)
+        {
+            // die from the hit
+            return base.OnGetHitDuring(fighter, properties);
+        }
+
         if (armorHits > 0)
         {
             // armor the hit
             fighter.SendNotification("Armor!");
             fighter.timeManager.DoHitStop(properties.hitProperties.hitstopTime);
-            fighter.CurrentHealth -= properties.hitProperties.damage/3;
+            fighter.CurrentHealth -= properties.hitProperties.damage/ AttackSettings.armorDamageReductionFactor;
             armorHits -= 1;
 
             return HitReport.Hit;

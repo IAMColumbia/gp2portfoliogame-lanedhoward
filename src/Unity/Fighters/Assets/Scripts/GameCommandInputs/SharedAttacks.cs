@@ -31,6 +31,8 @@ public static class AttackSettings
     public static float throwProration;
     public static float superMinScaling;
     public static float superMaxMeterBuildOnHit;
+
+    public static float armorDamageReductionFactor;
     static AttackSettings()
     {
         attackLevel1_hithitstop = 7f / 60f;
@@ -57,6 +59,7 @@ public static class AttackSettings
         throwProration = 0.6f;
         superMinScaling = 0.38f;
         superMaxMeterBuildOnHit = 0f;
+        armorDamageReductionFactor = 3f;
     }
 
 }

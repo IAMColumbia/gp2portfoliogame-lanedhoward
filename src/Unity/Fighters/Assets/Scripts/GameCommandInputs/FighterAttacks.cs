@@ -359,7 +359,7 @@ public class GriddyBack : GriddyAttack
                 new LogicalOrCondition(this,
                     new GestureCondition(this, new QuarterCircleBack()),
                     new LogicalAndCondition(this,
-                        new FollowUpCondition(this, typeof(GriddyForward)),
+                        new FollowUpCondition(this, typeof(GriddyAttack)),
                         new GestureCondition(this, new BackGesture())
                         )
                     ),
@@ -383,7 +383,7 @@ public class GriddyBack : GriddyAttack
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new LogicalOrCondition(this, 
             new GatlingCondition(this),
-            new FollowUpCondition(this, typeof(GriddyForward))
+            new FollowUpCondition(this, typeof(GriddyAttack))
             )
             );
 
@@ -410,7 +410,7 @@ public class GriddyForward : GriddyAttack
                 new LogicalOrCondition(this,
                     new GestureCondition(this, new QuarterCircleForward()),
                     new LogicalAndCondition(this,
-                        new FollowUpCondition(this, typeof(GriddyBack)),
+                        new FollowUpCondition(this, typeof(GriddyAttack)),
                         new GestureCondition(this, new ForwardGesture())
                         )
                     ),
@@ -433,7 +433,7 @@ public class GriddyForward : GriddyAttack
         conditions.Add(new GroundedCondition(this, true));
         conditions.Add(new LogicalOrCondition(this,
             new GatlingCondition(this),
-            new FollowUpCondition(this, typeof(GriddyBack))
+            new FollowUpCondition(this, typeof(GriddyAttack))
             )
             );
 

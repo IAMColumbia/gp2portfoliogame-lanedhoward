@@ -10,6 +10,13 @@ using LaneLibrary;
 using Cinemachine;
 using System.Linq;
 
+public enum StageChoice
+{
+    California,
+    StateLake,
+    Random
+}
+
 public class GameManager : SoundPlayer
 {
     public GameObject fighterPrefab;
@@ -18,7 +25,9 @@ public class GameManager : SoundPlayer
 
     public GameMode gameMode;
 
-    public GameObject[] stages;
+    public GameObject[] AllStages;
+    public GameObject[] CaliforniaStages;
+    public GameObject[] StateLakeStages;
 
     public GameObject[] Walls;
 
@@ -213,11 +222,7 @@ public class GameManager : SoundPlayer
         }
         creditsTimeline.gameObject.SetActive(false);
 
-        foreach (var s in stages)
-        {
-            s.SetActive(false);
-        }
-        LaneLibrary.RandomMethods.Choose(stages).SetActive(true);
+        SetStage();
 
         trainingInfo.gameObject.SetActive(gameMode == GameMode.Training && GameSettings.Instance.ShowTrainingInfo);
 
@@ -780,5 +785,28 @@ public class GameManager : SoundPlayer
     {
         // if anyone clicks menu, immediately return to menu
         ReturnToCharacterSelect();
+    }
+
+    private void SetStage()
+    {
+        foreach (var s in AllStages)
+        {
+            s.SetActive(false);
+        }
+
+        switch (GamePlayerManager.Instance.stageChoice)
+        {
+            case StageChoice.California:
+                LaneLibrary.RandomMethods.Choose(CaliforniaStages).SetActive(true);
+                break;
+            case StageChoice.StateLake:
+                LaneLibrary.RandomMethods.Choose(StateLakeStages).SetActive(true);
+                break;
+            default:
+            case StageChoice.Random:
+                LaneLibrary.RandomMethods.Choose(AllStages).SetActive(true);
+                break;
+        }
+
     }
 }

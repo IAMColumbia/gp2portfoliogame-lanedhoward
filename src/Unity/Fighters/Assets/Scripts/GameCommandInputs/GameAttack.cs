@@ -127,6 +127,11 @@ public class GameAttack
         return null;
     }
 
+    public virtual void OnGetParried(FighterMain fighter)
+    {
+
+    }
+
     public virtual void OnSuperFlashStarted(FighterMain fighter)
     {
 

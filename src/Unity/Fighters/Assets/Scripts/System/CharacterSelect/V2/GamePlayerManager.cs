@@ -13,11 +13,7 @@ public class GamePlayerManager : MonoBehaviour
 
     public int MaxPlayers = 2;
 
-    /// <summary>
-    /// Game Mode doesn't really matter for setup, so we can parse that when it is time to start
-    /// maybe GamePlayerManager doesn't even need that, maybe its just GameManager that can parse and have that
-    /// </summary>
-    public GameMode gameMode;
+    public StageChoice stageChoice;
 
     public PlayerInputManager playerInputManager;
 
@@ -65,7 +61,8 @@ public class GamePlayerManager : MonoBehaviour
         gamePlayerConfigs = new List<GamePlayerConfig>();
         gamePlayerConfigs.Add(new GamePlayerConfig());
         gamePlayerConfigs.Add(new GamePlayerConfig());
-        
+
+        stageChoice = StageChoice.Random;
     }
 
     /// <summary>

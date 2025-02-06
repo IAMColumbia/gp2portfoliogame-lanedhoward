@@ -538,6 +538,12 @@ public class SharkCharge : GameAttack
         //fighter.disableGravity = false;
         base.OnRecovery(fighter);
     }
+
+    public override void OnGetParried(FighterMain fighter)
+    {
+        base.OnGetParried(fighter);
+        armorHits = 0;
+    }
 }
 
 public class SharkChargeImpact : GameAttack

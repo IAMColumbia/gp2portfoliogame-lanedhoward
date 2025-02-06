@@ -721,13 +721,13 @@ public class Parry : GameAttack
             case CurrentAttackState.Startup:
                 {
                     parriedDuringStartup = true;
-
+                    properties.parent.OnGetParried(properties.parent.fighter);
                     return HitReport.Parried;
                 }
             case CurrentAttackState.Active:
                 {
                     DoParry(fighter);
-
+                    properties.parent.OnGetParried(properties.parent.fighter);
                     return HitReport.Parried;
                 }
             default:

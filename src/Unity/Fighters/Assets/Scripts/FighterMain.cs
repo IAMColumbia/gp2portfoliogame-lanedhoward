@@ -484,7 +484,7 @@ public class FighterMain : SoundPlayer, IHitboxResponder
                 // just started an attack, try kara cancel
                 if (currentState is AttackState && currentState.stateTimer <= 4f/60f)
                 {
-                    TryExecuteBufferedInput();
+                    TryExecuteBufferedInput(true);
                     return;
                 }
             }
@@ -494,11 +494,11 @@ public class FighterMain : SoundPlayer, IHitboxResponder
         
     }
 
-    public bool TryExecuteBufferedInput()
+    public bool TryExecuteBufferedInput(bool isKara = false)
     {
         UpdateStance();
 
-        var foundAttack = inputReceiver.ParseAttack(inputReceiver.bufferedInput);
+        var foundAttack = inputReceiver.ParseAttack(inputReceiver.bufferedInput, isKara);
 
         if (foundAttack != null)
         {

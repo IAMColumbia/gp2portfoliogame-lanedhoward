@@ -106,7 +106,7 @@ public class FighterInputReceiver : IInputReceiver
         }
     }
 
-    public GameAttack ParseAttack(IReadPackage package)
+    public GameAttack ParseAttack(IReadPackage package, bool isKara = false)
     {
         if (package.buttons.Count <= 0)
         {
@@ -123,6 +123,8 @@ public class FighterInputReceiver : IInputReceiver
 
         IButton currentButton = package.buttons.FirstOrDefault(b => b.State == IButton.ButtonState.Pressed);
 
+        bool combinedButtons = false;
+
         if (package.buttons.Count > 1)
         {
             // 2 buttons, check for 2 button commands
@@ -134,13 +136,18 @@ public class FighterInputReceiver : IInputReceiver
             if (package.buttons.Where(b => b is AttackA || b is AttackB || b is AttackC).Count() >= 2)
             {
                 currentButton = new SuperDefenseButton();
+                combinedButtons = true;
             }
             else if (package.buttons.Where(b => b is AttackA || b is AttackB || b is AttackC || b is SpecialButton).Count() >= 2)
             {
                 currentButton = new SuperButton();
+                combinedButtons = true;
             }
 
         }
+
+        // expected kara but didnt acutally get a kara input
+        if (isKara && !combinedButtons) return null;
 
         GameMoveInput currentMoveInput = new GameMoveInput(currentGesture, currentButton);
 

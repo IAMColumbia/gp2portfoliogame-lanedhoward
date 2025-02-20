@@ -539,11 +539,13 @@ public class GameManager : SoundPlayer
             {
                 AnnouncerText.text = $"{player2.characterModule.CharacterName} wins!!!";
                 player2GameWins += 1;
+                winScreen.SetWinQuoteText(GetWinQuote(player2.characterModule, player1.characterModule));
             }
             else
             {
                 AnnouncerText.text = $"{player1.characterModule.CharacterName} wins!!!";
                 player1GameWins += 1;
+                winScreen.SetWinQuoteText(GetWinQuote(player1.characterModule, player2.characterModule));
             }
 
             //winScreen.gameObject.SetActive(true);
@@ -560,7 +562,7 @@ public class GameManager : SoundPlayer
             }
 
             // credits easter egg
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(15f);
             creditsTimeline.gameObject.SetActive(true);
             creditsTimeline.Play();
 
@@ -808,5 +810,33 @@ public class GameManager : SoundPlayer
                 break;
         }
 
+    }
+
+    private string GetWinQuote(CharacterModule winner, CharacterModule loser)
+    {
+        Dictionary<string, int> weightedWinQuotes = new();
+
+        foreach (string q in winner.genericWinQuotes)
+        {
+            weightedWinQuotes.Add(q, 1);
+        }
+
+        switch (loser.Character)
+        {
+            case Character.ThePeoplesChamp:
+                weightedWinQuotes.Add(winner.winQuoteVsThePeoplesChamp, 2);
+                break;
+            case Character.BarnacleBillRoddy:
+                weightedWinQuotes.Add(winner.winQuoteVsBarnacleBillRoddy, 2);
+                break;
+            case Character.MrsHive:
+                weightedWinQuotes.Add(winner.winQuoteVsMrsHive, 2);
+                break;
+            case Character.BulletTrain:
+                weightedWinQuotes.Add(winner.winQuoteVsBulletTrain, 2);
+                break;
+        }
+
+        return LaneLibrary.RandomMethods.ChooseWeighted(weightedWinQuotes);
     }
 }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6527b4a829a77e746abf9f339269bc52, type: 3}
   m_Name: FighterStats
   m_EditorClassIdentifier: 
+  Character: 0
   CharacterName: The People's Champ!!
   CharacterDescription: HOMETOWN HERO
   Portrait: {fileID: 21300000, guid: 36b72fa730b2dbc439ebbad16c74ae2d, type: 3}
@@ -71,3 +72,11 @@ MonoBehaviour:
     and his undeniable fighting prowess has earned him countless fans, as well as
     countless challengers. \n\nThe People's Champ!! will fight any one at any time,
     and do it with style.\n"
+  genericWinQuotes:
+  - Yep, that one's going in my highlight reel.
+  - Once again, history has been made!
+  winQuoteVsThePeoplesChamp: Sick Champ cosplay, lil bro!
+  winQuoteVsBarnacleBillRoddy: Go back to sea, old man.
+  winQuoteVsMrsHive: I would never hit a lady! Unless she was crazy and evil. Like
+    you.
+  winQuoteVsBulletTrain: Even a gun can't stop the champ!!

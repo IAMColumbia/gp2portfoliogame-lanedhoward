@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3d5b995d8e9f04ba63dd47a019817c, type: 3}
   m_Name: BlackhandStats
   m_EditorClassIdentifier: 
+  Character: 1
   CharacterName: Barnacle Bill Roddy
   CharacterDescription: LAKE MICHIGAN PIRATE
   Portrait: {fileID: 21300000, guid: 8e98ac5cdeead884c9201457070c0fb3, type: 3}
@@ -90,3 +91,11 @@ MonoBehaviour:
     and his last nickel on a bottle of rum.\n\nCaptain William \"Barnacle Bill\"
     Roddy is wanted in Michigan, Wisconsin, Illinois, and Indiana. \n\nHe only returns
     to dry land for a wet Italian beef sandwich."
+  genericWinQuotes:
+  - Make haste, scallywag.
+  - The windy city always blows my sails right.
+  winQuoteVsThePeoplesChamp: Ye got the heart of a sailor, kid. How'd you like to
+    join me crew?
+  winQuoteVsBarnacleBillRoddy: Did I drink too much? I'm seeing double...
+  winQuoteVsMrsHive: Ye can fly, but ye can't swim.
+  winQuoteVsBulletTrain: All yer spinning would make me seasick.

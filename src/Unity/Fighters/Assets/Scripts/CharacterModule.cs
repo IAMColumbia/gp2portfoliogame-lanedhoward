@@ -5,10 +5,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
+public enum Character
+{
+    ThePeoplesChamp,
+    BarnacleBillRoddy,
+    MrsHive,
+    BulletTrain
+}
+
 [CreateAssetMenu]
 public class CharacterModule : ScriptableObject
 {
     [Header("Cosmetics")]
+    public Character Character;
     public string CharacterName;
     public string CharacterDescription;
     public Sprite Portrait;
@@ -71,6 +80,14 @@ public class CharacterModule : ScriptableObject
 
     [TextArea(3, 20)]
     public string Bio;
+
+    [Header("Win Quotes")]
+    public string[] genericWinQuotes;
+    public string winQuoteVsThePeoplesChamp;
+    public string winQuoteVsBarnacleBillRoddy;
+    public string winQuoteVsMrsHive;
+    public string winQuoteVsBulletTrain;
+
 
     public virtual List<GameAttack> GetGameAttacks()
     {

@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 314cf2e95dc00c44ab90490cf7a283d8, type: 3}
+  m_Name: BulletTrainStats
+  m_EditorClassIdentifier: 
+  Character: 3
+  CharacterName: Bullet Train
+  CharacterDescription: FASTEST GUN ON THE " L"
+  Portrait: {fileID: 21300000, guid: 398ae98fa2496c44cb7ad3fcf75a4d6b, type: 3}
+  Headshot: {fileID: 21300000, guid: 4f560a6c1ba7b894f902abc78d2471b5, type: 3}
+  materials:
+  - {fileID: 2100000, guid: 6627a771f55f0794fa21d4a774fd1a44, type: 2}
+  - {fileID: 2100000, guid: 2838def5b6bd45447aa8fc84a876b2ad, type: 2}
+  - {fileID: 2100000, guid: 528929bf49863804aa21f70dfe1ee650, type: 2}
+  - {fileID: 2100000, guid: f73eebd4f39972a4bb198e92ad434a53, type: 2}
+  song: {fileID: 8300000, guid: 609407973077a1249ae51f8f691aecf1, type: 3}
+  nameAnnouncement: {fileID: 8300000, guid: fbcdfcade21956d4bae7658314b39c51, type: 3}
+  MaxHealth: 5000
+  JuggleMomentumMultiplier: 0.2
+  softKnockdownTime: 0.1
+  hardKnockdownTime: 0.5
+  walkAccel: 100
+  walkMaxSpeed: 4
+  groundFriction: 40
+  velocityToStopMoveAnimation: 1
+  forwardDashTime: 0.3
+  forwardDashActionableDelay: 0.1
+  forwardDashVelocity: {x: 6, y: 13}
+  backDashTime: 0.3
+  backDashActionableDelay: 0.1
+  backDashStrikeInvulnTime: 0
+  backDashVelocity: {x: -6, y: 13}
+  neutralDashTime: 0.3
+  neutralDashActionableDelay: 0.1
+  neutralDashVelocity: {x: 0, y: 13}
+  dashJumpCancelWindow: 0
+  dashMomentumMultiplier: 0.4
+  jumpVelocityHorizontal: 5
+  jumpVelocityVertical: 19
+  jumpMomentumMultiplier: 0.6
+  fireballPrefab: {fileID: 6814210493323356101, guid: dd49196d4ed24cf45a73ac74811c8c32, type: 3}
+  displayStocks: 1
+  startingStocks: 6
+  stocksIcon: {fileID: 21300000, guid: 792e66fd7416e974db1be83c5c6d2657, type: 3}
+  MovesList: '### Bullet Train
+
+
+    #### Draw Gun:
+
+    <sprite name="D"><sprite
+    name="DF"><sprite name="F"> + <sprite name="H">     ( <sprite name="Special">
+    )
+
+    Bullet Train enters a unique Gun Stance, where they can shoot at various
+    angles or take other actions. Most gun stance moves cancel into each other.
+
+
+    ####
+    > Gun Stance Moves:
+
+    <sprite name="H">: fast short-range shot
+
+    <sprite
+    name="D"> + <sprite name="H">: low launcher shot
+
+    <sprite name="B"> + <sprite
+    name="H">: anti-air shot
+
+    <sprite name="F"> + <sprite name="H">: long range
+    sweet spot shot
+
+    <sprite name="M">: Pistol Whip (Overhead)
+
+    <sprite name="L">:
+    Reload
+
+    <sprite name="Dash">: Spin
+
+    <sprite name="D"><sprite name="DB"><sprite
+    name="B"> + <sprite name="H">  ( <sprite name="Special"> ) : Holster Gun'
+  Bio: '## Bullet Train
+
+    (they/them/any/all)
+
+
+    Nobody knows much about Bullet
+    Train from before they arrived at Union Station, but every rail rider knows of
+    them now.
+
+
+    Six were shot down in their first week in Chicago. Three with
+    big mouths, two with big egos, and one who claimed to have a faster draw.
+
+
+    They
+    work as a bouncer at a saloon on Western Ave. and deal blackjack on their nights
+    off.
+
+
+    "Walk soft and pack a big stick, but never walk away" -Johnny Cash
+
+'
+  genericWinQuotes:
+  - Another poor soul shot down...
+  - One more notch on my pistol.
+  winQuoteVsThePeoplesChamp: All those fancy tricks'll get ya killed.
+  winQuoteVsBarnacleBillRoddy: I deal with enough old drunks at the saloon.
+  winQuoteVsMrsHive: You can't outsmart a bullet.
+  winQuoteVsBulletTrain: This town ain't big enough for two of me.

@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="FighterMain: runs the entire player state machine, using other classes to help out">
+    <Position X="4.704" Y="1.506" Height="0.792" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Connect the FighterMain to my command input reader, and my command input reader to the unity input system">
+    <Position X="0.5" Y="0.883" Height="1.108" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Hitboxes and hurtboxes to decide where attacks hit.&#xD;&#xA;HitboxResponder handles what to do when the hitbox collides with a hurtbox">
+    <Position X="6.75" Y="0.5" Height="1.371" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Combo: keeps track of how many times youve been hit in a row, makes you take less damage the longer a combo goes on">
+    <Position X="4.735" Y="5.51" Height="1.006" Width="1.7" />
+  </Comment>
+  <Comment CommentText="keeps track of character specific values (movement speed, different attacks)">
+    <Position X="2.585" Y="0.818" Height="0.675" Width="1.7" />
+  </Comment>
+  <Comment CommentText="subclass sandbox - holds a bunch of methods for derived states to use in their concrete implementations">
+    <Position X="2.817" Y="2.617" Height="0.992" Width="1.7" />
+  </Comment>
+  <Comment CommentText="dontdestroyonload object that keeps track of which controller players are using, which character they picked, etc">
+    <Position X="2.584" Y="5.477" Height="1.05" Width="1.7" />
+  </Comment>
+  <Comment CommentText="spawns fighters, keeps track of rounds won, manages when rounds end, and the ui and effects that go along with that">
+    <Position X="0.5" Y="5.5" Height="1.008" Width="1.7" />
+  </Comment>
+  <Comment CommentText="GameAttack holds attack conditions (are you on the ground, crouching, and pressing the Heavy button) and attack properties (animation, damage, knockback, any unique functionality)">
+    <Position X="9.1" Y="0.75" Height="1.571" Width="1.7" />
+  </Comment>
+  <Comment CommentText="PropertiesProperties is for when attacks need to have different damage / knockback when they hit than when they are blocked">
+    <Position X="9.239" Y="5.362" Height="1.189" Width="1.7" />
+  </Comment>
+  <Class Name="FighterMain" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="2.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ChwhgxGnTixTK0CoqCaqhIZg48MAAVQMQ8nUQbllANA=</HashCode>
+      <FileName>Assets\Scripts\FighterMain.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FighterInputHost" Collapsed="true">
+    <Position X="0.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAASAMAAAABAQCAAAAAQAAAAAQAAAIBAAAAAEAAAAA=</HashCode>
+      <FileName>Assets\Scripts\FighterInputHost.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FighterInputReceiver" Collapsed="true">
+    <Position X="0.5" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>CAAAgBAIBAAKIgBAAAAAAAAIkAIAAAACAAAAEAgAAgA=</HashCode>
+      <FileName>Assets\Scripts\FighterInputReceiver.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Hitbox" Collapsed="true">
+    <Position X="6.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACkgCIAAiABACEAAAAAWAAAAAAAAABAAAAEAAAAAgA=</HashCode>
+      <FileName>Assets\Scripts\Hitboxes\Hitbox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hurtbox" Collapsed="true">
+    <Position X="6.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Scripts\Hitboxes\Hurtbox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projectile" Collapsed="true">
+    <Position X="6.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BBQAAAQAAgABAgAgAAAAAAEgAAAQAABEgIQoAABAAAA=</HashCode>
+      <FileName>Assets\Scripts\Hitboxes\Projectile.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ReverseFireball" Collapsed="true">
+    <Position X="6.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Hitboxes\ReverseFireball.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FighterState" Collapsed="true">
+    <Position X="2.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IABAAAAAAA4ABAECAAAABgARQAAAAAABAAIAQQEAAgA=</HashCode>
+      <FileName>Assets\Scripts\FighterStates\FighterState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Combo" Collapsed="true">
+    <Position X="4.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ASAQAACQAAQQAAACAIAAAAAIMAAAAgAAAAABgQAAAAA=</HashCode>
+      <FileName>Assets\Scripts\GameCommandInputs\Combo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CharacterModule" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAgAACgxQCQCoAACIAAQAQoAAAEQAQAAAQABBAII=</HashCode>
+      <FileName>Assets\Scripts\CharacterModule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerConfigurationManager" Collapsed="true">
+    <Position X="2.25" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAABAAAAAQAAAEAQAAAAAEQAAAAACACEA=</HashCode>
+      <FileName>Assets\Scripts\System\PlayerConfigurationManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager" Collapsed="true">
+    <Position X="0.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>0AQAAAAEACSEAAEABgAAgsLABEAAQIgABgAAUYAgAYA=</HashCode>
+      <FileName>Assets\Scripts\System\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameAttack" Collapsed="true">
+    <Position X="9" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAIIAAAAIAAAEAAAAEAAAAAAAAASAADAAgAAAAAIAgA=</HashCode>
+      <FileName>Assets\Scripts\GameCommandInputs\GameAttack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameAttackCondition" Collapsed="true">
+    <Position X="9" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\GameCommandInputs\GameAttackCondition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameAttackProperties" Collapsed="true">
+    <Position X="9" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQCABAAgCBAAAAAAAAAAAAEIAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\GameCommandInputs\GameAttack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameAttackPropertiesProperties" Collapsed="true">
+    <Position X="9" Y="4.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAIAAggAAAAAAAAAAAAIAAAAAACAAAAAAEAQA=</HashCode>
+      <FileName>Assets\Scripts\GameCommandInputs\GameAttack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="IHitboxResponder" Collapsed="true">
+    <Position X="6.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Hitboxes\IHitboxResponder.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

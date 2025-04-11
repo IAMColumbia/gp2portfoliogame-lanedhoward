@@ -188,6 +188,7 @@
     <Compile Include="Assets\Scripts\WallBounceReceiver.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
     <Compile Include="Assets\Scripts\System\CharacterSelect\V2\HelpButton.cs" />
+    <Compile Include="Assets\Scripts\System\ButtonSpriteSwapManual.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Art\Sprites\ui\command input sprites.txt" />

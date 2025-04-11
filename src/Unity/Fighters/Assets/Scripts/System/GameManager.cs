@@ -562,7 +562,7 @@ public class GameManager : SoundPlayer
             }
 
             // credits easter egg
-            yield return new WaitForSeconds(15f);
+            yield return new WaitForSeconds(30f);
             creditsTimeline.gameObject.SetActive(true);
             creditsTimeline.Play();
 

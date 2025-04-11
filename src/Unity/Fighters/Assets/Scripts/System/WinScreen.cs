@@ -44,7 +44,7 @@ public class WinScreen : MonoBehaviour
         winQuote.gameObject.SetActive(true);
         //Tween.Delay(0.1f).Chain(Tween.Custom(onValueChange: (float v) => winQuote.alpha = v, startValue: 0, endValue: 1, duration: 2));
         winQuote.CrossFadeAlpha(0f, 0f, false);
-        winQuote.CrossFadeAlpha(1f, 3f, false);
+        winQuote.CrossFadeAlpha(1f, 2.5f, false);
 
     }
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b5fb352633f4a4682a517311fcb5ac, type: 3}
   m_Name: MrsHiveStats
   m_EditorClassIdentifier: 
-  Character: 0
+  Character: 2
   CharacterName: Mrs. Hive
   CharacterDescription: MAD BEE SCIENTIST
   Portrait: {fileID: 21300000, guid: 9fb48840ffc7ae641987a31732ff9608, type: 3}

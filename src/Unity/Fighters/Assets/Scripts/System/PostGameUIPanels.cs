@@ -1,3 +1,4 @@
+using PrimeTween;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -75,6 +76,8 @@ public class PostGameUIPanels : MonoBehaviour
     {
         rematchClicked = false;
         rematchMessage.SetActive(false);
+        //eventSystem.SetSelectedGameObject(null);
+        //Tween.Delay(0.1f, useUnscaledTime: true, onComplete: () => eventSystem.SetSelectedGameObject(rematchButton));
         eventSystem.SetSelectedGameObject(rematchButton);
     }
 

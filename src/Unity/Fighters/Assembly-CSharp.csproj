@@ -150,6 +150,7 @@
     <Compile Include="Assets\Scripts\CommandInputLibrary\Button.cs" />
     <Compile Include="Assets\Scripts\GameCommandInputs\GameMoveInputs.cs" />
     <Compile Include="Assets\Scripts\FighterInputReceiver.cs" />
+    <Compile Include="Assets\Scripts\System\ButtonSpriteSwapManual.cs" />
     <Compile Include="Assets\Scripts\System\Healthbar.cs" />
     <Compile Include="Assets\Scripts\CharacterModules\FormerKingModule.cs" />
     <Compile Include="Assets\Scripts\System\CharacterSelect\ControlsManager.cs" />
@@ -188,7 +189,6 @@
     <Compile Include="Assets\Scripts\WallBounceReceiver.cs" />
     <Compile Include="Assets\Scripts\FighterInputHost.cs" />
     <Compile Include="Assets\Scripts\System\CharacterSelect\V2\HelpButton.cs" />
-    <Compile Include="Assets\Scripts\System\ButtonSpriteSwapManual.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Art\Sprites\ui\command input sprites.txt" />

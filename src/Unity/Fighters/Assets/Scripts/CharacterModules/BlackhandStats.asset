@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e3d5b995d8e9f04ba63dd47a019817c, type: 3}
+  m_Name: BlackhandStats
+  m_EditorClassIdentifier: 
+  Character: 1
+  CharacterName: Barnacle Bill Roddy
+  CharacterDescription: LAKE MICHIGAN PIRATE
+  Portrait: {fileID: 21300000, guid: 8e98ac5cdeead884c9201457070c0fb3, type: 3}
+  Headshot: {fileID: 21300000, guid: b68a6605d8dcf004faeeada098b465dd, type: 3}
+  materials:
+  - {fileID: 2100000, guid: 60a2e37dd07c8c84399b54e789aeb9f2, type: 2}
+  - {fileID: 2100000, guid: 69756b4c28b4b064f99f7522aa0d9994, type: 2}
+  - {fileID: 2100000, guid: c38f27553a3fba04286d6fb58cc468ed, type: 2}
+  - {fileID: 2100000, guid: e7575c920d13bea4abe6c058c574c912, type: 2}
+  song: {fileID: 8300000, guid: 6616e58e654a8c94898c0820f9440ec4, type: 3}
+  nameAnnouncement: {fileID: 8300000, guid: 35442701af72eb24ca4431b6ee7fe092, type: 3}
+  MaxHealth: 5000
+  JuggleMomentumMultiplier: 0.2
+  softKnockdownTime: 0.1
+  hardKnockdownTime: 0.5
+  walkAccel: 75
+  walkMaxSpeed: 4
+  groundFriction: 45
+  velocityToStopMoveAnimation: 1
+  forwardDashTime: 0.3
+  forwardDashActionableDelay: 0.1
+  forwardDashVelocity: {x: 3, y: 13}
+  backDashTime: 0.3
+  backDashActionableDelay: 0.1
+  backDashStrikeInvulnTime: 0
+  backDashVelocity: {x: -3, y: 13}
+  neutralDashTime: 0.3
+  neutralDashActionableDelay: 0.1
+  neutralDashVelocity: {x: 0, y: 13}
+  dashJumpCancelWindow: 0
+  dashMomentumMultiplier: 0.8
+  jumpVelocityHorizontal: 3.5
+  jumpVelocityVertical: 19
+  jumpMomentumMultiplier: 0.8
+  fireballPrefab: {fileID: 1780595657908455682, guid: 6922fc3d383af8d45a976e38e4431378, type: 3}
+  displayStocks: 0
+  startingStocks: 0
+  stocksIcon: {fileID: 0}
+  MovesList: '### Barnacle Bill Roddy
+
+
+    Cannon Grab:  (Powerful command grab)
+
+    <sprite
+    name="D"><sprite name="DF"><sprite name="F"> + <sprite name="G">      ( <sprite
+    name="F"> + <sprite name="Special"> )
+
+
+    Harpoon Grab:  (Anti-air grab)
+
+    <sprite
+    name="D"><sprite name="DB"><sprite name="B"> + <sprite name="G">      ( <sprite
+    name="B"> + <sprite name="Special"> )
+
+
+    Shark Call: (Shark anti-air)
+
+    <sprite
+    name="F"><sprite name="D"><sprite name="DF"> + <sprite name="H">      ( <sprite
+    name="D"> + <sprite name="Special"> )
+
+
+    Wave Call: (Reverse fireball)
+
+    <sprite
+    name="D"><sprite name="DB"><sprite name="B"> + <sprite name="M">      ( <sprite
+    name="Special"> )
+
+
+    Peg Leg: (Forward advancing kick)
+
+    <sprite name="F">
+    + <sprite name="H">'
+  Bio: "## Barnacle Bill Roddy\n(he/him)\n\nBarnacle Bill moved to the midwest following
+    his dishonorable discharge from the US Navy.\n\nHe spent his last dime on a boat,
+    and his last nickel on a bottle of rum.\n\nCaptain William \"Barnacle Bill\"
+    Roddy is wanted in Michigan, Wisconsin, Illinois, and Indiana. \n\nHe only returns
+    to dry land for a wet Italian beef sandwich."
+  genericWinQuotes:
+  - Make haste, scallywag.
+  - The windy city always blows my sails right.
+  winQuoteVsThePeoplesChamp: Ye got the heart of a sailor, kid. How'd you like to
+    join me crew?
+  winQuoteVsBarnacleBillRoddy: Did I drink too much? I'm seeing double...
+  winQuoteVsMrsHive: Ye can fly, but ye can't swim.
+  winQuoteVsBulletTrain: All yer spinning would make me seasick.

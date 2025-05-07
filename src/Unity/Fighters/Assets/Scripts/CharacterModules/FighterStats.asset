@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6527b4a829a77e746abf9f339269bc52, type: 3}
+  m_Name: FighterStats
+  m_EditorClassIdentifier: 
+  Character: 0
+  CharacterName: The People's Champ!!
+  CharacterDescription: HOMETOWN HERO
+  Portrait: {fileID: 21300000, guid: 36b72fa730b2dbc439ebbad16c74ae2d, type: 3}
+  Headshot: {fileID: 21300000, guid: 8fc8f2df89c63fb4a909952debe41130, type: 3}
+  materials:
+  - {fileID: 2100000, guid: 6a17db4d6a8b85b41ad8c5ff2dbdad69, type: 2}
+  - {fileID: 2100000, guid: a8fe130ad622eff45859d2b1ad830bc9, type: 2}
+  - {fileID: 2100000, guid: 52008ec5a6587b34b9e5ec08c14bd8bf, type: 2}
+  - {fileID: 2100000, guid: 26a6d4b597b279548aab2b323f82dce4, type: 2}
+  song: {fileID: 8300000, guid: c5e9ac1d8bf6993469052b8d9e616281, type: 3}
+  nameAnnouncement: {fileID: 8300000, guid: 37199560d35cb99498dab0ba577dd1e7, type: 3}
+  MaxHealth: 5000
+  JuggleMomentumMultiplier: 0.2
+  softKnockdownTime: 0.1
+  hardKnockdownTime: 0.5
+  walkAccel: 100
+  walkMaxSpeed: 5
+  groundFriction: 50
+  velocityToStopMoveAnimation: 1
+  forwardDashTime: 0.3
+  forwardDashActionableDelay: 0.1
+  forwardDashVelocity: {x: 6, y: 13}
+  backDashTime: 0.3
+  backDashActionableDelay: 0.1
+  backDashStrikeInvulnTime: 0
+  backDashVelocity: {x: -6, y: 13}
+  neutralDashTime: 0.3
+  neutralDashActionableDelay: 0.1
+  neutralDashVelocity: {x: 0, y: 13}
+  dashJumpCancelWindow: 0
+  dashMomentumMultiplier: 0.5
+  jumpVelocityHorizontal: 5
+  jumpVelocityVertical: 19
+  jumpMomentumMultiplier: 0.5
+  fireballPrefab: {fileID: 6814210493323356101, guid: dd49196d4ed24cf45a73ac74811c8c32, type: 3}
+  displayStocks: 0
+  startingStocks: 0
+  stocksIcon: {fileID: 0}
+  MovesList: "## The People's Champ!!\n\n#### The Griddy\n<sprite name=\"D\"><sprite
+    name=\"DB\"><sprite name=\"B\"> + <sprite name=\"L\"> OR <sprite name=\"D\"><sprite
+    name=\"DF\"><sprite name=\"F\"> + <sprite name=\"L\">\n               ( <sprite
+    name=\"DB\"> + <sprite name=\"Special\"> OR <sprite name=\"DF\"> + <sprite name=\"Special\">
+    )\n    Cancels into itself, or other specials for enhanced properties.\n    (Simple
+    inputs allowed for griddy cancels)\n#### The Red Wave (Fireball)\n<sprite name=\"D\"><sprite
+    name=\"DF\"><sprite name=\"F\"> + <sprite name=\"M\">      ( <sprite name=\"Special\">
+    )\nOR <sprite name=\"F\"> + <sprite name=\"M\"> during Griddy\n#### The People's
+    Uppercut (Reversal)\n<sprite name=\"F\"><sprite name=\"D\"><sprite name=\"DF\">
+    + <sprite name=\"H\">      ( <sprite name=\"F\"> + <sprite name=\"Special\">
+    )\nOR <sprite name=\"F\"> + <sprite name=\"H\"> during Griddy\n#### The Heartland
+    Hammer (Overhead)\n<sprite name=\"D\"><sprite name=\"DB\"><sprite name=\"B\">
+    + <sprite name=\"H\">      ( <sprite name=\"B\"> + <sprite name=\"Special\">
+    )\nOR <sprite name=\"B\"> + <sprite name=\"H\"> during Griddy"
+  Bio: "## The People's Champ!!\n(he/him)\n\nThe People's Champ!! became a social
+    media sensation after videos of him dancing during street fights went viral in
+    2019. \n\nHis arrogant fighting style isn't just for show; his taunting grants
+    allows him to use powerful, almost supernatural techniques.\n\nHis brash personality
+    and his undeniable fighting prowess has earned him countless fans, as well as
+    countless challengers. \n\nThe People's Champ!! will fight any one at any time,
+    and do it with style.\n"
+  genericWinQuotes:
+  - Yep, that one's going in my highlight reel.
+  - Once again, history has been made!
+  winQuoteVsThePeoplesChamp: Sick Champ cosplay, lil bro!
+  winQuoteVsBarnacleBillRoddy: Go back to sea, old man.
+  winQuoteVsMrsHive: I would never hit a lady! Unless she was crazy and evil. Like
+    you.
+  winQuoteVsBulletTrain: Even a gun can't stop the champ!!

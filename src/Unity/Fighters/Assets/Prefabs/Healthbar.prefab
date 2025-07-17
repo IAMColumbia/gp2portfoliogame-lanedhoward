@@ -107,8 +107,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Bullet Train
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f94e02d794f78384c8d4a7ce2d0b65d4, type: 2}
-  m_sharedMaterial: {fileID: 2147374, guid: f94e02d794f78384c8d4a7ce2d0b65d4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: abea451648676254d8659491ad60aac0, type: 2}
+  m_sharedMaterial: {fileID: 2147374, guid: abea451648676254d8659491ad60aac0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -610,8 +610,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 6
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f94e02d794f78384c8d4a7ce2d0b65d4, type: 2}
-  m_sharedMaterial: {fileID: 2147374, guid: f94e02d794f78384c8d4a7ce2d0b65d4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: abea451648676254d8659491ad60aac0, type: 2}
+  m_sharedMaterial: {fileID: 2147374, guid: abea451648676254d8659491ad60aac0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -745,8 +745,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: FASTEST GUN ON THE " L"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f94e02d794f78384c8d4a7ce2d0b65d4, type: 2}
-  m_sharedMaterial: {fileID: 2147374, guid: f94e02d794f78384c8d4a7ce2d0b65d4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: abea451648676254d8659491ad60aac0, type: 2}
+  m_sharedMaterial: {fileID: 2147374, guid: abea451648676254d8659491ad60aac0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

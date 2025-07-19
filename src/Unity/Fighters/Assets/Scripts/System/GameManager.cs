@@ -25,7 +25,7 @@ public class GameManager : SoundPlayer
 
     public GameMode gameMode;
 
-    public GameObject[] AllStages;
+    private GameObject[] AllStages;
     public GameObject[] CaliforniaStages;
     public GameObject[] StateLakeStages;
 
@@ -98,6 +98,10 @@ public class GameManager : SoundPlayer
             SceneManager.LoadScene("PlayerSetupVersion2");
             return;
         }
+        var allStagesList = new List<GameObject>(CaliforniaStages);
+        allStagesList.AddRange(StateLakeStages);
+        AllStages = allStagesList.ToArray();
+
     }
 
     private void Start()

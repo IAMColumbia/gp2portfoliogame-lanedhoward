@@ -3906,11 +3906,6 @@ MonoBehaviour:
   fighterPrefab: {fileID: 9020838737738351362, guid: b35326e5997f61944bee8ac2774395a9, type: 3}
   round: 0
   gameMode: 0
-  AllStages:
-  - {fileID: 7416052554664453319}
-  - {fileID: 7786603277603833846}
-  - {fileID: 4635153623004487647}
-  - {fileID: 70767246696955406}
   CaliforniaStages:
   - {fileID: 7416052554664453319}
   - {fileID: 7786603277603833846}
